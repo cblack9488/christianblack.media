@@ -1,0 +1,157 @@
+/* Webfonts. No brand font binaries were provided, so these are Google Fonts
+   substitutions chosen for the "serif only, quiet, editorial" brief.
+   Display: Instrument Serif. Text: Newsreader. See readme.md > Typography. */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap");
+
+:root{
+  /* --- Base: earth-dark neutrals (warm, low chroma) --- */
+  --ink-950:#100F0C;
+  --ink-900:#16150F;
+  --ink-850:#1C1A15;
+  --ink-800:#23211A;
+  --ink-700:#2E2B23;
+  --ink-600:#3C382E;
+  --ink-500:#4C473A;
+  --stone-400:#7A7466;
+  --stone-300:#9B9484;
+  --stone-200:#BCB4A2;
+  --stone-100:#D8D1BF;
+  --paper:#EDE7D8;
+
+  /* --- Accents: dark pastels, earth-derived --- */
+  --clay-500:#A97B62;   /* terracotta */
+  --clay-300:#C79A81;
+  --sage-500:#849077;   /* dry olive */
+  --sage-300:#A3AD95;
+  --slate-500:#7C8A90;  /* dusty blue */
+  --ochre-500:#BFA372;
+  --rose-500:#A5807C;
+
+  /* --- Semantic surfaces --- */
+  --bg:var(--ink-900);
+  --bg-sunken:var(--ink-950);
+  --surface-raised:var(--ink-850);
+  --surface-card:var(--ink-850);
+  --surface-inset:var(--ink-800);
+  --surface-inverse:var(--paper);
+
+  /* --- Semantic text --- */
+  --text-primary:var(--paper);
+  --text-body:var(--stone-100);
+  --text-secondary:var(--stone-200);
+  --text-muted:var(--stone-400);
+  --text-inverse:var(--ink-900);
+  --text-accent:var(--clay-300);
+
+  /* --- Lines --- */
+  --border-hairline:rgba(216,209,191,0.10);
+  --border-subtle:rgba(216,209,191,0.16);
+  --border-strong:rgba(216,209,191,0.30);
+
+  /* --- Interactive --- */
+  --accent:var(--clay-500);
+  --accent-hover:var(--clay-300);
+  --accent-soft:rgba(169,123,98,0.16);
+  --focus-ring:rgba(191,163,114,0.55);
+
+  /* --- Media / overlays --- */
+  --media-placeholder:#2A2720;
+  --overlay-scrim:rgba(16,15,12,0.55);
+  --overlay-protect:linear-gradient(to top,rgba(16,15,12,0.80) 0%,rgba(16,15,12,0.35) 45%,rgba(16,15,12,0) 100%); /* @kind color */
+}
+
+:root{
+  --font-display:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --font-text:"Newsreader",Georgia,"Times New Roman",serif;
+  --font-label:"Newsreader",Georgia,serif; /* used at small size + tracking */
+
+  /* Scale — editorial, generous jumps at the top */
+  --text-display-1:clamp(56px,8vw,124px);
+  --text-display-2:clamp(40px,5vw,76px);
+  --text-title:38px;
+  --text-heading:27px;
+  --text-subhead:21px;
+  --text-body-lg:19px;
+  --text-body:17px;
+  --text-small:15px;
+  --text-caption:13px;
+  --text-label:11px;
+
+  --leading-tight:1.02;
+  --leading-snug:1.18;
+  --leading-normal:1.45;
+  --leading-prose:1.68;
+
+  --weight-light:200;
+  --weight-regular:400;
+  --weight-medium:500;
+
+  --tracking-display:-0.02em;
+  --tracking-normal:0;
+  --tracking-label:0.16em;
+  --tracking-label-wide:0.24em;
+
+  --measure-prose:63ch;
+  --measure-narrow:44ch;
+}
+
+:root{
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+  --space-9:96px;
+  --space-10:128px;
+  --space-11:180px;
+
+  --gutter-page:clamp(24px,6vw,96px); /* @kind spacing */
+  --rail-width:76px;          /* right-side page navigation rail */
+  --section-gap:var(--space-10);
+  --grid-gap:var(--space-5);
+  --max-content:1240px;
+}
+
+:root{
+  --radius-none:0;
+  --radius-xs:2px;
+  --radius-sm:3px;
+  --radius-md:5px;
+  --radius-pill:999px;
+
+  --border-width:1px;
+
+  /* Shadows are barely there — depth comes from value, not glow */
+  --shadow-none:none;
+  --shadow-soft:0 1px 2px rgba(0,0,0,0.28);
+  --shadow-lift:0 10px 30px -14px rgba(0,0,0,0.55);
+  --shadow-inset-hairline:inset 0 0 0 1px var(--border-hairline);
+
+  --blur-veil:blur(14px); /* @kind other */
+  --grain-opacity:0.045; /* @kind other */
+
+  --aspect-portrait:3/4; /* @kind other */
+  --aspect-frame:4/5; /* @kind other */
+  --aspect-landscape:3/2; /* @kind other */
+  --aspect-cinema:21/9; /* @kind other */
+  --aspect-video:16/9; /* @kind other */
+}
+
+:root{
+  --dur-instant:120ms; /* @kind other */
+  --dur-fast:200ms; /* @kind other */
+  --dur-base:320ms; /* @kind other */
+  --dur-slow:600ms; /* @kind other */
+  --dur-veil:900ms; /* @kind other */
+
+  --ease-soft:cubic-bezier(0.22,0.61,0.36,1); /* @kind other */
+  --ease-out:cubic-bezier(0.16,1,0.3,1); /* @kind other */
+  --ease-inout:cubic-bezier(0.45,0.05,0.55,0.95); /* @kind other */
+
+  --hover-opacity:0.72; /* @kind other */
+  --press-opacity:0.55; /* @kind other */
+  --media-hover-scale:1.015; /* @kind other */
+}
