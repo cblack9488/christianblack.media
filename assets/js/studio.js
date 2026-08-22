@@ -25,7 +25,7 @@
 
   var RATIOS = ['frame', 'portrait', 'landscape', 'cinema', 'video'];
   var SPECS = {
-    site: [{ k: 'name' }, { k: 'mark', l: 'Rail monogram' }, { k: 'domain' }, { k: 'email' }, { k: 'year', l: 'Rail year' }],
+    site: [{ k: 'name' }, { k: 'mark', l: 'Rail monogram' }, { k: 'domain' }, { k: 'email' }],
     head: [{ k: 'kicker' }, { k: 'title' }, { k: 'lede', t: 'textarea' }],
     hero: [{ k: 'src', t: 'image', l: 'Photograph' }, { k: 'caption' }, { k: 'meta' }, { k: 'alt', l: 'Alt text' }],
     photo: [{ k: 'src', t: 'image', l: 'Photograph' }, { k: 'caption' }, { k: 'meta' },
@@ -35,7 +35,17 @@
            { k: 'detail', l: 'Where' }, { k: 'note', l: 'Style (shown italic)' },
            { k: 'url', t: 'url', l: 'Read-article link' }],
     pageheader: [{ k: 'image', t: 'image', l: 'Backdrop photograph' },
-                 { k: 'focus', l: 'Crop focus (e.g. center 55%)' }],
+                 { k: 'focus', l: 'Crop focus (e.g. center 55%)' },
+                 { k: 'credit', l: 'Photo credit' }],
+    aboutintro: [{ k: 'title' }, { k: 'lede', l: 'Subtitle in quotes' },
+                 { k: 'portrait', t: 'image', l: 'Portrait beside the text' },
+                 { k: 'intro', t: 'textarea', rows: 8, l: 'Opening paragraph' }],
+    contactblk: [{ k: 'title' }, { k: 'blurb', t: 'textarea' },
+                 { k: 'image', t: 'image', l: 'Photograph behind it' },
+                 { k: 'credit', l: 'Photo credit' }],
+    overlay: [{ k: 'heading' }, { k: 'image', t: 'image', l: 'Photograph' },
+              { k: 'side', t: 'select', l: 'Text side', options: ['left', 'right'] },
+              { k: 'credit', l: 'Photo credit' }, { k: 'text', t: 'textarea', rows: 12 }],
     support: [{ k: 'label', l: 'Caption' }, { k: 'logo', t: 'image', l: 'Sponsor logo' }],
     band: [{ k: 'label', l: 'Section heading' }, { k: 'blurb', l: 'Kicker under it' },
            { k: 'image', t: 'image', l: 'Backdrop photograph' },
@@ -44,7 +54,8 @@
            { k: 'credit', l: 'Photo credit' }],
     banner2: [{ k: 'image', t: 'image', l: 'Banner photograph' },
               { k: 'headline', l: 'Wording over it' },
-              { k: 'focus', l: 'Crop focus (e.g. center 50%)' }],
+              { k: 'focus', l: 'Crop focus (e.g. center 50%)' },
+              { k: 'credit', l: 'Photo credit' }],
     video: [{ k: 'title' }, { k: 'meta', l: 'Caption' }, { k: 'url', t: 'url', l: 'YouTube link' }],
     stat: [{ k: 'value' }, { k: 'label' }],
     nextItem: [{ k: 'when' }, { k: 'what', t: 'textarea' }],
@@ -60,8 +71,9 @@
             { k: 'cover', t: 'image', l: 'Article cover photo' },
             { k: 'thumb', t: 'image', l: 'Index card photo (optional)' },
             { k: 'pullquote', t: 'textarea' }, { k: 'body', t: 'textarea', rows: 16 }],
-    link: [{ k: 'kind', t: 'select', options: ['Article', 'Writing', 'Podcast', 'Interview', 'Film', 'Social'] },
-           { k: 'publication' }, { k: 'title' }, { k: 'year' }, { k: 'url', t: 'url' }]
+    link: [{ k: 'kind', t: 'select', options: ['Writing', 'Podcast', 'Film', 'Interview', 'Social'] },
+           { k: 'publication' }, { k: 'title' }, { k: 'year' },
+           { k: 'url', t: 'url', l: 'Link' }, { k: 'note', l: 'Note under the title' }]
   };
 
   var SPEC_FOR_BASE = {
@@ -506,14 +518,6 @@
       });
     }
 
-    if (page === 'film') {
-      addBtn(host, 'Featured film', function () { inspect(c.film.featured, 'featured', 'Featured film'); });
-      addBtn(host, 'Add a video to the strip', function () {
-        c.film.videos.push({ title: 'New video', meta: '', url: '' });
-        changed(); rerender();
-      });
-    }
-
     if (page === 'journal') {
       addBtn(host, 'New entry', function () {
         var ids = c.journal.entries.map(function (e) { return e.id; });
@@ -541,11 +545,20 @@
     }
 
     if (page === 'media') {
+      addBtn(host, 'Featured film', function () { inspect(c.media.film, 'featured', 'Featured film'); });
       addBtn(host, 'New link', function () {
         var ids = c.media.links.map(function (l) { return l.id; });
         c.media.links.unshift({ id: uniqueId('link', ids), kind: 'Article', publication: '', title: '', year: '', url: '' });
         changed(); rerender();
       });
+    }
+
+    if (page === 'about') {
+      addBtn(host, 'Backdrop photo', function () { inspect(c.about.header, 'pageheader', 'Backdrop'); });
+      addBtn(host, 'Opening paragraph', function () { inspect(c.about, 'aboutintro', 'Opening'); });
+      addBtn(host, 'Photo break', function () { inspect(c.about['break'], 'pageheader', 'Photo break'); }).classList.add('st-sub');
+      addBtn(host, 'Outreach section', function () { inspect(c.about.outreach, 'overlay', 'Outreach'); });
+      addBtn(host, 'Get in touch', function () { inspect(c.about.contact, 'contactblk', 'Contact'); }).classList.add('st-sub');
     }
 
     addBtn(host, 'Site details', function () { inspect(c.site, 'site', 'Site details'); }).classList.add('st-sub');

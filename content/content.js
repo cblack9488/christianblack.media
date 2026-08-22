@@ -8,7 +8,6 @@ window.CB_CONTENT = {
     "mark": "CB",
     "domain": "christianblack.media",
     "email": "cblack9488@gmail.com",
-    "year": "MMXXVI",
     "markImage": "images/cb-crab.png",
     "social": [
       {
@@ -43,28 +42,28 @@ window.CB_CONTENT = {
         "image": "images/up-high.jpg",
         "focus": "center 45%",
         "side": "left",
-        "credit": "Photo · Vitaliy Musiyenko",
+        "credit": "Photo · Christian Black",
         "items": [
           {
             "name": "“Brilliant Blue”",
             "grade": "AI3 M7+, 850m",
             "detail": "White Sapphire (6040m), Kishtwar Valley, India",
             "note": "First ascent",
-            "url": ""
+            "url": "index.html?entry=brilliant-blue-first-all-american-expedition-to-india-s-kish"
           },
           {
             "name": "Para-alpinism in the Cordillera Blanca",
             "grade": "",
             "detail": "",
             "note": "",
-            "url": ""
+            "url": "index.html?entry=fight-or-flight"
           },
           {
             "name": "Failure or success? A trip to the Garhwal Himalaya",
             "grade": "",
             "detail": "",
             "note": "",
-            "url": ""
+            "url": "index.html?entry=garhwal-himalaya"
           }
         ]
       },
@@ -82,7 +81,7 @@ window.CB_CONTENT = {
             "grade": "5.13a, 36 pitches",
             "detail": "El Capitan, Yosemite CA",
             "note": "Ground up free ascent",
-            "url": ""
+            "url": "index.html?entry=the-golden-handcuffs"
           },
           {
             "name": "“Desert Solitaire”",
@@ -147,28 +146,28 @@ window.CB_CONTENT = {
             "grade": "",
             "detail": "Kishtwar Valley",
             "note": "",
-            "url": ""
+            "url": "index.html?entry=brilliant-blue-first-all-american-expedition-to-india-s-kish"
           },
           {
             "name": "Cordillera Blanca",
             "grade": "",
             "detail": "Peru — climb and fly",
             "note": "",
-            "url": ""
+            "url": "index.html?entry=fight-or-flight"
           },
           {
             "name": "Patagonia",
             "grade": "",
             "detail": "El Chaltén, Argentina",
             "note": "",
-            "url": ""
+            "url": "index.html?entry=patagonia-pt-1-success"
           },
           {
             "name": "Northwest Territories",
             "grade": "",
             "detail": "Cirque of the Unclimbables",
             "note": "",
-            "url": ""
+            "url": "index.html?entry=cirque-of-the-unclimbables-2023-climb-and-packraft"
           }
         ]
       }
@@ -186,49 +185,30 @@ window.CB_CONTENT = {
     "banner": {
       "image": "images/photography-banner.jpg",
       "headline": "Coming soon",
-      "focus": "center 50%"
+      "focus": "center 50%",
+      "credit": "Photo · Christian Black"
     },
     "photos": []
-  },
-  "film": {
-    "kicker": "Film",
-    "title": "Film",
-    "lede": "",
-    "featured": {
-      "title": "All Grown Up",
-      "meta": "Dirtbag Fund",
-      "blurb": "",
-      "url": "https://www.youtube.com/watch?v=6xC_V8TsYxM",
-      "poster": ""
-    },
-    "videos": [
-      {
-        "title": "All Grown Up",
-        "meta": "Dirtbag Fund",
-        "url": "https://www.youtube.com/watch?v=6xC_V8TsYxM"
-      },
-      {
-        "title": "Add a video",
-        "meta": "Paste a YouTube link in Studio",
-        "url": ""
-      },
-      {
-        "title": "Add a video",
-        "meta": "Paste a YouTube link in Studio",
-        "url": ""
-      },
-      {
-        "title": "Add a video",
-        "meta": "Paste a YouTube link in Studio",
-        "url": ""
-      }
-    ]
   },
   "journal": {
     "kicker": "Journal",
     "title": "Words",
     "lede": "Essays, trip reports, techniques, and beta",
     "entries": [
+      {
+        "id": "garhwal-himalaya",
+        "title": "Failure or success? A trip to the Garhwal Himalaya",
+        "date": "",
+        "dateLabel": "",
+        "meta": "Trip report",
+        "lede": "",
+        "cover": "images/words-second.jpg",
+        "thumb": "images/words-second.jpg",
+        "credits": [],
+        "pullquote": "",
+        "comingSoon": true,
+        "body": ""
+      },
       {
         "id": "fight-or-flight",
         "title": "Fight or Flight",
@@ -242,7 +222,24 @@ window.CB_CONTENT = {
         ],
         "pullquote": "",
         "body": "I am at almost 19,000ft. My wing is unfurled on the snow in front of me catching drifts of the thin Andean air coming over the ridge. Behind it is a cliff heading to the bottom of the southeast face of Artesonraju, the half of which we just climbed. Behind me is another cliff tumbling off the southeast ridge where Rowan and I stand on a slope just barely large enough to lay out our small descent paragliders. It is large enough to launch but certainly not large enough to mess up. Rowan has me on a makeshift belay while I gather my footing and ready to pull up my wing into the wind. It is a belay in the sense that there is a rope attached to me, but makeshift in the sense that we just made this system up. I have never heard of someone launching a paraglider “on belay” before. It is untested but it provides us with a feeling of added safety during the transition from ground to sky in case of a slip during launch. I tug on my risers to bring the wing up, letting my body control the glider in the way it knows how. My mind goes blank. Numb.\n\nThe misnomer “adrenaline junky” is often applied to those who do risky sports. Indeed that may be the case if you do them irresponsibly, but any adventure athlete will tell you that stillness of the mind characterizes safety and control. It is an override of the body telling the mind that it is unsafe. And indeed, to perform our best, even perfectly at times, we cannot listen to the mind, only perform with the body. “Flow state” as it is called. An incredibly useful adaptation that can be learned to overcome our fight or flight nervous system response to danger.\n\n[photo: images/journal/fight-or-flight/02.jpg]\n\nIt is this that I feel when my wing comes overhead and I turn around to prepare to run off of our icy pedestal into thin air under the support of my nylon aircraf. Or rather, it is precisely what I don’t feel.\n\nRowan and I had come to Peru with a seemingly simple plan. Explore the Cordillera Blanca for its potential paragliding and climbing, using the paraglider as either a descent tool or a way to arrive deep into the mountains using thermals to turn days worth of approaching in mere hours of flight. While simple in theory, the reality of doing this safely would be a much different undertaking. Unlike in the U.S., there are no weather stations in the Cordillera Blanca to ground-truth and provide data to high resolution weather models. Being in the southern hemisphere there are also many less models to reference for forecasting in the first place. Instead, we would have to build our own models, mentally, of the patterns, strengths, directions and schedule of the winds, ground-truthing our guesses with observations as we hiked, acclimatized and climbed in the range each outing. The only pieces of the puzzle we had were the edges - maps. With satellite imagery and topo maps we could make calculations about where we could land if we launched from certain peaks and dream up ideas for using the terrain and thermals to arrive at basecamps in an hour what would normally take 2-3 days on foot. And so we began our grand puzzle with no picture to reference. We would find out what the picture was with enough time and effort.\n\n[photo: images/journal/fight-or-flight/03.jpg]\n\nThe first pieces of the puzzle began falling into place during our acclimatization outings. From the large-scale wind forecast, we knew there was an east wind hitting the range every morning, but we didn’t know how strong it was. From our best guess, this was the movement of the large, wet airmass sitting over the amazon rainforest just to the east of the Cordillera Blanca. Each morning when the sun hits the east faces of the 20,000ft+ mountains, the heated air rises and expands, creating low pressure and drawing in the dense air from the Amazon to replace it. The draw quite literally sucks air from the east as it spills over the passes and onto the peaks of the Cordillera.\n\nWe needed to acclimatize, and we also needed to figure out the timing and strength of the east wind to understand if early morning would be a launchable window or not. Two outings would cement our understanding of this weather pattern.\n\n[photo: images/journal/fight-or-flight/04.jpg]\n\nThe first came when Rowan was able to launch from the summit of Yannapaccha at 5400m at 8:30am while I nursed a splitting altitude headache on the hike down from basecamp. Early in the morning the clouds are not as high as they are in the afternoon, a fact Rowan had to deal with as he sat on the summit amidst cloud level waiting for a clearing to launch before taking off in a “much stronger than desirable” east wind.\n\nThe second data point came during a solo acclimatization hike and fly from the summit of Vicos peak at 5400m, where I found an overcast sky at 8am on the summit and zero wind. The low overcast clouds had shaded out the entire range, cutting off the “draw” effect of the east wind due to lack of solar heating. The still air provided quick relief in the form of a 15 minute flight from the summit to land 200 meters from my stashed motorcycle at the trailhead.\n\n[photo: images/journal/fight-or-flight/05.jpg]\n\nWith both outings we learned similar lessons; we would have to avoid starting our climbs from a traditional high climbing basecamp if we wanted to climb and fly anything technical simply because high camps are typically talus fields at the base of glaciers, aka, un-landable. If we wanted to land at a low camp grassy field, we either needed to start our day from there, or carry a full bivy kit plus wings up and off the climb. Para-alpinism was suddenly heavier than I wanted it to be.\n\nAnother data point came on the first day of the trip during a cross-country flight from a local launch we found scouring online maps. What started as an easy flight turned potentially sour fast as I came in to land in the town of Yungay 20km to the south. The wind on the ground was faster than my wing could fly, meaning I was going backwards into a smaller-than-desirable soccer field. I was not so uncertain I would miscalculate the landing and end up tangled on a rooftop or a plethora of other agriculture-related hazards surrounding me. During the last couple critical minutes of descending backwards, my mind switched from a light panic once again to a total calm.  A familiar numbness as my body overrode the fight or flight response yet again.\n\n[photo: images/journal/fight-or-flight/06.jpg]\n\nUpon my safe landing I would also find the soccer field was in a police academy, as I was promptly swarmed by curious officers.\n\nDuring both of these experiences, a directed effort to mute the mind and pause the flow of feelings from the body to the brain had provided safety in the moment. In fact, I was so used to this nervous system pathway re-route from over a decade of climbing and other high-risk sports that I was quite good at it. It was a default headspace, even. But during rest days between outings into the mountains and between many difficult conversations via a budding new relationship, it became abundantly clear that blocking out my feelings was only an advantage in certain contexts. What protected me in the mountains left me helpless, confused, and unpracticed at naming my complex emotions in other facets of my life. In fact, during the most difficult of conversations my actual fight or flight response would turn on, and I would feel my brain simply click off and flatline as it struggled to process an overload of emotions.\n\n[photo: images/journal/fight-or-flight/07.jpg]\n\nBack on the edge of Artesonraju, however, I was glad to feel the numbness and let my body take over as my wing came steadily overhead and Rowan released the belay holding me to the mountain. I was glad to feel in control as I slid off the southeast ridge into the hands of the wind to take me home. I was glad for an easy escape into the sky to avoid a downclimb and descent I had no energy for. And upon landing at Laguna Paron 12 minutes later, I was most glad to see Rowan’s wing come up and off the mountain, a task he volunteered for without the belay.\n\nThe one thing I was not glad about once safe on the ground was the lingering question in the back of my mind. Did we just get away with something? Was that too far? Or did we nail it? I couldn’t decide where the line was for me. In one sense it was a great success in using our paragliders in a meaningful way to teleport from high on a peak to the safety of basecamp in a matter of minutes. On the other hand it felt like a failure because I felt woefully unprepared with enough energy, food, or both to downclimb and slog out of there on foot had the winds not been just right. We had escaped the mountain, yes, but in the process shirked the responsibility we owed to ourselves for our plan not to work. Flight.\n\n[photo: images/journal/fight-or-flight/08.jpg]\n\nAfter a break from the mountains for a week, we geared up for a final outing to climb Alpamayo’s famous southeast face. We had hoped to skip the 2-3 day approach to basecamp in place of a short 20km thermal flight, and even had some success earlier in the trip finding a suitable launch and scouting a line in the sky through the mountains that could take us to basecamp. On our second attempt, I even got so far as climbing to cloud base in my paraglider at 5700 meters with Alpamayo in sight a short 20km flight away, my harness full with 3 days of food, bivy gear and climbing gear. Rowan, unable to arrive as high as me to attempt our flight route, had to land early and we therefore abandoned that attempt for the trip. Another piece of the puzzle uncovered at least.\n\nThis time we instead slogged into Alpamayo basecamp via the usual route with mules through the Santa Cruz valley, taking notes of the wind speeds and directions through the valley to add into our mental model. Of course we carried our small paragliders as well, hoping to fly from the summit of Alpamayo if conditions aligned; it had only been done for the first time the year before. Soon enough, we were at high camp at 18,000ft, waking up at 11pm to begin our night climb of the French Direct, paragliders in our packs and hopes for light summit winds in our minds.\n\n[photo: images/journal/fight-or-flight/09.jpg]\n\nThis time, however, I wanted to be prepared for our plan to fail. Our plan being to either fly from the summit or at least fly down from high camp to basecamp. We carried enough food in case none of the flights were possible and we might need to simply get out the old fashioned way. The extra supplies meant added weight to our packs, but really represented shouldering the responsibility to be self sufficient and not rely on our nylon escape plan. We were starting to learn at least.\n\nAt 6:45am we crested the final moves onto the summit ridge of Alpamayo, having enjoyed a long simul climb up the perfect runnel of snow and ice characteristic of the peak. Our first impressions on the summit ridge immediately aligned. The winds were already too strong. The summit ridge was too small. We traversed 50m along the corniced ridge to a flatter spot to re-assess. Maybe a belayed launch would work if the winds died down, but they were seemingly only increasing. It was far above what we considered reasonable to even attempt, but at least we were in agreement. We would not be flying down.\n\n[photo: images/journal/fight-or-flight/10.jpg]\n\nThroughout the trip Rowan and I had learned to trust each other, talking through our ideas of how the wind systems were working, planning outings, and debriefing successes and failures. We knew an exploratory trip like this would lead to some failures, but to us success meant going home in one piece, hoping to have learned something in the process. More importantly though we had to learn to trust ourselves, trust our assessments of the conditions, and trust our motivations. We needed to be exploring the para-alpinism opportunities because we were genuinely curious, not for an extrinsic reason that could cause us to try something that might kill us for clout. The ground-truthing we had been doing all season was really an internal reflection of our motivational process, making sure we could make good decisions for the right reasons. And today, that reason meant abandoning a pipe dream of flying off the summit of Alpamayo. And that was okay.\n\nGround-truthing is not only a useful way to gather data for paragliding, but also an internal process I am learning I need to work on within myself. To check in with myself, with my motivations, with my pains or fears is an act of care I owe to myself. It is the antithesis of fight or flight. It is be and feel. It is the opposite of the numbness that can keep me safe in the mountains, and it is a switch, or rather a dial, I am still learning to tune.\n\n[photo: images/journal/fight-or-flight/11.jpg]\n\nIt is said “...land is always in the minds of the flying birds”. Ironically, through flight, I am learning to be grounded.",
-        "thumb": "images/journal/fight-or-flight/08.jpg"
+        "thumb": "images/journal/fight-or-flight/08.jpg",
+        "related": [
+          {
+            "label": "See the publication",
+            "url": "https://xcmag.com/magazine-articles/adventure-and-inspiration/fight-or-flight/",
+            "note": "Cross Country Magazine, issue 265"
+          },
+          {
+            "label": "Listen to the story",
+            "url": "https://xcmag.com/podcasts/the-paragliding-podcast-episode-5/",
+            "note": "The Paragliding Podcast"
+          },
+          {
+            "label": "Watch the excerpt",
+            "url": "https://www.youtube.com/shorts/UHOrrVIFSto",
+            "note": "Cross Country Magazine"
+          }
+        ]
       },
       {
         "id": "the-golden-handcuffs",
@@ -272,7 +269,19 @@ window.CB_CONTENT = {
           "Team: Christian Black, Hayden Wyatt, Vitaliy Musiyenko"
         ],
         "pullquote": "",
-        "body": "Friendship and Success on White Sapphire peak (6,040 meters), an American expedition to India's Kishtwar Valley\n\nAmerican Alpine Club Cutting Edge Podcast Interview HERE\n\nRead the American Alpine Club Q&A interview HERE\n\nIn early September of 2023, myself, Hayden Wyatt, and Vitaliy Musiyenko set off from the Salt Lake City airport with 400 pounds of gear and a crippling curiosity. I had forfeited my season of field-biology work for another international trip, a now-common trend that continued to sabotage my personal finances. Hayden, having never even met Vitaliy, took a semester off law school in Portland to join. Vitaliy, too, shortly after his honeymoon, packed his bags and took time off from his job as an ER nurse to commence his second long expedition in one calendar year. These were all significant sacrifices considering our inspiration had been sparked solely by two blurry photos of an unclimbed line on a Himalayan peak in India’s Kishtwar Valley. The grand range was a place Vitaliy had dabbled in, but that Hayden and I had only dreamt of. As the plane took off from our home base in SLC, I contemplated the absurdity of events that had brought us here.\n\nA climbing trip to Mexico years ago had led to a fruitful connection with new mutual friends, through whom I’d met the infamous seasoned-alpinist-turned-sport-climber , Pete Takeda. Pete and I linked up for another sport-climbing trip to Spain the following year, during which he offhandedly probed my interest in a potential new route on a 6,040-meter Himalayan mountain called the White Sapphire, a gem he’d been keeping in his back pocket for years. When prodded further, Pete produced a few blurry photos of a diamond-shaped peak hosting a stunning, 2,700-foot unclimbed northwest face. Pete, happy to pass the torch on this climb, offered to mentor on logistics, and he helped with the ins and outs of submitting for the Cutting Edge Grant. Months later, I received notice that we’d been awarded $8,000, and I phoned Hayden to tell him to change his summer plans. Now we were buckling our seatbelts to fly to India. Thanks, Hinge.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/02.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/03.jpg]\n\nOur Liaison Officer from the Indian Mountaineering Federation, Anant Singh\n\nAfter a twenty-eight-hour blur of travel, we were at the Indian Mountaineering Federation in chaotic Delhi, receiving our peak permit and meeting Anant, our liaison officer. Only twenty-one, he was bright-eyed and energetic, and exuded an excitement for the mountains that quickly resonated with us. Within five minutes of meeting him, he was showing us photos of beautiful peaks from previous expeditions, his aspirations for the high alpine impossible to miss.\n\nRoad weary from another eighteen hours of trains and taxis, we began our three-day trek to basecamp from the town of Gulabgarh in the foothills the following day. As the valleys deepened and we distanced ourselves from the roadhead, so finally did our minds begin to settle. The roar of the river accompanied the soundscape of pack-mules slowly ascending through the Kishtwar Valley. Halfway through our day, the deep greens, blues, and grays of the valley were suddenly replaced by vibrant pinks, oranges, and yellows. We were at the famously colorful Chandi Mata Temple in the village of Machail, where, each August, thousands of Hindus come during the Machail Yatra holy pilgrimage. Following the lead of our logistics organizer, we, too, bowed in front of the temple to ask for blessings and safe passage.\n\nThe next morning, we reached a prominent split in the valley, demarcated by the towering peak of Kishtwar Shivling in the middle, so named for the three rock spires on its shoulder resembling Lord Shiva’s trident. The valley south of Shivling hosted the home village of one of our basecamp cooks, Stenzing. The valley just north was our route to Hapital Glacier and our basecamp below White Sapphire Peak. Farther north yet was the valley where the famously blue Kashmiri sapphires the region is known for are mined.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/04.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/05.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/06.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/07.jpg]\n\nWe rounded a bend and came upon a skyline familiar to us from Pete’s two blurry photos. The centerpiece, Cerro Kishtwar, looked like a dorsal fin penetrating the sky as if it were the surface of the water. Just to the south, at the farthest end of the valley, was White Sapphire, an aptly named peak with a gemlike shape and angular features. The peak had only had two ascents to date. The first was La Virée des Contemporains (850m, WI5 with two crux pitches of WI6, M6, and A2), via Stefan Siegrest and Denis Burdet on the west face in 2011. The second , in 2015, also by a Swiss team, accessed the White Sapphire via the southeastern aspect, climbing mostly moderate ice and mixed terrain along the south ridge to the summit. Our aspirations lay in the 2,500-foot unclimbed big wall on the northwest face, but we knew we would have to be flexible considering our late-season start.\n\nFast forward one week to mid-September. We were already conducting our first bit of alpinism—sitting stormbound in a bivy tent through forty-eight hours of rain at 14,500 feet on our way to establish an advanced basecamp (ABC). Our efforts of hiking loads had been put on pause, to be replaced by the softer skills of alpinism: reading, eating chocolate butter, and having horizontal dance parties to whatever music was downloaded on our phones. When we finally emerged from our nylon coffins, a quick look to the skyline jarred our vision. Winter had arrived, with it killing our dream of wearing rock shoes on a big-wall climb, a reality we accepted as we donned our ice boots and continued hiking loads up to ABC at 15,800 feet.\n\nOne of the few benefits of hiking heavy backpacks up large hills is the ample time for reflection. As we wobbled up loose talus and weaved through crevasse fields, we couldn’t help but feel the juxtaposition of our current environment against each of our pasts. The Himalaya was about as far as you could get from the flat ranchlands of my North Texas upbringing, or the University of Texas rock gym where I’d begun my journey as a climber a decade earlier. Vitaliy was a city-raised immigrant to the United States from the Ukraine, and a former 300-pound high-school linebacker and Domino’s pizza boy. He’d escaped the box of his childhood via a slow boil of increasingly epic feats in the mountains, including the solo first ascent of the 32-mile alpine-rock Goliath Traverse in the Sierra Nevada. Hayden, on the other hand, took joy in finally participating in the high-alpine lore of his own childhood. He grew up to heroic tales told by his legendary , Tetons-based mountain-guide parents, Evelyn Lees and Rick Wyatt, who had ventured on expeditions to Nanga Parbat and the north face of Everest, to name a few. We reminisced about the absurdity of it all as we distracted our heaving lungs and anxious minds from the task at hand. To be present in these mountains was a privilege not lost on us. With each memory we shared of our pasts and each concern we voiced about our near future, we cultivated the bond between members of a new team that we’d need to rely on, high on the wall.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/08.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/09.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/10.jpg]\n\n“I’m 9/10 fucked right now. I can’t do it, Hayden. You gotta do it.”\n\nI handed Hayden the rack as I turned on my headlamp at our hanging ice belay near 19,200 feet. We had left ABC early that morning on two hours of poor sleep, having ascended the glacier to the start of the climbing at 17,200 feet. Due to the winter conditions, we’d bailed on our original plan of climbing the big-wall of the northwest face. Instead, we’d picked a logical line that followed an ever-steepening snow and ice gully cutting left of the northwest face; 2,000 feet up the wall, the gully ended in a notch in a ridge, where the remaining 650 feet of climbing followed steep rock along the north face to the summit.\n\nWhile only 50 feet of mixed climbing remained until our prospective bivy spot at the notch, the previous 15 hours of simul-climbing and the huge jump in elevation had left me fatigued on a whole, new level. Vitaliy, with his ultra-marathon-charged fitness, set the pace for the day as he and Hayden swung leads through the first 1,500 feet of steep snow and ice, all of us frequently pausing to sit out long spindrifts. After fighting through fatigue, I took over for two tricky mixed pitches nearing the notch, but as the sun disappeared below the horizon so did my remaining energy.\n\nTen-thirty p.m. rolled around and were finally sitting on a chopped-out snow bench after Hayden led that final pitch. Our prospective bivy site turned out to be much smaller than we’d hoped—it was a tiny, overhanging cornice just barely large enough to pitch our tent. With Vitaliy and I out of commission from frozen hands and exhaustion, Hayden stepped in to start organizing our gear and melting water. As I sat there, almost useless, I recognized that my entire life’s purpose had boiled down to a simple task: hold the stove upright , which I did for the next four hours as we sat there, eating and rehydrating. At 2:30 a.m. we settled into the tent, grateful to Hayden for keeping morale afloat through our evening.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/11.jpg]\n\nHayden leading the final pitch to the notch bivy around 10 p.m.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/12.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/13.jpg]\n\nSunrise woke us five hours later from our cramped slumber, our splitting headaches softened by our first eye-level view of the Himalaya. No longer were the surrounding peaks high giants—we had climbed up the beanstalk and were now among them. Cerro Kishtwar’s shark-fin of rock reared up to the north, now larger than ever. To the west lay Dandagoporum, an equally high peak with a razor-sharp ridge ascending over 5,000 feet to its summit. And to the northwest were the 3,000-foot big walls of the southeast face of Kishtwar Shivling.\n\nFrom our position in the notch, the only possibility of continuing up our giant was via the steep headwall of the north face, which led 650 vertical feet to the summit. The rock was not granite, as we had previously thought, but instead very compact gneiss with few cracks. We looked up with uncertainty. A featureless slab blocked the cracks above, which, while steep and sustained looking, appeared to take good gear. This was more like a rock climb than we’d imagined— climbing in boots and crampons. After a slow morning of good coffee and a concoction of altitude meds, my curiosity finally overcame my doubt and I volunteered to take the first lead.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/14.jpg]\n\nThe first pitch out of the notch bivy, a delicate M7+\n\nIn an effort to block out the crippling exposure, I let my childlike mind take over and began to tinker with the pointy bits of alpinism on the puzzle of rock in front me. I eventually found upward progress through a creative blend of aid and free climbing, linking shallow pins and thin edges. In that vein we proceeded upward, never certain of progress but never failing to find it either. By the end of the day, only 300 or so feet of headwall remained. As we fixed our ropes to descend to our bivy, we felt the tantalizing possibility of success.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/15.jpg]\n\nThe next morning, we awoke eager to complete our climb. Our morning coffee routine, however, was interrupted. Chhhk, chhhk, chhhk—Vitaliy flicked the lighter against the stove, to no avail.\n\nThe stove had slowly weakened during the climb, but this time we could no longer hear gas coming out despite the full fuel canister. We suspected it was related to the different fuel mix of canisters in India, causing our stove to overheat and a safety mechanism to melt and block the fuel lines. All attempts at stove surgery were thwarted by not having the right tools, and inReach advice from the outside world proved fruitless as well. With less than one liter of melted water between us, we accepted the crushing conclusion that continuing would be irresponsible and unsafe. High on a technical face at 19,000 feet was not the place to gamble with dehydration; our teamwork could not overcome this obstacle. We retrieved our ropes and, frustrated, rappelled 2,000 feet back to the glacier.\n\n****\n\nAfter three days resting in basecamp, we hiked back up to ABC with more food—and a backup stove. One more week of waiting for a weather window and we were soon simul-climbing the steep snow and ice back to our cornice bivy at 19,200 feet. It was much colder this time, and, despite the constant movement of simul-climbing, my layering failed to keep me warm. Fatigue and dehydration manifested as light nausea and uncontrollable shivering, forcing a pause midway through our day for hot fluids and forced calories. We continued, and with good pace arrived at our notch bivy just before sunset.\n\nWe awoke to perfect weather, the cloudless skies blanketing the high peaks around us in rich blue. More acclimatized this time, we set off with the intent to free climb as a team and forgo any jumaring. We entered a high-alpine dance up the technical slabs and cracks above, free climbing through sections we’d aided on the previous attempt. I led the first pitch out of the notch, a delicate, 50-meter M7+ through a lower slab and thin cracks to a small roof traverse up high. Vitaliy took over for the second pitch, another 50-meter M7+ consisting of delicate laybacking on poor feet and an improbable traverse to gain a section of ice.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/16.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/17.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/18.jpg]\n\nWe were now back at our high point and began the final quest upward. From our perspective in the middle of the face, the summit continued to seem distant, like a carrot dangling on a stick. Pitch after pitch, the angle remained steep and the climbing proved harder than it looked. We wove our way through another five pitches of M4–M6, swapping out leaders naturally as our individual motivations waxed and waned. The hours were catching up to us, but still, there was no rush. The sky was clear, the air gentle, and our minds certain. We were going to the top.\n\nAs we neared the summit, the blanket of blue sky shifted to reveal a horizon of golden yellows and oranges, as if the setting sun itself were wishing us well. At 7:30 p.m., under the cover of night, I climbed a final five-inch crack to a starkly flat, 50-foot swath of horizontal ridge leading to the summit. There, on a perch the size of a compact car, Vitaliy, Hayden, and I smiled, embraced, and took a moment to reflect on our journey.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/19.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/20.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/21.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/22.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/23.jpg]\n\nThe southeast face of Kishtwar Shivling in the evening alpenglow\n\nThe previous three and a half weeks of labor had finally borne fruit. We had ferried three-hundred and fifty pounds of gear to ABC and climbed through the most fatigued moments of our lives only to retreat within 100 meters of the summit. Then we’d mustered up the energy to try again, and over two days had free-climbed over 2,700 feet of technical terrain up to M7+, the most difficult pitches of which were above 19,000 feet. Had you told us that this would be the story of our climb, we all would have thought it impossible to be central characters in the narrative. From the countryside of Texas, the inner-city of San Francisco, and an adventure-centered childhood, we’d each chosen to navigate our lives with synonymous purpose. What joined us together on the summit was more than the climbing; it was a culmination of becoming who we’d wanted to be.\n\nWe were certainly proud of our climb. Moreso, however, we were proud of each other. With each new difficulty, one of us stepped in to willingly carry the burden: leading a difficult pitch, volunteering for chores, or caring for a bonking teammate. It had been the seamless flow with which we made decisions and nurtured each other's needs that made our whole stronger than the constituent pieces. The environmental stresses were only the final forging of our bonds, bonds that were ultimately strong enough to bring us to the top of the White Sapphire.\n\nSapphire, the second-hardest gem on earth (second only to diamond), is forged in a similar process. What begins as an unassuming bit of ancient seafloor is transformed into resilient gems through the deep heat and pressure of a journey below the continents. Only when the gems are finally exhumed in geologic time is their beauty evident. Much like those minerals, we’d endured our own metamorphic transformation, deep in the heart of the Indian Himalaya. In a range known for its precious gems, the newfound richness of our friendship was now exhumed, emanating like the light through a Kashmiri sapphire: Brilliant Blue.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/24.jpg]\n\nAtop the summit of the White Sapphire\n\nOctober 2023: First ascent of Brilliant Blue (850m, AI3, 80°, M7+), White Sapphire (6040m), Kishtwar Valley, Jammu and Kashmir region, India; Christian Black, Vitaliy Musiyenko, Hayden Wyatt.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/25.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/26.jpg]"
+        "body": "Friendship and Success on White Sapphire peak (6,040 meters), an American expedition to India's Kishtwar Valley\n\nAmerican Alpine Club Cutting Edge Podcast Interview HERE\n\nRead the American Alpine Club Q&A interview HERE\n\nIn early September of 2023, myself, Hayden Wyatt, and Vitaliy Musiyenko set off from the Salt Lake City airport with 400 pounds of gear and a crippling curiosity. I had forfeited my season of field-biology work for another international trip, a now-common trend that continued to sabotage my personal finances. Hayden, having never even met Vitaliy, took a semester off law school in Portland to join. Vitaliy, too, shortly after his honeymoon, packed his bags and took time off from his job as an ER nurse to commence his second long expedition in one calendar year. These were all significant sacrifices considering our inspiration had been sparked solely by two blurry photos of an unclimbed line on a Himalayan peak in India’s Kishtwar Valley. The grand range was a place Vitaliy had dabbled in, but that Hayden and I had only dreamt of. As the plane took off from our home base in SLC, I contemplated the absurdity of events that had brought us here.\n\nA climbing trip to Mexico years ago had led to a fruitful connection with new mutual friends, through whom I’d met the infamous seasoned-alpinist-turned-sport-climber , Pete Takeda. Pete and I linked up for another sport-climbing trip to Spain the following year, during which he offhandedly probed my interest in a potential new route on a 6,040-meter Himalayan mountain called the White Sapphire, a gem he’d been keeping in his back pocket for years. When prodded further, Pete produced a few blurry photos of a diamond-shaped peak hosting a stunning, 2,700-foot unclimbed northwest face. Pete, happy to pass the torch on this climb, offered to mentor on logistics, and he helped with the ins and outs of submitting for the Cutting Edge Grant. Months later, I received notice that we’d been awarded $8,000, and I phoned Hayden to tell him to change his summer plans. Now we were buckling our seatbelts to fly to India. Thanks, Hinge.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/02.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/03.jpg]\n\nOur Liaison Officer from the Indian Mountaineering Federation, Anant Singh\n\nAfter a twenty-eight-hour blur of travel, we were at the Indian Mountaineering Federation in chaotic Delhi, receiving our peak permit and meeting Anant, our liaison officer. Only twenty-one, he was bright-eyed and energetic, and exuded an excitement for the mountains that quickly resonated with us. Within five minutes of meeting him, he was showing us photos of beautiful peaks from previous expeditions, his aspirations for the high alpine impossible to miss.\n\nRoad weary from another eighteen hours of trains and taxis, we began our three-day trek to basecamp from the town of Gulabgarh in the foothills the following day. As the valleys deepened and we distanced ourselves from the roadhead, so finally did our minds begin to settle. The roar of the river accompanied the soundscape of pack-mules slowly ascending through the Kishtwar Valley. Halfway through our day, the deep greens, blues, and grays of the valley were suddenly replaced by vibrant pinks, oranges, and yellows. We were at the famously colorful Chandi Mata Temple in the village of Machail, where, each August, thousands of Hindus come during the Machail Yatra holy pilgrimage. Following the lead of our logistics organizer, we, too, bowed in front of the temple to ask for blessings and safe passage.\n\nThe next morning, we reached a prominent split in the valley, demarcated by the towering peak of Kishtwar Shivling in the middle, so named for the three rock spires on its shoulder resembling Lord Shiva’s trident. The valley south of Shivling hosted the home village of one of our basecamp cooks, Stenzing. The valley just north was our route to Hapital Glacier and our basecamp below White Sapphire Peak. Farther north yet was the valley where the famously blue Kashmiri sapphires the region is known for are mined.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/04.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/05.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/06.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/07.jpg]\n\nWe rounded a bend and came upon a skyline familiar to us from Pete’s two blurry photos. The centerpiece, Cerro Kishtwar, looked like a dorsal fin penetrating the sky as if it were the surface of the water. Just to the south, at the farthest end of the valley, was White Sapphire, an aptly named peak with a gemlike shape and angular features. The peak had only had two ascents to date. The first was La Virée des Contemporains (850m, WI5 with two crux pitches of WI6, M6, and A2), via Stefan Siegrest and Denis Burdet on the west face in 2011. The second , in 2015, also by a Swiss team, accessed the White Sapphire via the southeastern aspect, climbing mostly moderate ice and mixed terrain along the south ridge to the summit. Our aspirations lay in the 2,500-foot unclimbed big wall on the northwest face, but we knew we would have to be flexible considering our late-season start.\n\nFast forward one week to mid-September. We were already conducting our first bit of alpinism—sitting stormbound in a bivy tent through forty-eight hours of rain at 14,500 feet on our way to establish an advanced basecamp (ABC). Our efforts of hiking loads had been put on pause, to be replaced by the softer skills of alpinism: reading, eating chocolate butter, and having horizontal dance parties to whatever music was downloaded on our phones. When we finally emerged from our nylon coffins, a quick look to the skyline jarred our vision. Winter had arrived, with it killing our dream of wearing rock shoes on a big-wall climb, a reality we accepted as we donned our ice boots and continued hiking loads up to ABC at 15,800 feet.\n\nOne of the few benefits of hiking heavy backpacks up large hills is the ample time for reflection. As we wobbled up loose talus and weaved through crevasse fields, we couldn’t help but feel the juxtaposition of our current environment against each of our pasts. The Himalaya was about as far as you could get from the flat ranchlands of my North Texas upbringing, or the University of Texas rock gym where I’d begun my journey as a climber a decade earlier. Vitaliy was a city-raised immigrant to the United States from the Ukraine, and a former 300-pound high-school linebacker and Domino’s pizza boy. He’d escaped the box of his childhood via a slow boil of increasingly epic feats in the mountains, including the solo first ascent of the 32-mile alpine-rock Goliath Traverse in the Sierra Nevada. Hayden, on the other hand, took joy in finally participating in the high-alpine lore of his own childhood. He grew up to heroic tales told by his legendary , Tetons-based mountain-guide parents, Evelyn Lees and Rick Wyatt, who had ventured on expeditions to Nanga Parbat and the north face of Everest, to name a few. We reminisced about the absurdity of it all as we distracted our heaving lungs and anxious minds from the task at hand. To be present in these mountains was a privilege not lost on us. With each memory we shared of our pasts and each concern we voiced about our near future, we cultivated the bond between members of a new team that we’d need to rely on, high on the wall.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/08.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/09.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/10.jpg]\n\n“I’m 9/10 fucked right now. I can’t do it, Hayden. You gotta do it.”\n\nI handed Hayden the rack as I turned on my headlamp at our hanging ice belay near 19,200 feet. We had left ABC early that morning on two hours of poor sleep, having ascended the glacier to the start of the climbing at 17,200 feet. Due to the winter conditions, we’d bailed on our original plan of climbing the big-wall of the northwest face. Instead, we’d picked a logical line that followed an ever-steepening snow and ice gully cutting left of the northwest face; 2,000 feet up the wall, the gully ended in a notch in a ridge, where the remaining 650 feet of climbing followed steep rock along the north face to the summit.\n\nWhile only 50 feet of mixed climbing remained until our prospective bivy spot at the notch, the previous 15 hours of simul-climbing and the huge jump in elevation had left me fatigued on a whole, new level. Vitaliy, with his ultra-marathon-charged fitness, set the pace for the day as he and Hayden swung leads through the first 1,500 feet of steep snow and ice, all of us frequently pausing to sit out long spindrifts. After fighting through fatigue, I took over for two tricky mixed pitches nearing the notch, but as the sun disappeared below the horizon so did my remaining energy.\n\nTen-thirty p.m. rolled around and were finally sitting on a chopped-out snow bench after Hayden led that final pitch. Our prospective bivy site turned out to be much smaller than we’d hoped—it was a tiny, overhanging cornice just barely large enough to pitch our tent. With Vitaliy and I out of commission from frozen hands and exhaustion, Hayden stepped in to start organizing our gear and melting water. As I sat there, almost useless, I recognized that my entire life’s purpose had boiled down to a simple task: hold the stove upright , which I did for the next four hours as we sat there, eating and rehydrating. At 2:30 a.m. we settled into the tent, grateful to Hayden for keeping morale afloat through our evening.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/11.jpg]\n\nHayden leading the final pitch to the notch bivy around 10 p.m.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/12.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/13.jpg]\n\nSunrise woke us five hours later from our cramped slumber, our splitting headaches softened by our first eye-level view of the Himalaya. No longer were the surrounding peaks high giants—we had climbed up the beanstalk and were now among them. Cerro Kishtwar’s shark-fin of rock reared up to the north, now larger than ever. To the west lay Dandagoporum, an equally high peak with a razor-sharp ridge ascending over 5,000 feet to its summit. And to the northwest were the 3,000-foot big walls of the southeast face of Kishtwar Shivling.\n\nFrom our position in the notch, the only possibility of continuing up our giant was via the steep headwall of the north face, which led 650 vertical feet to the summit. The rock was not granite, as we had previously thought, but instead very compact gneiss with few cracks. We looked up with uncertainty. A featureless slab blocked the cracks above, which, while steep and sustained looking, appeared to take good gear. This was more like a rock climb than we’d imagined— climbing in boots and crampons. After a slow morning of good coffee and a concoction of altitude meds, my curiosity finally overcame my doubt and I volunteered to take the first lead.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/14.jpg]\n\nThe first pitch out of the notch bivy, a delicate M7+\n\nIn an effort to block out the crippling exposure, I let my childlike mind take over and began to tinker with the pointy bits of alpinism on the puzzle of rock in front me. I eventually found upward progress through a creative blend of aid and free climbing, linking shallow pins and thin edges. In that vein we proceeded upward, never certain of progress but never failing to find it either. By the end of the day, only 300 or so feet of headwall remained. As we fixed our ropes to descend to our bivy, we felt the tantalizing possibility of success.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/15.jpg]\n\nThe next morning, we awoke eager to complete our climb. Our morning coffee routine, however, was interrupted. Chhhk, chhhk, chhhk—Vitaliy flicked the lighter against the stove, to no avail.\n\nThe stove had slowly weakened during the climb, but this time we could no longer hear gas coming out despite the full fuel canister. We suspected it was related to the different fuel mix of canisters in India, causing our stove to overheat and a safety mechanism to melt and block the fuel lines. All attempts at stove surgery were thwarted by not having the right tools, and inReach advice from the outside world proved fruitless as well. With less than one liter of melted water between us, we accepted the crushing conclusion that continuing would be irresponsible and unsafe. High on a technical face at 19,000 feet was not the place to gamble with dehydration; our teamwork could not overcome this obstacle. We retrieved our ropes and, frustrated, rappelled 2,000 feet back to the glacier.\n\n****\n\nAfter three days resting in basecamp, we hiked back up to ABC with more food—and a backup stove. One more week of waiting for a weather window and we were soon simul-climbing the steep snow and ice back to our cornice bivy at 19,200 feet. It was much colder this time, and, despite the constant movement of simul-climbing, my layering failed to keep me warm. Fatigue and dehydration manifested as light nausea and uncontrollable shivering, forcing a pause midway through our day for hot fluids and forced calories. We continued, and with good pace arrived at our notch bivy just before sunset.\n\nWe awoke to perfect weather, the cloudless skies blanketing the high peaks around us in rich blue. More acclimatized this time, we set off with the intent to free climb as a team and forgo any jumaring. We entered a high-alpine dance up the technical slabs and cracks above, free climbing through sections we’d aided on the previous attempt. I led the first pitch out of the notch, a delicate, 50-meter M7+ through a lower slab and thin cracks to a small roof traverse up high. Vitaliy took over for the second pitch, another 50-meter M7+ consisting of delicate laybacking on poor feet and an improbable traverse to gain a section of ice.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/16.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/17.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/18.jpg]\n\nWe were now back at our high point and began the final quest upward. From our perspective in the middle of the face, the summit continued to seem distant, like a carrot dangling on a stick. Pitch after pitch, the angle remained steep and the climbing proved harder than it looked. We wove our way through another five pitches of M4–M6, swapping out leaders naturally as our individual motivations waxed and waned. The hours were catching up to us, but still, there was no rush. The sky was clear, the air gentle, and our minds certain. We were going to the top.\n\nAs we neared the summit, the blanket of blue sky shifted to reveal a horizon of golden yellows and oranges, as if the setting sun itself were wishing us well. At 7:30 p.m., under the cover of night, I climbed a final five-inch crack to a starkly flat, 50-foot swath of horizontal ridge leading to the summit. There, on a perch the size of a compact car, Vitaliy, Hayden, and I smiled, embraced, and took a moment to reflect on our journey.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/19.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/20.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/21.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/22.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/23.jpg]\n\nThe southeast face of Kishtwar Shivling in the evening alpenglow\n\nThe previous three and a half weeks of labor had finally borne fruit. We had ferried three-hundred and fifty pounds of gear to ABC and climbed through the most fatigued moments of our lives only to retreat within 100 meters of the summit. Then we’d mustered up the energy to try again, and over two days had free-climbed over 2,700 feet of technical terrain up to M7+, the most difficult pitches of which were above 19,000 feet. Had you told us that this would be the story of our climb, we all would have thought it impossible to be central characters in the narrative. From the countryside of Texas, the inner-city of San Francisco, and an adventure-centered childhood, we’d each chosen to navigate our lives with synonymous purpose. What joined us together on the summit was more than the climbing; it was a culmination of becoming who we’d wanted to be.\n\nWe were certainly proud of our climb. Moreso, however, we were proud of each other. With each new difficulty, one of us stepped in to willingly carry the burden: leading a difficult pitch, volunteering for chores, or caring for a bonking teammate. It had been the seamless flow with which we made decisions and nurtured each other's needs that made our whole stronger than the constituent pieces. The environmental stresses were only the final forging of our bonds, bonds that were ultimately strong enough to bring us to the top of the White Sapphire.\n\nSapphire, the second-hardest gem on earth (second only to diamond), is forged in a similar process. What begins as an unassuming bit of ancient seafloor is transformed into resilient gems through the deep heat and pressure of a journey below the continents. Only when the gems are finally exhumed in geologic time is their beauty evident. Much like those minerals, we’d endured our own metamorphic transformation, deep in the heart of the Indian Himalaya. In a range known for its precious gems, the newfound richness of our friendship was now exhumed, emanating like the light through a Kashmiri sapphire: Brilliant Blue.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/24.jpg]\n\nAtop the summit of the White Sapphire\n\nOctober 2023: First ascent of Brilliant Blue (850m, AI3, 80°, M7+), White Sapphire (6040m), Kishtwar Valley, Jammu and Kashmir region, India; Christian Black, Vitaliy Musiyenko, Hayden Wyatt.\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/25.jpg]\n\n[photo: images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/26.jpg]",
+        "related": [
+          {
+            "label": "See the publication",
+            "url": "https://publications.americanalpineclub.org/articles/13201216837",
+            "note": "American Alpine Journal"
+          },
+          {
+            "label": "Listen to the story",
+            "url": "https://open.spotify.com/episode/41l2FZsr6P5TJMw7TJtEG1",
+            "note": "The Cutting Edge"
+          }
+        ]
       },
       {
         "id": "freesnake-fix-and-follow",
@@ -381,76 +390,154 @@ window.CB_CONTENT = {
       "images": [
         {
           "src": "images/words-second.jpg",
-          "focus": "center 42%"
+          "focus": "center 42%",
+          "credit": "Photo · Vitaliy Musiyenko"
+        },
+        {
+          "src": "images/words-opener.jpg",
+          "focus": "center 50%"
         }
       ]
     }
   },
   "media": {
     "kicker": "Media",
-    "title": "Published and spoken",
-    "lede": "Writing, interviews and podcast appearances.",
+    "title": "Media",
+    "lede": "Published writing, films, interviews and podcast appearances.",
+    "film": {
+      "title": "All Grown Up",
+      "meta": "Dirtbag Fund",
+      "blurb": "",
+      "url": "https://www.youtube.com/watch?v=6xC_V8TsYxM",
+      "poster": ""
+    },
     "links": [
       {
-        "id": "m1",
-        "kind": "Article",
+        "id": "aaj",
+        "kind": "Writing",
         "publication": "American Alpine Journal",
         "title": "Brilliant Blue",
         "year": "2024",
-        "url": ""
+        "url": "https://publications.americanalpineclub.org/articles/13201216837",
+        "note": "First ascent of White Sapphire, Kishtwar Valley"
       },
       {
-        "id": "m2",
-        "kind": "Podcast",
-        "publication": "The Cutting Edge",
-        "title": "Guest episode",
-        "year": "",
-        "url": ""
+        "id": "xc265",
+        "kind": "Writing",
+        "publication": "Cross Country Magazine",
+        "title": "Fight or Flight",
+        "year": "Issue 265",
+        "url": "https://xcmag.com/magazine-articles/adventure-and-inspiration/fight-or-flight/",
+        "note": "Para-alpinism in the Cordillera Blanca"
       },
       {
-        "id": "m3",
+        "id": "gearjunkie",
         "kind": "Writing",
         "publication": "GearJunkie",
-        "title": "Product testing and writing",
+        "title": "Gear reviews and testing",
         "year": "",
-        "url": ""
+        "url": "https://gearjunkie.com/author/cblack",
+        "note": ""
       },
       {
-        "id": "m4",
+        "id": "climbing",
         "kind": "Writing",
-        "publication": "Climbing Magazine",
+        "publication": "Climbing",
         "title": "Instructional articles",
         "year": "",
-        "url": ""
+        "url": "https://www.climbing.com/byline/christian-black/",
+        "note": ""
       },
       {
-        "id": "m5",
+        "id": "cutting-edge",
+        "kind": "Podcast",
+        "publication": "The Cutting Edge",
+        "title": "Brilliant Blue on White Sapphire",
+        "year": "",
+        "url": "https://open.spotify.com/episode/41l2FZsr6P5TJMw7TJtEG1",
+        "note": "American Alpine Club",
+        "embed": {
+          "service": "spotify",
+          "id": "41l2FZsr6P5TJMw7TJtEG1",
+          "start": "1396"
+        }
+      },
+      {
+        "id": "xc-podcast",
+        "kind": "Podcast",
+        "publication": "Cross Country Magazine",
+        "title": "The Paragliding Podcast, episode 5",
+        "year": "",
+        "url": "https://xcmag.com/podcasts/the-paragliding-podcast-episode-5/",
+        "note": "",
+        "embed": {
+          "service": "spotify",
+          "id": "5tQdoYNdpDb1NWHo5hlwLX",
+          "start": "0"
+        },
+        "extra": [
+          {
+            "label": "Watch the excerpt",
+            "url": "https://www.youtube.com/shorts/UHOrrVIFSto"
+          }
+        ]
+      },
+      {
+        "id": "all-grown-up",
         "kind": "Film",
         "publication": "Dirtbag Fund",
         "title": "All Grown Up",
         "year": "",
-        "url": ""
+        "url": "https://www.youtube.com/watch?v=6xC_V8TsYxM",
+        "note": ""
       },
       {
-        "id": "m6",
+        "id": "instagram",
         "kind": "Social",
         "publication": "Instagram",
-        "title": "@christianblack",
+        "title": "@crustacean_black",
         "year": "",
-        "url": ""
+        "url": "https://www.instagram.com/crustacean_black/",
+        "note": ""
+      },
+      {
+        "id": "youtube",
+        "kind": "Social",
+        "publication": "YouTube",
+        "title": "@christianblack1",
+        "year": "",
+        "url": "https://www.youtube.com/@christianblack1",
+        "note": ""
       }
     ]
   },
   "about": {
     "kicker": "About",
     "title": "Christian Black",
-    "lede": "Climber, alpinist and paraglider pilot. Photographer, filmmaker and writer.",
+    "lede": "“Have fun, be safe, look cool!”",
     "portrait": "images/portrait-cb.jpg",
-    "body": "Christian Black is a rock climber, alpinist and paraglider pilot documenting his travels authentically through writing, photography and film. Christian's background as a Yosemite search and rescue (YOSAR) member, Yosemite climbing ranger, and Denali rescue volunteer give him a deep respect for risk that continually shapes his interactions with the mountains, a topic he writes openly about in his essays in hopes of moving forward a culture of healthy risk. Among friends he is known for his crab poses and climbing catch phrase “have fun, be safe, look cool!” Find more on his instagram [here](https://www.instagram.com/crustacean_black/).",
     "contact": {
       "title": "Get in touch",
       "blurb": "For sponsorship inquiries, media requests, licensing or collaboration.",
-      "formEndpoint": ""
+      "image": "images/about-summit.jpg",
+      "credit": ""
+    },
+    "header": {
+      "image": "images/about-backdrop.jpg",
+      "focus": "center 45%",
+      "credit": "Photo · Dan Teitelbaum"
+    },
+    "intro": "Christian Black is a rock climber, alpinist and paraglider pilot documenting his travels authentically through storytelling, photography and film. From boulders to high peaks or behind the lens, his multidisciplinary interests drive his passion and creativity for exploring the world around us through more than one medium.",
+    "break": {
+      "image": "images/about-sport.jpg",
+      "credit": "Photo · Dan Teitelbaum"
+    },
+    "outreach": {
+      "heading": "Outreach",
+      "image": "images/about-outreach.jpg",
+      "credit": "",
+      "side": "left",
+      "text": "To give back to the community that gave him so much, Christian spent formative years volunteering as a Yosemite search and rescue (YOSAR) member, Yosemite climbing ranger, and Denali rescue volunteer. These years gave him a deep respect for risk that continually shapes his interactions with the mountains, a topic he writes openly about in his essays in hopes of moving forward a culture of healthy risk. He has enjoyed sharing his depth of skills, hosting free self-rescue clinics at film screenings, climbing gyms, and developing the Climber Coffee self-rescue clinics for the Yosemite climbing ranger program during his time as a ranger. Among friends he is known for his crab poses and climbing catch phrase “have fun, be safe, look cool!” Find more on his instagram [here](https://www.instagram.com/crustacean_black/)."
     }
   }
 };
