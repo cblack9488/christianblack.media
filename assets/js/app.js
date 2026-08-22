@@ -86,7 +86,7 @@
     CB.PAGES.forEach(function (p) {
       var a = el('a', { href: p.href, text: p.label });
       if (p.id === CB.page) a.setAttribute('aria-current', 'page');
-      a.appendChild(el('span', { class: 'tick' }));
+      a.appendChild(el('span', { class: 'rail__tick' }));
       ul.appendChild(el('li', null, [a]));
     });
     nav.appendChild(ul);

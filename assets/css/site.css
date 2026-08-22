@@ -103,9 +103,9 @@ body { padding-right: var(--rail-width); }
   color: var(--text-muted); border: 0;
 }
 .rail a:hover { color: var(--stone-200); }
-.rail a .tick { width: 1px; height: 0; background: var(--accent); transition: height var(--dur-base) var(--ease-out); }
+.rail a .rail__tick { width: 1px; height: 0; background: var(--accent); transition: height var(--dur-base) var(--ease-out); }
 .rail a[aria-current="page"] { color: var(--text-primary); }
-.rail a[aria-current="page"] .tick { height: 26px; }
+.rail a[aria-current="page"] .rail__tick { height: 26px; }
 .rail .year {
   font-family: var(--font-label); font-size: var(--text-label);
   letter-spacing: var(--tracking-label); color: var(--stone-400); writing-mode: vertical-rl;
@@ -668,8 +668,8 @@ body { padding-right: var(--rail-width); }
   .rail ul { flex-direction: row; gap: var(--space-5); }
   .rail li { writing-mode: horizontal-tb; transform: none; }
   .rail a { flex-direction: column; gap: var(--space-2); font-size: var(--text-label); letter-spacing: var(--tracking-label); }
-  .rail a .tick { width: 0; height: 1px; transition: width var(--dur-base) var(--ease-out); }
-  .rail a[aria-current="page"] .tick { width: 20px; height: 1px; }
+  .rail a .rail__tick { width: 0; height: 1px; transition: width var(--dur-base) var(--ease-out); }
+  .rail a[aria-current="page"] .rail__tick { width: 20px; height: 1px; }
   .rail .year { display: none; }
   .rail .mark { font-size: var(--text-body-lg); }
   .page-head, .next, .set-head { grid-template-columns: 1fr; }
@@ -790,4 +790,79 @@ body { padding-right: var(--rail-width); }
   text-shadow: 0 2px 40px rgba(16, 15, 12, 0.75);
   text-align: center;
   padding: 0 var(--gutter-page);
+}
+
+/* ============================================================
+   Phones. The rail becomes a bottom bar, the fixed backdrops
+   reclaim the full width, and the display type steps down so
+   headlines don't eat the screen.
+   ============================================================ */
+
+@media (max-width: 900px) {
+  /* the rail sits along the bottom on small screens, so nothing
+     should be reserving width for it on the right any more */
+  .fixedbg { right: 0; }
+  body { padding-bottom: 72px; }
+}
+
+@media (max-width: 640px) {
+  /* --- bottom navigation: six items have to fit --- */
+  .rail { height: 62px; padding: 0 var(--space-3); gap: var(--space-3); }
+  .rail .mark__img { width: 28px; }
+  .rail ul {
+    flex: 1; gap: var(--space-2);
+    justify-content: space-between;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .rail ul::-webkit-scrollbar { display: none; }
+  .rail a {
+    font-size: 9px; letter-spacing: 0.04em;
+    white-space: nowrap; gap: var(--space-1);
+  }
+  .rail li { flex: 0 0 auto; }
+
+  /* --- display type --- */
+  .hero-fixed h1 { font-size: clamp(38px, 12vw, 56px); }
+  .hero-fixed__inner { padding: var(--space-9) var(--gutter-page) var(--space-8); }
+  .hero-fixed__sub { font-size: var(--text-body); }
+  .article__hero { min-height: 72vh; }
+  .article__hero h1 { font-size: clamp(32px, 10vw, 44px); max-width: none; }
+  .article__heroinner { padding: var(--space-9) var(--gutter-page) var(--space-7); }
+  .page-head h1, .entry__head h1 { font-size: clamp(32px, 10vw, 44px); }
+  .band__label { font-size: clamp(30px, 9vw, 44px); }
+
+  /* --- reading --- */
+  .article { padding: 0 var(--space-4) var(--space-8); }
+  .article .entry__prose {
+    padding: var(--space-6) var(--space-5);
+    font-size: var(--text-body); border-radius: 6px;
+  }
+  .article .entry__prose:first-of-type > p:first-of-type::first-letter {
+    font-size: 3.2em; padding: 4px 8px 0 0;
+  }
+  .article .entry__h2, .pullquote { font-size: var(--text-subhead); }
+  .about__prose { font-size: var(--text-body); }
+
+  /* --- cards and media --- */
+  .posts { padding: 0 var(--space-3) var(--space-8); gap: var(--space-3); }
+  .post { padding: var(--space-4); border-radius: 8px; }
+  .post__title { font-size: var(--text-subhead); }
+  .band { margin: 0 var(--space-3); border-radius: 8px; }
+  .band + .band { margin-top: var(--space-3); }
+  .grid { grid-template-columns: 1fr; gap: 3px; padding: 0 3px var(--space-8); }
+  .cell__cap { opacity: 1; padding: var(--space-4); }
+
+  /* --- film --- */
+  .stage { padding: 0 var(--space-3) var(--space-7); }
+  .stage__cap { grid-template-columns: 1fr; gap: var(--space-3); align-items: start; }
+  .stage__title { font-size: var(--text-heading); }
+  .stage__box .play-capsule { bottom: 50%; }
+  .strip-wrap { padding: var(--space-8) var(--space-4); }
+  .vid { flex: 0 0 68vw; }
+
+  /* --- banner --- */
+  .banner { margin: 0 var(--space-3) var(--space-8); border-radius: 8px; }
+
+  /* --- footer --- */
+  .site-footer { padding: var(--space-5) var(--space-4) var(--space-7); gap: var(--space-4); }
 }
