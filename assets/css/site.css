@@ -192,7 +192,9 @@ body { padding-right: var(--rail-width); }
 }
 
 .supported { margin-top: var(--space-8); }
-.supported__logo { width: 74px; height: auto; opacity: 0.92; }
+/* base.css sets img { display: block }, so text-align can't centre this —
+   it needs auto margins. */
+.supported__logo { width: 74px; height: auto; opacity: 0.92; margin: 0 auto; }
 .supported__label {
   margin-top: var(--space-3);
   font-family: var(--font-label); font-size: var(--text-label);
