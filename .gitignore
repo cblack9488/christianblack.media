@@ -17,10 +17,7 @@ images/HMG-Vertical-Black.png
 old-site/
 images/PeruMotorcycleToClimb.jpeg
 images/Ice70_*.jpg
-images/IMG_*.jpeg
-images/JO52*.jpeg
-images/VID_*.jpg
-images/SCRL_*.jpeg
-images/IMG_9330.jpeg
-images/Paraglide*.jpg
-images/Sportclimbing*.jpg
+
+# build tooling
+node_modules/
+package-lock.json

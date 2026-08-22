@@ -49,21 +49,21 @@ window.CB_CONTENT = {
             "grade": "AI3 M7+, 850m",
             "detail": "White Sapphire (6040m), Kishtwar Valley, India",
             "note": "First ascent",
-            "url": "index.html?entry=brilliant-blue-first-all-american-expedition-to-india-s-kish"
+            "url": "words/brilliant-blue-first-all-american-expedition-to-india-s-kish.html"
           },
           {
             "name": "Para-alpinism in the Cordillera Blanca",
             "grade": "",
             "detail": "",
             "note": "",
-            "url": "index.html?entry=fight-or-flight"
+            "url": "words/fight-or-flight.html"
           },
           {
             "name": "Failure or success? A trip to the Garhwal Himalaya",
             "grade": "",
             "detail": "",
             "note": "",
-            "url": "index.html?entry=garhwal-himalaya"
+            "url": "words/garhwal-himalaya.html"
           }
         ]
       },
@@ -81,7 +81,7 @@ window.CB_CONTENT = {
             "grade": "5.13a, 36 pitches",
             "detail": "El Capitan, Yosemite CA",
             "note": "Ground up free ascent",
-            "url": "index.html?entry=the-golden-handcuffs"
+            "url": "words/the-golden-handcuffs.html"
           },
           {
             "name": "“Desert Solitaire”",
@@ -146,28 +146,28 @@ window.CB_CONTENT = {
             "grade": "",
             "detail": "Kishtwar Valley",
             "note": "",
-            "url": "index.html?entry=brilliant-blue-first-all-american-expedition-to-india-s-kish"
+            "url": "words/brilliant-blue-first-all-american-expedition-to-india-s-kish.html"
           },
           {
             "name": "Cordillera Blanca",
             "grade": "",
             "detail": "Peru — climb and fly",
             "note": "",
-            "url": "index.html?entry=fight-or-flight"
+            "url": "words/fight-or-flight.html"
           },
           {
             "name": "Patagonia",
             "grade": "",
             "detail": "El Chaltén, Argentina",
             "note": "",
-            "url": "index.html?entry=patagonia-pt-1-success"
+            "url": "words/patagonia-pt-1-success.html"
           },
           {
             "name": "Northwest Territories",
             "grade": "",
             "detail": "Cirque of the Unclimbables",
             "note": "",
-            "url": "index.html?entry=cirque-of-the-unclimbables-2023-climb-and-packraft"
+            "url": "words/cirque-of-the-unclimbables-2023-climb-and-packraft.html"
           }
         ]
       }

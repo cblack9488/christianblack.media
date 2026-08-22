@@ -1,0 +1,12 @@
+{
+  "name": "christianblack-media",
+  "private": true,
+  "description": "christianblack.media — a static site plus a pre-render step so crawlers see the writing.",
+  "scripts": {
+    "build": "node tools/build.js",
+    "serve": "python3 -m http.server 8844"
+  },
+  "devDependencies": {
+    "playwright": "^1.47.0"
+  }
+}
