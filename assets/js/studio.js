@@ -31,6 +31,21 @@
     photo: [{ k: 'src', t: 'image', l: 'Photograph' }, { k: 'caption' }, { k: 'meta' },
             { k: 'ratio', t: 'select', l: 'Crop', options: RATIOS }, { k: 'alt', l: 'Alt text' }],
     climb: [{ k: 'name', l: 'Route' }, { k: 'grade' }, { k: 'detail', l: 'Where' }, { k: 'note' }],
+    tick: [{ k: 'name', l: 'Route or trip' }, { k: 'grade', l: 'Grade / size' },
+           { k: 'detail', l: 'Where' }, { k: 'note', l: 'Style (shown italic)' },
+           { k: 'url', t: 'url', l: 'Read-article link' }],
+    pageheader: [{ k: 'image', t: 'image', l: 'Backdrop photograph' },
+                 { k: 'focus', l: 'Crop focus (e.g. center 55%)' }],
+    support: [{ k: 'label', l: 'Caption' }, { k: 'logo', t: 'image', l: 'Sponsor logo' }],
+    band: [{ k: 'label', l: 'Section heading' }, { k: 'blurb', l: 'Kicker under it' },
+           { k: 'image', t: 'image', l: 'Backdrop photograph' },
+           { k: 'focus', l: 'Crop focus (e.g. center 40%)' },
+           { k: 'side', t: 'select', l: 'Text side', options: ['right', 'left'] },
+           { k: 'credit', l: 'Photo credit' }],
+    banner2: [{ k: 'image', t: 'image', l: 'Banner photograph' },
+              { k: 'headline', l: 'Wording over it' },
+              { k: 'focus', l: 'Crop focus (e.g. center 50%)' }],
+    video: [{ k: 'title' }, { k: 'meta', l: 'Caption' }, { k: 'url', t: 'url', l: 'YouTube link' }],
     stat: [{ k: 'value' }, { k: 'label' }],
     nextItem: [{ k: 'when' }, { k: 'what', t: 'textarea' }],
     section: [{ k: 'label', l: 'Section heading' }],
@@ -39,14 +54,19 @@
                { k: 'poster', t: 'image', l: 'Still' }, { k: 'url', t: 'url', l: 'YouTube or Vimeo link' }],
     film: [{ k: 'title' }, { k: 'meta' }, { k: 'blurb', t: 'textarea' },
            { k: 'poster', t: 'image', l: 'Still' }, { k: 'url', t: 'url', l: 'Link' }, { k: 'kind' }],
-    entry: [{ k: 'title' }, { k: 'date', t: 'date' }, { k: 'meta', l: 'Kicker' },
-            { k: 'lede', t: 'textarea', l: 'Standfirst' }, { k: 'cover', t: 'image' },
+    entry: [{ k: 'title' }, { k: 'date', t: 'date' }, { k: 'dateLabel', l: 'Date shown (e.g. August 2025)' },
+            { k: 'meta', l: 'Kicker' },
+            { k: 'lede', t: 'textarea', l: 'Standfirst' },
+            { k: 'cover', t: 'image', l: 'Article cover photo' },
+            { k: 'thumb', t: 'image', l: 'Index card photo (optional)' },
             { k: 'pullquote', t: 'textarea' }, { k: 'body', t: 'textarea', rows: 16 }],
     link: [{ k: 'kind', t: 'select', options: ['Article', 'Writing', 'Podcast', 'Interview', 'Film', 'Social'] },
            { k: 'publication' }, { k: 'title' }, { k: 'year' }, { k: 'url', t: 'url' }]
   };
 
   var SPEC_FOR_BASE = {
+    'photography.photos': 'photo',
+    'film.videos': 'video',
     'athlete.reel': 'photo',
     'athlete.stats': 'stat',
     'athlete.next.items': 'nextItem',
@@ -69,7 +89,12 @@
 
   /* A [data-sort] / [data-dropzone] base maps to a real array in the content. */
   function collectionFor(base) {
-    var m = base.match(/^athlete\.sections\.(.+)$/);
+    var m = base.match(/^athlete\.bands\.(\d+)$/);
+    if (m) {
+      var band = (CB.content.athlete.bands || [])[+m[1]];
+      return band ? { arr: band.items, spec: 'tick' } : null;
+    }
+    m = base.match(/^athlete\.sections\.(.+)$/);
     if (m) {
       var sec = (CB.content.athlete.sections || []).filter(function (s) { return s.id === m[1]; })[0];
       return sec ? { arr: sec.items, spec: 'climb' } : null;
@@ -447,65 +472,44 @@
     });
 
     if (page === 'athlete') {
-      addBtn(host, 'Hero photograph', function () { inspect(c.athlete.hero, 'hero', 'Hero'); });
-      addBtn(host, 'Add a stat', function () {
-        c.athlete.stats.push({ value: 'New', label: 'Label' }); changed(); rerender();
-      });
-      addBtn(host, 'Add a reel photo', function () { pickImages(function (name) {
-        c.athlete.reel.push({ src: name, caption: '', meta: '', ratio: 'frame' });
-      }); });
-      addBtn(host, 'Add a highlight section', function () {
-        var ids = c.athlete.sections.map(function (s) { return s.id; });
-        c.athlete.sections.push({ id: uniqueId('section', ids), label: 'New section', items: [{ name: 'New route', grade: '', detail: '', note: '' }] });
-        changed(); rerender();
-      });
-      c.athlete.sections.forEach(function (sec) {
-        addBtn(host, 'Section: ' + sec.label, function () {
-          inspect(sec, 'section', 'Section', {
-            onDelete: function () { c.athlete.sections.splice(c.athlete.sections.indexOf(sec), 1); }
+      c.athlete.bands.forEach(function (b, i) {
+        addBtn(host, 'Section: ' + (b.label || 'Untitled'), function () {
+          inspect(b, 'band', 'Photo section', {
+            onDelete: function () { c.athlete.bands.splice(i, 1); }
           });
         }).classList.add('st-sub');
+        addBtn(host, '\u2192 Add a tick to "' + (b.label || '') + '"', function () {
+          b.items.push({ name: 'New route', grade: '', detail: '', note: '', url: '' });
+          changed(); rerender();
+        });
       });
-      addBtn(host, 'Add a highlight row', function () {
-        var sec = c.athlete.sections[0];
-        if (sec) { sec.items.push({ name: 'New route', grade: '', detail: '', note: '' }); changed(); rerender(); }
+      addBtn(host, 'New photo section', function () {
+        c.athlete.bands.push({
+          id: uniqueId('band', c.athlete.bands.map(function (x) { return x.id; })),
+          label: 'New section', blurb: '', image: '', focus: 'center', side: 'right', credit: '',
+          items: [{ name: 'New route', grade: '', detail: '', note: '', url: '' }]
+        });
+        changed(); rerender();
       });
-      addBtn(host, "Add a what's-next line", function () {
-        c.athlete.next.items.push({ when: 'Season', what: 'Objective' }); changed(); rerender();
-      });
+      addBtn(host, 'Header backdrop', function () { inspect(c.athlete.header, 'pageheader', 'Header photo'); }).classList.add('st-sub');
+      addBtn(host, 'Supported by', function () { inspect(c.athlete.support, 'support', 'Support'); }).classList.add('st-sub');
     }
 
     if (page === 'photography') {
-      addBtn(host, 'New photo set', function () {
-        var ids = c.photography.sets.map(function (s) { return s.id; });
-        c.photography.sets.push({ id: uniqueId('set', ids), title: 'New set', meta: '', blurb: '', photos: [] });
-        changed(); rerender();
-      });
-      c.photography.sets.forEach(function (set) {
-        addBtn(host, 'Set: ' + (set.title || 'Untitled'), function () {
-          inspect(set, 'set', 'Photo set', {
-            onDelete: function () { c.photography.sets.splice(c.photography.sets.indexOf(set), 1); }
-          });
-        }).classList.add('st-sub');
-      });
-      addBtn(host, 'Add photos to the open set…', function () {
+      addBtn(host, 'Banner photo + wording', function () {
+        inspect(c.photography.banner, 'banner2', 'Coming-soon banner');
+      }).classList.add('st-sub');
+      addBtn(host, 'Add photographs\u2026', function () {
         pickImages(function (name) {
-          var open = c.photography.sets[0];
-          var grid = document.querySelector('[data-dropzone]');
-          if (grid) {
-            var col = collectionFor(grid.getAttribute('data-dropzone'));
-            if (col) return col.arr.push({ src: name, caption: '', meta: '', ratio: 'frame' });
-          }
-          if (open) open.photos.push({ src: name, caption: '', meta: '', ratio: 'frame' });
+          c.photography.photos.push({ src: name, caption: '', meta: '' });
         }, true);
       });
     }
 
     if (page === 'film') {
       addBtn(host, 'Featured film', function () { inspect(c.film.featured, 'featured', 'Featured film'); });
-      addBtn(host, 'New film', function () {
-        var ids = c.film.films.map(function (f) { return f.id; });
-        c.film.films.push({ id: uniqueId('film', ids), title: 'New film', meta: '', blurb: '', poster: '', url: '', kind: 'Film' });
+      addBtn(host, 'Add a video to the strip', function () {
+        c.film.videos.push({ title: 'New video', meta: '', url: '' });
         changed(); rerender();
       });
     }
@@ -529,7 +533,7 @@
           inspect(e, 'entry', 'Journal entry', {
             onDelete: function () {
               c.journal.entries.splice(c.journal.entries.indexOf(e), 1);
-              location.href = 'journal.html?edit';
+              location.href = CB.hrefFor('journal') + '?edit';
             }
           });
         });

@@ -1,2 +1,24 @@
 .DS_Store
 Thumbs.db
+
+# Full-size camera originals — keep them locally, but don't publish them.
+# The site uses the web-sized copies made from them.
+images/originals/
+images/PXL_*.jpg
+images/sportclimbing1.jpg
+images/IMG_0011.jpeg
+images/IMG_1883.jpeg
+images/JO52*.jpeg
+images/CB_crab_logo.png
+images/HMG-Vertical-Black.png
+
+# Saved copies of the old freesnakeclimbing.com site, kept for reference.
+# The posts and photos were already pulled out of these into the journal.
+old-site/
+images/PeruMotorcycleToClimb.jpeg
+images/Ice70_*.jpg
+images/IMG_*.jpeg
+images/JO52*.jpeg
+images/VID_*.jpg
+images/SCRL_*.jpeg
+images/IMG_9330.jpeg

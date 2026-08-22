@@ -155,3 +155,9 @@
   --press-opacity:0.55; /* @kind other */
   --media-hover-scale:1.015; /* @kind other */
 }
+
+/* --- Fix for a collision in the design system ---
+   --text-body is defined as a colour in colors.css and as 17px in
+   typography.css. The size wins, so `color: var(--text-body)` is invalid.
+   Use --text-copy for body colour until the design system resolves this. */
+:root { --text-copy: var(--stone-100); }
