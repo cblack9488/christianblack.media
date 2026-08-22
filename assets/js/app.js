@@ -146,6 +146,22 @@
     return f;
   }
 
+  /* "Supported by" with the sponsor logo. Lives on site.support so one
+     edit updates every page that shows it. */
+  CB.supportedEl = function (sup) {
+    sup = sup || (CB.content.site || {}).support || {};
+    if (!sup.logo && !(sup.partners || []).length) return null;
+    var sb = el('div', { class: 'supported' });
+    if (sup.logo) {
+      sb.appendChild(el('img', {
+        class: 'supported__logo', src: CB.resolveSrc(sup.logo),
+        alt: (sup.partners || []).join(', ') || 'Sponsor'
+      }));
+    }
+    sb.appendChild(el('div', { class: 'supported__label', text: sup.label || 'Supported by' }));
+    return sb;
+  };
+
   function label(index, text) {
     var l = el('div', { class: 'label' });
     if (index) l.appendChild(el('span', { class: 'idx', text: index }));
@@ -327,18 +343,8 @@
     hin.appendChild(el('h1', { text: d.title || '' }));
     if (d.lede) hin.appendChild(el('p', { class: 'hero-fixed__sub', text: d.lede }));
 
-    var sup = d.support || {};
-    if (sup.logo || (sup.partners || []).length) {
-      var sb = el('div', { class: 'supported' });
-      if (sup.logo) {
-        sb.appendChild(el('img', {
-          class: 'supported__logo', src: CB.resolveSrc(sup.logo),
-          alt: (sup.partners || []).join(', ') || 'Sponsor'
-        }));
-      }
-      sb.appendChild(el('div', { class: 'supported__label', text: sup.label || 'Supported by' }));
-      hin.appendChild(sb);
-    }
+    var sb = CB.supportedEl(d.support);
+    if (sb) hin.appendChild(sb);
     if (h.credit) hero.appendChild(el('div', { class: 'hero-fixed__credit meta', text: h.credit }));
     hero.appendChild(hin);
     root.appendChild(hero);
@@ -539,6 +545,8 @@
     hin.appendChild(label(CB.numFor(CB.page), d.kicker));
     hin.appendChild(el('h1', { text: d.title || '' }));
     if (d.lede) hin.appendChild(el('p', { class: 'hero-fixed__sub', text: d.lede }));
+    var jsup = CB.supportedEl(d.support);
+    if (jsup) hin.appendChild(jsup);
     hero.appendChild(hin);
     root.appendChild(hero);
 
@@ -800,6 +808,8 @@
     hin.appendChild(label(CB.numFor(CB.page), d.kicker));
     hin.appendChild(el('h1', { text: d.title || '' }));
     if (d.lede) hin.appendChild(el('p', { class: 'about__quote', text: d.lede }));
+    var asup = CB.supportedEl(d.support);
+    if (asup) hin.appendChild(asup);
     hero.appendChild(hin);
     root.appendChild(hero);
 

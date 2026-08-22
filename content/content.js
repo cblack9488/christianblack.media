@@ -22,19 +22,19 @@ window.CB_CONTENT = {
       }
     ],
     "contactNote": "for sponsorship inquiries, media requests, or collaboration",
-    "cloudflareToken": "bcfa56db21444097b56f303096f57bfb"
-  },
-  "athlete": {
-    "kicker": "Tick list",
-    "title": "Around the world",
-    "lede": "A short resume of climbing",
+    "cloudflareToken": "bcfa56db21444097b56f303096f57bfb",
     "support": {
       "label": "Supported by",
       "logo": "images/hmg-logo.png",
       "partners": [
         "Hyperlite Mountain Gear"
       ]
-    },
+    }
+  },
+  "athlete": {
+    "kicker": "Tick list",
+    "title": "Around the world",
+    "lede": "A short resume of climbing",
     "bands": [
       {
         "id": "up-high",

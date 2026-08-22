@@ -504,8 +504,7 @@
         changed(); rerender();
       });
       addBtn(host, 'Header backdrop', function () { inspect(c.athlete.header, 'pageheader', 'Header photo'); }).classList.add('st-sub');
-      addBtn(host, 'Supported by', function () { inspect(c.athlete.support, 'support', 'Support'); }).classList.add('st-sub');
-    }
+      }
 
     if (page === 'photography') {
       addBtn(host, 'Banner photo + wording', function () {
@@ -562,6 +561,7 @@
     }
 
     addBtn(host, 'Site details', function () { inspect(c.site, 'site', 'Site details'); }).classList.add('st-sub');
+    addBtn(host, 'Supported by', function () { inspect(c.site.support, 'support', 'Support'); }).classList.add('st-sub');
   }
 
   function pickImages(apply, multiple) {
