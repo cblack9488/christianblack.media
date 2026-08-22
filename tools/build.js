@@ -159,6 +159,13 @@ function headBlock(p) {
     lines.push(`<meta property="article:author" content="${esc(NAME)}">`);
   }
   lines.push(`<script type="application/ld+json">${jsonLd(p)}</script>`);
+  /* Cloudflare Web Analytics. Cookie-free, so no consent banner is needed.
+     The token lives in content.js next to everything else that is editable;
+     leave it empty and no script is emitted at all. */
+  if (SITE.cloudflareToken) {
+    lines.push('<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" ' +
+      `data-cf-beacon='{"token": "${esc(SITE.cloudflareToken)}"}'></script>`);
+  }
   lines.push('<!-- seo:end -->');
   return lines.filter(Boolean).join('\n');
 }
@@ -172,7 +179,8 @@ function applyHead(html, p) {
     .replace(/\n?[ \t]*<meta\s+name="(description|robots|twitter:[a-z:]+)"[^>]*>/gi, '')
     .replace(/\n?[ \t]*<meta\s+property="(og:[a-z:]+|article:[a-z_]+)"[^>]*>/gi, '')
     .replace(/\n?[ \t]*<link\s+rel="canonical"[^>]*>/gi, '')
-    .replace(/\n?[ \t]*<script type="application\/ld\+json">[\s\S]*?<\/script>/gi, '');
+    .replace(/\n?[ \t]*<script type="application\/ld\+json">[\s\S]*?<\/script>/gi, '')
+    .replace(/\n?[ \t]*<script[^>]*cloudflareinsights[^>]*><\/script>/gi, '');
   return html.replace('</head>', headBlock(p) + '\n</head>');
 }
 

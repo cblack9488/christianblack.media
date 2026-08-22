@@ -105,6 +105,10 @@ npm run build
 - Alt text falls back to the caption, credit or title of a photograph. For the
   photos that matter most to you, add an explicit `alt` in `content/content.js`
   describing what is actually in the frame — that is what image search reads.
+- Traffic is measured by Cloudflare Web Analytics — cookie-free, so the site
+  needs no consent banner. The token sits in `content/content.js` under `site`;
+  emptying it removes the script from every page on the next build. The
+  dashboard is at dash.cloudflare.com under Analytics & Logs → Web Analytics.
 - Fonts are Instrument Serif and Newsreader from Google Fonts, per the design
   system. They fall back to Georgia offline.
 - Studio is inert until you turn it on, so it is safe to deploy as-is.

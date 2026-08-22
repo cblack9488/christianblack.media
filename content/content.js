@@ -21,7 +21,8 @@ window.CB_CONTENT = {
         "url": "https://www.youtube.com/@christianblack1"
       }
     ],
-    "contactNote": "for sponsorship inquiries, media requests, or collaboration"
+    "contactNote": "for sponsorship inquiries, media requests, or collaboration",
+    "cloudflareToken": "bcfa56db21444097b56f303096f57bfb"
   },
   "athlete": {
     "kicker": "Tick list",
