@@ -181,12 +181,20 @@ function headBlock(p) {
    original hand-written head put it, then insert the fresh block. */
 function applyHead(html, p) {
   html = html.replace(/\n?<!-- seo:start[\s\S]*?<!-- seo:end -->/g, '');
+  /* Icon links are matched as whole tags rather than with [^>]*, because a
+     data: URI can contain '>' and half-eating the tag leaves debris in the
+     head that the browser then renders as text at the top of the page. */
+  html = html.replace(/\n?[ \t]*<link\b(?:[^>"']|"[^"]*"|'[^']*')*>/gi, function (m) {
+    return /rel\s*=\s*["'](icon|apple-touch-icon|shortcut icon)["']/i.test(m) ? '' : m;
+  });
+  /* Repair pages damaged by the earlier, broken pattern. */
+  html = html.replace(/<rect width='32'[\s\S]*?<\/svg>">/g, '');
   html = html
     .replace(/\n?[ \t]*<title>[\s\S]*?<\/title>/gi, '')
     .replace(/\n?[ \t]*<meta\s+name="(description|robots|twitter:[a-z:]+)"[^>]*>/gi, '')
     .replace(/\n?[ \t]*<meta\s+property="(og:[a-z:]+|article:[a-z_]+)"[^>]*>/gi, '')
     .replace(/\n?[ \t]*<link\s+rel="canonical"[^>]*>/gi, '')
-    .replace(/\n?[ \t]*<link\s+rel="(icon|apple-touch-icon|shortcut icon)"[^>]*>/gi, '')
+
     .replace(/\n?[ \t]*<script type="application\/ld\+json">[\s\S]*?<\/script>/gi, '')
     .replace(/\n?[ \t]*<script[^>]*cloudflareinsights[^>]*><\/script>/gi, '');
   return html.replace('</head>', headBlock(p) + '\n</head>');
@@ -286,7 +294,19 @@ const server = http.createServer((req, res) => {
         if (!n.getAttribute('style')) n.removeAttribute('style');
       });
       const pick = sel => { const n = clone.querySelector(sel); return n ? n.outerHTML : ''; };
+      /* Debris from a malformed <head> tag ends up as a bare text node at the
+         top of <body>. Nothing legitimate on this site does that, so any
+         stray text before the page container is a broken tag. */
+      var strayHeadDebris = '';
+      for (var n = document.body.firstChild; n; n = n.nextSibling) {
+        if (n.nodeType === 1 && (n.id === 'page' || n.tagName === 'MAIN')) break;
+        if (n.nodeType === 3 && n.textContent.trim()) {
+          strayHeadDebris = n.textContent.trim().slice(0, 60);
+          break;
+        }
+      }
       return {
+        stray: strayHeadDebris,
         main: (clone.querySelector('#page') || {}).innerHTML || '',
         bg: pick('.fixedbg'),
         footer: pick('.site-footer'),
@@ -299,6 +319,7 @@ const server = http.createServer((req, res) => {
     /* A page that is deliberately a placeholder — the photography
        banner, a coming-soon entry — is thin on purpose. Everything else
        being thin means the renderer failed and the build should stop. */
+    if (baked.stray) problems.push(p.file + ': stray text at top of body — "' + baked.stray + '"');
     const thinOnPurpose = p.noindex || p.id === 'photography';
     if (baked.words < 40 && !thinOnPurpose) {
       problems.push(p.file + ': only ' + baked.words + ' words rendered');
