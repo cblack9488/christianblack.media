@@ -414,6 +414,15 @@ window.CB_CONTENT = {
     },
     "links": [
       {
+        "id": "link",
+        "kind": "Film",
+        "publication": "",
+        "title": "Climbing in Patagonia - Guillaumet town-to-town",
+        "year": "2025",
+        "url": "https://www.youtube.com/watch?v=P-si1TeU2rc",
+        "note": "A short adventure in a sub 24hr weather window"
+      },
+      {
         "id": "aaj",
         "kind": "Writing",
         "publication": "American Alpine Journal",
