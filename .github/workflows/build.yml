@@ -1,11 +1,11 @@
-name: Pre-render
+name: Build and deploy
 
-# Every push regenerates the article pages, the baked-in HTML, the sitemap
-# and the head metadata, then commits the result back to main. GitHub Pages
-# then publishes from that commit as usual.
+# Builds the site and hands the result straight to GitHub Pages.
 #
-# A push made with GITHUB_TOKEN does not start another workflow run, so this
-# cannot loop back on itself.
+# Nothing is ever committed back to main, so your local copy can never fall
+# behind and you never need to pull before working. main holds only what you
+# wrote; the generated pages, sitemap and metadata are rebuilt on every push
+# and exist only in the deployment.
 
 on:
   push:
@@ -13,10 +13,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
+# Let a running deploy finish rather than cancelling it half-published.
 concurrency:
-  group: prerender
+  group: pages
   cancel-in-progress: false
 
 jobs:
@@ -37,14 +40,22 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Commit the generated files
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then
-            echo "Nothing changed."
-          else
-            git commit -m "Pre-render pages [skip ci]"
-            git push
-          fi
+      - name: Drop build-only files from what gets published
+        run: rm -rf node_modules
+
+      - uses: actions/configure-pages@v6
+
+      - uses: actions/upload-pages-artifact@v5
+
+        with:
+          path: '.'
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
