@@ -503,36 +503,105 @@
     if (index < 0 || index >= blocks.length) return;
 
     var box = el('div', { class: 'st-blockedit' });
-    var ta = el('textarea', { rows: Math.max(3, Math.ceil(blocks[index].length / 60)) });
-    ta.value = blocks[index];
-
     var bar = el('div', { class: 'st-blockbar' });
     var save = el('button', { type: 'button', class: 'st-mini', text: 'Save' });
     var cancel = el('button', { type: 'button', class: 'st-mini', text: 'Cancel' });
-    var hint = el('span', { class: 'st-blockhint',
-      text: '## heading   ### sub-heading   > quote   *italic*   **bold**' });
-    bar.appendChild(hint);
-    bar.appendChild(cancel);
-    bar.appendChild(save);
 
-    box.appendChild(ta);
-    box.appendChild(bar);
     node.parentNode.insertBefore(box, node);
     node.style.display = 'none';
-    ta.focus();
 
     function close() {
       box.remove();
       node.style.display = '';
     }
-    cancel.addEventListener('click', close);
-    save.addEventListener('click', function () {
-      blocks[index] = ta.value.trim();
+    function commit(text) {
+      blocks[index] = text.trim();
       entry.body = blocks.filter(function (b) { return b.trim(); }).join('\n\n');
       close();
       changed();
       rerender();
+    }
+    cancel.addEventListener('click', close);
+
+    var photo = blocks[index].trim().match(/^\[photo:([\s\S]*)\]$/);
+
+    if (photo) {
+      /* A photograph gets named fields rather than raw markup — a caption is
+         the thing you actually came to change. */
+      box.classList.add('st-blockedit--photo');
+      var parts = photo[1].split('|').map(function (x) { return x.trim(); });
+      var src = parts[0], capV = parts[1] || '', altV = parts[2] || '';
+
+      var thumb = el('img', { class: 'st-photothumb', src: CB.resolveSrc(src), alt: '' });
+      var fields = el('div', { class: 'st-photofields' });
+
+      function textField(label, value, hint) {
+        var l = el('label', { class: 'st-photofield' });
+        l.appendChild(el('span', { text: label }));
+        var i = el('input', { type: 'text' });
+        i.value = value;
+        l.appendChild(i);
+        if (hint) l.appendChild(el('em', { text: hint }));
+        fields.appendChild(l);
+        return i;
+      }
+      var capI = textField('Caption', capV, 'Shown under the photograph');
+      var altI = textField('Alt text', altV, 'Describes the photo for screen readers and image search');
+
+      var replace = el('button', { type: 'button', class: 'st-mini', text: 'Replace photo\u2026' });
+      replace.addEventListener('click', function () {
+        var fi = el('input', { type: 'file', accept: 'image/*' });
+        fi.addEventListener('change', function () {
+          if (!fi.files[0]) return;
+          src = addImage(fi.files[0]);
+          thumb.src = CB.resolveSrc(src);
+        });
+        fi.click();
+      });
+      fields.appendChild(replace);
+
+      var row = el('div', { class: 'st-photorow' });
+      row.appendChild(thumb);
+      row.appendChild(fields);
+      box.appendChild(row);
+
+      save.addEventListener('click', function () {
+        var out = [src, capI.value.trim(), altI.value.trim()];
+        while (out.length > 1 && !out[out.length - 1]) out.pop();
+        commit('[photo: ' + out.join(' | ') + ']');
+      });
+      bar.appendChild(el('span', { class: 'st-blockhint', text: 'Leave alt text empty to reuse the caption.' }));
+      bar.appendChild(cancel);
+      bar.appendChild(save);
+      box.appendChild(bar);
+      capI.focus();
+      return;
+    }
+
+    /* Text blocks get the same toolbar as the panel's body editor. */
+    var tools = el('div', { class: 'st-toolbar' });
+    var ta = el('textarea', { rows: Math.max(3, Math.ceil(blocks[index].length / 60)) });
+    ta.value = blocks[index];
+
+    MARKS.filter(function (m) { return m.label !== 'Photo'; }).forEach(function (mk) {
+      var btn = el('button', { type: 'button', class: 'st-mark', text: mk.label, title: mk.title });
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        ta.focus();
+        applyMark(ta, mk);
+      });
+      tools.appendChild(btn);
     });
+
+    box.appendChild(tools);
+    box.appendChild(ta);
+    bar.appendChild(el('span', { class: 'st-blockhint', text: '\u2318\u21A9 to save, Esc to cancel' }));
+    bar.appendChild(cancel);
+    bar.appendChild(save);
+    box.appendChild(bar);
+    ta.focus();
+
+    save.addEventListener('click', function () { commit(ta.value); });
     ta.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') { e.preventDefault(); close(); }
       if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); save.click(); }

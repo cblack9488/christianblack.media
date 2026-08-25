@@ -174,3 +174,42 @@ body.st-on .article .st-block:hover {
   border-radius: var(--radius-xs); padding: 4px 9px; cursor: pointer;
 }
 .st-blockbar .st-mini:hover { color: var(--accent-hover); border-color: var(--accent); }
+
+/* Photo block: named fields instead of raw markup */
+.st-blockedit--photo { max-width: min(760px, 92vw); }
+.st-photorow { display: grid; grid-template-columns: 150px 1fr; gap: var(--space-5); align-items: start; }
+.st-photothumb {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  border-radius: var(--radius-xs); border: 1px solid var(--border-hairline);
+}
+.st-photofields { display: flex; flex-direction: column; gap: var(--space-4); }
+.st-photofield { display: flex; flex-direction: column; gap: 4px; }
+.st-photofield > span {
+  font-family: var(--font-label); font-size: 10px; letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--text-muted);
+}
+.st-photofield input {
+  font-family: var(--font-text); font-size: 14px; color: var(--text-primary);
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs); padding: 7px 9px; outline: none;
+}
+.st-photofield input:focus { border-color: var(--accent); }
+.st-photofield em {
+  font-size: 11px; font-style: italic; color: var(--text-muted);
+}
+.st-photofields .st-mini {
+  align-self: flex-start;
+  font-family: var(--font-label); font-size: 10px; letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--text-secondary);
+  background: none; border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs); padding: 5px 10px; cursor: pointer;
+}
+.st-photofields .st-mini:hover { color: var(--accent-hover); border-color: var(--accent); }
+
+/* the in-place editor's own toolbar */
+.st-blockedit .st-toolbar { margin-bottom: var(--space-3); }
+
+@media (max-width: 640px) {
+  .st-photorow { grid-template-columns: 1fr; }
+  .st-photothumb { max-width: 180px; }
+}

@@ -630,10 +630,13 @@
         return node;
       }
 
-      var pm = t.match(/^\[photo:\s*([^\]|]+?)\s*(?:\|\s*([^\]]*))?\]$/);
+      var pm = t.match(/^\[photo:([\s\S]*)\]$/);
       if (pm) {
-        var cap = (pm[2] || '').trim();
-        var fig = frameEl({ src: pm[1].trim(), caption: cap, alt: cap || fallbackAlt || '', ratio: 'free' });
+        /* [photo: path | caption | alt] — caption and alt are both optional,
+           and alt falls back to the caption, then to the piece's title. */
+        var parts = pm[1].split('|').map(function (x) { return x.trim(); });
+        var cap = parts[1] || '';
+        var fig = frameEl({ src: parts[0], caption: cap, alt: parts[2] || cap || fallbackAlt || '', ratio: 'free' });
         fig.classList.add('entry__photo');
         return place(fig);
       }
