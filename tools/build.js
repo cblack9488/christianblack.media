@@ -158,6 +158,13 @@ function headBlock(p) {
     lines.push(`<meta property="article:published_time" content="${esc(p.entry.date)}">`);
     lines.push(`<meta property="article:author" content="${esc(NAME)}">`);
   }
+  /* The crab mark as the browser-tab icon. Generated from images/cb-crab.png
+     onto the site's dark ground, because the mark is drawn in near-white and
+     would vanish on a light browser tab if left transparent. */
+  lines.push('<link rel="icon" href="favicon.ico" sizes="any">');
+  lines.push('<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">');
+  lines.push('<link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">');
+  lines.push('<link rel="apple-touch-icon" href="images/favicon-180.png">');
   lines.push(`<script type="application/ld+json">${jsonLd(p)}</script>`);
   /* Cloudflare Web Analytics. Cookie-free, so no consent banner is needed.
      The token lives in content.js next to everything else that is editable;
@@ -179,6 +186,7 @@ function applyHead(html, p) {
     .replace(/\n?[ \t]*<meta\s+name="(description|robots|twitter:[a-z:]+)"[^>]*>/gi, '')
     .replace(/\n?[ \t]*<meta\s+property="(og:[a-z:]+|article:[a-z_]+)"[^>]*>/gi, '')
     .replace(/\n?[ \t]*<link\s+rel="canonical"[^>]*>/gi, '')
+    .replace(/\n?[ \t]*<link\s+rel="(icon|apple-touch-icon|shortcut icon)"[^>]*>/gi, '')
     .replace(/\n?[ \t]*<script type="application\/ld\+json">[\s\S]*?<\/script>/gi, '')
     .replace(/\n?[ \t]*<script[^>]*cloudflareinsights[^>]*><\/script>/gi, '');
   return html.replace('</head>', headBlock(p) + '\n</head>');
@@ -196,7 +204,6 @@ function entryHtml(p) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <base href="../">
 <meta name="theme-color" content="#16150F">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2316150F'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='%23EDE7D8' text-anchor='middle'>CB</text></svg>">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="assets/css/studio.css">
 </head>
