@@ -23,8 +23,8 @@ window.CB_CONTENT = {
     ],
     "contactNote": "for sponsorship inquiries, media requests, or collaboration",
     "cloudflareToken": "bcfa56db21444097b56f303096f57bfb",
-    "seoTitle": "Christian Black — Climber, alpinist and paraglider pilot",
-    "seoDescription": "Climber, alpinist and paraglider pilot. Trip reports, essays and photography from expeditions in the Himalaya, Patagonia, Peru and Yosemite.",
+    "seoTitle": "Christian Black \u2014 Journal",
+    "seoDescription": "Essays, trip reports, techniques and beta",
     "support": {
       "label": "Supported by",
       "logo": "images/hmg-logo.png",
