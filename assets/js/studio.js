@@ -25,7 +25,9 @@
 
   var RATIOS = ['frame', 'portrait', 'landscape', 'cinema', 'video'];
   var SPECS = {
-    site: [{ k: 'name' }, { k: 'mark', l: 'Rail monogram' }, { k: 'domain' }, { k: 'email' }],
+    site: [{ k: 'name' }, { k: 'mark', l: 'Rail monogram' }, { k: 'domain' }, { k: 'email' },
+           { k: 'seoTitle', l: 'Google result \u2014 title' },
+           { k: 'seoDescription', t: 'textarea', rows: 3, l: 'Google result \u2014 description' }],
     head: [{ k: 'kicker' }, { k: 'title' }, { k: 'lede', t: 'textarea' }],
     hero: [{ k: 'src', t: 'image', l: 'Photograph' }, { k: 'caption' }, { k: 'meta' }, { k: 'alt', l: 'Alt text' }],
     photo: [{ k: 'src', t: 'image', l: 'Photograph' }, { k: 'caption' }, { k: 'meta' },

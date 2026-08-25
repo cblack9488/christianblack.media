@@ -23,6 +23,8 @@ window.CB_CONTENT = {
     ],
     "contactNote": "for sponsorship inquiries, media requests, or collaboration",
     "cloudflareToken": "bcfa56db21444097b56f303096f57bfb",
+    "seoTitle": "Christian Black — Climber, alpinist and paraglider pilot",
+    "seoDescription": "Climber, alpinist and paraglider pilot. Trip reports, essays and photography from expeditions in the Himalaya, Patagonia, Peru and Yosemite.",
     "support": {
       "label": "Supported by",
       "logo": "images/hmg-logo.png",
@@ -33,6 +35,8 @@ window.CB_CONTENT = {
   },
   "athlete": {
     "kicker": "Tick list",
+    "seoTitle": "Climbing r\u00e9sum\u00e9 \u2014 Christian Black",
+    "seoDescription": "Selected ascents: first ascent of White Sapphire in the Kishtwar Valley, Golden Gate on El Capitan, Desert Solitaire, plus expeditions in Patagonia and Peru.",
     "title": "Around the world",
     "lede": "A short resume of climbing",
     "bands": [
@@ -414,15 +418,6 @@ window.CB_CONTENT = {
     },
     "links": [
       {
-        "id": "link",
-        "kind": "Film",
-        "publication": "",
-        "title": "Climbing in Patagonia - Guillaumet town-to-town",
-        "year": "2025",
-        "url": "https://www.youtube.com/watch?v=P-si1TeU2rc",
-        "note": "A short adventure in a sub 24hr weather window"
-      },
-      {
         "id": "aaj",
         "kind": "Writing",
         "publication": "American Alpine Journal",
@@ -523,6 +518,7 @@ window.CB_CONTENT = {
   },
   "about": {
     "kicker": "About",
+    "seoTitle": "About Christian Black \u2014 Climber, alpinist, paraglider pilot",
     "title": "Christian Black",
     "lede": "“Have fun, be safe, look cool!”",
     "portrait": "images/portrait-cb.jpg",
