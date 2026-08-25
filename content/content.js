@@ -21,7 +21,7 @@ window.CB_CONTENT = {
         "url": "https://www.youtube.com/@christianblack1"
       }
     ],
-    "contactNote": "for sponsorship inquiries, media requests, or collaboration",
+    "contactNote": "for inquiries, media requests, licensing or collaboration",
     "cloudflareToken": "bcfa56db21444097b56f303096f57bfb",
     "seoTitle": "Christian Black \u2014 Journal",
     "seoDescription": "Essays, trip reports, techniques and beta",
@@ -524,7 +524,7 @@ window.CB_CONTENT = {
     "portrait": "images/portrait-cb.jpg",
     "contact": {
       "title": "Get in touch",
-      "blurb": "For sponsorship inquiries, media requests, licensing or collaboration.",
+      "blurb": "For inquiries, media requests, licensing or collaboration.",
       "image": "images/about-summit.jpg",
       "credit": ""
     },
