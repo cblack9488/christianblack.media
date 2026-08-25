@@ -586,6 +586,50 @@ body { padding-right: var(--rail-width); }
   text-shadow: 0 1px 14px rgba(16,15,12,0.8);
 }
 
+/* Sub-section heading: the same voice as .entry__h2, a step quieter, and
+   pulled tighter to the paragraph it introduces. */
+.article .entry__h3 {
+  max-width: var(--measure-prose); margin: var(--space-7) auto var(--space-3);
+  font-family: var(--font-display); font-weight: var(--weight-regular);
+  font-size: var(--text-subhead); line-height: var(--leading-snug);
+  color: var(--text-primary); letter-spacing: var(--tracking-display);
+  text-shadow: 0 1px 14px rgba(16,15,12,0.8);
+}
+
+/* A pull quote lifted out of the running text, mid-article. Sized between
+   the body and a heading so it reads as emphasis, not as a new section. */
+.article .entry__pull {
+  max-width: var(--measure-prose); margin: var(--space-8) auto;
+  padding-left: var(--space-6);
+  border-left: 1px solid var(--border-strong);
+  font-family: var(--font-display); font-style: italic;
+  font-size: var(--text-heading); line-height: var(--leading-snug);
+  color: var(--paper);
+  text-shadow: 0 1px 14px rgba(16,15,12,0.85);
+}
+
+/* An aside is the opposite of a pull quote: quieter than the body, for a
+   note or a gear list that shouldn't interrupt the read. It keeps the
+   prose column's ground so it stays legible over the backdrop. */
+.article .entry__note {
+  max-width: var(--measure-prose); margin: 0 auto var(--space-6);
+  padding: var(--space-5) var(--space-6);
+  background: rgba(16, 15, 12, 0.72);
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+  border-left: 2px solid var(--clay-500, #A97B62);
+  border-radius: 4px;
+  font-size: var(--text-body); line-height: var(--leading-normal);
+  color: var(--stone-200);
+}
+.article .entry__note em { font-style: italic; }
+
+/* Inline emphasis inside any of the above.
+   The design system stops at --weight-medium (500), which against Newsreader's
+   400 body is too slight to read as emphasis at this size. The webfont is
+   loaded across 200..600, so 600 is available and is what bold needs to be. */
+.article strong { font-weight: 600; color: var(--text-primary); }
+.article em { font-style: italic; }
+
 /* Photographs break the column and stay full colour. */
 .article .entry__photo { margin: var(--space-8) 0; width: 100%; }
 .article .entry__photo .box { aspect-ratio: auto; border-radius: 8px; }
@@ -887,7 +931,9 @@ body { padding-right: var(--rail-width); }
   .article .entry__prose:first-of-type > p:first-of-type::first-letter {
     font-size: 3.2em; padding: 4px 8px 0 0;
   }
-  .article .entry__h2, .pullquote { font-size: var(--text-subhead); }
+  .article .entry__h2, .pullquote, .article .entry__pull { font-size: var(--text-subhead); }
+  .article .entry__h3 { font-size: var(--text-body-lg); }
+  .article .entry__note { padding: var(--space-4) var(--space-5); }
   .about__prose { font-size: var(--text-body); }
 
   /* --- cards and media --- */
@@ -978,6 +1024,9 @@ body { padding-right: var(--rail-width); }
   padding: var(--space-7) var(--space-8) var(--space-6);
 }
 .page--about .article .entry__h2,
+.page--about .article .entry__h3,
+.page--about .article .entry__pull,
+.page--about .article .entry__note,
 .page--about .article .pullquote {
   max-width: 74ch; margin-left: 0; margin-right: 0;
 }

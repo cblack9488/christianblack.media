@@ -95,3 +95,82 @@ body.st-on .st-item:hover .st-tools, body.st-on .st-item:focus-within .st-tools 
 .st-tools .st-mini:hover { color: var(--accent-hover); }
 
 body.st-on [data-dropzone] { min-height: 120px; }
+
+/* ---------- body editor: toolbar, preview, in-place block editing ---------- */
+
+.st-toolbar {
+  display: flex; flex-wrap: wrap; gap: 3px;
+  margin-bottom: var(--space-2);
+}
+.st-mark {
+  font-family: var(--font-label); font-size: 10px; letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--text-secondary);
+  background: var(--surface-raised, rgba(255,255,255,0.04));
+  border: 1px solid var(--border-hairline); border-radius: var(--radius-xs);
+  padding: 4px 7px; cursor: pointer; line-height: 1;
+}
+.st-mark:hover { color: var(--accent-hover); border-color: var(--accent); }
+.st-mark:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.st-bodyfield .st-body { font-size: 12px; line-height: 1.55; }
+
+.st-previewwrap { margin-top: var(--space-3); }
+.st-previewlabel {
+  display: block; margin-bottom: var(--space-2);
+  font-family: var(--font-label); font-size: 10px; letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--text-muted);
+}
+/* The preview reuses the article's own styles so what you see is what the
+   page renders. It is scaled down because the panel is narrow. */
+.st-preview {
+  max-height: 340px; overflow-y: auto;
+  border: 1px solid var(--border-hairline); border-radius: var(--radius-xs);
+  padding: var(--space-4); background: rgba(16, 15, 12, 0.6);
+}
+.st-preview .entry__prose {
+  padding: var(--space-4); margin-bottom: var(--space-4);
+  font-size: 12px; max-width: none; backdrop-filter: none;
+}
+.st-preview .entry__prose:first-of-type > p:first-of-type::first-letter {
+  font-size: 2.4em; padding: 3px 6px 0 0;
+}
+.st-preview .entry__h2 { font-size: 17px; margin: var(--space-4) 0 var(--space-2); max-width: none; }
+.st-preview .entry__h3 { font-size: 14px; margin: var(--space-3) 0 var(--space-2); max-width: none; }
+.st-preview .entry__pull { font-size: 15px; margin: var(--space-4) 0; max-width: none; }
+.st-preview .entry__note { font-size: 11px; padding: var(--space-3); margin: 0 0 var(--space-3); max-width: none; }
+.st-preview .entry__photo { margin: var(--space-4) 0; }
+.st-preview .entry__photo figcaption { font-size: 10px; }
+
+/* In-place editing on the article page */
+body.st-on .article .st-block { cursor: text; border-radius: 3px; }
+body.st-on .article .st-block:hover {
+  box-shadow: 0 0 0 1px var(--border-strong), 0 0 0 6px rgba(169, 123, 98, 0.10);
+}
+.st-blockedit {
+  max-width: var(--measure-prose); margin: var(--space-5) auto;
+  background: rgba(16, 15, 12, 0.96);
+  border: 1px solid var(--accent); border-radius: var(--radius-xs);
+  padding: var(--space-4);
+}
+.st-blockedit textarea {
+  width: 100%; box-sizing: border-box;
+  font-family: var(--font-text); font-size: 15px; line-height: 1.6;
+  color: var(--text-primary); background: transparent;
+  border: 0; resize: vertical; outline: none;
+}
+.st-blockbar {
+  display: flex; align-items: center; gap: var(--space-2);
+  margin-top: var(--space-3); padding-top: var(--space-3);
+  border-top: 1px solid var(--border-hairline);
+}
+.st-blockhint {
+  flex: 1; font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px; color: var(--text-muted); letter-spacing: 0.02em;
+}
+.st-blockbar .st-mini {
+  font-family: var(--font-label); font-size: 10px; letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--text-secondary);
+  background: none; border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs); padding: 4px 9px; cursor: pointer;
+}
+.st-blockbar .st-mini:hover { color: var(--accent-hover); border-color: var(--accent); }

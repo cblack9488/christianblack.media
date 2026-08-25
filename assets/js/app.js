@@ -183,17 +183,29 @@
 
   /* Paragraph text with optional inline [label](url) links. Built as real
      nodes rather than innerHTML so the copy is never parsed as markup. */
-  function paraEl(text, cls) {
-    var p = el('p', cls ? { class: cls } : null);
-    var re = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+  /* Inline marks inside a run of text: [label](url), **bold**, *italic*.
+     Links are matched first so a URL containing an asterisk can't be torn
+     apart by the emphasis pass. Everything else is plain text — no HTML is
+     ever parsed out of content.js, so a stray < in the prose stays a < . */
+  var INLINE = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|\*\*([^*]+)\*\*|\*([^*\n]+)\*/g;
+
+  function inlineInto(host, text) {
     var last = 0, m;
-    while ((m = re.exec(text)) !== null) {
-      if (m.index > last) p.appendChild(document.createTextNode(text.slice(last, m.index)));
-      p.appendChild(el('a', { href: m[2], target: '_blank', rel: 'noopener', text: m[1] }));
+    INLINE.lastIndex = 0;
+    while ((m = INLINE.exec(text)) !== null) {
+      if (m.index > last) host.appendChild(document.createTextNode(text.slice(last, m.index)));
+      if (m[1]) host.appendChild(el('a', { href: m[2], target: '_blank', rel: 'noopener', text: m[1] }));
+      else if (m[3]) host.appendChild(el('strong', { text: m[3] }));
+      else host.appendChild(el('em', { text: m[4] }));
       last = m.index + m[0].length;
     }
-    if (last < text.length) p.appendChild(document.createTextNode(text.slice(last)));
-    return p;
+    if (last < text.length) host.appendChild(document.createTextNode(text.slice(last)));
+    return host;
+  }
+  CB.inlineInto = inlineInto;
+
+  function paraEl(text, cls) {
+    return inlineInto(el('p', cls ? { class: cls } : null), text);
   }
   CB.paraEl = paraEl;
 
@@ -593,33 +605,64 @@
   /* `fallbackAlt` is what an uncaptioned in-article photograph gets. It
      names the piece rather than describing the image, which is all this
      can honestly claim; a real description goes in content.js. */
+  /* The body is plain text in content.js. One blank line separates blocks;
+     a block's first characters say what it is:
+
+       ## Heading            section heading
+       ### Heading           sub-section heading
+       > Quote               pull quote, sits mid-article
+       [note: text]          quiet aside, smaller than the body text
+       [photo: path | cap]   photograph
+       anything else         a paragraph
+
+     Every rendered block carries data-block with its index, which is what
+     lets Studio edit one block in place and write it back. */
   function renderBody(host, body, fallbackAlt) {
     var run = null;
-    String(body || '').split(/\n\s*\n/).forEach(function (chunk) {
+    String(body || '').split(/\n\s*\n/).forEach(function (chunk, i) {
       var t = chunk.trim();
       if (!t) return;
 
+      function place(node) {
+        node.setAttribute('data-block', i);
+        host.appendChild(node);
+        run = null;
+        return node;
+      }
+
       var pm = t.match(/^\[photo:\s*([^\]|]+?)\s*(?:\|\s*([^\]]*))?\]$/);
       if (pm) {
-        run = null;
         var cap = (pm[2] || '').trim();
         var fig = frameEl({ src: pm[1].trim(), caption: cap, alt: cap || fallbackAlt || '', ratio: 'free' });
         fig.classList.add('entry__photo');
-        host.appendChild(fig);
-        return;
+        return place(fig);
+      }
+
+      var nm = t.match(/^\[note:\s*([\s\S]*?)\]$/);
+      if (nm) return place(inlineInto(el('aside', { class: 'entry__note' }), nm[1].trim()));
+
+      if (t.indexOf('### ') === 0) {
+        return place(inlineInto(el('h3', { class: 'entry__h3' }), t.slice(4).trim()));
       }
       if (t.indexOf('## ') === 0) {
-        run = null;
-        host.appendChild(el('h2', { class: 'entry__h2', text: t.slice(3).trim() }));
-        return;
+        return place(inlineInto(el('h2', { class: 'entry__h2' }), t.slice(3).trim()));
       }
+      if (t.indexOf('> ') === 0) {
+        /* Strip the marker from every line, so a quote can run to several. */
+        var q = t.split('\n').map(function (ln) { return ln.replace(/^\s*>\s?/, ''); }).join(' ').trim();
+        return place(inlineInto(el('blockquote', { class: 'entry__pull' }), q));
+      }
+
       if (!run) {
         run = el('div', { class: 'cb-prose entry__prose' });
         host.appendChild(run);
       }
-      run.appendChild(paraEl(t));
+      var para = paraEl(t);
+      para.setAttribute('data-block', i);
+      run.appendChild(para);
     });
   }
+  CB.renderBody = renderBody;
 
   function renderEntry(root, e) {
     root.classList.add('page--article');
@@ -658,6 +701,7 @@
       root.appendChild(art);
       return;
     }
+    CB.currentEntry = e;
     if (e.pullquote) art.appendChild(el('blockquote', { class: 'pullquote', text: e.pullquote }));
     renderBody(art, e.body, e.title ? 'From \u201c' + e.title + '\u201d' : '');
     art.appendChild(el('a', { class: 'back', href: CB.hrefFor('journal'), text: '\u2190 All words' }));

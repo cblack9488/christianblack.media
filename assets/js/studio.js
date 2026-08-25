@@ -72,7 +72,7 @@
             { k: 'lede', t: 'textarea', l: 'Standfirst' },
             { k: 'cover', t: 'image', l: 'Article cover photo' },
             { k: 'thumb', t: 'image', l: 'Index card photo (optional)' },
-            { k: 'pullquote', t: 'textarea' }, { k: 'body', t: 'textarea', rows: 16 }],
+            { k: 'pullquote', t: 'textarea' }, { k: 'body', t: 'body', rows: 18 }],
     link: [{ k: 'kind', t: 'select', options: ['Writing', 'Podcast', 'Film', 'Interview', 'Social'] },
            { k: 'publication' }, { k: 'title' }, { k: 'year' },
            { k: 'url', t: 'url', l: 'Link' }, { k: 'note', l: 'Note under the title' }]
@@ -271,7 +271,127 @@
 
   /* ---------------- inspector ---------------- */
 
+  /* ---------------- the body editor ---------------- */
+
+  /* Each button either prefixes the block the cursor sits in, or wraps the
+     selected words. Nothing here needs to be memorised — the marks are the
+     same ones you can type by hand if you prefer. */
+  var MARKS = [
+    { label: 'H1', title: 'Section heading',     block: '## ' },
+    { label: 'H2', title: 'Sub-heading',         block: '### ' },
+    { label: '\u201C', title: 'Pull quote',       block: '> ' },
+    { label: 'Note', title: 'Quiet aside',       wrap: ['[note: ', ']'], whole: true },
+    { label: 'B', title: 'Bold',                 wrap: ['**', '**'] },
+    { label: 'I', title: 'Italic',               wrap: ['*', '*'] },
+    { label: 'Link', title: 'Link',              wrap: ['[', '](https://)'] },
+    { label: 'Photo', title: 'Photograph',       insert: '[photo: images/your-photo.jpg | caption]' }
+  ];
+
+  function applyMark(ta, mark) {
+    var v = ta.value, a = ta.selectionStart, b = ta.selectionEnd;
+
+    if (mark.insert) {
+      /* a photograph is its own block, so give it blank lines either side */
+      var before = v.slice(0, a).replace(/\s*$/, '');
+      var after = v.slice(b).replace(/^\s*/, '');
+      ta.value = before + '\n\n' + mark.insert + '\n\n' + after;
+      ta.selectionStart = ta.selectionEnd = before.length + 2 + mark.insert.length;
+      return;
+    }
+
+    if (mark.block) {
+      /* find the block the cursor is in: bounded by blank lines */
+      var start = v.lastIndexOf('\n\n', Math.max(0, a - 1));
+      start = start < 0 ? 0 : start + 2;
+      var end = v.indexOf('\n\n', b);
+      if (end < 0) end = v.length;
+      var chunk = v.slice(start, end);
+      var stripped = chunk.replace(/^\s*(?:#{2,3}\s|>\s)/, '');
+      /* clicking the same mark again takes it off */
+      var next = chunk === mark.block + stripped ? stripped : mark.block + stripped;
+      ta.value = v.slice(0, start) + next + v.slice(end);
+      ta.selectionStart = ta.selectionEnd = start + next.length;
+      return;
+    }
+
+    /* With nothing selected, take the word under the cursor — the same thing
+       a word processor does when you hit bold mid-word. */
+    if (a === b && !mark.whole) {
+      var ws = a, we = a;
+      while (ws > 0 && /\S/.test(v.charAt(ws - 1))) ws--;
+      while (we < v.length && /\S/.test(v.charAt(we))) we++;
+      if (we > ws) { a = ws; b = we; }
+    }
+    var sel = v.slice(a, b) || (mark.whole ? '' : 'text');
+    if (mark.whole && !sel) {
+      var s2 = v.lastIndexOf('\n\n', Math.max(0, a - 1));
+      s2 = s2 < 0 ? 0 : s2 + 2;
+      var e2 = v.indexOf('\n\n', b);
+      if (e2 < 0) e2 = v.length;
+      sel = v.slice(s2, e2);
+      a = s2; b = e2;
+    }
+    /* Keep whitespace outside the markers: "**bold** " not "**bold **". */
+    var lead = (sel.match(/^\s*/) || [''])[0];
+    var tail = (sel.match(/\s*$/) || [''])[0];
+    var core = sel.slice(lead.length, sel.length - tail.length) || sel;
+    if (!core.trim()) { lead = ''; tail = ''; core = sel; }
+
+    var out = lead + mark.wrap[0] + core + mark.wrap[1] + tail;
+    ta.value = v.slice(0, a) + out + v.slice(b);
+    ta.selectionStart = a + lead.length + mark.wrap[0].length;
+    ta.selectionEnd = ta.selectionStart + core.length;
+  }
+
+  function bodyField(obj, f, onChange) {
+    var wrap = el('label', { class: 'st-field st-bodyfield' });
+    wrap.appendChild(el('span', { text: f.l || 'Body' }));
+
+    var bar = el('div', { class: 'st-toolbar' });
+    var ta = el('textarea', { rows: f.rows || 18, class: 'st-body' });
+    ta.value = obj[f.k] || '';
+
+    var preview = el('div', { class: 'st-preview article' });
+    var previewWrap = el('div', { class: 'st-previewwrap' });
+    previewWrap.appendChild(el('span', { class: 'st-previewlabel', text: 'Preview' }));
+    previewWrap.appendChild(preview);
+
+    var timer = null;
+    function paint() {
+      preview.innerHTML = '';
+      try { CB.renderBody(preview, ta.value, ''); }
+      catch (err) { preview.textContent = 'Preview unavailable: ' + err.message; }
+    }
+    function touched() {
+      obj[f.k] = ta.value;
+      changed();
+      clearTimeout(timer);
+      timer = setTimeout(paint, 180);
+    }
+
+    MARKS.forEach(function (mk) {
+      var b = el('button', { type: 'button', class: 'st-mark', text: mk.label, title: mk.title });
+      b.addEventListener('click', function (e) {
+        e.preventDefault();
+        ta.focus();
+        applyMark(ta, mk);
+        touched();
+      });
+      bar.appendChild(b);
+    });
+
+    ta.addEventListener('input', touched);
+    ta.addEventListener('change', function () { obj[f.k] = ta.value; onChange(); });
+
+    wrap.appendChild(bar);
+    wrap.appendChild(ta);
+    wrap.appendChild(previewWrap);
+    paint();
+    return wrap;
+  }
+
   function field(obj, f, onChange) {
+    if (f.t === 'body') return bodyField(obj, f, onChange);
     var wrap = el('label', { class: 'st-field' });
     wrap.appendChild(el('span', { text: f.l || (f.k.charAt(0).toUpperCase() + f.k.slice(1)) }));
     var input;
@@ -370,9 +490,74 @@
     });
   }
 
+  /* ---------------- editing one block in place ---------------- */
+
+  /* Every block the renderer draws carries data-block with its index into
+     the body text. Clicking one swaps it for a textarea holding just that
+     block's source, so a typo is a click and a keystroke rather than a hunt
+     through eighteen rows of textarea. */
+  function editBlockInPlace(node, entry, index) {
+    if (document.querySelector('.st-blockedit')) return;
+
+    var blocks = String(entry.body || '').split(/\n\s*\n/);
+    if (index < 0 || index >= blocks.length) return;
+
+    var box = el('div', { class: 'st-blockedit' });
+    var ta = el('textarea', { rows: Math.max(3, Math.ceil(blocks[index].length / 60)) });
+    ta.value = blocks[index];
+
+    var bar = el('div', { class: 'st-blockbar' });
+    var save = el('button', { type: 'button', class: 'st-mini', text: 'Save' });
+    var cancel = el('button', { type: 'button', class: 'st-mini', text: 'Cancel' });
+    var hint = el('span', { class: 'st-blockhint',
+      text: '## heading   ### sub-heading   > quote   *italic*   **bold**' });
+    bar.appendChild(hint);
+    bar.appendChild(cancel);
+    bar.appendChild(save);
+
+    box.appendChild(ta);
+    box.appendChild(bar);
+    node.parentNode.insertBefore(box, node);
+    node.style.display = 'none';
+    ta.focus();
+
+    function close() {
+      box.remove();
+      node.style.display = '';
+    }
+    cancel.addEventListener('click', close);
+    save.addEventListener('click', function () {
+      blocks[index] = ta.value.trim();
+      entry.body = blocks.filter(function (b) { return b.trim(); }).join('\n\n');
+      close();
+      changed();
+      rerender();
+    });
+    ta.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { e.preventDefault(); close(); }
+      if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); save.click(); }
+    });
+  }
+
   function decorate() {
     if (!S.active) return;
     document.body.classList.add('st-on');
+
+    /* click any paragraph, heading, quote or note in an article to fix it */
+    var entry = CB.currentEntry;
+    if (entry) {
+      Array.prototype.forEach.call(document.querySelectorAll('.article [data-block]'), function (node) {
+        if (node.__stBlock) return;
+        node.__stBlock = true;
+        node.classList.add('st-block');
+        node.addEventListener('click', function (e) {
+          if (e.target.closest('a')) return;      /* let links stay links */
+          e.preventDefault();
+          e.stopPropagation();
+          editBlockInPlace(node, entry, parseInt(node.getAttribute('data-block'), 10));
+        });
+      });
+    }
 
     /* single-image drop targets: hero, posters, covers, reel frames */
     Array.prototype.forEach.call(document.querySelectorAll('[data-drop]'), function (node) {
