@@ -23,7 +23,7 @@ window.CB_CONTENT = {
     ],
     "contactNote": "for inquiries, media requests, licensing or collaboration",
     "cloudflareToken": "bcfa56db21444097b56f303096f57bfb",
-    "seoTitle": "Christian Black \u2014 Journal",
+    "seoTitle": "Christian Black — Journal",
     "seoDescription": "Essays, trip reports, techniques and beta",
     "support": {
       "label": "Supported by",
@@ -35,7 +35,7 @@ window.CB_CONTENT = {
   },
   "athlete": {
     "kicker": "Tick list",
-    "seoTitle": "Climbing r\u00e9sum\u00e9 \u2014 Christian Black",
+    "seoTitle": "Climbing résumé — Christian Black",
     "seoDescription": "Selected ascents: first ascent of White Sapphire in the Kishtwar Valley, Golden Gate on El Capitan, Desert Solitaire, plus expeditions in Patagonia and Peru.",
     "title": "Around the world",
     "lede": "A short resume of climbing",
@@ -194,190 +194,190 @@ window.CB_CONTENT = {
       "credit": "Photo · Christian Black"
     },
     "photos": [
-          {
-                "src": "images/photography/bmx-trick-mountain-store.jpg",
-                "full": "images/photography/bmx-trick-mountain-store-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A rider launches a bike off a ramp outside a mountain store while friends lie on the ground watching"
-          },
-          {
-                "src": "images/photography/climber-golden-granite.jpg",
-                "full": "images/photography/climber-golden-granite-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A climber on a steep golden granite wall high above forested slopes"
-          },
-          {
-                "src": "images/photography/beach-runner-bw.jpg",
-                "full": "images/photography/beach-runner-bw-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "Black and white view from above of a lone figure running along the surf line"
-          },
-          {
-                "src": "images/photography/granite-face-in-cloud.jpg",
-                "full": "images/photography/granite-face-in-cloud-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A vast granite face half-hidden in cloud with a bird gliding across it"
-          },
-          {
-                "src": "images/photography/rainbow-desert-highway.jpg",
-                "full": "images/photography/rainbow-desert-highway-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A full rainbow arcs over an empty desert highway at sunset"
-          },
-          {
-                "src": "images/photography/climber-overhead-reach.jpg",
-                "full": "images/photography/climber-overhead-reach-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "Looking down at a climber reaching for a hold on steep rock"
-          },
-          {
-                "src": "images/photography/metro-tunnel-bw.jpg",
-                "full": "images/photography/metro-tunnel-bw-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "Black and white: a lone figure waiting on a bench in a long underground tunnel"
-          },
-          {
-                "src": "images/photography/tuolumne-climber-red.jpg",
-                "full": "images/photography/tuolumne-climber-red-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A climber in a red jacket on an orange granite wall above Tuolumne's domes and forest"
-          },
-          {
-                "src": "images/photography/bubbles-plaza-bw.jpg",
-                "full": "images/photography/bubbles-plaza-bw-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "Black and white street scene of children chasing giant soap bubbles along a palm-lined plaza"
-          },
-          {
-                "src": "images/photography/glacier-camp-alaska.jpg",
-                "full": "images/photography/glacier-camp-alaska-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A figure in a patterned jacket drinking from a mug at a glacier camp below a snow-plastered peak"
-          },
-          {
-                "src": "images/photography/furnace-night-work.jpg",
-                "full": "images/photography/furnace-night-work-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A worker draws a glowing mass from a furnace in a darkened workshop"
-          },
-          {
-                "src": "images/photography/climber-pink-steep.jpg",
-                "full": "images/photography/climber-pink-steep-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A climber on a steep granite wall with forest far below"
-          },
-          {
-                "src": "images/photography/porter-mountain-town.jpg",
-                "full": "images/photography/porter-mountain-town-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A porter carrying a loaded basket through the market street of a mountain town"
-          },
-          {
-                "src": "images/photography/harness-and-spire.jpg",
-                "full": "images/photography/harness-and-spire-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "Climbing hardware in close focus with a granite spire rising behind it"
-          },
-          {
-                "src": "images/photography/tuolumne-climber-sunset.jpg",
-                "full": "images/photography/tuolumne-climber-sunset-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A climber on grey granite with the Sierra skyline in low evening light"
-          },
-          {
-                "src": "images/photography/dancer-night-bw.jpg",
-                "full": "images/photography/dancer-night-bw-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "Black and white: a dancer caught mid-movement under low light"
-          },
-          {
-                "src": "images/photography/hikers-toward-peak.jpg",
-                "full": "images/photography/hikers-toward-peak-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "Two loaded hikers cross open tussock toward a cloud-wrapped granite peak"
-          },
-          {
-                "motion": true,
-                "src": "images/photography/glacier-camp-loop.jpg",
-                "mp4": "images/photography/glacier-camp-loop.mp4",
-                "webm": "images/photography/glacier-camp-loop.webm",
-                "caption": "",
-                "meta": "",
-                "alt": "A short loop of a volleyball game played on the glacier at camp, below a rock peak"
-          },
-          {
-                "src": "images/photography/figure-rusted-platform.jpg",
-                "full": "images/photography/figure-rusted-platform-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "Looking down at a person resting on a rusted metal platform with gear scattered around"
-          },
-          {
-                "src": "images/photography/tuolumne-slab-climber.jpg",
-                "full": "images/photography/tuolumne-slab-climber-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A climber moving up a granite slab with Tuolumne Meadows spread out behind"
-          },
-          {
-                "src": "images/photography/museum-dark-figure.jpg",
-                "full": "images/photography/museum-dark-figure-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A figure caught mid-movement in a dark museum interior lit by a single bright opening"
-          },
-          {
-                "src": "images/photography/belayer-yellow-jacket.jpg",
-                "full": "images/photography/belayer-yellow-jacket-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A belayer in a yellow jacket holding the rope with mountains behind"
-          },
-          {
-                "src": "images/photography/alpine-ridge-sunburst.jpg",
-                "full": "images/photography/alpine-ridge-sunburst-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A climber on a corniced snow ridge with the sun bursting over the peaks behind"
-          },
-          {
-                "src": "images/photography/wall-jump-village.jpg",
-                "full": "images/photography/wall-jump-village-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A figure leaps from a painted green wall onto sand in a dusty village"
-          },
-          {
-                "src": "images/photography/alpine-granite-buttress.jpg",
-                "full": "images/photography/alpine-granite-buttress-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A climber on a granite buttress above a glacial moraine and snow-covered peaks"
-          },
-          {
-                "src": "images/photography/paraglider-dusk.jpg",
-                "full": "images/photography/paraglider-dusk-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A paraglider silhouetted against an orange sky above dark ridgelines at dusk"
-          }
+      {
+        "src": "images/photography/bmx-trick-mountain-store.jpg",
+        "full": "images/photography/bmx-trick-mountain-store-full.jpg",
+        "caption": "KC and four Matts",
+        "meta": "Tuolumne Meadows, CA",
+        "alt": "A rider launches a bike off a ramp outside a mountain store while friends lie on the ground watching"
+      },
+      {
+        "src": "images/photography/climber-golden-granite.jpg",
+        "full": "images/photography/climber-golden-granite-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A climber on a steep golden granite wall high above forested slopes"
+      },
+      {
+        "src": "images/photography/beach-runner-bw.jpg",
+        "full": "images/photography/beach-runner-bw-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "Black and white view from above of a lone figure running along the surf line"
+      },
+      {
+        "src": "images/photography/granite-face-in-cloud.jpg",
+        "full": "images/photography/granite-face-in-cloud-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A vast granite face half-hidden in cloud with a bird gliding across it"
+      },
+      {
+        "src": "images/photography/rainbow-desert-highway.jpg",
+        "full": "images/photography/rainbow-desert-highway-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A full rainbow arcs over an empty desert highway at sunset"
+      },
+      {
+        "src": "images/photography/climber-overhead-reach.jpg",
+        "full": "images/photography/climber-overhead-reach-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "Looking down at a climber reaching for a hold on steep rock"
+      },
+      {
+        "src": "images/photography/metro-tunnel-bw.jpg",
+        "full": "images/photography/metro-tunnel-bw-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "Black and white: a lone figure waiting on a bench in a long underground tunnel"
+      },
+      {
+        "src": "images/photography/tuolumne-climber-red.jpg",
+        "full": "images/photography/tuolumne-climber-red-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A climber in a red jacket on an orange granite wall above Tuolumne's domes and forest"
+      },
+      {
+        "src": "images/photography/bubbles-plaza-bw.jpg",
+        "full": "images/photography/bubbles-plaza-bw-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "Black and white street scene of children chasing giant soap bubbles along a palm-lined plaza"
+      },
+      {
+        "src": "images/photography/glacier-camp-alaska.jpg",
+        "full": "images/photography/glacier-camp-alaska-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A figure in a patterned jacket drinking from a mug at a glacier camp below a snow-plastered peak"
+      },
+      {
+        "src": "images/photography/furnace-night-work.jpg",
+        "full": "images/photography/furnace-night-work-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A worker draws a glowing mass from a furnace in a darkened workshop"
+      },
+      {
+        "src": "images/photography/climber-pink-steep.jpg",
+        "full": "images/photography/climber-pink-steep-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A climber on a steep granite wall with forest far below"
+      },
+      {
+        "src": "images/photography/porter-mountain-town.jpg",
+        "full": "images/photography/porter-mountain-town-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A porter carrying a loaded basket through the market street of a mountain town"
+      },
+      {
+        "src": "images/photography/harness-and-spire.jpg",
+        "full": "images/photography/harness-and-spire-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "Climbing hardware in close focus with a granite spire rising behind it"
+      },
+      {
+        "src": "images/photography/tuolumne-climber-sunset.jpg",
+        "full": "images/photography/tuolumne-climber-sunset-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A climber on grey granite with the Sierra skyline in low evening light"
+      },
+      {
+        "src": "images/photography/dancer-night-bw.jpg",
+        "full": "images/photography/dancer-night-bw-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "Black and white: a dancer caught mid-movement under low light"
+      },
+      {
+        "src": "images/photography/hikers-toward-peak.jpg",
+        "full": "images/photography/hikers-toward-peak-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "Two loaded hikers cross open tussock toward a cloud-wrapped granite peak"
+      },
+      {
+        "motion": true,
+        "src": "images/photography/glacier-camp-loop.jpg",
+        "mp4": "images/photography/glacier-camp-loop.mp4",
+        "webm": "images/photography/glacier-camp-loop.webm",
+        "caption": "",
+        "meta": "",
+        "alt": "A short loop of a volleyball game played on the glacier at camp, below a rock peak"
+      },
+      {
+        "src": "images/photography/figure-rusted-platform.jpg",
+        "full": "images/photography/figure-rusted-platform-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "Looking down at a person resting on a rusted metal platform with gear scattered around"
+      },
+      {
+        "src": "images/photography/tuolumne-slab-climber.jpg",
+        "full": "images/photography/tuolumne-slab-climber-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A climber moving up a granite slab with Tuolumne Meadows spread out behind"
+      },
+      {
+        "src": "images/photography/museum-dark-figure.jpg",
+        "full": "images/photography/museum-dark-figure-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A figure caught mid-movement in a dark museum interior lit by a single bright opening"
+      },
+      {
+        "src": "images/photography/belayer-yellow-jacket.jpg",
+        "full": "images/photography/belayer-yellow-jacket-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A belayer in a yellow jacket holding the rope with mountains behind"
+      },
+      {
+        "src": "images/photography/alpine-ridge-sunburst.jpg",
+        "full": "images/photography/alpine-ridge-sunburst-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A climber on a corniced snow ridge with the sun bursting over the peaks behind"
+      },
+      {
+        "src": "images/photography/wall-jump-village.jpg",
+        "full": "images/photography/wall-jump-village-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A figure leaps from a painted green wall onto sand in a dusty village"
+      },
+      {
+        "src": "images/photography/alpine-granite-buttress.jpg",
+        "full": "images/photography/alpine-granite-buttress-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A climber on a granite buttress above a glacial moraine and snow-covered peaks"
+      },
+      {
+        "src": "images/photography/paraglider-dusk.jpg",
+        "full": "images/photography/paraglider-dusk-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A paraglider silhouetted against an orange sky above dark ridgelines at dusk"
+      }
     ]
   },
   "journal": {
@@ -516,7 +516,7 @@ window.CB_CONTENT = {
           "Written by Christian Black, in collaboration with teammates Hayden Wyatt and Keenan Nowak. August 2022."
         ],
         "pullquote": "",
-        "body": "Click HERE for full travel logistics and beta report for traveling to Mt. Bute\n\nIn February of 2022, my friend Hayden called me to catch up, the conversation ending with him asking if I would be interested in a summer rock climbing expedition to the Coast Ranges of British Columbia. Having spent three summers working and climbing with Hayden in Yosemite, I knew our similar climbing styles and banter would make for a great trip no matter what. I committed to taking the time off and asked minimal questions about what the expedition would entail. “It’s called Mt. Bute. It’s 50 pitches of rock climbing, it’ll be sweet”! I was sold. Our plan was to climb the 6000ft “School of Rock'' route on the west buttress.\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/02.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/03.jpg]\n\nAs we began planning, our friend Keenan who was joining in on the trip happened to know the first ascensionist of the route we wanted to do. Through much questioning we gathered enough information to figure out where to go and (roughly) how to get there. A slew of phone calls later and he had a 32-foot Zodiac chartered boat to take us two and a half hours to the end of the Bute Inlet from Campbell River. August came quickly and soon we were getting off the zodiac at Homathko Camp, an old homestead and logging camp where our journey would begin.\n\nFrom the start, we knew hiking into Mt. Bute would be challenging. One trip report called it a “bushwhack from hell”, so we came prepared with what we guessed was an appropriate kit of cut-resistant gardening gloves, mosquito head nets, long pants, sun hoodies, trekking poles and one machete. However, our packs were about 80lbs each, loaded with 10 days of food, camping gear, climbing gear and an additional bolt kit with 35 bolts for potential new-routing. The strawberry rhubarb pie strapped to the top of my pack didn’t help with the weight either. Nonetheless psyched, we shouldered our packs and began hiking.\n\n## The bushwhack from hell\n\nThe approach to basecamp took us two full days of bushwhacking. The first day involved two creek crossings followed by an uphill battle through new-growth logging cutblocks, dead and down forest and groves of Devil’s Club, a spiky 6ft tall plant occupying most flat areas near the creek. Day two proved to be worse thanks to side-hilling through sideways growing Maple trees and the final tromp through a wet meadow with 8ft tall berry bushes just before pulling into basecamp. We arrived utterly wrecked and covered in scratches and bug bites but the hardest part was over at leasty! Or so we thought…\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/04.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/05.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/06.jpg]\n\nThe next 3 days were drizzly weather, allowing us to rest up in basecamp where we mostly hung out by the fire to avoid the constant droves of mosquitoes and flies attacking. Two of the afternoons we spent scouting the final approach from basecamp to the base of the climb where we were humbled by the horrifyingly dense foliage guarding the path. The machete which we jokingly thought was dead weight became the MVP of the trip as we chopped an approach trail from camp through thick berry bushes, Devil’s Club, and even sawed off a section of a downed log to put across a creek to strengthen a small but consequential tree crossing necessary to cross.\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/07.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/08.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/09.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/10.jpg]\n\n> \u2026 and then Hayden\u2019s pinky finger gets split wide open by a sharp boulder \u2026\n\nOur second day of cutting in the approach trail and we finally made it to the base of the route to look at the climb for the first time. “This thing is huuuuuuuuuge!” we say as we stand at the base of the lower 3000ft buttress. “It’s finally time to rock climb instead of bushwhack soon!” …And then Hayden’s pinky finger gets split wide open by a sharp boulder near the base, almost tearing his nail off, finger covered in blood. We headed back to camp to clean and disinfect his finger, creating a splint concocted out of disinfectant spray glue, superglue, roll gauze and climbing tape. His finger hurt, but the splint looked good and we already made it this far, so we decided to rest up one more day and start the climb during the second day of a sunny four-day weather window.\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/11.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/12.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/13.jpg]\n\n## The Nose of Bushes\n\nThe morning of the climb our alarms went off at 2:45am and soon we weaved our way through our machete-chopped trail and made it to the base of the climb at 5am just as the sun was rising. We had tiny packs with us, hoping to climb light and make the 3000ft of climbing we were supposed to do that day easier. Between our 20L, 15L and 12L packs we had two and a half days of food, one stove, one fuel canister, short sleeping pads and one sleeping bag for all three of us to share. By 6am I was off leading the first 5.6 slab pitches to start off the route.\n\nSimul-climbing the lower 800ft of the route, we placed microtraxions to protect the followers as we wandered up terrain anywhere from 5.4 waterfalls to 5.7 friction slab. After a couple of hours we arrived at the base of the slightly steeper climbing, which was described to us using the vague phrasing “...from there, I think we climbed some bushes for a little while…”\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/14.jpg]\n\nThe lower buttress occupying the first 3000ft of the route and the bushiest climbing\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/15.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/16.jpg]\n\nThe next part of the route ended up being around 1000ft/10 pitches of dirt-filled cracks and 5.9+ bush climbing, often slinging bushes as the only protection. It felt like someone was actively fighting you while you were trying to climb, brushing branches out of your face as they snag and pull on other parts of your body at the same time. Relentless bush climbing at its finest.\n\nEventually we exited the bushy climbing and continued onwards up cryptic, often dirt-filled cracks linking ledgy terrain until we reached the easier ridge climbing topping out near the first buttress. We found a patch of snow and took a break filling water bottles from the drips and melting a few liters of water to quench our dehydration. A few hundred more feet of easy climbing and we found our bivy for the night overlooking the valley and glacier below just as sunset came. After dinner we cuddled up in the single quilt-style sleeping bag we had to share for the night.\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/17.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/18.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/19.jpg]\n\nAt breakfast the next morning, all was going well until...I heard the jetboil turn off as it ran out of fuel… our only canister of fuel. We hadn’t planned on melting any snow, expecting enough water dripping from snow patches on route. As it turned out, the ridge feature funneled none of that to us so we used up some of our fuel melting water the day before. Having no more fuel left put a big wrench in our plans, prompting a group chat after we submitted the first buttress that morning and got a first look at the upper 3000ft of the route.\n\nAhead of us lay the hardest climbing terrain and seemingly no snow or water running on the route. The answer was obvious albeit unfortunate. We couldn’t reasonably continue onto the upper 3000ft buttress with only a liter of water each for the entire second part of the route that day. We made the difficult call to bail from there and abandon any summit attempt. It was a great exercise in flexing the bail muscle and making a safe decision, but we were all a bit sad to have gotten so far only to have a miscalculation in fuel stump the whole trip.\n\n...It was a great exercise in flexing the bail muscle...\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/20.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/21.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/22.jpg]\n\nWe started our descent and began hiking down a series of grassy ledges, sometimes needing to downclimb steep dirt and duff with our ice axes to avoid slipping on the foliage. Eventually we made it to the cliff edge and rappeled a series of trees to reach the base of the route again 7hrs later that day. The climbing was over, but we were back on the ground safe instead of epic-ing while dehydrated on a remote peak.\n\nThe next morning, Keenan spearheaded the route finding on the bushwhack out and did an amazing job connecting the best parts of the old growth forest for easy walking, eventually linking into an old logging trail and an overgrown logging road that led us back to the river crossing. What took us 14 hours of bushwhacking in only took 7hrs on the way out, a huge blessing considering how worked we were by this point. Making it back to Homathko Camp that afternoon was a blissful sign that finally after 8 days the hard work was over and we could relax. No more bushes, no more scary route-finding, no more constantly swatting at bugs on your face. Maybe life wasn’t so bad this way? Soon our boat came and we were back on our way to civilization, the blur of the previous eight days forever seared into our memories.\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/23.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/24.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/25.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/26.jpg]\n\nWe are humbled and grateful for the challenges presented to us by the beautiful Coast Range mountains. Despite our thwarted attempts, we feel a small sense of joy knowing that these adventurous experiences are readily available to those who seek them out. What we will take away from this trip is the memories made with good friends in a beautiful place, working together and working hard to try to realize a dream. A very special thanks to teammates Hayden Wyatt and Keenan Nowak for making this trip so memorable; Blake Herrington, Luke Nuefeld and Jimmy Martinello for giving information, beta and photos to us before the trip; and the American Alpine Club for financial support through the Live Your Dream grant.\n\nP.S. We have created a separate Beta Report for Mt. Bute, compiling information regarding logistics, gear, GPS tracks and other things that could be very useful to future climbers. We hope this information inspires more parties to visit Mt. Bute. Link HERE"
+        "body": "Click HERE for full travel logistics and beta report for traveling to Mt. Bute\n\nIn February of 2022, my friend Hayden called me to catch up, the conversation ending with him asking if I would be interested in a summer rock climbing expedition to the Coast Ranges of British Columbia. Having spent three summers working and climbing with Hayden in Yosemite, I knew our similar climbing styles and banter would make for a great trip no matter what. I committed to taking the time off and asked minimal questions about what the expedition would entail. “It’s called Mt. Bute. It’s 50 pitches of rock climbing, it’ll be sweet”! I was sold. Our plan was to climb the 6000ft “School of Rock'' route on the west buttress.\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/02.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/03.jpg]\n\nAs we began planning, our friend Keenan who was joining in on the trip happened to know the first ascensionist of the route we wanted to do. Through much questioning we gathered enough information to figure out where to go and (roughly) how to get there. A slew of phone calls later and he had a 32-foot Zodiac chartered boat to take us two and a half hours to the end of the Bute Inlet from Campbell River. August came quickly and soon we were getting off the zodiac at Homathko Camp, an old homestead and logging camp where our journey would begin.\n\nFrom the start, we knew hiking into Mt. Bute would be challenging. One trip report called it a “bushwhack from hell”, so we came prepared with what we guessed was an appropriate kit of cut-resistant gardening gloves, mosquito head nets, long pants, sun hoodies, trekking poles and one machete. However, our packs were about 80lbs each, loaded with 10 days of food, camping gear, climbing gear and an additional bolt kit with 35 bolts for potential new-routing. The strawberry rhubarb pie strapped to the top of my pack didn’t help with the weight either. Nonetheless psyched, we shouldered our packs and began hiking.\n\n## The bushwhack from hell\n\nThe approach to basecamp took us two full days of bushwhacking. The first day involved two creek crossings followed by an uphill battle through new-growth logging cutblocks, dead and down forest and groves of Devil’s Club, a spiky 6ft tall plant occupying most flat areas near the creek. Day two proved to be worse thanks to side-hilling through sideways growing Maple trees and the final tromp through a wet meadow with 8ft tall berry bushes just before pulling into basecamp. We arrived utterly wrecked and covered in scratches and bug bites but the hardest part was over at leasty! Or so we thought…\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/04.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/05.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/06.jpg]\n\nThe next 3 days were drizzly weather, allowing us to rest up in basecamp where we mostly hung out by the fire to avoid the constant droves of mosquitoes and flies attacking. Two of the afternoons we spent scouting the final approach from basecamp to the base of the climb where we were humbled by the horrifyingly dense foliage guarding the path. The machete which we jokingly thought was dead weight became the MVP of the trip as we chopped an approach trail from camp through thick berry bushes, Devil’s Club, and even sawed off a section of a downed log to put across a creek to strengthen a small but consequential tree crossing necessary to cross.\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/07.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/08.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/09.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/10.jpg]\n\n> … and then Hayden’s pinky finger gets split wide open by a sharp boulder …\n\nOur second day of cutting in the approach trail and we finally made it to the base of the route to look at the climb for the first time. “This thing is huuuuuuuuuge!” we say as we stand at the base of the lower 3000ft buttress. “It’s finally time to rock climb instead of bushwhack soon!” …And then Hayden’s pinky finger gets split wide open by a sharp boulder near the base, almost tearing his nail off, finger covered in blood. We headed back to camp to clean and disinfect his finger, creating a splint concocted out of disinfectant spray glue, superglue, roll gauze and climbing tape. His finger hurt, but the splint looked good and we already made it this far, so we decided to rest up one more day and start the climb during the second day of a sunny four-day weather window.\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/11.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/12.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/13.jpg]\n\n## The Nose of Bushes\n\nThe morning of the climb our alarms went off at 2:45am and soon we weaved our way through our machete-chopped trail and made it to the base of the climb at 5am just as the sun was rising. We had tiny packs with us, hoping to climb light and make the 3000ft of climbing we were supposed to do that day easier. Between our 20L, 15L and 12L packs we had two and a half days of food, one stove, one fuel canister, short sleeping pads and one sleeping bag for all three of us to share. By 6am I was off leading the first 5.6 slab pitches to start off the route.\n\nSimul-climbing the lower 800ft of the route, we placed microtraxions to protect the followers as we wandered up terrain anywhere from 5.4 waterfalls to 5.7 friction slab. After a couple of hours we arrived at the base of the slightly steeper climbing, which was described to us using the vague phrasing “...from there, I think we climbed some bushes for a little while…”\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/14.jpg]\n\nThe lower buttress occupying the first 3000ft of the route and the bushiest climbing\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/15.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/16.jpg]\n\nThe next part of the route ended up being around 1000ft/10 pitches of dirt-filled cracks and 5.9+ bush climbing, often slinging bushes as the only protection. It felt like someone was actively fighting you while you were trying to climb, brushing branches out of your face as they snag and pull on other parts of your body at the same time. Relentless bush climbing at its finest.\n\nEventually we exited the bushy climbing and continued onwards up cryptic, often dirt-filled cracks linking ledgy terrain until we reached the easier ridge climbing topping out near the first buttress. We found a patch of snow and took a break filling water bottles from the drips and melting a few liters of water to quench our dehydration. A few hundred more feet of easy climbing and we found our bivy for the night overlooking the valley and glacier below just as sunset came. After dinner we cuddled up in the single quilt-style sleeping bag we had to share for the night.\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/17.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/18.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/19.jpg]\n\nAt breakfast the next morning, all was going well until...I heard the jetboil turn off as it ran out of fuel… our only canister of fuel. We hadn’t planned on melting any snow, expecting enough water dripping from snow patches on route. As it turned out, the ridge feature funneled none of that to us so we used up some of our fuel melting water the day before. Having no more fuel left put a big wrench in our plans, prompting a group chat after we submitted the first buttress that morning and got a first look at the upper 3000ft of the route.\n\nAhead of us lay the hardest climbing terrain and seemingly no snow or water running on the route. The answer was obvious albeit unfortunate. We couldn’t reasonably continue onto the upper 3000ft buttress with only a liter of water each for the entire second part of the route that day. We made the difficult call to bail from there and abandon any summit attempt. It was a great exercise in flexing the bail muscle and making a safe decision, but we were all a bit sad to have gotten so far only to have a miscalculation in fuel stump the whole trip.\n\n...It was a great exercise in flexing the bail muscle...\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/20.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/21.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/22.jpg]\n\nWe started our descent and began hiking down a series of grassy ledges, sometimes needing to downclimb steep dirt and duff with our ice axes to avoid slipping on the foliage. Eventually we made it to the cliff edge and rappeled a series of trees to reach the base of the route again 7hrs later that day. The climbing was over, but we were back on the ground safe instead of epic-ing while dehydrated on a remote peak.\n\nThe next morning, Keenan spearheaded the route finding on the bushwhack out and did an amazing job connecting the best parts of the old growth forest for easy walking, eventually linking into an old logging trail and an overgrown logging road that led us back to the river crossing. What took us 14 hours of bushwhacking in only took 7hrs on the way out, a huge blessing considering how worked we were by this point. Making it back to Homathko Camp that afternoon was a blissful sign that finally after 8 days the hard work was over and we could relax. No more bushes, no more scary route-finding, no more constantly swatting at bugs on your face. Maybe life wasn’t so bad this way? Soon our boat came and we were back on our way to civilization, the blur of the previous eight days forever seared into our memories.\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/23.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/24.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/25.jpg]\n\n[photo: images/journal/mt-bute-2022-foiled-by-foliage-and-fuel/26.jpg]\n\nWe are humbled and grateful for the challenges presented to us by the beautiful Coast Range mountains. Despite our thwarted attempts, we feel a small sense of joy knowing that these adventurous experiences are readily available to those who seek them out. What we will take away from this trip is the memories made with good friends in a beautiful place, working together and working hard to try to realize a dream. A very special thanks to teammates Hayden Wyatt and Keenan Nowak for making this trip so memorable; Blake Herrington, Luke Nuefeld and Jimmy Martinello for giving information, beta and photos to us before the trip; and the American Alpine Club for financial support through the Live Your Dream grant.\n\nP.S. We have created a separate Beta Report for Mt. Bute, compiling information regarding logistics, gear, GPS tracks and other things that could be very useful to future climbers. We hope this information inspires more parties to visit Mt. Bute. Link HERE"
       },
       {
         "id": "the-p-l-u-r-l-penny-lane-ultimate-reality-linkup-squamish-bc",
@@ -703,7 +703,7 @@ window.CB_CONTENT = {
   },
   "about": {
     "kicker": "About",
-    "seoTitle": "About Christian Black \u2014 Climber, alpinist, paraglider pilot",
+    "seoTitle": "About Christian Black — Climber, alpinist, paraglider pilot",
     "title": "Christian Black",
     "lede": "“Have fun, be safe, look cool!”",
     "portrait": "images/portrait-cb.jpg",
