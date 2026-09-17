@@ -664,7 +664,9 @@
       if (!c) return;
       node.classList.add('st-sortable');
 
-      Array.prototype.forEach.call(node.children, function (child) {
+      /* Items are usually direct children, but the gallery wraps its frames
+         in justified rows, so look for them anywhere inside. */
+      Array.prototype.forEach.call(node.querySelectorAll('[data-i]'), function (child) {
         var i = parseInt(child.getAttribute('data-i'), 10);
         if (isNaN(i)) return;
         if (child.__stItem) return;

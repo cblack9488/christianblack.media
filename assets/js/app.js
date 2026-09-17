@@ -438,13 +438,18 @@
        lightbox counts and steps through the photographs only. */
     var stills = photos.filter(function (x) { return !x.motion; });
 
-    /* Which cells run large is decided here rather than with an nth-child
+    /* Which frames run large is decided here rather than with an nth-child
        rule, so a moving frame dropped anywhere in the sequence does not
        shift the feature slots onto different photographs. */
     var nStill = 0;
+    var cells = [];
     photos.forEach(function (p, i) {
       if (p.motion) {
-        grid.appendChild(motionCell(p, i));
+        var mc = motionCell(p, i);
+        mc.__ar = CB.aspectOf(p);
+        mc.__solo = true;
+        cells.push(mc);
+        grid.appendChild(mc);
         return;
       }
       nStill++;
@@ -486,10 +491,80 @@
         cap.appendChild(el('span', { class: 'meta', text: p.meta || '' }));
         cell.appendChild(cap);
       }
+      cell.__ar = CB.aspectOf(p);
+      cell.__solo = feature;
+      cells.push(cell);
       grid.appendChild(cell);
     });
     root.appendChild(grid);
+    justify(grid, cells);
     CB.redrawPhotography = function () { CB.render(); };
+  }
+
+  /* How wide a frame is relative to its height. Taken from the generated
+     size map where possible so rows are laid out before anything has
+     downloaded; otherwise measured once the file arrives. */
+  CB.aspectOf = function (p) {
+    var sizes = window.CB_PHOTO_SIZES || {};
+    var s = sizes[p.src] || sizes[(p.src || '').replace(/^\.\//, '')];
+    if (s && s[1]) return s[0] / s[1];
+    if (p.aspect) return p.aspect;
+    return 3 / 2;
+  };
+
+  /* Justified rows. Each row is filled until it is about as wide as the
+     gallery, then flex sizes the frames within it: giving every frame a
+     flex-grow equal to its aspect ratio makes each one's width proportional
+     to its shape, which means every frame in the row lands on the same
+     height and none of them is cropped. Rows are regrouped on resize
+     because how many frames fit depends on how wide the window is. */
+  function justify(grid, cells) {
+    var GAP = 6;
+
+    function build() {
+      var W = grid.clientWidth - GAP * 2;
+      if (W <= 0) return;
+
+      /* One frame per row on a phone: anything else makes them postage stamps. */
+      var narrow = W < 620;
+      /* Aim for rows around a third of the gallery's width. Lower than this
+         and rows of four wide frames come out as thin strips beside the
+         full-width features; higher and two frames stop fitting side by side. */
+      var target = narrow ? W / 1.5 : Math.max(300, Math.min(430, W / 3.4));
+
+      Array.prototype.slice.call(grid.querySelectorAll('.jrow')).forEach(function (r) {
+        while (r.firstChild) grid.appendChild(r.firstChild);
+        r.remove();
+      });
+
+      var row = [], sum = 0;
+      function flush() {
+        if (!row.length) return;
+        var r = el('div', { class: 'jrow' });
+        row.forEach(function (c) {
+          c.style.flexGrow = c.__ar;
+          r.appendChild(c);
+        });
+        grid.appendChild(r);
+        row = []; sum = 0;
+      }
+
+      cells.forEach(function (c) {
+        if (c.__solo || narrow) { flush(); row = [c]; sum = c.__ar; flush(); return; }
+        row.push(c);
+        sum += c.__ar;
+        /* close the row once the frames would be shorter than the target */
+        if ((W - GAP * (row.length - 1)) / sum <= target) flush();
+      });
+      flush();
+    }
+
+    build();
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(build, 120);
+    }, { passive: true });
   }
 
   /* A short silent loop, shown full width. The GIF it came from was over

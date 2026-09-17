@@ -359,50 +359,30 @@ body { padding-right: var(--rail-width); }
   color: var(--text-secondary);
 }
 
-/* Rows are a fixed height rather than each cell carrying its own aspect
-   ratio. A cell that spans two columns would otherwise be twice as tall as
-   its neighbours, which punches holes through the grid. With a set row
-   height a wide cell is simply wider, and every row lines up. */
+/* Justified rows. The grid is a column of rows; each row is a flex line
+   whose frames grow in proportion to their aspect ratio, so every frame in
+   a row shares a height and none of them is cropped. The row grouping is
+   worked out in the renderer, which knows each photograph's shape. */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  grid-auto-rows: clamp(190px, 21vw, 330px);
-  grid-auto-flow: dense;
+  display: flex;
+  flex-direction: column;
   gap: 6px;
   padding: 0 6px var(--space-9);
 }
-/* Every seventh photograph runs large, so the grid breathes rather than
-   marching. Two columns AND two rows: spanning width alone would crop a 3:2
-   photograph to about 3:1 and behead whatever is in it. At 2x2 the cell is
-   close to the frame's own proportions, and dense packing fills the column
-   beside it. The class is set by the renderer, which counts photographs and
-   skips moving frames. */
-.grid .cell--feature { grid-column: span 2; grid-row: span 2; }
-@media (max-width: 1100px) {
-  .grid .cell--feature { grid-column: span 1; grid-row: span 1; }
-}
+.jrow { display: flex; gap: 6px; align-items: stretch; }
 
-.cell { margin: 0; position: relative; min-height: 0; }
-
-/* A moving frame runs the full width of the grid. The row span is set so the
-   band lands close to the clip's own proportions at each breakpoint, rather
-   than being cropped to a letterbox. */
-.grid .cell--full { grid-column: 1 / -1; grid-row: span 3; }
-.cell--full .cell__box { height: 100%; }
-.cell--full video {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  background: var(--media-placeholder);
-}
-@media (max-width: 1100px) { .grid .cell--full { grid-row: span 2; } }
+.cell { margin: 0; position: relative; min-width: 0; flex: 1 1 0; }
 .cell__box {
-  position: relative; height: 100%;
+  position: relative;
   overflow: hidden; background: var(--media-placeholder); cursor: pointer;
 }
-.cell__box img {
-  width: 100%; height: 100%; object-fit: cover;
+.cell__box img,
+.cell--full video {
+  display: block; width: 100%; height: auto;
   transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-fast) var(--ease-soft);
 }
 .cell__box:hover img { transform: scale(var(--media-hover-scale)); opacity: 0.92; }
+
 .cell__cap {
   position: absolute; left: 0; right: 0; bottom: 0;
   display: flex; justify-content: space-between; gap: var(--space-4);
@@ -965,11 +945,8 @@ body { padding-right: var(--rail-width); }
   .post__title { font-size: var(--text-subhead); }
   .band { margin: 0 var(--space-3); border-radius: 8px; }
   .band + .band { margin-top: var(--space-3); }
-  .grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 3px; padding: 0 3px var(--space-8); }
-  .grid .cell--full { grid-row: auto; }
-  .cell--full .cell__box { height: auto; aspect-ratio: 1600 / 1060; }
-  .cell__box { aspect-ratio: var(--aspect-landscape); height: auto; }
-  .cell--portrait .cell__box { aspect-ratio: var(--aspect-portrait, 2 / 3); }
+  .grid { gap: 3px; padding: 0 3px var(--space-8); }
+  .jrow { gap: 3px; }
   .cell__cap { opacity: 1; padding: var(--space-4); }
 
   /* --- film --- */
