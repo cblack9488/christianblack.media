@@ -204,113 +204,113 @@ window.CB_CONTENT = {
       {
         "src": "images/photography/climber-golden-granite.jpg",
         "full": "images/photography/climber-golden-granite-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Matt Peña on his route Rolling Palms, 5.13d",
+        "meta": "Tuolumne Meadows, CA",
         "alt": "A climber on a steep golden granite wall high above forested slopes"
       },
       {
         "src": "images/photography/beach-runner-bw.jpg",
         "full": "images/photography/beach-runner-bw-full.jpg",
         "caption": "",
-        "meta": "",
+        "meta": "Biarritz, France",
         "alt": "Black and white view from above of a lone figure running along the surf line"
       },
       {
         "src": "images/photography/granite-face-in-cloud.jpg",
         "full": "images/photography/granite-face-in-cloud-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "El Capitan",
+        "meta": "Yosemite, CA",
         "alt": "A vast granite face half-hidden in cloud with a bird gliding across it"
       },
       {
         "src": "images/photography/rainbow-desert-highway.jpg",
         "full": "images/photography/rainbow-desert-highway-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Road home",
+        "meta": "Basalt, NV",
         "alt": "A full rainbow arcs over an empty desert highway at sunset"
       },
       {
         "src": "images/photography/climber-overhead-reach.jpg",
         "full": "images/photography/climber-overhead-reach-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Matt Peña on his route Rolling Palms, 5.13d",
+        "meta": "Tuolumne Meadows, CA",
         "alt": "Looking down at a climber reaching for a hold on steep rock"
       },
       {
         "src": "images/photography/metro-tunnel-bw.jpg",
         "full": "images/photography/metro-tunnel-bw-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Waiting",
+        "meta": "Barcelona, Spain",
         "alt": "Black and white: a lone figure waiting on a bench in a long underground tunnel"
       },
       {
         "src": "images/photography/tuolumne-climber-red.jpg",
         "full": "images/photography/tuolumne-climber-red-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Carline Reynolds on Yabo Yes",
+        "meta": "Tuolumne Meadows, CA",
         "alt": "A climber in a red jacket on an orange granite wall above Tuolumne's domes and forest"
       },
       {
         "src": "images/photography/bubbles-plaza-bw.jpg",
         "full": "images/photography/bubbles-plaza-bw-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Jumping for joy",
+        "meta": "Barcelona, Spain",
         "alt": "Black and white street scene of children chasing giant soap bubbles along a palm-lined plaza"
       },
       {
         "src": "images/photography/glacier-camp-alaska.jpg",
         "full": "images/photography/glacier-camp-alaska-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Kara's bubbles",
+        "meta": "Pika Glacier, AK",
         "alt": "A figure in a patterned jacket drinking from a mug at a glacier camp below a snow-plastered peak"
       },
       {
         "src": "images/photography/furnace-night-work.jpg",
         "full": "images/photography/furnace-night-work-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Fire and brimstone",
+        "meta": "Tuolumne Meadows, CA",
         "alt": "A worker draws a glowing mass from a furnace in a darkened workshop"
       },
       {
         "src": "images/photography/climber-pink-steep.jpg",
         "full": "images/photography/climber-pink-steep-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Matt Peña on his route Rolling Palms, 5.13d",
+        "meta": "Tuolumne Meadows, CA",
         "alt": "A climber on a steep granite wall with forest far below"
       },
       {
         "src": "images/photography/porter-mountain-town.jpg",
         "full": "images/photography/porter-mountain-town-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Basket carrier",
+        "meta": "Badrinath, Uttarakhand, India",
         "alt": "A porter carrying a loaded basket through the market street of a mountain town"
       },
       {
         "src": "images/photography/harness-and-spire.jpg",
         "full": "images/photography/harness-and-spire-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Guillaumet Rodeo",
+        "meta": "Patagonia, Argentina",
         "alt": "Climbing hardware in close focus with a granite spire rising behind it"
       },
       {
         "src": "images/photography/tuolumne-climber-sunset.jpg",
         "full": "images/photography/tuolumne-climber-sunset-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Jake Squier on The Seamster",
+        "meta": "Tuolumne Meadows, CA",
         "alt": "A climber on grey granite with the Sierra skyline in low evening light"
       },
       {
         "src": "images/photography/dancer-night-bw.jpg",
         "full": "images/photography/dancer-night-bw-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Groove",
+        "meta": "Salt Lake City, UT",
         "alt": "Black and white: a dancer caught mid-movement under low light"
       },
       {
         "src": "images/photography/hikers-toward-peak.jpg",
         "full": "images/photography/hikers-toward-peak-full.jpg",
         "caption": "",
-        "meta": "",
+        "meta": "Patagonia, Argentina",
         "alt": "Two loaded hikers cross open tussock toward a cloud-wrapped granite peak"
       },
       {
@@ -318,64 +318,64 @@ window.CB_CONTENT = {
         "src": "images/photography/glacier-camp-loop.jpg",
         "mp4": "images/photography/glacier-camp-loop.mp4",
         "webm": "images/photography/glacier-camp-loop.webm",
-        "caption": "",
-        "meta": "",
+        "caption": "Pika spika",
+        "meta": "Pika Glacier, AK",
         "alt": "A short loop of a volleyball game played on the glacier at camp, below a rock peak"
       },
       {
         "src": "images/photography/figure-rusted-platform.jpg",
         "full": "images/photography/figure-rusted-platform-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Content - Alfonso Ventimilla",
+        "meta": "Lobitos, Peru",
         "alt": "Looking down at a person resting on a rusted metal platform with gear scattered around"
       },
       {
         "src": "images/photography/tuolumne-slab-climber.jpg",
         "full": "images/photography/tuolumne-slab-climber-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Carlin Reynolds",
+        "meta": "Tuolumne Meadows, CA",
         "alt": "A climber moving up a granite slab with Tuolumne Meadows spread out behind"
       },
       {
         "src": "images/photography/museum-dark-figure.jpg",
         "full": "images/photography/museum-dark-figure-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "MACBA",
+        "meta": "Barcelona, Spain",
         "alt": "A figure caught mid-movement in a dark museum interior lit by a single bright opening"
       },
       {
         "src": "images/photography/belayer-yellow-jacket.jpg",
         "full": "images/photography/belayer-yellow-jacket-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Sauerkraut snackin' ",
+        "meta": "Tioga Cliff, CA",
         "alt": "A belayer in a yellow jacket holding the rope with mountains behind"
       },
       {
         "src": "images/photography/alpine-ridge-sunburst.jpg",
         "full": "images/photography/alpine-ridge-sunburst-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Alpamayo summit",
+        "meta": "Cordillera Blanca, Peru",
         "alt": "A climber on a corniced snow ridge with the sun bursting over the peaks behind"
       },
       {
         "src": "images/photography/wall-jump-village.jpg",
         "full": "images/photography/wall-jump-village-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Alfonso Ventimilla",
+        "meta": "Lobitos, Peru",
         "alt": "A figure leaps from a painted green wall onto sand in a dusty village"
       },
       {
         "src": "images/photography/alpine-granite-buttress.jpg",
         "full": "images/photography/alpine-granite-buttress-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Surya Kund basecamp",
+        "meta": "Badrinath, India",
         "alt": "A climber on a granite buttress above a glacial moraine and snow-covered peaks"
       },
       {
         "src": "images/photography/paraglider-dusk.jpg",
         "full": "images/photography/paraglider-dusk-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Summer skies",
+        "meta": "Esquel, Argentina",
         "alt": "A paraglider silhouetted against an orange sky above dark ridgelines at dusk"
       }
     ]
