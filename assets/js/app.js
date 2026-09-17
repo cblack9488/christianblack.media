@@ -541,8 +541,13 @@
       function flush() {
         if (!row.length) return;
         var r = el('div', { class: 'jrow' });
+        var total = row.reduce(function (a, c) { return a + c.__ar; }, 0) || 1;
         row.forEach(function (c) {
-          c.style.flexGrow = c.__ar;
+          /* Normalised so the row's grow values sum to 1. Relative widths are
+             unchanged, but a row that would otherwise total less than 1 — a
+             lone upright frame, whose aspect is about 0.67 — now fills the
+             width instead of claiming two thirds of it and sitting left. */
+          c.style.flexGrow = c.__ar / total;
           r.appendChild(c);
         });
         grid.appendChild(r);
