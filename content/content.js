@@ -211,7 +211,6 @@ window.CB_CONTENT = {
           {
                 "src": "images/photography/beach-runner-bw.jpg",
                 "full": "images/photography/beach-runner-bw-full.jpg",
-                "portrait": true,
                 "caption": "",
                 "meta": "",
                 "alt": "Black and white view from above of a lone figure running along the surf line"
@@ -282,7 +281,6 @@ window.CB_CONTENT = {
           {
                 "src": "images/photography/porter-mountain-town.jpg",
                 "full": "images/photography/porter-mountain-town-full.jpg",
-                "portrait": true,
                 "caption": "",
                 "meta": "",
                 "alt": "A porter carrying a loaded basket through the market street of a mountain town"
@@ -341,7 +339,6 @@ window.CB_CONTENT = {
           {
                 "src": "images/photography/museum-dark-figure.jpg",
                 "full": "images/photography/museum-dark-figure-full.jpg",
-                "portrait": true,
                 "caption": "",
                 "meta": "",
                 "alt": "A figure caught mid-movement in a dark museum interior lit by a single bright opening"

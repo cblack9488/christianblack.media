@@ -463,11 +463,22 @@
         /* The grid crops to a fixed row height, so a photo whose subject is
            off-centre can say where the crop should hold. */
         if (p.focus) cimg.style.objectPosition = p.focus;
+        /* Orientation comes from the image rather than a stored flag, so a
+           photograph dragged in through Studio sits correctly on a phone
+           without anyone having to mark it as upright. */
+        var markShape = function () {
+          if (cimg.naturalHeight > cimg.naturalWidth * 1.05) cell.classList.add('cell--portrait');
+        };
+        if (cimg.complete && cimg.naturalWidth) markShape();
+        else cimg.addEventListener('load', markShape);
         box.appendChild(cimg);
       } else {
         box.appendChild(el('div', { class: 'empty', text: 'Photograph' }));
       }
-      box.addEventListener('click', function () { openLightbox(stills, stills.indexOf(p)); });
+      box.addEventListener('click', function () {
+        if (window.CB_STUDIO && window.CB_STUDIO.active) return;
+        openLightbox(stills, stills.indexOf(p));
+      });
       cell.appendChild(box);
       if (p.caption || p.meta) {
         var cap = el('figcaption', { class: 'cell__cap' });
