@@ -186,7 +186,7 @@ window.CB_CONTENT = {
   "photography": {
     "kicker": "Photography",
     "title": "Photography",
-    "lede": "Climbing, alpine, and the places in between.",
+    "lede": "Moments, places, people.",
     "banner": {
       "image": "images/photography-banner.jpg",
       "headline": "Coming soon",
