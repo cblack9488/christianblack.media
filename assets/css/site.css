@@ -359,20 +359,30 @@ body { padding-right: var(--rail-width); }
   color: var(--text-secondary);
 }
 
+/* Rows are a fixed height rather than each cell carrying its own aspect
+   ratio. A cell that spans two columns would otherwise be twice as tall as
+   its neighbours, which punches holes through the grid. With a set row
+   height a wide cell is simply wider, and every row lines up. */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-auto-rows: clamp(190px, 21vw, 330px);
   grid-auto-flow: dense;
   gap: 6px;
   padding: 0 6px var(--space-9);
 }
-/* every fifth frame runs wide, so the grid breathes rather than marching */
-.grid .cell:nth-child(7n + 1) { grid-column: span 2; }
-@media (max-width: 1100px) { .grid .cell:nth-child(7n + 1) { grid-column: span 1; } }
+/* Every seventh frame runs large, so the grid breathes rather than marching.
+   Two columns AND two rows: spanning width alone would crop a 3:2 photograph
+   to about 3:1 and behead whatever is in it. At 2x2 the cell is close to the
+   frame's own proportions, and dense packing fills the column beside it. */
+.grid .cell:nth-child(7n + 1) { grid-column: span 2; grid-row: span 2; }
+@media (max-width: 1100px) {
+  .grid .cell:nth-child(7n + 1) { grid-column: span 1; grid-row: span 1; }
+}
 
-.cell { margin: 0; position: relative; }
+.cell { margin: 0; position: relative; min-height: 0; }
 .cell__box {
-  position: relative; aspect-ratio: var(--aspect-landscape);
+  position: relative; height: 100%;
   overflow: hidden; background: var(--media-placeholder); cursor: pointer;
 }
 .cell__box img {
@@ -942,7 +952,9 @@ body { padding-right: var(--rail-width); }
   .post__title { font-size: var(--text-subhead); }
   .band { margin: 0 var(--space-3); border-radius: 8px; }
   .band + .band { margin-top: var(--space-3); }
-  .grid { grid-template-columns: 1fr; gap: 3px; padding: 0 3px var(--space-8); }
+  .grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 3px; padding: 0 3px var(--space-8); }
+  .cell__box { aspect-ratio: var(--aspect-landscape); height: auto; }
+  .cell--portrait .cell__box { aspect-ratio: var(--aspect-portrait, 2 / 3); }
   .cell__cap { opacity: 1; padding: var(--space-4); }
 
   /* --- film --- */
@@ -1133,4 +1145,77 @@ body { padding-right: var(--rail-width); }
   .overlay__heading { font-size: var(--text-heading); }
   .about-break { padding: 0 var(--space-3); margin: var(--space-6) auto; }
   .fixedbg__credit { right: var(--space-4); bottom: var(--space-4); }
+}
+
+/* ---------- Lightbox: the gallery's full-size view ---------- */
+
+/* The page behind must not scroll while this is open, or a phone drags the
+   gallery around underneath the photograph. */
+body.lb-open { overflow: hidden; }
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 200;
+  display: none;
+  grid-template-rows: 1fr auto;
+  padding: var(--space-6) var(--space-6) var(--space-5);
+  background: rgba(16, 15, 12, 0.97);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  animation: cbFade 0.22s ease both;
+}
+.lightbox.on { display: grid; }
+
+.lightbox figure {
+  margin: 0; min-height: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--space-4);
+}
+.lightbox img {
+  max-width: 100%; max-height: 100%;
+  width: auto; height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.lightbox figcaption {
+  display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4);
+  align-items: baseline; justify-content: center;
+  text-align: center; max-width: var(--measure-prose);
+}
+.lightbox figcaption .cap { color: var(--text-primary); font-size: var(--text-body); }
+.lightbox figcaption .meta { color: var(--stone-300); }
+.lightbox figcaption:empty { display: none; }
+
+.lightbox .close {
+  position: absolute; top: var(--space-5); right: var(--space-6); z-index: 2;
+  background: none; border: 0; cursor: pointer;
+  font-family: var(--font-label); font-size: var(--text-label);
+  letter-spacing: var(--tracking-label); text-transform: uppercase;
+  color: var(--stone-300); padding: var(--space-2);
+}
+.lightbox .close:hover { color: var(--accent-hover); }
+
+.lightbox .nav {
+  display: flex; align-items: center; justify-content: center;
+  gap: var(--space-6); padding-top: var(--space-4);
+}
+.lightbox .nav button {
+  background: none; border: 0; cursor: pointer;
+  font-family: var(--font-label); font-size: var(--text-label);
+  letter-spacing: var(--tracking-label); text-transform: uppercase;
+  color: var(--stone-300); padding: var(--space-2) var(--space-3);
+}
+.lightbox .nav button:hover { color: var(--accent-hover); }
+.lightbox .nav .count {
+  font-variant-numeric: tabular-nums; min-width: 4.5rem; text-align: center;
+}
+.lightbox .close:focus-visible,
+.lightbox .nav button:focus-visible {
+  outline: 1px solid var(--accent); outline-offset: 3px; border-radius: 2px;
+}
+
+@media (max-width: 640px) {
+  .lightbox { padding: var(--space-8) var(--space-3) var(--space-4); }
+  .lightbox .close { top: var(--space-3); right: var(--space-3); }
+  .lightbox .nav { gap: var(--space-4); }
+  .lightbox .nav button { font-size: 10px; }
 }

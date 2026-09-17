@@ -414,6 +414,8 @@
 
     var head = el('header', { class: 'gallery-head' });
     head.appendChild(label(CB.numFor(CB.page), d.kicker));
+    /* The page had no h1 at all while it was just a banner. */
+    if (d.title) head.appendChild(el('h1', { class: 'gallery-head__title', text: d.title }));
     if (d.lede) head.appendChild(el('p', { class: 'gallery-head__lede', text: d.lede }));
     root.appendChild(head);
 
@@ -432,11 +434,18 @@
     }
     var grid = el('div', { class: 'grid', 'data-sort': 'photography.photos', 'data-dropzone': 'photography.photos' });
     photos.forEach(function (p, i) {
-      var cell = el('figure', { class: 'cell', 'data-i': i });
+      var cell = el('figure', { class: 'cell' + (p.portrait ? ' cell--portrait' : ''), 'data-i': i });
       var box = el('div', { class: 'cell__box' });
       var src = CB.resolveSrc(p.src);
       if (src) {
-        box.appendChild(el('img', { src: src, alt: p.caption || '', loading: i < 8 ? 'eager' : 'lazy' }));
+        var cimg = el('img', {
+          src: src, alt: p.alt || p.caption || '',
+          loading: i < 6 ? 'eager' : 'lazy', decoding: 'async'
+        });
+        /* The grid crops to a fixed row height, so a photo whose subject is
+           off-centre can say where the crop should hold. */
+        if (p.focus) cimg.style.objectPosition = p.focus;
+        box.appendChild(cimg);
       } else {
         box.appendChild(el('div', { class: 'empty', text: 'Photograph' }));
       }
@@ -470,6 +479,7 @@
       lb.appendChild(fig);
       var nav = el('div', { class: 'nav' });
       nav.appendChild(el('button', { type: 'button', class: 'prev', text: '← Previous' }));
+      nav.appendChild(el('span', { class: 'count meta' }));
       nav.appendChild(el('button', { type: 'button', class: 'next', text: 'Next →' }));
       lb.appendChild(nav);
       document.body.appendChild(lb);
@@ -487,20 +497,29 @@
     lb._photos = photos; lb._i = i;
     paint();
     lb.classList.add('on');
+    document.body.classList.add('lb-open');
+    lb.querySelector('.close').focus();
   }
   function paint() {
     var p = lb._photos[lb._i] || {};
-    lb.querySelector('img').src = CB.resolveSrc(p.src);
-    lb.querySelector('img').alt = p.alt || p.caption || '';
+    var img = lb.querySelector('img');
+    /* The grid loads a smaller file; the lightbox is where the big one is
+       worth downloading, so it is fetched only once someone opens it. */
+    img.src = CB.resolveSrc(p.full || p.src);
+    img.alt = p.alt || p.caption || '';
     lb.querySelector('.cap').textContent = p.caption || '';
     lb.querySelector('figcaption .meta').textContent = p.meta || '';
+    lb.querySelector('.count').textContent = (lb._i + 1) + ' / ' + lb._photos.length;
   }
   function step(n) {
     var len = lb._photos.length;
     lb._i = (lb._i + n + len) % len;
     paint();
   }
-  function close() { lb.classList.remove('on'); }
+  function close() {
+    lb.classList.remove('on');
+    document.body.classList.remove('lb-open');
+  }
 
   /* ---------- Film ---------- */
 
