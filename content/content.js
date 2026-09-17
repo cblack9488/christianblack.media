@@ -210,18 +210,18 @@ window.CB_CONTENT = {
           },
           {
                 "src": "images/photography/beach-runner-bw.jpg",
-            "portrait": true,
                 "full": "images/photography/beach-runner-bw-full.jpg",
+                "portrait": true,
                 "caption": "",
                 "meta": "",
                 "alt": "Black and white view from above of a lone figure running along the surf line"
           },
           {
-                "src": "images/photography/climber-overhead-reach.jpg",
-                "full": "images/photography/climber-overhead-reach-full.jpg",
+                "src": "images/photography/granite-face-in-cloud.jpg",
+                "full": "images/photography/granite-face-in-cloud-full.jpg",
                 "caption": "",
                 "meta": "",
-                "alt": "Looking down at a climber reaching for a hold on steep rock"
+                "alt": "A vast granite face half-hidden in cloud with a bird gliding across it"
           },
           {
                 "src": "images/photography/rainbow-desert-highway.jpg",
@@ -231,18 +231,18 @@ window.CB_CONTENT = {
                 "alt": "A full rainbow arcs over an empty desert highway at sunset"
           },
           {
-                "src": "images/photography/climber-pink-steep.jpg",
-                "full": "images/photography/climber-pink-steep-full.jpg",
+                "src": "images/photography/climber-overhead-reach.jpg",
+                "full": "images/photography/climber-overhead-reach-full.jpg",
                 "caption": "",
                 "meta": "",
-                "alt": "A climber on a steep granite wall with forest far below"
+                "alt": "Looking down at a climber reaching for a hold on steep rock"
           },
           {
-                "src": "images/photography/furnace-night-work.jpg",
-                "full": "images/photography/furnace-night-work-full.jpg",
+                "src": "images/photography/metro-tunnel-bw.jpg",
+                "full": "images/photography/metro-tunnel-bw-full.jpg",
                 "caption": "",
                 "meta": "",
-                "alt": "A worker draws a glowing mass from a furnace in a darkened workshop"
+                "alt": "Black and white: a lone figure waiting on a bench in a long underground tunnel"
           },
           {
                 "src": "images/photography/tuolumne-climber-red.jpg",
@@ -259,11 +259,70 @@ window.CB_CONTENT = {
                 "alt": "Black and white street scene of children chasing giant soap bubbles along a palm-lined plaza"
           },
           {
-                "src": "images/photography/tuolumne-slab-climber.jpg",
-                "full": "images/photography/tuolumne-slab-climber-full.jpg",
+                "src": "images/photography/glacier-camp-alaska.jpg",
+                "full": "images/photography/glacier-camp-alaska-full.jpg",
                 "caption": "",
                 "meta": "",
-                "alt": "A climber moving up a granite slab with Tuolumne Meadows spread out behind"
+                "alt": "A figure in a patterned jacket drinking from a mug at a glacier camp below a snow-plastered peak"
+          },
+          {
+                "src": "images/photography/furnace-night-work.jpg",
+                "full": "images/photography/furnace-night-work-full.jpg",
+                "caption": "",
+                "meta": "",
+                "alt": "A worker draws a glowing mass from a furnace in a darkened workshop"
+          },
+          {
+                "src": "images/photography/climber-pink-steep.jpg",
+                "full": "images/photography/climber-pink-steep-full.jpg",
+                "caption": "",
+                "meta": "",
+                "alt": "A climber on a steep granite wall with forest far below"
+          },
+          {
+                "src": "images/photography/porter-mountain-town.jpg",
+                "full": "images/photography/porter-mountain-town-full.jpg",
+                "portrait": true,
+                "caption": "",
+                "meta": "",
+                "alt": "A porter carrying a loaded basket through the market street of a mountain town"
+          },
+          {
+                "src": "images/photography/harness-and-spire.jpg",
+                "full": "images/photography/harness-and-spire-full.jpg",
+                "caption": "",
+                "meta": "",
+                "alt": "Climbing hardware in close focus with a granite spire rising behind it"
+          },
+          {
+                "src": "images/photography/tuolumne-climber-sunset.jpg",
+                "full": "images/photography/tuolumne-climber-sunset-full.jpg",
+                "caption": "",
+                "meta": "",
+                "alt": "A climber on grey granite with the Sierra skyline in low evening light"
+          },
+          {
+                "src": "images/photography/dancer-night-bw.jpg",
+                "full": "images/photography/dancer-night-bw-full.jpg",
+                "caption": "",
+                "meta": "",
+                "alt": "Black and white: a dancer caught mid-movement under low light"
+          },
+          {
+                "src": "images/photography/hikers-toward-peak.jpg",
+                "full": "images/photography/hikers-toward-peak-full.jpg",
+                "caption": "",
+                "meta": "",
+                "alt": "Two loaded hikers cross open tussock toward a cloud-wrapped granite peak"
+          },
+          {
+                "motion": true,
+                "src": "images/photography/glacier-camp-loop.jpg",
+                "mp4": "images/photography/glacier-camp-loop.mp4",
+                "webm": "images/photography/glacier-camp-loop.webm",
+                "caption": "",
+                "meta": "",
+                "alt": "A short loop of a volleyball game played on the glacier at camp, below a rock peak"
           },
           {
                 "src": "images/photography/figure-rusted-platform.jpg",
@@ -273,16 +332,16 @@ window.CB_CONTENT = {
                 "alt": "Looking down at a person resting on a rusted metal platform with gear scattered around"
           },
           {
-                "src": "images/photography/alpine-granite-buttress.jpg",
-                "full": "images/photography/alpine-granite-buttress-full.jpg",
+                "src": "images/photography/tuolumne-slab-climber.jpg",
+                "full": "images/photography/tuolumne-slab-climber-full.jpg",
                 "caption": "",
                 "meta": "",
-                "alt": "A climber on a granite buttress above a glacial moraine and snow-covered peaks"
+                "alt": "A climber moving up a granite slab with Tuolumne Meadows spread out behind"
           },
           {
                 "src": "images/photography/museum-dark-figure.jpg",
-            "portrait": true,
                 "full": "images/photography/museum-dark-figure-full.jpg",
+                "portrait": true,
                 "caption": "",
                 "meta": "",
                 "alt": "A figure caught mid-movement in a dark museum interior lit by a single bright opening"
@@ -295,18 +354,32 @@ window.CB_CONTENT = {
                 "alt": "A belayer in a yellow jacket holding the rope with mountains behind"
           },
           {
-                "src": "images/photography/tuolumne-climber-sunset.jpg",
-                "full": "images/photography/tuolumne-climber-sunset-full.jpg",
-                "caption": "",
-                "meta": "",
-                "alt": "A climber on grey granite with the Sierra skyline in low evening light"
-          },
-          {
                 "src": "images/photography/alpine-ridge-sunburst.jpg",
                 "full": "images/photography/alpine-ridge-sunburst-full.jpg",
                 "caption": "",
                 "meta": "",
                 "alt": "A climber on a corniced snow ridge with the sun bursting over the peaks behind"
+          },
+          {
+                "src": "images/photography/wall-jump-village.jpg",
+                "full": "images/photography/wall-jump-village-full.jpg",
+                "caption": "",
+                "meta": "",
+                "alt": "A figure leaps from a painted green wall onto sand in a dusty village"
+          },
+          {
+                "src": "images/photography/alpine-granite-buttress.jpg",
+                "full": "images/photography/alpine-granite-buttress-full.jpg",
+                "caption": "",
+                "meta": "",
+                "alt": "A climber on a granite buttress above a glacial moraine and snow-covered peaks"
+          },
+          {
+                "src": "images/photography/paraglider-dusk.jpg",
+                "full": "images/photography/paraglider-dusk-full.jpg",
+                "caption": "",
+                "meta": "",
+                "alt": "A paraglider silhouetted against an orange sky above dark ridgelines at dusk"
           }
     ]
   },

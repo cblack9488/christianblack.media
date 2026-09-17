@@ -433,8 +433,26 @@
       return;
     }
     var grid = el('div', { class: 'grid', 'data-sort': 'photography.photos', 'data-dropzone': 'photography.photos' });
+
+    /* A moving frame sits in the grid but not in the lightbox, so the
+       lightbox counts and steps through the photographs only. */
+    var stills = photos.filter(function (x) { return !x.motion; });
+
+    /* Which cells run large is decided here rather than with an nth-child
+       rule, so a moving frame dropped anywhere in the sequence does not
+       shift the feature slots onto different photographs. */
+    var nStill = 0;
     photos.forEach(function (p, i) {
-      var cell = el('figure', { class: 'cell' + (p.portrait ? ' cell--portrait' : ''), 'data-i': i });
+      if (p.motion) {
+        grid.appendChild(motionCell(p, i));
+        return;
+      }
+      nStill++;
+      var feature = nStill % 7 === 1;
+      var cell = el('figure', {
+        class: 'cell' + (feature ? ' cell--feature' : '') + (p.portrait ? ' cell--portrait' : ''),
+        'data-i': i
+      });
       var box = el('div', { class: 'cell__box' });
       var src = CB.resolveSrc(p.src);
       if (src) {
@@ -449,7 +467,7 @@
       } else {
         box.appendChild(el('div', { class: 'empty', text: 'Photograph' }));
       }
-      box.addEventListener('click', function () { openLightbox(photos, i); });
+      box.addEventListener('click', function () { openLightbox(stills, stills.indexOf(p)); });
       cell.appendChild(box);
       if (p.caption || p.meta) {
         var cap = el('figcaption', { class: 'cell__cap' });
@@ -461,6 +479,44 @@
     });
     root.appendChild(grid);
     CB.redrawPhotography = function () { CB.render(); };
+  }
+
+  /* A short silent loop, shown full width. The GIF it came from was over
+     ten megabytes; the same two seconds as h264 and VP9 is under one, so
+     both are offered and the browser takes whichever it can play. Someone
+     who has asked their system for less motion gets the still and a set of
+     controls instead of movement they did not choose. */
+  function motionCell(p, i) {
+    var cell = el('figure', { class: 'cell cell--full', 'data-i': i });
+    var box = el('div', { class: 'cell__box' });
+    var still = window.matchMedia &&
+                window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var v = el('video', {
+      poster: CB.resolveSrc(p.src), playsinline: 'playsinline',
+      preload: 'metadata', 'aria-label': p.alt || p.caption || 'Short loop'
+    });
+    if (still) {
+      v.setAttribute('controls', 'controls');
+    } else {
+      v.muted = true;               /* set as a property: the attribute alone
+                                       does not satisfy autoplay in Safari */
+      v.setAttribute('muted', '');
+      v.setAttribute('autoplay', 'autoplay');
+      v.setAttribute('loop', 'loop');
+    }
+    if (p.webm) v.appendChild(el('source', { src: CB.resolveSrc(p.webm), type: 'video/webm' }));
+    if (p.mp4) v.appendChild(el('source', { src: CB.resolveSrc(p.mp4), type: 'video/mp4' }));
+    box.appendChild(v);
+    cell.appendChild(box);
+
+    if (p.caption || p.meta) {
+      var cap = el('figcaption', { class: 'cell__cap' });
+      cap.appendChild(el('span', { text: p.caption || '' }));
+      cap.appendChild(el('span', { class: 'meta', text: p.meta || '' }));
+      cell.appendChild(cap);
+    }
+    return cell;
   }
 
   /* ---------- Lightbox ---------- */
