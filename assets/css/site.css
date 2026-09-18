@@ -1177,6 +1177,22 @@ body.lb-open { overflow: hidden; }
 .lightbox figcaption .meta { color: var(--stone-300); }
 .lightbox figcaption:empty { display: none; }
 
+/* While the large file is on its way the grid file stands in, so the only
+   thing needed is a quiet sign that something better is coming. */
+.lightbox.loading::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--stone-300), transparent);
+  background-size: 40% 100%; background-repeat: no-repeat;
+  animation: cbSweep 1.1s ease-in-out infinite;
+}
+@keyframes cbSweep {
+  0%   { background-position: -40% 0; }
+  100% { background-position: 140% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lightbox.loading::before { animation: none; background-position: 0 0; opacity: 0.5; }
+}
+
 .lightbox .close {
   position: absolute; top: var(--space-5); right: var(--space-6); z-index: 2;
   background: none; border: 0; cursor: pointer;

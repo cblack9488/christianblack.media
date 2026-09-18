@@ -465,6 +465,11 @@
           src: src, alt: p.alt || p.caption || '',
           loading: i < 6 ? 'eager' : 'lazy', decoding: 'async'
         });
+        /* A full-width frame gets the large file on screens that can show it. */
+        if (feature) {
+          var wide = CB.wideSources(p);
+          if (wide) { cimg.setAttribute('srcset', wide.srcset); cimg.setAttribute('sizes', wide.sizes); }
+        }
         /* The grid crops to a fixed row height, so a photo whose subject is
            off-centre can say where the crop should hold. */
         if (p.focus) cimg.style.objectPosition = p.focus;
@@ -504,12 +509,39 @@
   /* How wide a frame is relative to its height. Taken from the generated
      size map where possible so rows are laid out before anything has
      downloaded; otherwise measured once the file arrives. */
-  CB.aspectOf = function (p) {
+  function naturalSize(src) {
     var sizes = window.CB_PHOTO_SIZES || {};
-    var s = sizes[p.src] || sizes[(p.src || '').replace(/^\.\//, '')];
+    return sizes[src] || sizes[(src || '').replace(/^\.\//, '')] || null;
+  }
+
+  CB.aspectOf = function (p) {
+    var s = naturalSize(p.src);
     if (s && s[1]) return s[0] / s[1];
     if (p.aspect) return p.aspect;
     return 3 / 2;
+  };
+
+  /* Every photograph is kept in two sizes: a grid file and a large one. A
+     frame that runs the full width of the gallery is shown far wider than
+     the grid file has pixels for — on a retina screen roughly twice as wide —
+     so it hands the browser both files with their true widths and lets the
+     browser choose. Small frames in a row are never shown big enough to need
+     the large file, and offering it to them would only spend a viewer's
+     bandwidth on pixels their screen cannot draw.
+
+     The width hint below deliberately understates the frame on a phone. A
+     full-width frame there is about 390 CSS pixels; the grid file is 1200,
+     which is sharp at any phone's pixel density, and asking honestly for
+     100vw would pull a megabyte over cell data for no visible gain. */
+  CB.wideSources = function (p) {
+    if (!p.full || p.full === p.src) return null;
+    var small = naturalSize(p.src), large = naturalSize(p.full);
+    if (!small || !large || large[0] <= small[0]) return null;
+    return {
+      srcset: CB.resolveSrc(p.src) + ' ' + small[0] + 'w, ' +
+              CB.resolveSrc(p.full) + ' ' + large[0] + 'w',
+      sizes: '(max-width: 780px) 50vw, 100vw'
+    };
   };
 
   /* Justified rows. Each row is filled until it is about as wide as the
@@ -647,12 +679,37 @@
     document.body.classList.add('lb-open');
     lb.querySelector('.close').focus();
   }
+  /* Which photograph the lightbox is currently fetching. A large file takes a
+     moment, and someone can press the arrow key twice before it lands; the
+     token means a slow download that finishes late is discarded rather than
+     painted over whatever is on screen by then. */
+  var fetching = 0;
+
   function paint() {
     var p = lb._photos[lb._i] || {};
     var img = lb.querySelector('img');
-    /* The grid loads a smaller file; the lightbox is where the big one is
-       worth downloading, so it is fetched only once someone opens it. */
-    img.src = CB.resolveSrc(p.full || p.src);
+    var small = CB.resolveSrc(p.src);
+    var big = CB.resolveSrc(p.full || p.src);
+    var token = ++fetching;
+
+    /* The grid file is already in the browser's cache, so it appears at once
+       and stands in — a little soft — while the large file arrives. Nobody
+       sees an empty frame, and on a fast connection the swap is invisible. */
+    img.src = small;
+    lb.classList.toggle('loading', big !== small);
+    if (big !== small) {
+      var full = new Image();
+      full.onload = function () {
+        if (token !== fetching) return;
+        img.src = big;
+        lb.classList.remove('loading');
+        /* Warm the next one so stepping through feels immediate. */
+        var nxt = lb._photos[(lb._i + 1) % lb._photos.length];
+        if (nxt && nxt.full) new Image().src = CB.resolveSrc(nxt.full);
+      };
+      full.onerror = function () { if (token === fetching) lb.classList.remove('loading'); };
+      full.src = big;
+    }
     img.alt = p.alt || p.caption || '';
     lb.querySelector('.cap').textContent = p.caption || '';
     lb.querySelector('figcaption .meta').textContent = p.meta || '';
