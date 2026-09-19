@@ -144,6 +144,29 @@ function jsonLd(p) {
 
 /* ---------- the managed <head> block ---------- */
 
+/* The webfonts each alternative look needs. Kept here beside the loader so
+   there is one place to edit when a theme is added or retired. */
+const THEME_FONTS = {
+  glacier: 'Archivo:ital,wght@0,300..600;1,300..600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..600',
+  quarry: 'Inter+Tight:ital,wght@0,200..700;1,200..700',
+  oxblood: 'Space+Grotesk:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..600',
+  bronze: 'Manrope:wght@300..700',
+  basalt: 'Archivo:ital,wght@0,300..700;1,300..700'
+};
+
+const THEME_LOADER =
+  '<script>(function(){try{' +
+  'var F=' + JSON.stringify(THEME_FONTS) + ';' +
+  'var q=location.search.match(/[?&]theme=([\\w-]+)/);' +
+  'if(q){if(q[1]==="default"||!F[q[1]])localStorage.removeItem("cb-theme");else localStorage.setItem("cb-theme",q[1]);}' +
+  'var t=localStorage.getItem("cb-theme");if(!t||!F[t])return;' +
+  'document.documentElement.setAttribute("data-theme",t);' +
+  'var b=document.querySelector("base"),p=b?b.getAttribute("href"):"";' +
+  'function link(h){var l=document.createElement("link");l.rel="stylesheet";l.href=h;document.head.appendChild(l);}' +
+  'link("https://fonts.googleapis.com/css2?family="+F[t]+"&display=swap");' +
+  'link(p+"assets/css/themes.css");' +
+  '}catch(e){}})();</script>';
+
 function headBlock(p) {
   const url = urlFor(p);
   const title = p.seoTitle || (p.entry ? p.title + ' — ' + NAME : NAME + ' — ' + p.title);
@@ -178,6 +201,12 @@ function headBlock(p) {
   lines.push('<link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">');
   lines.push('<link rel="apple-touch-icon" href="images/favicon-180.png">');
   lines.push(`<script type="application/ld+json">${jsonLd(p)}</script>`);
+  /* Alternative looks, for trying out. A visitor loads none of this: with no
+     theme remembered the function returns on its third line and neither the
+     theme stylesheet nor its webfonts are ever requested. Relative paths are
+     used so the <base href="../"> on an article page resolves them.
+     Set one with ?theme=glacier, clear it with ?theme=default. */
+  lines.push(THEME_LOADER);
   /* Cloudflare Web Analytics. Cookie-free, so no consent banner is needed.
      The token lives in content.js next to everything else that is editable;
      leave it empty and no script is emitted at all. */

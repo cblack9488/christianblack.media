@@ -1187,6 +1187,62 @@
     if (window.CB_STUDIO && window.CB_STUDIO.active) window.CB_STUDIO.decorate();
   };
 
+  /* ---------- Theme trials ----------
+
+     A way to look at an alternative design with the real writing and the
+     real photographs in front of you, rather than at a specimen sheet. The
+     panel is private: nothing links to it and no visitor will find it, and
+     with no theme chosen none of the theme CSS or its webfonts is loaded at
+     all. Cmd+Shift+T on a Mac, Ctrl+Shift+T elsewhere.
+
+     The page reloads on a choice rather than swapping tokens live, because
+     the webfonts for the chosen look have to be fetched before anything is
+     measured — the gallery lays its rows out from text metrics, and a font
+     that arrives late would leave the rows a few pixels wrong. */
+  var THEMES = [
+    ['default', 'Current', 'Instrument Serif + Newsreader, terracotta'],
+    ['glacier', 'Glacier', 'Archivo + Source Serif — cold slate'],
+    ['quarry', 'Quarry', 'Inter Tight — no accent at all'],
+    ['oxblood', 'Oxblood', 'Space Grotesk + Literata — deep red'],
+    ['bronze', 'Bronze', 'Manrope — ochre and bronze'],
+    ['basalt', 'Basalt', 'Archivo — cold, all sans']
+  ];
+
+  function themePanel() {
+    var open = document.querySelector('.themebox');
+    if (open) { open.remove(); return; }
+    var now = 'default';
+    try { now = localStorage.getItem('cb-theme') || 'default'; } catch (e) {}
+    var box = el('div', { class: 'themebox', role: 'dialog', 'aria-label': 'Try a design' });
+    box.appendChild(el('div', { class: 'themebox__head meta', text: 'Try a design' }));
+    THEMES.forEach(function (t) {
+      var b = el('button', {
+        type: 'button',
+        class: 'themebox__opt' + (t[0] === now ? ' is-on' : '')
+      });
+      b.appendChild(el('span', { class: 'themebox__name', text: t[1] }));
+      b.appendChild(el('span', { class: 'themebox__note', text: t[2] }));
+      b.addEventListener('click', function () {
+        var u = location.pathname + '?theme=' + t[0];
+        location.href = u;
+      });
+      box.appendChild(b);
+    });
+    box.appendChild(el('div', { class: 'themebox__foot meta', text: 'Esc to close · nobody else sees this' }));
+    document.body.appendChild(box);
+    box.querySelector('button').focus();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.shiftKey && (e.metaKey || e.ctrlKey) && (e.key === 'T' || e.key === 't')) {
+      e.preventDefault();
+      themePanel();
+    } else if (e.key === 'Escape') {
+      var b = document.querySelector('.themebox');
+      if (b) b.remove();
+    }
+  });
+
   document.addEventListener('DOMContentLoaded', function () {
     if (!window.CB_CONTENT) {
       document.getElementById('page').appendChild(

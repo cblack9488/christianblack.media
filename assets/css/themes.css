@@ -1,0 +1,260 @@
+/* christianblack.media — alternative looks, for trying out only.
+
+   Nothing here loads for a visitor. The loader in each page's <head> adds
+   this file and the matching webfonts only when a theme has been asked for,
+   so the live site stays exactly as it is until one of these is promoted to
+   be the default.
+
+   Each block is a complete replacement for the parts of tokens.css that
+   carry the look: the neutral ramp, the accent, the two typefaces and the
+   few size and weight values that have to move when a serif is swapped for a
+   grotesque. Everything else — spacing, layout, the rail, the gallery — is
+   untouched, because no rule in site.css names a colour or a font directly.
+
+   Try: christianblack.media/?theme=glacier   (or press Cmd+Shift+T)
+   Back to normal: ?theme=default
+
+     glacier  cold mineral      Archivo + Source Serif 4
+     quarry   no accent at all  Inter Tight throughout
+     oxblood  deep saturated    Space Grotesk + Literata
+     bronze   warm, not pink    Manrope throughout
+     basalt   cold mineral      Archivo throughout
+*/
+
+/* ---------------------------------------------------------------- glacier
+   Cold and mineral: the neutrals lose their brown and pick up the grey-blue
+   of wet granite. A clean grotesque over a serif body — the contemporary
+   photo-book arrangement, where the headline is a label and the reading
+   voice stays warm. */
+:root[data-theme="glacier"] {
+  --ink-950:#0C0E10;
+  --ink-900:#111416;
+  --ink-850:#16191C;
+  --ink-800:#1C2023;
+  --ink-700:#262B2F;
+  --ink-600:#333A3F;
+  --ink-500:#434B51;
+  --stone-400:#6C767D;
+  --stone-300:#8D979E;
+  --stone-200:#AFB8BE;
+  --stone-100:#CED5DA;
+  --paper:#E6EBEE;
+
+  --accent:#7C9AAB;
+  --accent-hover:#A7C0CD;
+  --accent-soft:rgba(124,154,171,0.16);
+  --text-accent:#A7C0CD;
+  --focus-ring:rgba(124,154,171,0.55);
+
+  --border-hairline:rgba(206,213,218,0.10);
+  --border-subtle:rgba(206,213,218,0.16);
+  --border-strong:rgba(206,213,218,0.30);
+  --media-placeholder:#1F2427;
+  --overlay-scrim:rgba(12,14,16,0.55);
+  --overlay-protect:linear-gradient(to top,rgba(12,14,16,0.80) 0%,rgba(12,14,16,0.35) 45%,rgba(12,14,16,0) 100%);
+
+  --font-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --font-text:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --font-label:"Archivo","Helvetica Neue",Arial,sans-serif;
+}
+
+/* ----------------------------------------------------------------- quarry
+   No accent at all. The neutrals are genuinely neutral — no warm or cool
+   cast — and every trace of colour on the page comes from the photographs.
+   One sans in several weights. The most restrained of these, and the one
+   that asks the least of the viewer. */
+:root[data-theme="quarry"] {
+  --ink-950:#0B0B0B;
+  --ink-900:#101010;
+  --ink-850:#161616;
+  --ink-800:#1D1D1D;
+  --ink-700:#272727;
+  --ink-600:#343434;
+  --ink-500:#464646;
+  --stone-400:#747474;
+  --stone-300:#949494;
+  --stone-200:#B5B5B5;
+  --stone-100:#D3D3D3;
+  --paper:#EDEDED;
+
+  /* The accent is the text colour: links and marks read as emphasis,
+     not as a second hue. */
+  --accent:#D3D3D3;
+  --accent-hover:#EDEDED;
+  --accent-soft:rgba(211,211,211,0.12);
+  --text-accent:#B5B5B5;
+  --focus-ring:rgba(211,211,211,0.55);
+
+  --border-hairline:rgba(211,211,211,0.10);
+  --border-subtle:rgba(211,211,211,0.16);
+  --border-strong:rgba(211,211,211,0.30);
+  --media-placeholder:#1D1D1D;
+  --overlay-scrim:rgba(11,11,11,0.55);
+  --overlay-protect:linear-gradient(to top,rgba(11,11,11,0.80) 0%,rgba(11,11,11,0.35) 45%,rgba(11,11,11,0) 100%);
+
+  --font-display:"Inter Tight","Helvetica Neue",Arial,sans-serif;
+  --font-text:"Inter Tight","Helvetica Neue",Arial,sans-serif;
+  --font-label:"Inter Tight","Helvetica Neue",Arial,sans-serif;
+}
+
+/* ---------------------------------------------------------------- oxblood
+   One strong colour, used rarely. The ground goes nearly black so the accent
+   has somewhere to land. Space Grotesk has real character in a headline;
+   Literata is built for long reading, which the trip reports need. */
+:root[data-theme="oxblood"] {
+  --ink-950:#0A0908;
+  --ink-900:#0F0E0D;
+  --ink-850:#151312;
+  --ink-800:#1B1918;
+  --ink-700:#252221;
+  --ink-600:#322E2C;
+  --ink-500:#433E3B;
+  --stone-400:#736C68;
+  --stone-300:#948C87;
+  --stone-200:#B6ADA7;
+  --stone-100:#D4CCC6;
+  --paper:#EDE8E4;
+
+  --accent:#9E3F3F;
+  --accent-hover:#C46A62;
+  --accent-soft:rgba(158,63,63,0.18);
+  --text-accent:#C46A62;
+  --focus-ring:rgba(196,106,98,0.55);
+
+  --border-hairline:rgba(212,204,198,0.10);
+  --border-subtle:rgba(212,204,198,0.16);
+  --border-strong:rgba(212,204,198,0.30);
+  --media-placeholder:#1B1918;
+  --overlay-scrim:rgba(10,9,8,0.58);
+  --overlay-protect:linear-gradient(to top,rgba(10,9,8,0.82) 0%,rgba(10,9,8,0.36) 45%,rgba(10,9,8,0) 100%);
+
+  --font-display:"Space Grotesk","Helvetica Neue",Arial,sans-serif;
+  --font-text:"Literata",Georgia,"Times New Roman",serif;
+  --font-label:"Space Grotesk","Helvetica Neue",Arial,sans-serif;
+}
+
+/* ----------------------------------------------------------------- bronze
+   The warm family kept, moved off the rose end of it. Ochre and bronze
+   instead of terracotta — the difference is that this reads as metal and
+   dry grass rather than as clay. Manrope throughout, quiet and a little
+   technical. */
+:root[data-theme="bronze"] {
+  --ink-950:#0F0E0B;
+  --ink-900:#14130F;
+  --ink-850:#1A1814;
+  --ink-800:#211F19;
+  --ink-700:#2C2922;
+  --ink-600:#3A362D;
+  --ink-500:#4A453A;
+  --stone-400:#7A7365;
+  --stone-300:#9C9383;
+  --stone-200:#BEB4A2;
+  --stone-100:#D9D1C0;
+  --paper:#EEE8DA;
+
+  --accent:#C29A4F;
+  --accent-hover:#DCBB77;
+  --accent-soft:rgba(194,154,79,0.16);
+  --text-accent:#DCBB77;
+  --focus-ring:rgba(194,154,79,0.55);
+
+  --border-hairline:rgba(217,209,192,0.10);
+  --border-subtle:rgba(217,209,192,0.16);
+  --border-strong:rgba(217,209,192,0.30);
+  --media-placeholder:#211F19;
+  --overlay-scrim:rgba(15,14,11,0.55);
+  --overlay-protect:linear-gradient(to top,rgba(15,14,11,0.80) 0%,rgba(15,14,11,0.35) 45%,rgba(15,14,11,0) 100%);
+
+  --font-display:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --font-text:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --font-label:"Manrope","Helvetica Neue",Arial,sans-serif;
+}
+
+/* ----------------------------------------------------------------- basalt
+   Cold and mineral again, but sans throughout, so you can see the palette
+   and the typography as separate decisions rather than one package. The
+   accent is a pale verdigris — barely a colour, which is the point. */
+:root[data-theme="basalt"] {
+  --ink-950:#0A0C0C;
+  --ink-900:#0F1111;
+  --ink-850:#141717;
+  --ink-800:#1A1D1D;
+  --ink-700:#242828;
+  --ink-600:#313636;
+  --ink-500:#414747;
+  --stone-400:#6E7574;
+  --stone-300:#8F9594;
+  --stone-200:#B1B7B5;
+  --stone-100:#CFD4D2;
+  --paper:#E8ECEA;
+
+  --accent:#8FA8A3;
+  --accent-hover:#B2C6C1;
+  --accent-soft:rgba(143,168,163,0.16);
+  --text-accent:#B2C6C1;
+  --focus-ring:rgba(143,168,163,0.55);
+
+  --border-hairline:rgba(207,212,210,0.10);
+  --border-subtle:rgba(207,212,210,0.16);
+  --border-strong:rgba(207,212,210,0.30);
+  --media-placeholder:#1A1D1D;
+  --overlay-scrim:rgba(10,12,12,0.55);
+  --overlay-protect:linear-gradient(to top,rgba(10,12,12,0.80) 0%,rgba(10,12,12,0.35) 45%,rgba(10,12,12,0) 100%);
+
+  --font-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --font-text:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --font-label:"Archivo","Helvetica Neue",Arial,sans-serif;
+}
+
+/* ---------- Corrections that any sans theme needs -------------------------
+
+   The type scale was drawn around Instrument Serif, which is narrow and
+   light at display size. A grotesque set at the same sizes is far heavier on
+   the page, so the two display steps come down, the tracking tightens, and
+   the light weight goes up — 200 is a hairline in most sans faces and
+   disappears on a dark ground. Body copy also sets smaller in a sans at the
+   same nominal size, so the reading sizes go up a little. */
+:root[data-theme="glacier"],
+:root[data-theme="quarry"],
+:root[data-theme="oxblood"],
+:root[data-theme="bronze"],
+:root[data-theme="basalt"] {
+  --text-display-1:clamp(44px,6.2vw,96px);
+  --text-display-2:clamp(34px,4vw,60px);
+  --text-title:32px;
+  --text-heading:24px;
+  --text-subhead:20px;
+  --tracking-display:-0.025em;
+  --weight-light:300;
+  --leading-tight:1.06;
+}
+
+/* All-sans themes read small; the serif-bodied ones do not need this. */
+:root[data-theme="quarry"],
+:root[data-theme="bronze"],
+:root[data-theme="basalt"] {
+  --text-body-lg:18px;
+  --text-body:16px;
+  --text-small:14px;
+  --leading-prose:1.62;
+  --measure-prose:68ch;
+}
+
+/* A serif's bold is a different animal from a grotesque's. site.css lifts
+   strong to 600 because Newsreader's 500 is too slight; in a sans that lands
+   heavy, so it comes back down. */
+:root[data-theme="quarry"] .article strong,
+:root[data-theme="bronze"] .article strong,
+:root[data-theme="basalt"] .article strong { font-weight: 550; }
+
+/* Small caps-style labels are set in the text face with wide tracking. That
+   works in a serif; in a grotesque it wants slightly less. */
+:root[data-theme="glacier"] .label, :root[data-theme="glacier"] .meta,
+:root[data-theme="quarry"] .label, :root[data-theme="quarry"] .meta,
+:root[data-theme="oxblood"] .label, :root[data-theme="oxblood"] .meta,
+:root[data-theme="bronze"] .label, :root[data-theme="bronze"] .meta,
+:root[data-theme="basalt"] .label, :root[data-theme="basalt"] .meta {
+  --tracking-label:0.13em;
+  --tracking-label-wide:0.19em;
+  font-size: 12px;
+}

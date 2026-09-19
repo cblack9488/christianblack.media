@@ -21,3 +21,6 @@ images/Ice70_*.jpg
 # build tooling
 node_modules/
 package-lock.json
+
+# Update packages Claude sends over; not part of the site.
+_u/

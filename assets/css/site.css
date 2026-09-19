@@ -1227,3 +1227,35 @@ body.lb-open { overflow: hidden; }
   .lightbox .nav { gap: var(--space-4); }
   .lightbox .nav button { font-size: 10px; }
 }
+
+/* ---------- Theme trials ----------
+   The private panel for looking at an alternative design. Deliberately plain
+   and deliberately not themed: it has to stay legible whichever look is
+   being tried, so it uses fixed values rather than tokens. */
+.themebox {
+  position: fixed; right: calc(var(--rail-width) + 16px); bottom: 16px; z-index: 300;
+  width: 290px; padding: 10px;
+  background: #101010; color: #EDEDED;
+  border: 1px solid rgba(237,237,237,0.18); border-radius: 6px;
+  box-shadow: 0 18px 50px -18px rgba(0,0,0,0.8);
+  font-family: ui-sans-serif, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  animation: cbFade 0.18s ease both;
+}
+.themebox__head, .themebox__foot {
+  font-family: inherit; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #8A8A8A; padding: 4px 8px;
+}
+.themebox__foot { border-top: 1px solid rgba(237,237,237,0.12); margin-top: 6px; padding-top: 8px; text-transform: none; letter-spacing: 0.02em; }
+.themebox__opt {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  background: none; border: 0; border-radius: 4px; padding: 7px 8px; color: inherit;
+  font: inherit;
+}
+.themebox__opt:hover, .themebox__opt:focus-visible { background: rgba(237,237,237,0.09); outline: none; }
+.themebox__opt.is-on { background: rgba(237,237,237,0.14); }
+.themebox__name { display: block; font-size: 14px; }
+.themebox__opt.is-on .themebox__name::after { content: ' ·'; }
+.themebox__note { display: block; font-size: 11px; color: #9A9A9A; margin-top: 1px; }
+@media (max-width: 700px) {
+  .themebox { right: 12px; left: 12px; width: auto; bottom: 12px; }
+}
