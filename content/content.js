@@ -377,6 +377,43 @@ window.CB_CONTENT = {
         "caption": "Summer skies",
         "meta": "Esquel, Argentina",
         "alt": "A paraglider silhouetted against an orange sky above dark ridgelines at dusk"
+      },
+      {
+        "motion": true,
+        "src": "images/photography/hulk-milky-way.jpg",
+        "mp4": "images/photography/hulk-milky-way.mp4",
+        "webm": "images/photography/hulk-milky-way.webm",
+        "caption": "",
+        "meta": "",
+        "alt": "A timelapse of the Milky Way wheeling above a dark granite ridge"
+      },
+      {
+        "src": "images/photography/climber-overhead-crimp.jpg",
+        "full": "images/photography/climber-overhead-crimp-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "Looking straight down on a climber pulling hard on a steep limestone wall, the ground far below"
+      },
+      {
+        "src": "images/photography/climber-high-reach.jpg",
+        "full": "images/photography/climber-high-reach-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A climber in a yellow top reaching high on an overhanging wall, the rope running down to a quickdraw"
+      },
+      {
+        "src": "images/photography/climber-under-roof.jpg",
+        "full": "images/photography/climber-under-roof-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A climber stretched out beneath a wide overhanging roof above a rocky landing"
+      },
+      {
+        "src": "images/photography/limestone-wall-evening.jpg",
+        "full": "images/photography/limestone-wall-evening-full.jpg",
+        "caption": "",
+        "meta": "",
+        "alt": "A lone climber high on a huge golden overhanging wall in evening light, pines on the slope below"
       }
     ]
   },

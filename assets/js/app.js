@@ -630,6 +630,34 @@
     }
     if (p.webm) v.appendChild(el('source', { src: CB.resolveSrc(p.webm), type: 'video/webm' }));
     if (p.mp4) v.appendChild(el('source', { src: CB.resolveSrc(p.mp4), type: 'video/mp4' }));
+
+    /* Play only while the frame is actually on screen. A moving frame can be
+       several megabytes, and a page that starts every one of them at load
+       spends a phone's data on footage nobody has scrolled to yet. With
+       preload="metadata" the file is not fetched until this fires, and it
+       pauses again on the way past, so a visitor who never reaches the
+       bottom of the gallery never downloads what is down there.
+
+       A browser without IntersectionObserver falls back to playing on load,
+       which is what it did before. */
+    if (!still && window.IntersectionObserver) {
+      v.removeAttribute('autoplay');
+      v.setAttribute('preload', 'none');
+      var watcher = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            if (v.getAttribute('preload') === 'none') { v.setAttribute('preload', 'metadata'); v.load(); }
+            var played = v.play();
+            /* Safari rejects the promise if it decides this is not allowed;
+               the poster stays up, which is a reasonable thing to look at. */
+            if (played && played.catch) played.catch(function () {});
+          } else {
+            v.pause();
+          }
+        });
+      }, { rootMargin: '150px 0px', threshold: 0.2 });
+      watcher.observe(cell);
+    }
     box.appendChild(v);
     cell.appendChild(box);
 

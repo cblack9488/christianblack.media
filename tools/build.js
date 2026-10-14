@@ -391,6 +391,15 @@ function writePhotoSizes(extra) {
         n.style.removeProperty('--fade');
         if (!n.getAttribute('style')) n.removeAttribute('style');
       });
+      /* Same reasoning for a moving frame. By the time this snapshot is taken
+         the page has decided which videos are on screen and started them, and
+         baking that in would make every visitor's browser begin fetching
+         whichever ones happened to be in view on the build machine — before
+         the renderer has run and before they have scrolled anywhere near. */
+      clone.querySelectorAll('video').forEach(v => {
+        v.setAttribute('preload', 'none');
+        v.removeAttribute('autoplay');
+      });
       const pick = sel => { const n = clone.querySelector(sel); return n ? n.outerHTML : ''; };
       /* Debris from a malformed <head> tag ends up as a bare text node at the
          top of <body>. Nothing legitimate on this site does that, so any
