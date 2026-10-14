@@ -383,7 +383,8 @@ window.CB_CONTENT = {
         "src": "images/photography/hulk-milky-way.jpg",
         "mp4": "images/photography/hulk-milky-way.mp4",
         "webm": "images/photography/hulk-milky-way.webm",
-        "size": "medium",
+        "mp4Large": "images/photography/hulk-milky-way-2560.mp4",
+        "webmLarge": "images/photography/hulk-milky-way-2560.webm",
         "caption": "The Incredible Hulk",
         "meta": "Sierra Nevada, CA",
         "alt": "A timelapse of the Milky Way wheeling above a dark granite ridge"

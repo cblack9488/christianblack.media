@@ -674,11 +674,10 @@
     }, { passive: true });
   }
 
-  /* A short silent loop, shown full width. The GIF it came from was over
-     ten megabytes; the same two seconds as h264 and VP9 is under one, so
-     both are offered and the browser takes whichever it can play. Someone
-     who has asked their system for less motion gets the still and a set of
-     controls instead of movement they did not choose. */
+  /* A silent loop. Two encodings of each are offered — h264 and VP9 — and the
+     browser takes whichever it can play. Someone who has asked their system
+     for less motion gets the still and a set of controls instead of movement
+     they did not choose. */
   function motionCell(p, i) {
     var cell = el('figure', { class: 'cell cell--full', 'data-i': i });
     var box = el('div', { class: 'cell__box' });
@@ -698,25 +697,47 @@
       v.setAttribute('autoplay', 'autoplay');
       v.setAttribute('loop', 'loop');
     }
-    if (p.webm) v.appendChild(el('source', { src: CB.resolveSrc(p.webm), type: 'video/webm' }));
-    if (p.mp4) v.appendChild(el('source', { src: CB.resolveSrc(p.mp4), type: 'video/mp4' }));
 
-    /* Play only while the frame is actually on screen. A moving frame can be
-       several megabytes, and a page that starts every one of them at load
-       spends a phone's data on footage nobody has scrolled to yet. With
-       preload="metadata" the file is not fetched until this fires, and it
-       pauses again on the way past, so a visitor who never reaches the
-       bottom of the gallery never downloads what is down there.
+    /* A moving frame can be kept in two resolutions. Video has no equivalent
+       of an image's srcset — the browser will not choose for us — so the
+       choice is made here from how wide the frame actually ended up and how
+       many real pixels the screen draws per CSS pixel. The threshold sits
+       between the two files: ask for the larger one only when the standard
+       encoding would visibly soften, which on a star field it does. */
+    function addSources(wide) {
+      var webm = (wide && p.webmLarge) || p.webm;
+      var mp4 = (wide && p.mp4Large) || p.mp4;
+      if (webm) v.appendChild(el('source', { src: CB.resolveSrc(webm), type: 'video/webm' }));
+      if (mp4) v.appendChild(el('source', { src: CB.resolveSrc(mp4), type: 'video/mp4' }));
+    }
+    function wantsLarge() {
+      if (!p.mp4Large && !p.webmLarge) return false;
+      var shown = v.getBoundingClientRect().width || box.getBoundingClientRect().width;
+      return shown * (window.devicePixelRatio || 1) > 2200;
+    }
 
-       A browser without IntersectionObserver falls back to playing on load,
-       which is what it did before. */
+    /* Play only while the frame is actually on screen, and do not even decide
+       which file to fetch until then. A moving frame can be several megabytes,
+       and a page that starts every one of them at load spends a phone's data
+       on footage nobody has scrolled to yet. Waiting also means the frame has
+       been laid out by the time the choice is made, so its width is known
+       rather than guessed.
+
+       A browser without IntersectionObserver gets the standard encoding
+       immediately, which is what it did before. */
     if (!still && window.IntersectionObserver) {
       v.removeAttribute('autoplay');
       v.setAttribute('preload', 'none');
+      var started = false;
       var watcher = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            if (v.getAttribute('preload') === 'none') { v.setAttribute('preload', 'metadata'); v.load(); }
+            if (!started) {
+              started = true;
+              addSources(wantsLarge());
+              v.setAttribute('preload', 'metadata');
+              v.load();
+            }
             var played = v.play();
             /* Safari rejects the promise if it decides this is not allowed;
                the poster stays up, which is a reasonable thing to look at. */
@@ -727,6 +748,8 @@
         });
       }, { rootMargin: '150px 0px', threshold: 0.2 });
       watcher.observe(cell);
+    } else {
+      addSources(false);
     }
     box.appendChild(v);
     cell.appendChild(box);
