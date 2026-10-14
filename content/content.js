@@ -204,9 +204,9 @@ window.CB_CONTENT = {
       {
         "src": "images/photography/climber-golden-granite.jpg",
         "full": "images/photography/climber-golden-granite-full.jpg",
-        "caption": "Matt Peña on his route Rolling Palms, 5.13d",
+        "caption": "Matt Pe\u00f1a on his route Rolling Palms, 5.13d",
         "meta": "Tuolumne Meadows, CA",
-        "alt": "Matt Peña, tuolumne meadows, climbing"
+        "alt": "Matt Pe\u00f1a, tuolumne meadows, climbing"
       },
       {
         "src": "images/photography/beach-runner-bw.jpg",
@@ -232,9 +232,9 @@ window.CB_CONTENT = {
       {
         "src": "images/photography/climber-overhead-reach.jpg",
         "full": "images/photography/climber-overhead-reach-full.jpg",
-        "caption": "Matt Peña on his route Rolling Palms, 5.13d",
+        "caption": "Matt Pe\u00f1a on his route Rolling Palms, 5.13d",
         "meta": "Tuolumne Meadows, CA",
-        "alt": "Matt Peña, tuolumne meadows, climbing"
+        "alt": "Matt Pe\u00f1a, tuolumne meadows, climbing"
       },
       {
         "src": "images/photography/metro-tunnel-bw.jpg",
@@ -274,9 +274,9 @@ window.CB_CONTENT = {
       {
         "src": "images/photography/climber-pink-steep.jpg",
         "full": "images/photography/climber-pink-steep-full.jpg",
-        "caption": "Matt Peña on his route Rolling Palms, 5.13d",
+        "caption": "Matt Pe\u00f1a on his route Rolling Palms, 5.13d",
         "meta": "Tuolumne Meadows, CA",
-        "alt": "Matt Peña, tuolumne meadows, climbing"
+        "alt": "Matt Pe\u00f1a, tuolumne meadows, climbing"
       },
       {
         "src": "images/photography/porter-mountain-town.jpg",
@@ -381,12 +381,20 @@ window.CB_CONTENT = {
       {
         "motion": true,
         "src": "images/photography/hulk-milky-way.jpg",
-        "size": "medium",
         "mp4": "images/photography/hulk-milky-way.mp4",
         "webm": "images/photography/hulk-milky-way.webm",
+        "size": "medium",
         "caption": "The Incredible Hulk",
         "meta": "Sierra Nevada, CA",
         "alt": "A timelapse of the Milky Way wheeling above a dark granite ridge"
+      },
+      {
+        "src": "images/photography/climber-high-reach.jpg",
+        "full": "images/photography/climber-high-reach-full.jpg",
+        "size": "full",
+        "caption": "Sarah Fenoglio on The Other, 14a",
+        "meta": "Las Vegas, NV",
+        "alt": "A climber in a yellow top reaching high on an overhanging wall, the rope running down to a quickdraw"
       },
       {
         "src": "images/photography/climber-overhead-crimp.jpg",
@@ -394,14 +402,6 @@ window.CB_CONTENT = {
         "caption": "Rachel Melville on Glory Crack, 13c",
         "meta": "Las Vegas, NV",
         "alt": "Looking straight down on a climber pulling hard on a steep limestone wall, the ground far below"
-      },
-      {
-        "src": "images/photography/climber-high-reach.jpg",
-        "size": "full",
-        "full": "images/photography/climber-high-reach-full.jpg",
-        "caption": "Sarah Fenoglio on The Other, 14a",
-        "meta": "Las Vegas, NV",
-        "alt": "A climber in a yellow top reaching high on an overhanging wall, the rope running down to a quickdraw"
       },
       {
         "src": "images/photography/climber-under-roof.jpg",

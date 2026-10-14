@@ -593,6 +593,17 @@
       });
 
       var row = [], sum = 0;
+      /* Share a row's width out between its frames. The grow values are
+         normalised to sum to 1: relative widths are unchanged, but a row
+         that would otherwise total less than 1 — a lone upright frame, whose
+         aspect is about 0.67 — fills the width instead of claiming two
+         thirds of it and sitting left. */
+      function layoutRow(r) {
+        var kids = Array.prototype.slice.call(r.children);
+        var total = kids.reduce(function (a, c) { return a + c.__ar; }, 0) || 1;
+        kids.forEach(function (c) { c.style.flexGrow = c.__ar / total; });
+      }
+
       function flush() {
         if (!row.length) return;
         /* A frame asking for the middle size gets a row that is held
@@ -600,24 +611,14 @@
            than a banner. On a phone there is no width to give away, so the
            class is ignored there by the stylesheet. */
         var mid = row.length === 1 && row[0].__mid;
-        /* A frame left on its own — because the frames either side of it
-           asked for the full width, or because it is the last one and there
-           was nothing to pair it with — should not be stretched across the
-           gallery as though it had asked for that. Hold it to the height the
-           row would have had and centre it, so the run of pictures keeps its
-           scale and only the frames that were meant to run large do. */
+        /* A frame that has ended up alone without asking to. It is marked
+           here and dealt with after the whole run is laid out, because
+           whether it can be tucked into a neighbouring row depends on what
+           came before it. */
         var lone = row.length === 1 && !row[0].__solo && !narrow;
         var r = el('div', { class: 'jrow' + (mid ? ' jrow--mid' : '') + (lone ? ' jrow--lone' : '') });
-        if (lone) r.style.maxWidth = Math.round(target * row[0].__ar) + 'px';
-        var total = row.reduce(function (a, c) { return a + c.__ar; }, 0) || 1;
-        row.forEach(function (c) {
-          /* Normalised so the row's grow values sum to 1. Relative widths are
-             unchanged, but a row that would otherwise total less than 1 — a
-             lone upright frame, whose aspect is about 0.67 — now fills the
-             width instead of claiming two thirds of it and sitting left. */
-          c.style.flexGrow = c.__ar / total;
-          r.appendChild(c);
-        });
+        row.forEach(function (c) { r.appendChild(c); });
+        layoutRow(r);
         grid.appendChild(r);
         row = []; sum = 0;
       }
@@ -630,6 +631,39 @@
         if ((W - GAP * (row.length - 1)) / sum <= target) flush();
       });
       flush();
+
+      /* Nothing should be left floating on its own. A frame ends up alone
+         when the frames on either side of it run full width, or when it is
+         the odd one out at the end of a run. Where there is an ordinary row
+         next to it, it belongs in that row — the row simply comes out a
+         little shorter, which looks far better than one picture adrift in
+         the middle of the page. Where there is no such row — it is walled in
+         by full-width frames on both sides — it is held to the height its
+         row would have had and centred, rather than being stretched across
+         the gallery as though it had asked to be large. */
+      var rows = Array.prototype.slice.call(grid.querySelectorAll('.jrow'));
+      rows.forEach(function (r, idx) {
+        if (!r.classList.contains('jrow--lone')) return;
+        var host = null;
+        for (var step = -1; step <= 1; step += 2) {
+          var n = rows[idx + step];
+          if (n && n.parentNode && n.children.length > 1 &&
+              !n.classList.contains('jrow--mid') && !n.classList.contains('jrow--lone')) {
+            host = n; break;
+          }
+        }
+        if (!host) return;
+        /* keep the reading order: before the neighbour's frames if it
+           follows them, after if it precedes them */
+        if (rows.indexOf(host) < idx) host.appendChild(r.firstElementChild);
+        else host.insertBefore(r.firstElementChild, host.firstElementChild);
+        layoutRow(host);
+        r.remove();
+      });
+      /* whatever is still alone gets held to the row height instead */
+      Array.prototype.forEach.call(grid.querySelectorAll('.jrow--lone'), function (r) {
+        r.style.maxWidth = Math.round(target * r.firstElementChild.__ar) + 'px';
+      });
     }
 
     build();
