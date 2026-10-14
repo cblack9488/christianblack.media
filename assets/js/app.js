@@ -438,24 +438,46 @@
        lightbox counts and steps through the photographs only. */
     var stills = photos.filter(function (x) { return !x.motion; });
 
-    /* Which frames run large is decided here rather than with an nth-child
-       rule, so a moving frame dropped anywhere in the sequence does not
-       shift the feature slots onto different photographs. */
+    /* How large each frame runs. Every seventh photograph takes the full
+       width, which is what gives the page its rhythm, and a moving frame
+       does the same — but a frame can override that for itself with a
+       "size" in the content file, so a particular photograph can be given
+       room without renumbering everything after it:
+
+         size: "full"    the whole width of the gallery, on its own row
+         size: "medium"  its own row, but held to part of the width
+         size: "row"     an ordinary frame, even if the count made it large
+
+       Counting is done on the photographs alone, so dropping a moving frame
+       into the sequence does not shift the large slots onto different
+       pictures. */
+    function sizeOf(p, nth) {
+      if (p.size === 'full' || p.size === 'medium' || p.size === 'row') return p.size;
+      if (p.motion) return 'full';
+      return nth % 7 === 1 ? 'full' : 'row';
+    }
+
     var nStill = 0;
     var cells = [];
     photos.forEach(function (p, i) {
       if (p.motion) {
+        var msize = sizeOf(p, 0);
         var mc = motionCell(p, i);
+        if (msize === 'medium') mc.classList.add('cell--mid');
         mc.__ar = CB.aspectOf(p);
         mc.__solo = true;
+        mc.__mid = msize === 'medium';
         cells.push(mc);
         grid.appendChild(mc);
         return;
       }
       nStill++;
-      var feature = nStill % 7 === 1;
+      var size = sizeOf(p, nStill);
+      var feature = size === 'full';
       var cell = el('figure', {
-        class: 'cell' + (feature ? ' cell--feature' : '') + (p.portrait ? ' cell--portrait' : ''),
+        class: 'cell' + (feature ? ' cell--feature' : '') +
+               (size === 'medium' ? ' cell--mid' : '') +
+               (p.portrait ? ' cell--portrait' : ''),
         'data-i': i
       });
       var box = el('div', { class: 'cell__box' });
@@ -497,7 +519,8 @@
         cell.appendChild(cap);
       }
       cell.__ar = CB.aspectOf(p);
-      cell.__solo = feature;
+      cell.__solo = feature || size === 'medium';
+      cell.__mid = size === 'medium';
       cells.push(cell);
       grid.appendChild(cell);
     });
@@ -572,7 +595,20 @@
       var row = [], sum = 0;
       function flush() {
         if (!row.length) return;
-        var r = el('div', { class: 'jrow' });
+        /* A frame asking for the middle size gets a row that is held
+           narrower than the gallery, so it reads as a held moment rather
+           than a banner. On a phone there is no width to give away, so the
+           class is ignored there by the stylesheet. */
+        var mid = row.length === 1 && row[0].__mid;
+        /* A frame left on its own — because the frames either side of it
+           asked for the full width, or because it is the last one and there
+           was nothing to pair it with — should not be stretched across the
+           gallery as though it had asked for that. Hold it to the height the
+           row would have had and centre it, so the run of pictures keeps its
+           scale and only the frames that were meant to run large do. */
+        var lone = row.length === 1 && !row[0].__solo && !narrow;
+        var r = el('div', { class: 'jrow' + (mid ? ' jrow--mid' : '') + (lone ? ' jrow--lone' : '') });
+        if (lone) r.style.maxWidth = Math.round(target * row[0].__ar) + 'px';
         var total = row.reduce(function (a, c) { return a + c.__ar; }, 0) || 1;
         row.forEach(function (c) {
           /* Normalised so the row's grow values sum to 1. Relative widths are

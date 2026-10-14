@@ -33,6 +33,11 @@
     photo: [{ k: 'src', t: 'image', l: 'Photograph' },
             { k: 'caption', l: 'Caption' },
             { k: 'meta', l: 'Location' },
+            { k: 'size', t: 'select', l: 'Frame size',
+              options: [{ v: '', l: 'Automatic — every seventh runs large' },
+                        { v: 'full', l: 'Full width' },
+                        { v: 'medium', l: 'Medium — two thirds, centred' },
+                        { v: 'row', l: 'Normal — shares a row' }] },
             { k: 'focus', l: 'Crop focus (e.g. center 40%)' },
             { k: 'alt', l: 'Alt text' }],
     climb: [{ k: 'name', l: 'Route' }, { k: 'grade' }, { k: 'detail', l: 'Where' }, { k: 'note' }],
@@ -405,10 +410,16 @@
     } else if (f.t === 'select') {
       input = el('select');
       var opts = f.options.slice();
-      if (obj[f.k] && opts.indexOf(obj[f.k]) < 0) opts.unshift(obj[f.k]);
+      /* An option is either a plain string, or a {v, l} pair when the stored
+         value and the wording in the menu differ — "Automatic" reads better
+         in a menu than the empty string it actually saves. */
+      var valueOf = function (o) { return (o && typeof o === 'object') ? o.v : o; };
+      var labelOf = function (o) { return (o && typeof o === 'object') ? o.l : o; };
+      var current = obj[f.k] || '';
+      if (current && opts.map(valueOf).indexOf(current) < 0) opts.unshift(current);
       opts.forEach(function (o) {
-        var op = el('option', { value: o, text: o });
-        if (o === obj[f.k]) op.selected = true;
+        var op = el('option', { value: valueOf(o), text: labelOf(o) });
+        if (valueOf(o) === current) op.selected = true;
         input.appendChild(op);
       });
     } else if (f.t === 'image') {

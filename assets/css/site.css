@@ -371,6 +371,14 @@ body { padding-right: var(--rail-width); }
 }
 .jrow { display: flex; gap: 6px; align-items: stretch; }
 
+/* A frame set to the middle size. Held to roughly two thirds and centred,
+   so it sits as a deliberate pause in the run of pictures rather than a
+   full-width banner. Below the breakpoint every frame is already the width
+   of the screen and there is nothing to give away, so this does nothing. */
+.jrow--mid { max-width: 66%; margin-left: auto; margin-right: auto; }
+.jrow--lone { margin-left: auto; margin-right: auto; }
+@media (max-width: 820px) { .jrow--mid { max-width: 100%; } }
+
 .cell { margin: 0; position: relative; min-width: 0; flex: 1 1 0; }
 .cell__box {
   position: relative;

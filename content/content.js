@@ -381,6 +381,7 @@ window.CB_CONTENT = {
       {
         "motion": true,
         "src": "images/photography/hulk-milky-way.jpg",
+        "size": "medium",
         "mp4": "images/photography/hulk-milky-way.mp4",
         "webm": "images/photography/hulk-milky-way.webm",
         "caption": "The Incredible Hulk",
@@ -396,6 +397,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/climber-high-reach.jpg",
+        "size": "full",
         "full": "images/photography/climber-high-reach-full.jpg",
         "caption": "Sarah Fenoglio on The Other, 14a",
         "meta": "Las Vegas, NV",
