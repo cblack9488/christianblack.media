@@ -383,36 +383,36 @@ window.CB_CONTENT = {
         "src": "images/photography/hulk-milky-way.jpg",
         "mp4": "images/photography/hulk-milky-way.mp4",
         "webm": "images/photography/hulk-milky-way.webm",
-        "caption": "",
-        "meta": "",
+        "caption": "The Incredible Hulk",
+        "meta": "Sierra Nevada, CA",
         "alt": "A timelapse of the Milky Way wheeling above a dark granite ridge"
       },
       {
         "src": "images/photography/climber-overhead-crimp.jpg",
         "full": "images/photography/climber-overhead-crimp-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Rachel Melville on Glory Crack, 13c",
+        "meta": "Las Vegas, NV",
         "alt": "Looking straight down on a climber pulling hard on a steep limestone wall, the ground far below"
       },
       {
         "src": "images/photography/climber-high-reach.jpg",
         "full": "images/photography/climber-high-reach-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Sarah Fenoglio on The Other, 14a",
+        "meta": "Las Vegas, NV",
         "alt": "A climber in a yellow top reaching high on an overhanging wall, the rope running down to a quickdraw"
       },
       {
         "src": "images/photography/climber-under-roof.jpg",
         "full": "images/photography/climber-under-roof-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "Sarah Fenoglio on The Other, 14a",
+        "meta": "Las Vegas, NV",
         "alt": "A climber stretched out beneath a wide overhanging roof above a rocky landing"
       },
       {
         "src": "images/photography/limestone-wall-evening.jpg",
         "full": "images/photography/limestone-wall-evening-full.jpg",
-        "caption": "",
-        "meta": "",
+        "caption": "The Roost",
+        "meta": "Las Vegas, NV",
         "alt": "A lone climber high on a huge golden overhanging wall in evening light, pines on the slope below"
       }
     ]
