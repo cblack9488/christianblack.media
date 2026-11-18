@@ -4,13 +4,18 @@ name: Build and deploy
 #
 # Nothing is ever committed back to main, so your local copy can never fall
 # behind and you never need to pull before working. main holds only what you
-# wrote; the generated pages, sitemap and metadata are rebuilt on every push
-# and exist only in the deployment.
+# wrote; the generated pages, sitemap, metadata and reach figures are rebuilt
+# on every run and exist only in the deployment.
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Once a week, so the follower counts stay current without anyone pushing.
+  # Monday morning UTC. GitHub stops scheduled runs in a repository that has
+  # seen no activity for 60 days; a push or a manual run starts them again.
+  schedule:
+    - cron: '0 11 * * 1'
 
 permissions:
   contents: read
@@ -36,6 +41,20 @@ jobs:
         run: |
           npm install --no-audit --no-fund
           npx playwright install --with-deps chromium
+
+      # Follower and view counts, baked into this build only. Never fails the
+      # deploy: with no credentials set it writes an empty file and the pages
+      # fall back to whatever is typed into content.js by hand.
+      - name: Fetch reach figures
+        continue-on-error: true
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
+          YT_CHANNEL_ID: ${{ secrets.YT_CHANNEL_ID }}
+          GH_TOKEN: ${{ secrets.GH_SECRETS_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: npm run reach
 
       - name: Build
         run: npm run build

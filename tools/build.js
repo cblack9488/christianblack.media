@@ -377,6 +377,10 @@ function writePhotoSizes(extra) {
 }
 
 (async () => {
+  /* The reach figures are fetched separately and may not have been; a
+     stub keeps the page from asking for a file that is not there. */
+  const reachFile = path.join(ROOT, 'assets/js/reach.js');
+  if (!fs.existsSync(reachFile)) fs.writeFileSync(reachFile, 'window.CB_REACH = {};\n');
   console.log('  photo sizes: ' + Object.keys(writePhotoSizes()).length + ' files');
   await new Promise(r => server.listen(PORT, r));
   const browser = await chromium.launch();

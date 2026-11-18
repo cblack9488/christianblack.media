@@ -1,12 +1,14 @@
 {
   "name": "christianblack-media",
   "private": true,
-  "description": "christianblack.media — a static site plus a pre-render step so crawlers see the writing.",
+  "description": "christianblack.media \u2014 a static site plus a pre-render step so crawlers see the writing.",
   "scripts": {
     "build": "node tools/build.js",
-    "serve": "python3 -m http.server 8844"
+    "serve": "python3 -m http.server 8844",
+    "reach": "node tools/fetch-reach.js"
   },
   "devDependencies": {
-    "playwright": "^1.47.0"
+    "playwright": "^1.47.0",
+    "libsodium-wrappers": "^0.7.13"
   }
 }

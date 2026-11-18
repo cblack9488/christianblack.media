@@ -24,3 +24,6 @@ package-lock.json
 
 # Update packages Claude sends over; not part of the site.
 _u/
+
+# Reach figures are fetched at build time, never committed.
+assets/js/reach.js

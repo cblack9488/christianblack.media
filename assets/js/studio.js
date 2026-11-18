@@ -110,14 +110,18 @@
 
   /* ---------------- data plumbing ---------------- */
 
+  /* A path is dotted, and may index into a list: home.proof[0].value */
+  function pathKeys(path) {
+    return String(path).replace(/\[(\d+)\]/g, '.$1').split('.').filter(Boolean);
+  }
   function get(path) {
-    return String(path).split('.').reduce(function (o, k) { return o == null ? o : o[k]; }, CB.content);
+    return pathKeys(path).reduce(function (o, k) { return o == null ? o : o[k]; }, CB.content);
   }
   function setPath(path, value) {
-    var ks = String(path).split('.');
+    var ks = pathKeys(path);
     var last = ks.pop();
-    var o = ks.reduce(function (a, k) { return a[k]; }, CB.content);
-    o[last] = value;
+    var o = ks.reduce(function (a, k) { return a == null ? a : a[k]; }, CB.content);
+    if (o) o[last] = value;
   }
 
   /* A [data-sort] / [data-dropzone] base maps to a real array in the content. */
@@ -536,6 +540,59 @@
      the body text. Clicking one swaps it for a textarea holding just that
      block's source, so a typo is a click and a keystroke rather than a hunt
      through eighteen rows of textarea. */
+  /* Edit one field where it sits on the page. Long prose gets a textarea,
+     a one-liner gets a single line, and the hint that was shown in the empty
+     slot is repeated here so the instruction is in front of you while you
+     write rather than somewhere above. */
+  function editFieldInPlace(node) {
+    if (document.querySelector('.st-blockedit')) return;
+    var path = node.getAttribute('data-field') || node.getAttribute('data-ph');
+    if (!path) return;
+    var current = get(path);
+    current = (current === undefined || current === null) ? '' : String(current);
+    var hint = node.getAttribute('data-hint') || '';
+    var longForm = current.length > 90 || /intro|bio|audience|text|blurb|positioning|detail/i.test(path);
+
+    var box = el('div', { class: 'st-blockedit st-fieldedit' });
+    box.appendChild(el('div', { class: 'st-fieldpath', text: path }));
+    if (hint) box.appendChild(el('em', { class: 'st-fieldhint', text: hint }));
+
+    var input = longForm ? el('textarea', { rows: String(Math.max(3, Math.min(12, current.split('\n').length + 2))) })
+                         : el('input', { type: 'text' });
+    input.value = current;
+    box.appendChild(input);
+
+    var bar = el('div', { class: 'st-blockbar' });
+    var save = el('button', { type: 'button', class: 'st-mini', text: 'Save' });
+    var cancel = el('button', { type: 'button', class: 'st-mini', text: 'Cancel' });
+    var clear = el('button', { type: 'button', class: 'st-mini', text: 'Clear' });
+    bar.appendChild(save); bar.appendChild(cancel); bar.appendChild(clear);
+    box.appendChild(bar);
+
+    node.parentNode.insertBefore(box, node);
+    node.style.display = 'none';
+    input.focus();
+    if (input.setSelectionRange) input.setSelectionRange(current.length, current.length);
+
+    function close() { box.remove(); node.style.display = ''; }
+    function commit(v) {
+      setPath(path, v);
+      close();
+      changed();
+      rerender();
+    }
+    cancel.addEventListener('click', close);
+    save.addEventListener('click', function () { commit(input.value.trim()); });
+    clear.addEventListener('click', function () { commit(''); });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { e.preventDefault(); close(); }
+      if (e.key === 'Enter' && (!longForm || e.metaKey || e.ctrlKey)) {
+        e.preventDefault(); commit(input.value.trim());
+      }
+    });
+    return box;
+  }
+
   function editBlockInPlace(node, entry, index) {
     if (document.querySelector('.st-blockedit')) return;
 
@@ -667,6 +724,22 @@
         });
       });
     }
+
+    /* Any field tagged with the path it came from. This covers the dashed
+       slots waiting to be written and the finished sentences alike: both
+       carry data-field, so there is one way to change any of them and no
+       hunting for which panel owns what. */
+    Array.prototype.forEach.call(document.querySelectorAll('[data-field]'), function (node) {
+      if (node.__stField) return;
+      node.__stField = true;
+      node.classList.add('st-field');
+      node.addEventListener('click', function (e) {
+        if (e.target.closest('a')) return;
+        e.preventDefault();
+        e.stopPropagation();
+        editFieldInPlace(node);
+      });
+    });
 
     /* single-image drop targets: hero, posters, covers, reel frames */
     Array.prototype.forEach.call(document.querySelectorAll('[data-drop]'), function (node) {

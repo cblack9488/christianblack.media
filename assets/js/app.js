@@ -190,7 +190,7 @@
      When the field is filled the placeholder disappears and nothing about
      the layout moves. */
   function slot(path, hint, tag) {
-    var box = el(tag || 'div', { class: 'ph', 'data-ph': path });
+    var box = el(tag || 'div', { class: 'ph', 'data-ph': path, 'data-hint': hint || '' });
     box.appendChild(el('span', { class: 'ph__tag', text: path }));
     box.appendChild(el('span', { class: 'ph__hint', text: hint }));
     return box;
@@ -198,11 +198,17 @@
   CB.slot = slot;
 
   /* Render the value if there is one, otherwise the slot. `make` builds the
-     real element so that a filled field is styled exactly as it always was. */
+     real element so a filled field is styled exactly as it always was.
+
+     Either way the element is tagged with the path it came from, so Studio
+     can offer to edit it — an empty slot and a finished sentence are both
+     just this field, in two states. */
   function filled(value, make, path, hint, tag) {
-    return (value !== undefined && value !== null && String(value).trim())
-      ? make(String(value))
-      : slot(path, hint, tag);
+    var has = value !== undefined && value !== null && String(value).trim();
+    var node = has ? make(String(value)) : slot(path, hint, tag);
+    node.setAttribute('data-field', path);
+    if (hint) node.setAttribute('data-hint', hint);
+    return node;
   }
   CB.filled = filled;
 
@@ -965,18 +971,52 @@
      he has done, who already backs him, and how to reach him. Everything
      here is a slot: the structure is fixed, the words are his. */
 
+  /* A figure a brand reads, not an exact headcount. Rounded so the number
+     stands for a size rather than a tally, which also means it stops
+     visibly ticking up and down on a page people are judging. */
+  CB.formatReach = function (n) {
+    n = Number(n);
+    if (!isFinite(n) || n <= 0) return '';
+    if (n < 1000) return String(n);
+    if (n < 10000) return (Math.floor(n / 100) / 10).toFixed(1).replace(/\.0$/, '') + 'k';
+    if (n < 1000000) return Math.floor(n / 1000) + 'k';
+    return (Math.floor(n / 100000) / 10).toFixed(1).replace(/\.0$/, '') + 'M';
+  };
+
+  /* Where the build has fetched live figures, they stand in for whatever was
+     typed by hand — so the numbers are current without anyone remembering to
+     update them, and the hand-written ones remain as the fallback for a
+     platform that is not wired up, or a fetch that failed. */
+  function liveReach(label) {
+    var r = window.CB_REACH || {};
+    var k = String(label || '').toLowerCase();
+    if (/instagram|insta|\big\b/.test(k) && r.instagram && r.instagram.followers) {
+      return CB.formatReach(r.instagram.followers);
+    }
+    if (/youtube|yt\b/.test(k) && r.youtube) {
+      if (/view/.test(k) && r.youtube.views) return CB.formatReach(r.youtube.views);
+      if (r.youtube.subscribers) return CB.formatReach(r.youtube.subscribers);
+    }
+    return '';
+  }
+
   function statRow(list, cls, pathBase, hints) {
     var wrap = el('div', { class: 'stats ' + cls });
     (list || []).forEach(function (s, i) {
       s = s || {};
       var cell = el('div', { class: 'stat' });
-      cell.appendChild(CB.filled(s.value, function (v) {
-        return el('div', { class: 'stat__value', text: v });
+      var live = cls === 'stats--reach' ? liveReach(s.label) : '';
+      cell.appendChild(CB.filled(live || s.value, function (v) {
+        var node = el('div', { class: 'stat__value', text: v });
+        if (live) node.setAttribute('title', 'Updated automatically');
+        return node;
       }, pathBase + '[' + i + '].value', hints.value));
       cell.appendChild(CB.filled(s.label, function (v) {
         return el('div', { class: 'stat__label meta', text: v });
       }, pathBase + '[' + i + '].label', hints.label));
-      if (s.note) cell.appendChild(el('div', { class: 'stat__note', text: s.note }));
+      cell.appendChild(CB.filled(s.note, function (v) {
+        return el('div', { class: 'stat__note', text: v });
+      }, pathBase + '[' + i + '].note', 'Optional note underneath \u2014 e.g. the period it covers'));
       wrap.appendChild(cell);
     });
     return wrap;
@@ -998,10 +1038,9 @@
     /* The heading falls back to his own name so the published page always
        has a real h1, and the note about rewriting it is scaffolding that the
        build takes out. */
-    hin.appendChild(el('h1', { text: d.title || site.name || '' }));
-    if (!String(d.title || '').trim()) {
-      hin.appendChild(CB.slot('home.title', 'Currently falling back to your name. Write a headline here if you want a different one.'));
-    }
+    hin.appendChild(el('h1', { text: d.title || site.name || '',
+      'data-field': 'home.title',
+      'data-hint': 'The page heading. Falls back to your name when empty.' }));
     hin.appendChild(CB.filled(d.positioning, function (v) {
       return el('p', { class: 'home__positioning', text: v });
     }, 'home.positioning', 'ONE line: what you are and what you offer. This is the sentence a brand reads first.'));
@@ -1093,10 +1132,9 @@
     var hero = el('header', { class: 'article__hero' });
     var hin = el('div', { class: 'article__heroinner' });
     hin.appendChild(label(null, d.kicker || 'Media kit'));
-    hin.appendChild(el('h1', { text: d.title || site.name || '' }));
-    if (!String(d.title || '').trim()) {
-      hin.appendChild(CB.slot('mediakit.title', 'Falls back to your name. Write a heading here to change it.'));
-    }
+    hin.appendChild(el('h1', { text: d.title || site.name || '',
+      'data-field': 'mediakit.title',
+      'data-hint': 'The page heading. Falls back to your name when empty.' }));
     hin.appendChild(CB.filled(d.lede, function (v) {
       return el('p', { class: 'home__positioning', text: v });
     }, 'mediakit.lede', 'One line: what you are. Can be the same as the landing page.'));
