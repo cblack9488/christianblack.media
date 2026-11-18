@@ -105,6 +105,70 @@ async function getJSON2(url, headers) {
   return res.json();
 }
 
+/* ---------- Films on other people's channels ----------
+
+   A film Christian shot and cut does not stop being his work because it was
+   published on a collaborator's channel. Those views belong in his reach,
+   and the API will report them for any public video whatever channel it sits
+   on — no permission needed, because the numbers are public already.
+
+   The list is not configured anywhere: it is read from the Media page, so a
+   film added there is counted from the next build without anyone wiring
+   anything up. Anything already on his own channel is left out, because
+   those views are in the channel total and would otherwise be counted twice.
+
+   Every video found is printed with its title and channel, so the log always
+   says exactly which numbers went into the figure. */
+
+const YT_ID = /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([\w-]{6,})/;
+
+function filmIds() {
+  const file = path.resolve(__dirname, '../content/content.js');
+  if (!fs.existsSync(file)) return [];
+  const sandbox = { window: {} };
+  try {
+    /* content.js only assigns window.CB_CONTENT, so running it is reading it */
+    new Function('window', fs.readFileSync(file, 'utf8'))(sandbox.window);
+  } catch (e) { return []; }
+  const media = (sandbox.window.CB_CONTENT || {}).media || {};
+  const urls = [];
+  if (media.film && media.film.url) urls.push(media.film.url);
+  (media.links || []).forEach(l => { if (l && l.url) urls.push(l.url); });
+  const ids = [];
+  urls.forEach(u => {
+    const m = String(u).match(YT_ID);
+    if (m && ids.indexOf(m[1]) < 0) ids.push(m[1]);
+  });
+  return ids;
+}
+
+async function films() {
+  const key = process.env.YT_API_KEY;
+  if (!key) return null;
+  const ids = filmIds();
+  if (!ids.length) return null;
+  const own = process.env.YT_CHANNEL_ID || '';
+  const data = await getJSON(
+    `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${ids.join(',')}&key=${key}`);
+  const items = [];
+  let views = 0;
+  (data.items || []).forEach(v => {
+    const n = +((v.statistics || {}).viewCount) || 0;
+    const sameChannel = own && (v.snippet || {}).channelId === own;
+    console.log('     film: ' + ((v.snippet || {}).title || v.id) +
+      ' \u2014 ' + n.toLocaleString('en-US') + ' views on ' +
+      ((v.snippet || {}).channelTitle || 'unknown channel') +
+      (sameChannel ? ' (already counted in the channel total)' : ''));
+    if (sameChannel) return;
+    views += n;
+    items.push({ id: v.id, title: (v.snippet || {}).title, channel: (v.snippet || {}).channelTitle, views: n });
+  });
+  const missing = ids.filter(id => !(data.items || []).some(v => v.id === id));
+  missing.forEach(id => console.log('     film ' + id + ': not returned (private, deleted or wrong id)'));
+  if (!items.length) return null;
+  return { views: views, count: items.length, items: items };
+}
+
 /* ---------- YouTube ----------
    Public channel statistics need an API key and nothing else — no login
    flow, no token to keep alive. Subscriber counts come back rounded down to
@@ -127,10 +191,14 @@ async function youtube() {
 
 (async () => {
   const reach = { fetchedAt: new Date().toISOString().slice(0, 10) };
-  for (const [name, fn] of [['instagram', instagram], ['youtube', youtube]]) {
+  for (const [name, fn] of [['instagram', instagram], ['youtube', youtube], ['films', films]]) {
     try {
       const v = await fn();
-      if (v) { reach[name] = v; console.log('     ' + name + ': ' + JSON.stringify(v)); }
+      if (v) {
+        reach[name] = v;
+        const brief = name === 'films' ? { views: v.views, count: v.count } : v;
+        console.log('     ' + name + ': ' + JSON.stringify(brief));
+      }
     } catch (e) {
       console.log('     ' + name + ' skipped: ' + e.message);
     }

@@ -993,9 +993,18 @@
     if (/instagram|insta|\big\b/.test(k) && r.instagram && r.instagram.followers) {
       return CB.formatReach(r.instagram.followers);
     }
+    if (/film|video work|my films/.test(k) && r.films && r.films.views) {
+      return CB.formatReach(r.films.views);
+    }
     if (/youtube|yt\b/.test(k) && r.youtube) {
       if (/view/.test(k) && r.youtube.views) return CB.formatReach(r.youtube.views);
       if (r.youtube.subscribers) return CB.formatReach(r.youtube.subscribers);
+    }
+    /* Everything he made, wherever it was published: his own channel plus the
+       films that went out on a collaborator's. */
+    if (/total view|all view|combined/.test(k)) {
+      var t = ((r.youtube || {}).views || 0) + ((r.films || {}).views || 0);
+      if (t) return CB.formatReach(t);
     }
     return '';
   }
