@@ -183,10 +183,137 @@ window.CB_CONTENT = {
       "credit": "Photo · Chase Hathaway"
     }
   },
+  "home": {
+    "kicker": "Christian Black",
+    "title": "",
+    "positioning": "",
+    "intro": "",
+    "header": {
+      "image": "images/header.jpg",
+      "focus": "center 45%",
+      "credit": ""
+    },
+    "proof": [
+      {
+        "value": "",
+        "label": "",
+        "note": ""
+      },
+      {
+        "value": "",
+        "label": "",
+        "note": ""
+      },
+      {
+        "value": "",
+        "label": "",
+        "note": ""
+      }
+    ],
+    "reach": [
+      {
+        "value": "",
+        "label": "",
+        "note": ""
+      },
+      {
+        "value": "",
+        "label": "",
+        "note": ""
+      },
+      {
+        "value": "",
+        "label": "",
+        "note": ""
+      }
+    ],
+    "cta": {
+      "blurb": ""
+    }
+  },
+  "mediakit": {
+    "kicker": "Media kit",
+    "title": "",
+    "lede": "",
+    "header": {
+      "image": "images/about-backdrop.jpg",
+      "focus": "center 45%",
+      "credit": ""
+    },
+    "bio": "",
+    "audience": "",
+    "reach": [
+      {
+        "value": "",
+        "label": "",
+        "note": ""
+      },
+      {
+        "value": "",
+        "label": "",
+        "note": ""
+      },
+      {
+        "value": "",
+        "label": "",
+        "note": ""
+      },
+      {
+        "value": "",
+        "label": "",
+        "note": ""
+      }
+    ],
+    "services": [
+      {
+        "name": "",
+        "detail": ""
+      },
+      {
+        "name": "",
+        "detail": ""
+      },
+      {
+        "name": "",
+        "detail": ""
+      }
+    ],
+    "partners": [
+      {
+        "name": "",
+        "detail": ""
+      }
+    ],
+    "downloads": [
+      {
+        "label": "",
+        "url": ""
+      }
+    ]
+  },
   "photography": {
     "kicker": "Photography",
     "title": "Photography",
     "lede": "Moments, places, people.",
+    "working": "",
+    "sets": [
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      }
+    ],
     "banner": {
       "image": "images/photography-banner.jpg",
       "headline": "Coming soon",
@@ -422,7 +549,7 @@ window.CB_CONTENT = {
   },
   "journal": {
     "kicker": "Journal",
-    "title": "Words",
+    "title": "Journal",
     "lede": "Essays, trip reports, techniques, and beta",
     "entries": [
       {
@@ -745,6 +872,7 @@ window.CB_CONTENT = {
     "kicker": "About",
     "seoTitle": "About Christian Black — Climber, alpinist, paraglider pilot",
     "title": "Christian Black",
+    "positioning": "",
     "lede": "“Have fun, be safe, look cool!”",
     "portrait": "images/portrait-cb.jpg",
     "contact": {

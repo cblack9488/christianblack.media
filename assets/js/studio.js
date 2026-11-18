@@ -33,6 +33,7 @@
     photo: [{ k: 'src', t: 'image', l: 'Photograph' },
             { k: 'caption', l: 'Caption' },
             { k: 'meta', l: 'Location' },
+            { k: 'set', t: 'setpicker', l: 'Set' },
             { k: 'size', t: 'select', l: 'Frame size',
               options: [{ v: '', l: 'Automatic — every seventh runs large' },
                         { v: 'full', l: 'Full width' },
@@ -67,7 +68,10 @@
               { k: 'focus', l: 'Crop focus (e.g. center 50%)' },
               { k: 'credit', l: 'Photo credit' }],
     video: [{ k: 'title' }, { k: 'meta', l: 'Caption' }, { k: 'url', t: 'url', l: 'YouTube link' }],
-    stat: [{ k: 'value' }, { k: 'label' }],
+    stat: [{ k: 'value', l: 'The figure' }, { k: 'label', l: 'What it is' }, { k: 'note', l: 'Note underneath' }],
+    photoset: [{ k: 'id', l: 'Short name used in the link (no spaces)' }, { k: 'label', l: 'How it reads on the page' }],
+    kitrow: [{ k: 'name', l: 'Name' }, { k: 'detail', l: 'Detail' }],
+    kitdownload: [{ k: 'label', l: 'Asset' }, { k: 'url', l: 'Link or file path' }],
     nextItem: [{ k: 'when' }, { k: 'what', t: 'textarea' }],
     section: [{ k: 'label', l: 'Section heading' }],
     set: [{ k: 'title' }, { k: 'meta' }, { k: 'blurb', t: 'textarea' }],
@@ -88,6 +92,13 @@
 
   var SPEC_FOR_BASE = {
     'photography.photos': 'photo',
+    'photography.sets': 'photoset',
+    'home.proof': 'stat',
+    'home.reach': 'stat',
+    'mediakit.reach': 'stat',
+    'mediakit.services': 'kitrow',
+    'mediakit.partners': 'kitrow',
+    'mediakit.downloads': 'kitdownload',
     'film.videos': 'video',
     'athlete.reel': 'photo',
     'athlete.stats': 'stat',
@@ -407,6 +418,21 @@
     if (f.t === 'textarea') {
       input = el('textarea', { rows: f.rows || 4 });
       input.value = obj[f.k] || '';
+    } else if (f.t === 'setpicker') {
+      /* The choices are whatever sets have been named on this page, so a set
+         only has to be spelled once. */
+      input = el('select');
+      var defined = (((window.CB_CONTENT || {}).photography || {}).sets || [])
+        .filter(function (x) { return x && x.id; });
+      var cur = obj[f.k] || '';
+      var list = [{ v: '', l: 'Unassigned \u2014 shows in All only' }].concat(
+        defined.map(function (x) { return { v: x.id, l: x.label || x.id }; }));
+      if (cur && !defined.some(function (x) { return x.id === cur; })) list.push({ v: cur, l: cur });
+      list.forEach(function (o) {
+        var op = el('option', { value: o.v, text: o.l });
+        if (o.v === cur) op.selected = true;
+        input.appendChild(op);
+      });
     } else if (f.t === 'select') {
       input = el('select');
       var opts = f.options.slice();

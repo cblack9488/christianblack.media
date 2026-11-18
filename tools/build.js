@@ -65,10 +65,20 @@ function plainBody(body) {
    seoTitle / seoDescription in content.js override the heading and lede for
    search only, and change nothing on the page itself. */
 const PAGES = [
-  { file: 'index.html', id: 'journal', title: C.journal.title, kicker: 'Journal',
+  { file: 'index.html', id: 'home', title: C.home.title || NAME, kicker: 'Home',
     seoTitle: SITE.seoTitle, seoDescription: SITE.seoDescription,
+    desc: C.home.positioning || C.home.intro || SITE.seoDescription,
+    image: (C.home.header || {}).image },
+  { file: 'journal.html', id: 'journal', title: C.journal.title, kicker: 'Journal',
+    seoTitle: NAME + ' \u2014 Journal',
+    seoDescription: C.journal.lede,
     desc: C.journal.lede, image: (C.journal.header.images || [])[0] &&
       (C.journal.header.images || [])[0].src },
+  { file: 'mediakit.html', id: 'mediakit', title: C.mediakit.title || 'Media kit',
+    kicker: 'Media kit', seoTitle: NAME + ' \u2014 Media kit',
+    seoDescription: C.mediakit.lede || SITE.seoDescription,
+    desc: C.mediakit.lede || SITE.seoDescription,
+    image: (C.mediakit.header || {}).image },
   { file: 'ticklist.html', id: 'athlete', title: C.athlete.title, kicker: 'Tick list',
     desc: C.athlete.lede, image: (C.athlete.header || {}).image },
   { file: 'photography.html', id: 'photography', title: C.photography.title, kicker: 'Photography',
@@ -373,6 +383,7 @@ function writePhotoSizes(extra) {
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 950 } });
   const page = await ctx.newPage();
   const problems = [];
+  const awaiting = [];
   page.on('pageerror', e => problems.push(e.message));
 
   for (const p of ALL) {
@@ -400,6 +411,16 @@ function writePhotoSizes(extra) {
         v.setAttribute('preload', 'none');
         v.removeAttribute('autoplay');
       });
+      /* An unwritten slot shows an editorial instruction on the page so it
+         cannot be missed while working. That instruction is scaffolding, not
+         content: baking it into the HTML would put "ONE line: what you are"
+         in front of a search engine. The slots are stripped from the
+         snapshot and counted instead, so the log says what is still owed. */
+      const slots = [...clone.querySelectorAll('.ph')].map(n => n.getAttribute('data-ph'));
+      /* A whole section with nothing written in it goes too, heading and all,
+         so no visitor meets a "Reach" with nothing underneath it. */
+      clone.querySelectorAll('.ph-section').forEach(n => n.remove());
+      clone.querySelectorAll('.ph').forEach(n => n.remove());
       const pick = sel => { const n = clone.querySelector(sel); return n ? n.outerHTML : ''; };
       /* Debris from a malformed <head> tag ends up as a bare text node at the
          top of <body>. Nothing legitimate on this site does that, so any
@@ -418,6 +439,7 @@ function writePhotoSizes(extra) {
         bg: pick('.fixedbg'),
         footer: pick('.site-footer'),
         rail: pick('.rail'),
+        slots: slots,
         words: (clone.querySelector('#page') || { innerText: '' }).textContent
           .trim().split(/\s+/).filter(Boolean).length
       };
@@ -443,7 +465,12 @@ function writePhotoSizes(extra) {
       console.log('     photo-sizes.js: ' + total + ' entries (+' +
         Object.keys(fromPage).length + ' from the page)');
     }
-    const thinOnPurpose = p.noindex || p.id === 'photography';
+    /* A page still carrying unwritten slots is thin for a known reason. It
+       is reported rather than treated as a broken render. */
+    if ((baked.slots || []).length) {
+      awaiting.push({ file: p.file, slots: baked.slots });
+    }
+    const thinOnPurpose = p.noindex || p.id === 'photography' || (baked.slots || []).length;
     if (baked.words < 40 && !thinOnPurpose) {
       problems.push(p.file + ': only ' + baked.words + ' words rendered');
     }
@@ -479,6 +506,17 @@ function writePhotoSizes(extra) {
     'User-agent: *\nAllow: /\n\nSitemap: ' + ORIGIN + '/sitemap.xml\n');
 
   console.log('\n' + ALL.length + ' pages, ' + urls.length + ' in sitemap.');
+  if (awaiting.length) {
+    const n = awaiting.reduce((a, x) => a + x.slots.length, 0);
+    console.log('\nStill to write — ' + n + ' empty slot' + (n === 1 ? '' : 's') +
+      '. These are left out of the published HTML, so nothing half-written\n' +
+      'is live, but the section stays blank until it is filled in Studio:\n');
+    awaiting.forEach(x => {
+      console.log('  ' + x.file);
+      x.slots.forEach(sl => console.log('      ' + sl));
+    });
+    console.log('');
+  }
   if (problems.length) {
     console.error('\nproblems:\n' + problems.map(x => '  ' + x).join('\n'));
     process.exit(1);

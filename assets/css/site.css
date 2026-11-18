@@ -1267,3 +1267,125 @@ body.lb-open { overflow: hidden; }
 @media (max-width: 700px) {
   .themebox { right: 12px; left: 12px; width: auto; bottom: 12px; }
 }
+
+/* ---------- Unwritten slots ----------
+   Scaffolding waiting for words. Loud enough that it cannot be mistaken for
+   finished work, quiet enough to look at while writing around it. Stripped
+   from the published HTML by the build, so none of this reaches a visitor. */
+.ph {
+  display: block;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4) var(--space-5);
+  margin: var(--space-4) 0;
+  background: rgba(191, 163, 114, 0.05);
+  font-family: var(--font-label);
+  font-size: var(--text-small);
+  line-height: var(--leading-normal);
+  color: var(--text-secondary);
+  font-weight: var(--weight-regular);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.ph__tag {
+  display: block;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--ochre-500);
+  margin-bottom: var(--space-2);
+}
+.ph__hint { display: block; }
+
+/* ---------- Landing page ---------- */
+.home__positioning {
+  margin-top: var(--space-5);
+  max-width: var(--measure-narrow);
+  font-size: var(--text-body-lg);
+  color: var(--text-secondary);
+}
+.page--home .home__positioning, .page--kit .home__positioning { color: var(--stone-100); }
+.home__body {
+  max-width: var(--max-content); margin: 0 auto;
+  padding: var(--space-9) var(--gutter-page) var(--space-8);
+}
+.home__intro { max-width: var(--measure-prose); }
+.home__block { margin-top: var(--space-9); }
+.home__block > .label { margin-bottom: var(--space-5); }
+.home__more {
+  display: inline-block; margin-top: var(--space-5);
+  font-family: var(--font-label); font-size: var(--text-label);
+  letter-spacing: var(--tracking-label); text-transform: uppercase;
+  color: var(--text-muted); border: 0;
+}
+.home__more:hover { color: var(--accent-hover); }
+
+.stats { display: grid; gap: var(--space-6); grid-template-columns: repeat(3, 1fr); }
+.stats--reach { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.stat { border-top: 1px solid var(--border-hairline); padding-top: var(--space-4); min-width: 0; }
+.stat__value { font-family: var(--font-display); font-size: var(--text-title); line-height: var(--leading-snug); color: var(--text-primary); }
+.stat__label { margin-top: var(--space-2); white-space: normal; }
+.stat__note { margin-top: var(--space-2); font-size: var(--text-caption); color: var(--text-muted); }
+
+.home__paths {
+  max-width: var(--max-content); margin: 0 auto;
+  padding: 0 var(--gutter-page) var(--space-10);
+  display: grid; gap: var(--space-6);
+  grid-template-columns: repeat(3, 1fr);
+}
+.home__path {
+  border: 0; border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-5);
+  transition: border-color var(--dur-fast) var(--ease-soft);
+}
+.home__path:hover { border-top-color: var(--accent); }
+.home__path h2 { font-size: var(--text-subhead); color: var(--text-primary); }
+.home__pathnote { margin-top: var(--space-3); color: var(--text-secondary); font-size: var(--text-small); }
+
+/* ---------- Media kit ---------- */
+.kit__list { display: flex; flex-direction: column; }
+.kit__row {
+  display: grid; grid-template-columns: 1fr 2fr; gap: var(--space-5);
+  padding: var(--space-4) 0; border-top: 1px solid var(--border-hairline);
+  align-items: baseline;
+}
+.kit__name { font-size: var(--text-body-lg); color: var(--text-primary); }
+.kit__detail { color: var(--text-secondary); }
+a.kit__detail { border: 0; color: var(--accent-hover); }
+
+/* ---------- Photograph sets ---------- */
+.gallery-head__working {
+  margin-top: var(--space-4); max-width: var(--measure-narrow);
+  font-size: var(--text-small); color: var(--text-muted);
+}
+.sets {
+  max-width: var(--max-content); margin: 0 auto var(--space-6);
+  padding: 0 var(--gutter-page);
+  display: flex; flex-wrap: wrap; gap: var(--space-5);
+}
+.sets__tab {
+  border: 0; font-family: var(--font-label); font-size: var(--text-label);
+  letter-spacing: var(--tracking-label); text-transform: uppercase;
+  color: var(--text-muted); padding-bottom: var(--space-2);
+  border-bottom: 1px solid transparent;
+}
+.sets__tab:hover { color: var(--text-secondary); }
+.sets__tab.is-on { color: var(--text-primary); border-bottom-color: var(--accent); }
+
+@media (max-width: 900px) {
+  .stats, .home__paths { grid-template-columns: 1fr 1fr; }
+  .kit__row { grid-template-columns: 1fr; gap: var(--space-2); }
+}
+@media (max-width: 620px) {
+  .stats, .home__paths { grid-template-columns: 1fr; }
+}
+/* A section still being drafted — visible while working, removed by the build. */
+.ph-section { position: relative; }
+.ph-section::after {
+  content: 'not published yet';
+  position: absolute; top: 0; right: 0;
+  font-family: var(--font-label); font-size: var(--text-label);
+  letter-spacing: var(--tracking-label); text-transform: uppercase;
+  color: var(--ochre-500); opacity: 0.7;
+}
+.site-footer__kit { margin-right: var(--space-4); }
