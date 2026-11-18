@@ -380,7 +380,7 @@ function writePhotoSizes(extra) {
   /* The reach figures are fetched separately and may not have been; a
      stub keeps the page from asking for a file that is not there. */
   const reachFile = path.join(ROOT, 'assets/js/reach.js');
-  if (!fs.existsSync(reachFile)) fs.writeFileSync(reachFile, 'window.CB_REACH = {};\n');
+  if (!fs.existsSync(reachFile)) fs.writeFileSync(reachFile, '/* PLACEHOLDER — this local copy is not the real one.\n   The figures are fetched during the build on GitHub and exist only in\n   the deployed site. This file is gitignored and never updates locally,\n   so do not read numbers from it. The real one is at:\n     https://christianblack.media/assets/js/reach.js  */\nwindow.CB_REACH = {};\n');
   console.log('  photo sizes: ' + Object.keys(writePhotoSizes()).length + ' files');
   await new Promise(r => server.listen(PORT, r));
   const browser = await chromium.launch();
