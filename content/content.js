@@ -213,12 +213,12 @@ window.CB_CONTENT = {
     "reach": [
       {
         "value": "",
-        "label": "",
+        "label": "Youtube",
         "note": ""
       },
       {
         "value": "",
-        "label": "",
+        "label": "Youtube views",
         "note": ""
       },
       {
@@ -331,9 +331,9 @@ window.CB_CONTENT = {
       {
         "src": "images/photography/climber-golden-granite.jpg",
         "full": "images/photography/climber-golden-granite-full.jpg",
-        "caption": "Matt Pe\u00f1a on his route Rolling Palms, 5.13d",
+        "caption": "Matt Peña on his route Rolling Palms, 5.13d",
         "meta": "Tuolumne Meadows, CA",
-        "alt": "Matt Pe\u00f1a, tuolumne meadows, climbing"
+        "alt": "Matt Peña, tuolumne meadows, climbing"
       },
       {
         "src": "images/photography/beach-runner-bw.jpg",
@@ -359,9 +359,9 @@ window.CB_CONTENT = {
       {
         "src": "images/photography/climber-overhead-reach.jpg",
         "full": "images/photography/climber-overhead-reach-full.jpg",
-        "caption": "Matt Pe\u00f1a on his route Rolling Palms, 5.13d",
+        "caption": "Matt Peña on his route Rolling Palms, 5.13d",
         "meta": "Tuolumne Meadows, CA",
-        "alt": "Matt Pe\u00f1a, tuolumne meadows, climbing"
+        "alt": "Matt Peña, tuolumne meadows, climbing"
       },
       {
         "src": "images/photography/metro-tunnel-bw.jpg",
@@ -401,9 +401,9 @@ window.CB_CONTENT = {
       {
         "src": "images/photography/climber-pink-steep.jpg",
         "full": "images/photography/climber-pink-steep-full.jpg",
-        "caption": "Matt Pe\u00f1a on his route Rolling Palms, 5.13d",
+        "caption": "Matt Peña on his route Rolling Palms, 5.13d",
         "meta": "Tuolumne Meadows, CA",
-        "alt": "Matt Pe\u00f1a, tuolumne meadows, climbing"
+        "alt": "Matt Peña, tuolumne meadows, climbing"
       },
       {
         "src": "images/photography/porter-mountain-town.jpg",
