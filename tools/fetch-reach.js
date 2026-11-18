@@ -34,7 +34,11 @@ const OUT = path.resolve(__dirname, '../assets/js/reach.js');
    build log nobody reads, so the deployed site can always be asked what
    happened: open /assets/js/reach.js and the notes are there. */
 const notes = [];
+/* note() is for things that went wrong — it ends up in the deployed file, so
+   its presence should mean "look at this". say() is for the running
+   commentary, which belongs in the build log only. */
 function note(msg) { notes.push(msg); console.log('     ' + msg); }
+function say(msg) { console.log('     ' + msg); }
 const API = 'https://graph.instagram.com';
 
 async function getJSON(url) {
@@ -155,7 +159,7 @@ async function films() {
   if (!key) { note('films: no YT_API_KEY set'); return null; }
   const ids = filmIds();
   if (!ids.length) { note('films: no YouTube links found on the Media page'); return null; }
-  note('films: looking up ' + ids.length + ' video(s): ' + ids.join(', '));
+  say('films: looking up ' + ids.length + ' video(s): ' + ids.join(', '));
   const own = process.env.YT_CHANNEL_ID || '';
   const data = await getJSON(
     `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${ids.join(',')}&key=${key}`);
