@@ -186,7 +186,7 @@ window.CB_CONTENT = {
   "home": {
     "kicker": "Christian Black",
     "title": "",
-    "positioning": "",
+    "positioning": "Rock and alpine climber, writer, photographer and storyteller",
     "intro": "",
     "header": {
       "image": "images/header.jpg",
@@ -213,7 +213,7 @@ window.CB_CONTENT = {
     "reach": [
       {
         "value": "",
-        "label": "Youtube",
+        "label": "Youtube subscribers",
         "note": ""
       },
       {
@@ -223,12 +223,12 @@ window.CB_CONTENT = {
       },
       {
         "value": "",
-        "label": "",
+        "label": "Film views",
         "note": ""
       }
     ],
     "cta": {
-      "blurb": ""
+      "blurb": "for inquiries, media requests, licensing or collaboration"
     }
   },
   "mediakit": {

@@ -220,6 +220,16 @@
   function anyWritten(list, key) {
     return (list || []).some(function (x) { return x && String(x[key] || '').trim(); });
   }
+  /* A Reach figure can be typed in by hand or fetched at build time. Either
+     way the section has something to show, so a slot whose label matches a
+     live figure counts as written — otherwise a section filled entirely from
+     the fetch would be stripped from the published page as though it were
+     still blank. */
+  function anyReach(list) {
+    return (list || []).some(function (x) {
+      return x && (String(x.value || '').trim() || liveReach(x.label));
+    });
+  }
 
   function pageHead(data, index, aside) {
     var h = el('header', { class: 'page-head' });
@@ -1082,7 +1092,7 @@
 
     /* the numbers */
     var reach = el('section', { class: 'home__block' });
-    if (!anyWritten(d.reach, 'value')) CB.draft(reach);
+    if (!anyReach(d.reach)) CB.draft(reach);
     reach.appendChild(label(null, 'Reach'));
     reach.appendChild(statRow(d.reach, 'stats--reach', 'home.reach', {
       value: 'The figure — e.g. followers, views, readership',
@@ -1165,7 +1175,7 @@
     block('Reach', statRow(d.reach, 'stats--reach', 'mediakit.reach', {
       value: 'The figure',
       label: 'Platform or publication, and the period it covers'
-    }), anyWritten(d.reach, 'value'));
+    }), anyReach(d.reach));
 
     block('Audience', CB.filled(d.audience, function (v) {
       var box = el('div', { class: 'cb-prose entry__prose' });
