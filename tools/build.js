@@ -64,6 +64,15 @@ function plainBody(body) {
    is right above the journal; it means nothing in a list of search results.
    seoTitle / seoDescription in content.js override the heading and lede for
    search only, and change nothing on the page itself. */
+/* The same test the site uses to decide whether to link to the media kit. */
+function kitReady() {
+  const k = C.mediakit || {};
+  const any = (list, key) => (list || []).some(x => x && String(x[key] || '').trim());
+  return !!(String(k.bio || '').trim() || String(k.audience || '').trim() ||
+    any(k.reach, 'value') || any(k.services, 'name') ||
+    any(k.partners, 'name') || any(k.downloads, 'label'));
+}
+
 const PAGES = [
   { file: 'index.html', id: 'home', title: C.home.title || NAME, kicker: 'Home',
     seoTitle: SITE.seoTitle, seoDescription: SITE.seoDescription,
@@ -78,7 +87,11 @@ const PAGES = [
     kicker: 'Media kit', seoTitle: NAME + ' \u2014 Media kit',
     seoDescription: C.mediakit.lede || SITE.seoDescription,
     desc: C.mediakit.lede || SITE.seoDescription,
-    image: (C.mediakit.header || {}).image },
+    image: (C.mediakit.header || {}).image,
+    /* Scaffolding until it has been written. While it is empty the page is
+       kept out of the sitemap and told not to be indexed, and nothing on the
+       site links to it — it exists only so it can be filled in. */
+    noindex: !kitReady() },
   { file: 'ticklist.html', id: 'athlete', title: C.athlete.title, kicker: 'Tick list',
     desc: C.athlete.lede, image: (C.athlete.header || {}).image },
   { file: 'photography.html', id: 'photography', title: C.photography.title, kicker: 'Photography',

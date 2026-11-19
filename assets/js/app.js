@@ -20,6 +20,20 @@
   /* The media kit is reachable from the landing page and the footer, but it
      is not in the rail: it is for a particular reader, not a section of the
      site. */
+  /* A page that has not been written yet should not be advertised. The media
+     kit is scaffolding until there is something in it, and a brand following
+     a link to an empty page is worse served than one who never saw the link.
+     The same test decides whether the build indexes it. */
+  CB.kitReady = function () {
+    var k = (CB.content || {}).mediakit || {};
+    function any(list, key) {
+      return (list || []).some(function (x) { return x && String(x[key] || '').trim(); });
+    }
+    return !!(String(k.bio || '').trim() || String(k.audience || '').trim() ||
+      any(k.reach, 'value') || any(k.services, 'name') ||
+      any(k.partners, 'name') || any(k.downloads, 'label'));
+  };
+
   CB.OFF_RAIL = [
     { id: 'home', label: 'Home', href: 'index.html' },
     { id: 'mediakit', label: 'Media kit', href: 'mediakit.html' }
@@ -153,7 +167,9 @@
     var right = el('span', { class: 'site-footer__right' });
     /* The media kit is not in the rail, so the footer is where a brand finds
        it from whichever page they happened to land on. */
-    right.appendChild(el('a', { class: 'site-footer__kit', href: CB.hrefFor('mediakit'), text: 'Media kit' }));
+    if (CB.kitReady()) {
+      right.appendChild(el('a', { class: 'site-footer__kit', href: CB.hrefFor('mediakit'), text: 'Media kit' }));
+    }
     right.appendChild(el('a', site.email
       ? { href: 'mailto:' + site.email, text: 'Contact', 'aria-label': 'Email Christian Black' }
       : { href: CB.hrefFor('about') + '#contact', text: 'Contact' }));
@@ -1163,7 +1179,9 @@
       value: 'The figure — e.g. followers, views, readership',
       label: 'Which platform or publication'
     }));
-    reach.appendChild(el('a', { class: 'home__more', href: CB.hrefFor('mediakit'), text: 'Media kit ↗' }));
+    if (CB.kitReady()) {
+      reach.appendChild(el('a', { class: 'home__more', href: CB.hrefFor('mediakit'), text: 'Media kit ↗' }));
+    }
     body.appendChild(reach);
 
     root.appendChild(body);

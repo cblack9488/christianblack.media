@@ -50,6 +50,13 @@ window.CB_CONTENT = {
         "credit": "Photo · Christian Black",
         "items": [
           {
+            "name": "Afanassieff",
+            "grade": "5,000ft, Northwest Ridge",
+            "detail": "Fitz Roy, Patagonia, Argentina",
+            "note": "Summit",
+            "url": "words/patagonia-pt-1-success.html"
+          },
+          {
             "name": "“Brilliant Blue”",
             "grade": "AI3 M7+, 850m",
             "detail": "White Sapphire (6040m), Kishtwar Valley, India",
