@@ -161,13 +161,15 @@
     sup = sup || (CB.content.site || {}).support || {};
     if (!sup.logo && !(sup.partners || []).length) return null;
     var sb = el('div', { class: 'supported' });
+    /* The words first, then the mark: it reads as a sentence rather than as a
+       logo with a caption stuck underneath it. */
+    sb.appendChild(el('div', { class: 'supported__label', text: sup.label || 'Supported by' }));
     if (sup.logo) {
       sb.appendChild(el('img', {
         class: 'supported__logo', src: CB.resolveSrc(sup.logo),
         alt: (sup.partners || []).join(', ') || 'Sponsor'
       }));
     }
-    sb.appendChild(el('div', { class: 'supported__label', text: sup.label || 'Supported by' }));
     return sb;
   };
 
@@ -248,7 +250,9 @@
      Links are matched first so a URL containing an asterisk can't be torn
      apart by the emphasis pass. Everything else is plain text — no HTML is
      ever parsed out of content.js, so a stray < in the prose stays a < . */
-  var INLINE = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|\*\*([^*]+)\*\*|\*([^*\n]+)\*/g;
+  /* [words](somewhere) — an address on this site as readily as one off it, so
+     a sentence can point at the page it is talking about. */
+  var INLINE = /\[([^\]]+)\]\(((?:https?:\/\/|mailto:|[\w./#?-])[^\s)]*)\)|\*\*([^*]+)\*\*|\*([^*\n]+)\*/g;
 
   function inlineInto(host, text) {
     var last = 0, m;
@@ -1067,7 +1071,9 @@
 
     var hero = el('header', { class: 'article__hero' });
     var hin = el('div', { class: 'article__heroinner' });
-    hin.appendChild(label(null, d.kicker || site.name || ''));
+    /* No kicker here. On every other page it names the section; on the
+       landing page the only thing it could say is his name, which the
+       heading underneath already says. */
     /* The heading falls back to his own name so the published page always
        has a real h1, and the note about rewriting it is scaffolding that the
        build takes out. */
@@ -1096,7 +1102,10 @@
     /* the credentials a brand scans for */
     var proof = el('section', { class: 'home__block' });
     if (!anyWritten(d.proof, 'value')) CB.draft(proof);
-    proof.appendChild(label(null, 'Selected'));
+    proof.appendChild(el('div', { class: 'label' }, [
+      CB.filled(d.proofLabel, function (v) { return el('span', { text: v }); },
+        'home.proofLabel', 'Heading over the three credentials \u2014 e.g. Climbing, Highlights')
+    ]));
     proof.appendChild(statRow(d.proof, 'stats--proof', 'home.proof', {
       value: 'A headline credential — e.g. a grade, a route, a first ascent',
       label: 'What it was and where'
@@ -1107,7 +1116,10 @@
     /* the numbers */
     var reach = el('section', { class: 'home__block' });
     if (!anyReach(d.reach)) CB.draft(reach);
-    reach.appendChild(label(null, 'Reach'));
+    reach.appendChild(el('div', { class: 'label' }, [
+      CB.filled(d.reachLabel, function (v) { return el('span', { text: v }); },
+        'home.reachLabel', 'Heading over the figures \u2014 e.g. Reach, Audience')
+    ]));
     reach.appendChild(statRow(d.reach, 'stats--reach', 'home.reach', {
       value: 'The figure — e.g. followers, views, readership',
       label: 'Which platform or publication'
@@ -1119,9 +1131,11 @@
 
     /* where the work lives */
     var paths = el('section', { class: 'home__paths' });
-    [['journal', 'Writing', (CB.content.journal || {}).lede],
-     ['photography', 'Photography', (CB.content.photography || {}).lede],
-     ['media', 'Published', (CB.content.media || {}).lede]].forEach(function (p) {
+    /* Each card is named by the page it opens, so nothing here drifts out of
+       step with the rail or repeats a word the figures above already used. */
+    [['journal'], ['photography'], ['media']].forEach(function (pair) {
+      var sec = CB.content[pair[0]] || {};
+      var p = [pair[0], sec.title || pair[0], sec.lede];
       var a = el('a', { class: 'home__path', href: CB.hrefFor(p[0]) });
       a.appendChild(el('h2', { text: p[1] }));
       if (p[2]) a.appendChild(el('p', { class: 'home__pathnote', text: p[2] }));
@@ -1140,7 +1154,10 @@
       return el('p', { class: 'contact__blurb', text: v });
     }, 'home.cta.blurb', 'One line inviting the enquiry you actually want'));
     if (site.email) {
-      cp.appendChild(el('a', { class: 'contact__btn', href: 'mailto:' + site.email, text: 'Contact' }));
+      /* The section is already labelled Contact. A button repeating the word
+         tells nobody anything; naming the action does. */
+      cp.appendChild(el('a', { class: 'contact__btn', href: 'mailto:' + site.email,
+        text: site.contactButton || 'Send an email', 'aria-label': 'Email Christian Black' }));
     }
     cta.appendChild(cp);
     root.appendChild(cta);
@@ -1249,7 +1266,8 @@
     var kp = el('div', { class: 'overlay__panel overlay__panel--centre' });
     kp.appendChild(label(null, 'Contact'));
     kp.appendChild(el('p', { class: 'contact__blurb', text: site.contactNote || '' }));
-    if (site.email) kp.appendChild(el('a', { class: 'contact__btn', href: 'mailto:' + site.email, text: 'Contact' }));
+    if (site.email) kp.appendChild(el('a', { class: 'contact__btn', href: 'mailto:' + site.email,
+      text: site.contactButton || 'Send an email', 'aria-label': 'Email Christian Black' }));
     cta.appendChild(kp);
     root.appendChild(cta);
   }
@@ -1649,7 +1667,7 @@
     if (site.email) {
       cp.appendChild(el('a', {
         class: 'contact__btn', href: 'mailto:' + site.email,
-        text: 'Contact', 'aria-label': 'Email Christian Black'
+        text: site.contactButton || 'Send an email', 'aria-label': 'Email Christian Black'
       }));
     }
     cs.appendChild(cp);

@@ -187,7 +187,7 @@ window.CB_CONTENT = {
     "kicker": "Christian Black",
     "title": "",
     "positioning": "Rock and alpine climber, writer, photographer and storyteller",
-    "intro": "Christian Black is a multidisciplinary climbing athlete with an equal passion for storytelling and documenting. He enjoys contributing to his audience through video, capturing a moment in a photo, or reflecting on an experience through his writing. His current focuses are big-wall free climbing and adventure paragliding.",
+    "intro": "Christian Black is a multidisciplinary climbing athlete with an equal passion for storytelling and documenting. He enjoys contributing to his audience through [video](media.html), capturing a moment in a [photo](photography.html), or reflecting on an experience through his [writing](journal.html). His current focuses are big-wall free climbing and adventure paragliding.",
     "header": {
       "image": "images/header.jpg",
       "focus": "center 45%",
