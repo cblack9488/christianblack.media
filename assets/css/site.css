@@ -1388,3 +1388,7 @@ a.kit__detail { border: 0; color: var(--accent-hover); }
   color: var(--ochre-500); opacity: 0.7;
 }
 .site-footer__kit { margin-right: var(--space-4); }
+/* A set waiting to be named, shown only while editing. */
+.sets .ph { display: inline-block; margin: 0; padding: 6px 10px; }
+.sets .ph__tag { display: none; }
+.sets .ph__hint { font-size: var(--text-label); letter-spacing: var(--tracking-label); text-transform: uppercase; }

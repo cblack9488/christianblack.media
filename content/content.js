@@ -297,7 +297,7 @@ window.CB_CONTENT = {
     "kicker": "Photography",
     "title": "Photography",
     "lede": "Moments, places, people.",
-    "working": "",
+    "working": "[Email](mailto:cblack9488@gmail.com) for licensing or assingments",
     "sets": [
       {
         "id": "",

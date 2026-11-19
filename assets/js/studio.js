@@ -426,12 +426,13 @@
       /* The choices are whatever sets have been named on this page, so a set
          only has to be spelled once. */
       input = el('select');
-      var defined = (((window.CB_CONTENT || {}).photography || {}).sets || [])
-        .filter(function (x) { return x && x.id; });
+      /* The same derivation the page uses, so a set named once is named
+         everywhere. */
+      var defined = CB.setsOf(((window.CB_CONTENT || {}).photography || {}));
       var cur = obj[f.k] || '';
       var list = [{ v: '', l: 'Unassigned \u2014 shows in All only' }].concat(
-        defined.map(function (x) { return { v: x.id, l: x.label || x.id }; }));
-      if (cur && !defined.some(function (x) { return x.id === cur; })) list.push({ v: cur, l: cur });
+        defined.map(function (x) { return { v: x.id, l: x.label }; }));
+      if (cur && !defined.some(function (x) { return x.id === cur; })) list.push({ v: cur, l: cur + ' (set no longer exists)' });
       list.forEach(function (o) {
         var op = el('option', { value: o.v, text: o.l });
         if (o.v === cur) op.selected = true;

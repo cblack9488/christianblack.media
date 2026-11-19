@@ -497,23 +497,42 @@
        all of it at once. Until sets are assigned the bar stays hidden and the
        page behaves exactly as it did. The chosen set lives in the URL so a
        link can point straight at one. */
-    var setList = (d.sets || []).filter(function (x) { return x && x.id && x.label; });
+    /* A set needs only a name. The address it gets in the link is made from
+       that name, so there is one thing to type rather than two that have to
+       agree with each other. */
+    var setList = CB.setsOf(d);
     var usedSets = {};
     photos.forEach(function (p) { if (p && p.set) usedSets[p.set] = true; });
     var active = '';
-    if (setList.length) {
+    var editing = !!(window.CB_STUDIO && window.CB_STUDIO.active);
+    if (setList.length || editing) {
       var want = (new URLSearchParams(location.search).get('set') || '').trim();
       if (want && setList.some(function (x) { return x.id === want; })) active = want;
       var bar = el('nav', { class: 'sets', 'aria-label': 'Photograph sets' });
-      var all = el('a', { class: 'sets__tab' + (active ? '' : ' is-on'), href: 'photography.html', text: 'All' });
-      bar.appendChild(all);
+      if (setList.length) {
+        bar.appendChild(el('a', { class: 'sets__tab' + (active ? '' : ' is-on'),
+          href: 'photography.html', text: 'All' }));
+      }
       setList.forEach(function (x) {
-        bar.appendChild(el('a', {
+        var n = (d.photos || []).filter(function (p) { return p && p.set === x.id; }).length;
+        var tab = el('a', {
           class: 'sets__tab' + (active === x.id ? ' is-on' : ''),
           href: 'photography.html?set=' + encodeURIComponent(x.id),
-          text: x.label + (usedSets[x.id] ? '' : ' (empty)')
-        }));
+          text: x.label + (editing ? ' (' + n + ')' : '')
+        });
+        tab.setAttribute('data-field', 'photography.sets[' + x.i + '].label');
+        tab.setAttribute('data-hint', 'The name of this set. Clear it to remove the set.');
+        bar.appendChild(tab);
       });
+      /* While editing, the unused slots show so a set can be added without
+         going looking for where they live. */
+      if (editing) {
+        (d.sets || []).forEach(function (x, i) {
+          if (x && String(x.label || '').trim()) return;
+          bar.appendChild(CB.slot('photography.sets[' + i + '].label',
+            'Name a set \u2014 e.g. Climbing', 'span'));
+        });
+      }
       root.appendChild(bar);
       if (active) {
         photos = photos.filter(function (p) { return p && p.set === active; });
@@ -664,6 +683,19 @@
               CB.resolveSrc(p.full) + ' ' + large[0] + 'w',
       sizes: '(max-width: 780px) 50vw, 100vw'
     };
+  };
+
+  /* A set's address is made from its name: "People & Places" becomes
+     people-places. Exposed on CB so Studio names sets the same way. */
+  CB.setSlug = function (label) {
+    return String(label || '').toLowerCase().trim()
+      .replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  };
+  CB.setsOf = function (d) {
+    return ((d || {}).sets || []).map(function (x, i) {
+      return x && String(x.label || '').trim()
+        ? { i: i, label: String(x.label).trim(), id: x.id || CB.setSlug(x.label) } : null;
+    }).filter(Boolean);
   };
 
   /* Justified rows. Each row is filled until it is about as wide as the
