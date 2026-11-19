@@ -212,7 +212,7 @@ window.CB_CONTENT = {
     ],
     "reach": [
       {
-        "value": "",
+        "value": "25k",
         "label": "Film views",
         "note": "All Grown Up - Dirtbag Fund film"
       },
@@ -229,7 +229,9 @@ window.CB_CONTENT = {
     ],
     "cta": {
       "blurb": "for inquiries, media requests, licensing or collaboration"
-    }
+    },
+    "proofLabel": "Climbing",
+    "reachLabel": "Reach"
   },
   "mediakit": {
     "kicker": "Media kit",
