@@ -1368,6 +1368,14 @@ a.kit__detail { border: 0; color: var(--accent-hover); }
   margin-top: var(--space-4); max-width: var(--measure-narrow);
   font-size: var(--text-small); color: var(--text-muted);
 }
+/* The line is quiet; the way to act on it should not be. */
+.gallery-head__working a {
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 1px;
+  transition: color var(--dur-fast) var(--ease-soft), border-color var(--dur-fast) var(--ease-soft);
+}
+.gallery-head__working a:hover { color: var(--text-primary); border-bottom-color: var(--accent-hover); }
 .sets {
   max-width: var(--max-content); margin: 0 auto var(--space-6);
   padding: 0 var(--gutter-page);

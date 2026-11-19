@@ -508,7 +508,9 @@
     /* A line for the readers who are here to commission or license rather
        than to look. */
     head.appendChild(CB.filled(d.working, function (v) {
-      return el('p', { class: 'gallery-head__working', text: v });
+      /* paraEl rather than plain text, so [words](mailto:…) becomes a link
+         here as it does in every other piece of prose on the site. */
+      return paraEl(v, 'gallery-head__working');
     }, 'photography.working', 'One line on assignments and licensing — what you shoot, and that images can be licensed. Add a mailto link with [text](mailto:…) if you want one.'));
     root.appendChild(head);
 
