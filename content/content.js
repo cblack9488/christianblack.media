@@ -187,7 +187,7 @@ window.CB_CONTENT = {
     "kicker": "Christian Black",
     "title": "",
     "positioning": "Rock and alpine climber, writer, photographer and storyteller",
-    "intro": "",
+    "intro": "Christian Black is a multidisciplinary climbing athlete with an equal passion for storytelling and documenting. He enjoys contributing to his audience through video, capturing a moment in a photo, or reflecting on an experience through his writing. His current focuses are big-wall free climbing and adventure paragliding.",
     "header": {
       "image": "images/header.jpg",
       "focus": "center 45%",
@@ -195,36 +195,36 @@ window.CB_CONTENT = {
     },
     "proof": [
       {
-        "value": "",
-        "label": "",
-        "note": ""
+        "value": "First ascent",
+        "label": "White Sapphire, 6,040m — Kishtwar, India",
+        "note": "AI3 M7+, 850m. American Alpine Journal, 2024"
       },
       {
-        "value": "",
-        "label": "",
-        "note": ""
+        "value": "Big-wall free climbing",
+        "label": "Golden Gate, 5.13a, El Capitan — ground-up free ascent",
+        "note": "36 pitches, Yosemite"
       },
       {
-        "value": "",
-        "label": "",
-        "note": ""
+        "value": "Para-alpinism",
+        "label": "Climb and fly in the Cordillera Blanca, Peru",
+        "note": "Cross Country Magazine, issue 265"
       }
     ],
     "reach": [
       {
         "value": "",
-        "label": "Youtube subscribers",
-        "note": ""
-      },
-      {
-        "value": "",
-        "label": "Youtube views",
-        "note": ""
-      },
-      {
-        "value": "",
         "label": "Film views",
-        "note": ""
+        "note": "All Grown Up - Dirtbag Fund film"
+      },
+      {
+        "value": "Published work",
+        "label": "Published in",
+        "note": "AAJ - Climbing Mag - XC Mag - Gear Junkie"
+      },
+      {
+        "value": "201k",
+        "label": "Instagram views",
+        "note": "90 days, 3k followers"
       }
     ],
     "cta": {

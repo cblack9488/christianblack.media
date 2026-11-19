@@ -1000,8 +1000,15 @@
   function liveReach(label) {
     var r = window.CB_REACH || {};
     var k = String(label || '').toLowerCase();
-    if (/instagram|insta|\big\b/.test(k) && r.instagram && r.instagram.followers) {
-      return CB.formatReach(r.instagram.followers);
+    if (/instagram|insta|\big\b/.test(k) && r.instagram) {
+      /* A label asking for views must never be answered with a follower
+         count. They differ by two orders of magnitude here, and silently
+         swapping one for the other would replace a true figure with a
+         wrong one the day the Instagram fetch starts working. */
+      if (/view|impression|reach/.test(k)) {
+        return r.instagram.views ? CB.formatReach(r.instagram.views) : '';
+      }
+      if (r.instagram.followers) return CB.formatReach(r.instagram.followers);
     }
     if (/film|video work|my films/.test(k) && r.films && r.films.views) {
       return CB.formatReach(r.films.views);
@@ -1025,6 +1032,13 @@
       s = s || {};
       var cell = el('div', { class: 'stat' });
       var live = cls === 'stats--reach' ? liveReach(s.label) : '';
+      /* A slot with nothing in it at all — no figure typed, none fetched —
+         is scaffolding, not a blank statistic. It shows while working and
+         the build takes the whole cell out, so emptying one is how you go
+         from three figures to two without leaving a hole in the row. */
+      if (!String(s.value || '').trim() && !live && !String(s.label || '').trim()) {
+        CB.draft(cell);
+      }
       cell.appendChild(CB.filled(live || s.value, function (v) {
         var node = el('div', { class: 'stat__value', text: v });
         if (live) node.setAttribute('title', 'Updated automatically');
