@@ -1392,3 +1392,15 @@ a.kit__detail { border: 0; color: var(--accent-hover); }
 .sets .ph { display: inline-block; margin: 0; padding: 6px 10px; }
 .sets .ph__tag { display: none; }
 .sets .ph__hint { font-size: var(--text-label); letter-spacing: var(--tracking-label); text-transform: uppercase; }
+
+/* The rail has to fit whatever height the window is. On a short screen the
+   air between the links closes up rather than letting the last one fall off
+   the bottom, and past that the rail scrolls. */
+@media (max-height: 880px) { .rail ul { gap: var(--space-6); } }
+@media (max-height: 760px) { .rail ul { gap: var(--space-5); } }
+@media (max-height: 660px) {
+  .rail ul { gap: var(--space-4); }
+  .rail { overflow-y: auto; scrollbar-width: none; }
+  .rail::-webkit-scrollbar { display: none; }
+}
+.rail .mark[aria-current="page"] .mark__img { opacity: 1; }

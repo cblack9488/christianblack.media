@@ -898,7 +898,7 @@ window.CB_CONTENT = {
       "image": "images/about-outreach.jpg",
       "credit": "",
       "side": "left",
-      "text": "To give back to the community that gave him so much, Christian spent formative years volunteering as a Yosemite search and rescue (YOSAR) member, Yosemite climbing ranger, and Denali rescue volunteer. These years gave him a deep respect for risk that continually shapes his interactions with the mountains, a topic he writes openly about in his essays in hopes of moving forward a culture of healthy risk. He has enjoyed sharing his depth of skills, hosting free self-rescue clinics at film screenings, climbing gyms, and developing the Climber Coffee self-rescue clinics for the Yosemite climbing ranger program during his time as a ranger. Among friends he is known for his crab poses and climbing catch phrase “have fun, be safe, look cool!” Find more on his instagram [here](https://www.instagram.com/crustacean_black/)."
+      "text": "To give back to the community that gave him so much, Christian spent formative years volunteering as a Yosemite search and rescue (YOSAR) member, Yosemite climbing ranger, and Denali rescue volunteer. These years gave him a deep respect for risk that continually shapes his interactions with the mountains, a topic he writes openly about in his essays in hopes of moving forward a culture of healthy risk. He has enjoyed sharing his depth of skills, hosting free self-rescue clinics at film screenings, climbing gyms, and developing the Climber Coffee self-rescue clinics for the Yosemite climbing ranger program during his time as a ranger. Among friends he is known for his crab poses and climbing catch phrase “have fun, be safe, look cool!”"
     }
   }
 };

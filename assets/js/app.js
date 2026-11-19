@@ -7,8 +7,10 @@
 
   var CB = (window.CB = window.CB || {});
 
+  /* Home is not in this list: the mark at the top of the rail is the way
+     back, as it has always been. Six entries overflowed the rail on an
+     ordinary laptop and pushed About off the bottom of the screen. */
   CB.PAGES = [
-    { id: 'home', label: 'Home', href: 'index.html' },
     { id: 'journal', label: 'Journal', href: 'journal.html' },
     { id: 'athlete', label: 'Tick list', href: 'ticklist.html' },
     { id: 'photography', label: 'Photography', href: 'photography.html' },
@@ -18,7 +20,10 @@
   /* The media kit is reachable from the landing page and the footer, but it
      is not in the rail: it is for a particular reader, not a section of the
      site. */
-  CB.OFF_RAIL = [{ id: 'mediakit', label: 'Media kit', href: 'mediakit.html' }];
+  CB.OFF_RAIL = [
+    { id: 'home', label: 'Home', href: 'index.html' },
+    { id: 'mediakit', label: 'Media kit', href: 'mediakit.html' }
+  ];
 
   CB.hrefFor = function (id) {
     var all = CB.PAGES.concat(CB.OFF_RAIL);
@@ -99,7 +104,9 @@
   function rail() {
     var site = CB.content.site || {};
     var nav = el('nav', { class: 'rail', 'aria-label': 'Pages' });
-    var markLink = el('a', { class: 'mark', href: CB.hrefFor('home'), 'aria-label': site.name || 'Home' });
+    var markLink = el('a', { class: 'mark', href: CB.hrefFor('home'),
+      title: 'Home', 'aria-label': (site.name || 'Christian Black') + ' \u2014 home' });
+    if (CB.page === 'home') markLink.setAttribute('aria-current', 'page');
     if (site.markImage) {
       markLink.appendChild(el('img', { class: 'mark__img', src: CB.resolveSrc(site.markImage), alt: site.name || 'Home' }));
     } else {
@@ -1634,24 +1641,10 @@
     hero.appendChild(hin);
     root.appendChild(hero);
 
-    /* opening paragraph beside the portrait */
-    if (d.intro || d.portrait) {
-      var openWrap = el('div', { class: 'about-open-wrap' });
-      var open = el('div', { class: 'about-open' });
-      var txt = el('div', { class: 'cb-prose entry__prose about-open__text' });
-      if (d.intro) txt.appendChild(paraEl(d.intro));
-      open.appendChild(txt);
-      if (d.portrait) {
-        var pf = frameEl({ src: d.portrait, alt: 'Portrait of ' + (d.title || 'Christian Black'), ratio: 'free' }, { placeholder: 'Portrait', eager: true });
-        pf.classList.add('about-open__photo');
-        pf.setAttribute('data-drop', 'about.portrait');
-        open.appendChild(pf);
-      }
-      openWrap.appendChild(open);
-      root.appendChild(openWrap);
-    }
-
-    /* Outreach: the writing sits over the photograph rather than beneath it */
+    /* Outreach comes first. The rescue years and the clinics are the most
+       particular thing on this page, and a reader who gets no further than
+       the first screen should still have met them. The biography follows
+       underneath and can take its time. */
     var o = d.outreach || {};
     if (o.text || o.image) {
       var sec = el('section', { class: 'overlay overlay--' + (o.side === 'right' ? 'right' : 'left') });
@@ -1673,6 +1666,22 @@
       sec.appendChild(panel);
       if (o.credit) sec.appendChild(el('div', { class: 'overlay__credit meta', text: o.credit }));
       root.appendChild(sec);
+    }
+    /* the biography, below the outreach it used to sit above */
+    if (d.intro || d.portrait) {
+      var openWrap = el('div', { class: 'about-open-wrap' });
+      var open = el('div', { class: 'about-open' });
+      var txt = el('div', { class: 'cb-prose entry__prose about-open__text' });
+      if (d.intro) txt.appendChild(paraEl(d.intro));
+      open.appendChild(txt);
+      if (d.portrait) {
+        var pf = frameEl({ src: d.portrait, alt: 'Portrait of ' + (d.title || 'Christian Black'), ratio: 'free' }, { placeholder: 'Portrait', eager: true });
+        pf.classList.add('about-open__photo');
+        pf.setAttribute('data-drop', 'about.portrait');
+        open.appendChild(pf);
+      }
+      openWrap.appendChild(open);
+      root.appendChild(openWrap);
     }
     /* a full-width photograph between the two halves */
     var br = d['break'] || {};
