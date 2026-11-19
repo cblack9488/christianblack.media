@@ -874,9 +874,12 @@ window.CB_CONTENT = {
     "kicker": "About",
     "seoTitle": "About Christian Black — Climber, alpinist, paraglider pilot",
     "title": "Christian Black",
-    "positioning": "",
+    "positioning": "Rock and alpine climber, writer, photographer and storyteller",
     "lede": "“Have fun, be safe, look cool!”",
-    "portrait": "images/portrait-cb.jpg",
+    "portrait": "images/about-at-work.jpg",
+    "portraitAlt": "Christian Black hanging on a rope on El Capitan with a camera, Yosemite behind him",
+    "portraitEnd": "images/portrait-cb.jpg",
+    "portraitEndAlt": "Christian Black on a summit at night, arms raised in a crab pose",
     "contact": {
       "title": "Get in touch",
       "blurb": "For inquiries, media requests, licensing or collaboration.",
@@ -888,7 +891,7 @@ window.CB_CONTENT = {
       "focus": "center 45%",
       "credit": "Photo · Dan Teitelbaum"
     },
-    "intro": "Christian Black is a rock climber, alpinist and paraglider pilot documenting his travels authentically through storytelling, photography and film. From boulders to high peaks or behind the lens, his multidisciplinary interests drive his passion and creativity for exploring the world around us through more than one medium.",
+    "intro": "Christian Black is a multidisciplinary climber and storyteller based in the Las Vegas area.\n\nOriginally from Texas, Christian started climbing in college at the age of 19 and eagerly pursued a direction far from his upbringing. After formative years working for the National Park Service in Yosemite and Sequoia and Kings Canyon National Parks, Christian took his pursuits abroad to Patagonia, the Indian Himalaya, China, Peru, and Alaska. His interests vary from sport and boulder projecting to high-altitude technical alpinism and paragliding adventures. \n\nIn addition to athletic pursuits, Christian enjoys many types of storytelling through writing, photography or video. His work can be found published in outlets such as the American Alpine Journal, Climbing Magazine, Dirtbag Fund Films, Cross Country Magazine, and more. \n\nWhether climbing, flying, or shooting, Christian can always be found exploring the world through more than one medium. Among friends he is known for his crab poses and climbing catch phrase “have fun, be safe, look cool!”",
     "break": {
       "image": "images/about-sport.jpg",
       "credit": "Photo · Dan Teitelbaum"
@@ -898,7 +901,7 @@ window.CB_CONTENT = {
       "image": "images/about-outreach.jpg",
       "credit": "",
       "side": "left",
-      "text": "To give back to the community that gave him so much, Christian spent formative years volunteering as a Yosemite search and rescue (YOSAR) member, Yosemite climbing ranger, and Denali rescue volunteer. These years gave him a deep respect for risk that continually shapes his interactions with the mountains, a topic he writes openly about in his essays in hopes of moving forward a culture of healthy risk. He has enjoyed sharing his depth of skills, hosting free self-rescue clinics at film screenings, climbing gyms, and developing the Climber Coffee self-rescue clinics for the Yosemite climbing ranger program during his time as a ranger. Among friends he is known for his crab poses and climbing catch phrase “have fun, be safe, look cool!”"
+      "text": "To give back to the community that gave him so much, Christian spent formative years volunteering as a Yosemite search and rescue (YOSAR) member, Yosemite climbing ranger, and Denali rescue volunteer. These years gave him a deep respect for risk that continually shapes his interactions with the mountains, a topic he writes openly about in his essays in hopes of moving forward a culture of healthy risk. He has enjoyed sharing his depth of skills, hosting free self-rescue clinics at film screenings, climbing gyms, and developing the Climber Coffee self-rescue clinics for the Yosemite climbing ranger program during his time as a ranger. "
     }
   }
 };

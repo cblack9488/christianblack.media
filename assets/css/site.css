@@ -995,12 +995,20 @@ body { padding-right: var(--rail-width); }
 }
 .about-open {
   display: grid; grid-template-columns: 1.2fr 0.8fr;
-  gap: var(--space-8); align-items: start;
+  gap: var(--space-8); align-items: stretch;
+}
+/* One photograph beside the opening of the biography, one beside its close.
+   The space between them stretches with the writing, so the lower picture
+   stays level with the last paragraph however long the text runs. */
+.about-open__photos {
+  display: flex; flex-direction: column; justify-content: space-between;
+  gap: var(--space-6); min-width: 0;
 }
 .about-open__text {
   margin: 0; max-width: none;
   padding: var(--space-7) var(--space-7) var(--space-6);
 }
+.about-open__photo { margin: 0; }
 .about-open__photo .box { border-radius: 8px; }
 .about-open__photo .box img { height: auto; }
 
@@ -1018,6 +1026,9 @@ body { padding-right: var(--rail-width); }
 
 @media (max-width: 640px) {
   .about-open { grid-template-columns: 1fr; gap: var(--space-5); }
+  /* Stacked on a phone there is no "beside" to be level with, so the two
+     photographs simply follow the writing. */
+  .about-open__photos { flex-direction: column; gap: var(--space-5); }
   .about__quote { font-size: var(--text-subhead); }
 }
 

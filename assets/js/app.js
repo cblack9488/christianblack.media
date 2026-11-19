@@ -1672,13 +1672,39 @@
       var openWrap = el('div', { class: 'about-open-wrap' });
       var open = el('div', { class: 'about-open' });
       var txt = el('div', { class: 'cb-prose entry__prose about-open__text' });
-      if (d.intro) txt.appendChild(paraEl(d.intro));
+      /* A blank line starts a new paragraph, as it does everywhere else on
+         the site. This field was the one place still rendering the whole
+         biography as a single block however it was written. */
+      if (d.intro) {
+        String(d.intro).split(/\n\s*\n/).forEach(function (t) {
+          if (t.trim()) txt.appendChild(paraEl(t.trim()));
+        });
+        txt.setAttribute('data-field', 'about.intro');
+        txt.setAttribute('data-hint', 'Your biography. A blank line between paragraphs starts a new one.');
+      }
       open.appendChild(txt);
-      if (d.portrait) {
-        var pf = frameEl({ src: d.portrait, alt: 'Portrait of ' + (d.title || 'Christian Black'), ratio: 'free' }, { placeholder: 'Portrait', eager: true });
-        pf.classList.add('about-open__photo');
-        pf.setAttribute('data-drop', 'about.portrait');
-        open.appendChild(pf);
+      /* Two photographs down the side of the biography: one level with where
+         it starts, one level with where it ends. The second is placed
+         deliberately — it is the crab pose the closing line refers to, and
+         the joke only lands if the picture is beside the sentence. */
+      if (d.portrait || d.portraitEnd) {
+        var col = el('div', { class: 'about-open__photos' });
+        if (d.portrait) {
+          var pf = frameEl({ src: d.portrait, alt: (d.portraitAlt || 'Christian Black at work'), ratio: 'free' },
+            { placeholder: 'Portrait', eager: true });
+          pf.classList.add('about-open__photo');
+          pf.setAttribute('data-drop', 'about.portrait');
+          col.appendChild(pf);
+        }
+        if (d.portraitEnd) {
+          var pe = frameEl({ src: d.portraitEnd, alt: (d.portraitEndAlt || 'Christian Black on a summit at night, arms raised in a crab pose'), ratio: 'free' },
+            { placeholder: 'Second portrait' });
+          pe.classList.add('about-open__photo');
+          pe.classList.add('about-open__photo--end');
+          pe.setAttribute('data-drop', 'about.portraitEnd');
+          col.appendChild(pe);
+        }
+        open.appendChild(col);
       }
       openWrap.appendChild(open);
       root.appendChild(openWrap);
