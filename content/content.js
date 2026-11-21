@@ -194,13 +194,146 @@ window.CB_CONTENT = {
     "kicker": "Christian Black",
     "title": "",
     "positioning": "Rock and alpine climber, writer, photographer and storyteller",
-    "intro": "Christian Black is a multidisciplinary climbing athlete with an equal passion for storytelling and documenting. He enjoys contributing to his audience through [video](media.html), capturing a moment in a [photo](photography.html), or reflecting on an experience through his [writing](journal.html). His current focuses are big-wall free climbing and adventure paragliding.",
+    "intro": "Christian Black is a climber, alpinist and adventure athlete drawn to long, technical routes, wild places, and occasionally making things more complicated than they need to be. Based in the American West, his pursuits span everything from multipitch and big-wall free climbing to high-altitude technical alpinism and paragliding. In short, he is drawn to the intricacies of these pursuits, finding joy in the nuanced strategy required to have fun in not-so-fun situations.\n\nIn recent years he has completed a ground-up free ascent of El Capitan, established a difficult new alpine route on the 6,040m White Sapphire in the Indian Himalaya and explored technical alpinism and paragliding link-ups in Peru. While serious undertakings in nature, among friends he is best known for his famous crab poses on summits and his climbing catchphrase, “Have fun, be safe, look cool!”\n\nAs a former Yosemite Search and Rescue volunteer, Denali rescue volunteer, and Yosemite Climbing Ranger, Christian has an acute appreciation for the fine line between a worthwhile adventure and a bad decision. He believes that above all, success in the mountains comes from a continual practice of thoughtful decision-making, and failure is a necessary part of playing the long game. He enjoys sharing his depth of skill with the greater climbing community by hosting free rescue and skills clinics and by developing the “Climber Coffee” self-rescue clinic for the Yosemite Climbing Ranger program.\n\nBeyond athletic pursuits, photography, filmmaking and writing are ways Christian shares meaningful stories about his experiences. He approaches photography as a way to connect and give back to the people sharing the moment. Through filmmaking he looks for the stories that emerge from the broader experiences of an expedition, while his writing offers reflections of his own motivations, challenges and occasional imbalances that come with pursuing ambitious goals.\n\nThis site is a home for Christian’s athletic and creative pursuits. For athletic credentials and partnership opportunities, visit the [Tick List](ticklist.html) and [Media Kit](mediakit.html). To explore his photography, films, writing and published work, head to the [Journal](journal.html), [Photography](photography.html) and [Media](media.html) sections.",
     "header": {
       "image": "images/header.jpg",
       "focus": "center 45%",
       "credit": ""
     },
-    "proof": [
+    "cta": {
+      "blurb": "for inquiries, media requests, licensing or collaboration"
+    },
+    "photos": [
+      {
+        "image": "images/portrait-cb.jpg",
+        "alt": "Christian Black on a summit at night, arms raised in a crab pose",
+        "after": 2,
+        "credit": ""
+      },
+      {
+        "image": "images/about-outreach.jpg",
+        "alt": "Outreach and rescue work",
+        "after": 3,
+        "credit": ""
+      },
+      {
+        "image": "images/about-at-work.jpg",
+        "alt": "Christian Black hanging on a rope on El Capitan with a camera, Yosemite behind him",
+        "after": 4,
+        "credit": ""
+      }
+    ],
+    "cards": [
+      {
+        "kind": "article",
+        "entry": "the-golden-handcuffs",
+        "title": "The Golden Handcuffs",
+        "sub": "Reflections on identity and a ground-up free ascent of Golden Gate on El Capitan",
+        "image": "images/journal/the-golden-handcuffs/01.jpg"
+      },
+      {
+        "kind": "film",
+        "url": "https://www.youtube.com/watch?v=6xC_V8TsYxM",
+        "title": "A Himalayan first-ascent",
+        "sub": "All Grown Up",
+        "image": ""
+      },
+      {
+        "kind": "article",
+        "entry": "fight-or-flight",
+        "title": "Fight or Flight",
+        "sub": "Exploring para-alpinism in the Cordillera Blanca",
+        "image": "images/journal/fight-or-flight/08.jpg"
+      }
+    ]
+  },
+  "mediakit": {
+    "kicker": "Media kit",
+    "title": "Christian Black",
+    "lede": "Rock and alpine climber, writer, photographer and storyteller",
+    "header": {
+      "image": "images/about-backdrop.jpg",
+      "focus": "center 45%",
+      "credit": ""
+    },
+    "bio": "Christian Black is a climber, alpinist and adventure athlete based in the American West. His pursuits range from multipitch and big-wall free climbing to high-altitude technical alpinism and paragliding. He has completed a ground-up free ascent of Golden Gate (5.13a) on El Capitan, established a new alpine route on the 6,040m White Sapphire in the Indian Himalaya, and explored technical alpinism and paragliding link-ups in Peru.\n\nA former Yosemite Search and Rescue volunteer, Denali rescue volunteer and Yosemite Climbing Ranger, he hosts free rescue and skills clinics and developed the “Climber Coffee” self-rescue clinic for the Yosemite Climbing Ranger program.\n\nChristian also works as a photographer, filmmaker and writer. His work has appeared in the American Alpine Journal, Climbing, Cross Country Magazine, GearJunkie and Dirtbag Fund Films. Among friends he is known for his crab poses on summits and his climbing catchphrase, “Have fun, be safe, look cool!”",
+    "audience": "Christian reaches climbers, alpinists and paraglider pilots through three channels: film, long-form writing and photography.\n\nHis film All Grown Up, made with the Dirtbag Fund, has passed 25,000 views. His writing has run in the American Alpine Journal, Climbing, Cross Country Magazine and GearJunkie, and has been discussed on The Cutting Edge (American Alpine Club) and The Paragliding Podcast. On Instagram (@crustacean_black), his posts reached 201,000 views over the last 90 days.",
+    "reach": [
+      {
+        "value": "25k",
+        "label": "Film views",
+        "note": "All Grown Up — Dirtbag Fund film"
+      },
+      {
+        "value": "Published work",
+        "label": "Published in",
+        "note": "AAJ - Climbing Mag - XC Mag - Gear Junkie"
+      },
+      {
+        "value": "201k",
+        "label": "Instagram views",
+        "note": "Last 90 days — 3k followers"
+      }
+    ],
+    "services": [
+      {
+        "name": "Photography",
+        "detail": "Climbing, alpine and travel photography, from big walls to expeditions. Available for licensing and assignments."
+      },
+      {
+        "name": "Film",
+        "detail": "Expedition storytelling that looks for the stories that emerge from the broader experience, as in All Grown Up (Dirtbag Fund)."
+      },
+      {
+        "name": "Writing",
+        "detail": "Essays, features and trip reports, plus instructional articles and gear reviews and testing."
+      }
+    ],
+    "partners": [
+      {
+        "name": "Hyperlite Mountain Gear",
+        "detail": "Supported athlete"
+      },
+      {
+        "name": "Dirtbag Fund",
+        "detail": "Film: All Grown Up (25k views)"
+      },
+      {
+        "name": "American Alpine Journal",
+        "detail": "“Brilliant Blue”, first ascent of White Sapphire, Kishtwar Valley (2024)"
+      },
+      {
+        "name": "Cross Country Magazine",
+        "detail": "Feature: “Fight or Flight”, para-alpinism in the Cordillera Blanca (issue 265); featured on The Paragliding Podcast, episode 5"
+      },
+      {
+        "name": "Climbing",
+        "detail": "Instructional articles"
+      },
+      {
+        "name": "GearJunkie",
+        "detail": "Gear reviews and testing"
+      },
+      {
+        "name": "American Alpine Club",
+        "detail": "Featured on The Cutting Edge podcast: “Brilliant Blue on White Sapphire”"
+      }
+    ],
+    "downloads": [
+      {
+        "label": "Portrait — summit crab pose",
+        "url": "images/portrait-cb.jpg"
+      },
+      {
+        "label": "Portrait — at work on El Capitan",
+        "url": "images/about-at-work.jpg"
+      },
+      {
+        "label": "Climbing résumé (Tick list)",
+        "url": "ticklist.html"
+      }
+    ],
+    "highlights": [
       {
         "value": "First ascent",
         "label": "White Sapphire, 6,040m — Kishtwar, India",
@@ -217,88 +350,7 @@ window.CB_CONTENT = {
         "note": "Cross Country Magazine, issue 265"
       }
     ],
-    "reach": [
-      {
-        "value": "25k",
-        "label": "Film views",
-        "note": "All Grown Up - Dirtbag Fund film"
-      },
-      {
-        "value": "Published work",
-        "label": "Published in",
-        "note": "AAJ - Climbing Mag - XC Mag - Gear Junkie"
-      },
-      {
-        "value": "201k",
-        "label": "Instagram views",
-        "note": "90 days, 3k followers"
-      }
-    ],
-    "cta": {
-      "blurb": "for inquiries, media requests, licensing or collaboration"
-    },
-    "proofLabel": "Climbing",
-    "reachLabel": "Reach"
-  },
-  "mediakit": {
-    "kicker": "Media kit",
-    "title": "",
-    "lede": "",
-    "header": {
-      "image": "images/about-backdrop.jpg",
-      "focus": "center 45%",
-      "credit": ""
-    },
-    "bio": "",
-    "audience": "",
-    "reach": [
-      {
-        "value": "",
-        "label": "",
-        "note": ""
-      },
-      {
-        "value": "",
-        "label": "",
-        "note": ""
-      },
-      {
-        "value": "",
-        "label": "",
-        "note": ""
-      },
-      {
-        "value": "",
-        "label": "",
-        "note": ""
-      }
-    ],
-    "services": [
-      {
-        "name": "",
-        "detail": ""
-      },
-      {
-        "name": "",
-        "detail": ""
-      },
-      {
-        "name": "",
-        "detail": ""
-      }
-    ],
-    "partners": [
-      {
-        "name": "",
-        "detail": ""
-      }
-    ],
-    "downloads": [
-      {
-        "label": "",
-        "url": ""
-      }
-    ]
+    "highlightsLabel": "Climbing highlights"
   },
   "photography": {
     "kicker": "Photography",
