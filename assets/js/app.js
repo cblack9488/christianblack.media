@@ -14,9 +14,10 @@
     { id: 'journal', label: 'Journal', href: 'journal.html' },
     { id: 'athlete', label: 'Tick list', href: 'ticklist.html' },
     { id: 'photography', label: 'Photography', href: 'photography.html' },
-    { id: 'media', label: 'Media', href: 'media.html' },
-    { id: 'about', label: 'About', href: 'about.html' }
+    { id: 'media', label: 'Media', href: 'media.html' }
   ];
+  /* About has been folded into the landing page: the biography lives there
+     now, so the rail no longer lists it and about.html forwards to home. */
   /* The media kit is reachable from the landing page and the footer, but it
      is not in the rail: it is for a particular reader, not a section of the
      site. */
@@ -282,7 +283,11 @@
     INLINE.lastIndex = 0;
     while ((m = INLINE.exec(text)) !== null) {
       if (m.index > last) host.appendChild(document.createTextNode(text.slice(last, m.index)));
-      if (m[1]) host.appendChild(el('a', { href: m[2], target: '_blank', rel: 'noopener', text: m[1] }));
+      /* Links to other pages of this site open in the same tab; anything
+         else opens in a new one. */
+      if (m[1]) host.appendChild(el('a', /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(m[2])
+        ? { href: m[2], target: '_blank', rel: 'noopener', text: m[1] }
+        : { href: m[2], text: m[1] }));
       else if (m[3]) host.appendChild(el('strong', { text: m[3] }));
       else host.appendChild(el('em', { text: m[4] }));
       last = m.index + m[0].length;
@@ -1263,9 +1268,6 @@
     /* No kicker here. On every other page it names the section; on the
        landing page the only thing it could say is his name, which the
        heading underneath already says. */
-    /* The heading falls back to his own name so the published page always
-       has a real h1, and the note about rewriting it is scaffolding that the
-       build takes out. */
     hin.appendChild(el('h1', { text: d.title || site.name || '',
       'data-field': 'home.title',
       'data-hint': 'The page heading. Falls back to your name when empty.' }));
@@ -1279,79 +1281,109 @@
 
     var body = el('div', { class: 'home__body' });
 
-    /* the short self-description */
+    /* The biography. Photographs from home.photos sit after the paragraph
+       named in their "after" field, so they can be moved without touching
+       the writing. The last paragraph carries the links to the rest of the
+       site. */
     var introWrap = el('section', { class: 'home__intro cb-prose entry__prose' });
     introWrap.appendChild(CB.filled(d.intro, function (v) {
       var box = el('div');
-      String(v).split(/\n\s*\n/).forEach(function (t) { if (t.trim()) box.appendChild(paraEl(t.trim())); });
+      var photos = d.photos || [];
+      String(v).split(/\n\s*\n/).forEach(function (t, i) {
+        if (!t.trim()) return;
+        box.appendChild(paraEl(t.trim()));
+        photos.forEach(function (ph) {
+          if (!ph || !ph.image || Number(ph.after) !== i + 1) return;
+          var fig = el('figure', { class: 'home__photo' });
+          fig.appendChild(el('img', { src: CB.resolveSrc(ph.image), alt: ph.alt || '', loading: 'lazy', decoding: 'async' }));
+          if (ph.credit) fig.appendChild(el('figcaption', { class: 'meta', text: ph.credit }));
+          box.appendChild(fig);
+        });
+      });
       return box;
-    }, 'home.intro', 'Two or three sentences. What you do, where, and why someone should care.'));
+    }, 'home.intro', 'The biography. A blank line starts a new paragraph; [words](page.html) makes a link.'));
     body.appendChild(introWrap);
-
-    /* the credentials a brand scans for */
-    var proof = el('section', { class: 'home__block' });
-    if (!anyWritten(d.proof, 'value')) CB.draft(proof);
-    proof.appendChild(el('div', { class: 'label' }, [
-      CB.filled(d.proofLabel, function (v) { return el('span', { text: v }); },
-        'home.proofLabel', 'Heading over the three credentials \u2014 e.g. Climbing, Highlights')
-    ]));
-    proof.appendChild(statRow(d.proof, 'stats--proof', 'home.proof', {
-      value: 'A headline credential — e.g. a grade, a route, a first ascent',
-      label: 'What it was and where'
-    }));
-    proof.appendChild(el('a', { class: 'home__more', href: CB.hrefFor('athlete'), text: 'Full climbing résumé ↗' }));
-    body.appendChild(proof);
-
-    /* the numbers */
-    var reach = el('section', { class: 'home__block' });
-    if (!anyReach(d.reach)) CB.draft(reach);
-    reach.appendChild(el('div', { class: 'label' }, [
-      CB.filled(d.reachLabel, function (v) { return el('span', { text: v }); },
-        'home.reachLabel', 'Heading over the figures \u2014 e.g. Reach, Audience')
-    ]));
-    reach.appendChild(statRow(d.reach, 'stats--reach', 'home.reach', {
-      value: 'The figure — e.g. followers, views, readership',
-      label: 'Which platform or publication'
-    }));
-    if (CB.kitReady()) {
-      reach.appendChild(el('a', { class: 'home__more', href: CB.hrefFor('mediakit'), text: 'Media kit ↗' }));
-    }
-    body.appendChild(reach);
-
     root.appendChild(body);
 
-    /* where the work lives */
-    var paths = el('section', { class: 'home__paths' });
-    /* Each card is named by the page it opens, so nothing here drifts out of
-       step with the rail or repeats a word the figures above already used. */
-    [['journal'], ['photography'], ['media']].forEach(function (pair) {
-      var sec = CB.content[pair[0]] || {};
-      var p = [pair[0], sec.title || pair[0], sec.lede];
-      var a = el('a', { class: 'home__path', href: CB.hrefFor(p[0]) });
-      a.appendChild(el('h2', { text: p[1] }));
-      if (p[2]) a.appendChild(el('p', { class: 'home__pathnote', text: p[2] }));
-      paths.appendChild(a);
-    });
-    root.appendChild(paths);
+    /* Three pieces of work, side by side: an essay, a film, a feature.
+       The film plays where it stands; the two articles open their pages. */
+    var cards = (d.cards || []).filter(function (c) { return c; });
+    if (cards.length) {
+      var row = el('section', { class: 'home__paths home__cards' });
+      cards.forEach(function (c) {
+        var film = c.kind === 'film';
+        var href = film ? c.url : (c.entry ? CB.entryHref(c.entry) : (c.href || '#'));
+        var img = c.image ? CB.resolveSrc(c.image) : (film ? CB.ytThumb(c.url) : '');
 
-    /* contact */
-    var cta = el('section', { class: 'overlay overlay--contact', id: 'contact' });
-    var cimg = ((CB.content.about || {}).contact || {}).image;
-    if (cimg) cta.appendChild(el('img', { class: 'overlay__img', src: CB.resolveSrc(cimg), alt: '', loading: 'lazy' }));
-    cta.appendChild(el('div', { class: 'overlay__scrim overlay__scrim--heavy' }));
-    var cp = el('div', { class: 'overlay__panel overlay__panel--centre' });
-    cp.appendChild(label(null, 'Contact'));
-    cp.appendChild(CB.filled((d.cta || {}).blurb, function (v) {
-      return el('p', { class: 'contact__blurb', text: v });
-    }, 'home.cta.blurb', 'One line inviting the enquiry you actually want'));
-    if (site.email) {
-      /* The section is already labelled Contact. A button repeating the word
-         tells nobody anything; naming the action does. */
-      cp.appendChild(el('a', { class: 'contact__btn', href: 'mailto:' + site.email,
-        text: site.contactButton || 'Send an email', 'aria-label': 'Email Christian Black' }));
+        var card = el(film ? 'div' : 'a', film
+          ? { class: 'home__path home__card home__card--film' }
+          : { class: 'home__path home__card', href: href });
+        var thumb = el(film ? 'a' : 'span', film
+          ? { class: 'home__thumb', href: href, target: '_blank', rel: 'noopener',
+              'aria-label': 'Play ' + (c.title || 'the film') }
+          : { class: 'home__thumb' });
+        if (img) thumb.appendChild(el('img', { src: img, alt: '', loading: 'lazy', decoding: 'async' }));
+        if (film) {
+          var play = el('span', { class: 'home__play', 'aria-hidden': 'true' });
+          play.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M9 6.5 L18 12 L9 17.5 Z"/></svg>';
+          thumb.appendChild(play);
+        }
+        card.appendChild(thumb);
+
+        var title = el('h2');
+        title.appendChild(film
+          ? el('a', { href: href, target: '_blank', rel: 'noopener', text: c.title || '' })
+          : document.createTextNode(c.title || ''));
+        card.appendChild(title);
+        if (c.sub) card.appendChild(el('p', { class: 'home__pathnote', text: c.sub }));
+
+        if (film) {
+          var playing = false;
+          card.addEventListener('click', function (e) {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+            if (e.target.closest && e.target.closest('iframe')) return;
+            if (playing) return;               /* a second click opens YouTube */
+            e.preventDefault();
+            playing = true;
+            thumb.innerHTML = '';
+            thumb.classList.add('is-playing');
+            thumb.removeAttribute('href');
+            thumb.appendChild(CB.videoFrame(c.url, c.title));
+          });
+        }
+        row.appendChild(card);
+      });
+      root.appendChild(row);
     }
-    cta.appendChild(cp);
-    root.appendChild(cta);
+
+    /* Looks for the photographs and the row of three, used only where the
+       stylesheet has not already said how they should look. :where() gives
+       these zero weight, so anything written in site.css wins. */
+    if (!document.getElementById('cb-home-base')) {
+      var st = document.createElement('style');
+      st.id = 'cb-home-base';
+      st.textContent =
+        '.home__photo{margin:2.6rem 0}' +
+        '.home__photo img{display:block;width:100%;height:auto}' +
+        '.home__photo figcaption{margin-top:.5rem}' +
+        ':where(.home__cards){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.75rem}' +
+        ':where(.home__card){display:block;color:inherit;text-decoration:none}' +
+        '.home__card h2 a{color:inherit;text-decoration:none}' +
+        '.home__thumb{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;' +
+          'background:rgba(128,128,128,.18);margin-bottom:.95rem}' +
+        '.home__thumb img{display:block;width:100%;height:100%;object-fit:cover;' +
+          'transition:transform .7s cubic-bezier(.2,.7,.2,1)}' +
+        '.home__card:hover .home__thumb img{transform:scale(1.035)}' +
+        '.home__thumb iframe{position:absolute;inset:0;width:100%;height:100%;border:0}' +
+        '.home__play{position:absolute;left:50%;top:50%;width:3.4rem;height:3.4rem;' +
+          'margin:-1.7rem 0 0 -1.7rem;border:1px solid rgba(255,255,255,.85);border-radius:50%;' +
+          'display:flex;align-items:center;justify-content:center;color:#fff;' +
+          'background:rgba(0,0,0,.28);transition:background .25s}' +
+        '.home__card:hover .home__play{background:rgba(0,0,0,.5)}' +
+        '.home__thumb.is-playing .home__play{display:none}' +
+        '@media (max-width:760px){:where(.home__cards){grid-template-columns:1fr}}';
+      document.head.appendChild(st);
+    }
   }
 
   /* ---------- Media kit ----------
@@ -1410,6 +1442,14 @@
       String(v).split(/\n\s*\n/).forEach(function (t) { if (t.trim()) box.appendChild(paraEl(t.trim())); });
       return box;
     }, 'mediakit.bio', 'The bio a brand can paste into a press release. Third person, 100–150 words.'), !!String(d.bio || '').trim());
+
+    var hl = el('div');
+    hl.appendChild(statRow(d.highlights, 'stats--proof', 'mediakit.highlights', {
+      value: 'A headline credential \u2014 e.g. a grade, a route, a first ascent',
+      label: 'What it was and where'
+    }));
+    hl.appendChild(el('a', { class: 'home__more', href: CB.hrefFor('athlete'), text: 'Full climbing r\u00e9sum\u00e9 \u2197' }));
+    block(d.highlightsLabel || 'Climbing highlights', hl, anyWritten(d.highlights, 'value'));
 
     var svc = el('div', { class: 'kit__list' });
     (d.services || []).forEach(function (x, i) {
@@ -1908,7 +1948,10 @@
       photography: renderPhotography,
       journal: renderJournal,
       media: renderMedia,
-      about: renderAbout
+      about: function () {
+        /* Studio's editing view stays on the page it was opened on. */
+        if (!(window.CB_STUDIO && window.CB_STUDIO.active)) location.replace(CB.hrefFor('home'));
+      }
     }[CB.page] || function () {})(main);
 
     var old = document.querySelector('.rail');
