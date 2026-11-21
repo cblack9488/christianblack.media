@@ -1388,13 +1388,14 @@
         '.home-story__grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);' +
           'gap:clamp(1.75rem,5vw,5.5rem);max-width:80rem;margin:0 auto}' +
         '.home-story__text{align-self:start;padding:clamp(1.5rem,3.5vw,3.25rem);' +
-          'background:rgba(22,21,15,.76);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}' +
+          'background:rgba(22,21,15,.5);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);' +
+          'text-shadow:0 1px 14px rgba(0,0,0,.55)}' +
         '.home-story__text .home__intro{max-width:none;margin:0;padding:0}' +
         '.home-story__side{display:flex;flex-direction:column;justify-content:space-between;' +
           'gap:clamp(2rem,10vh,6rem)}' +
-        '.home-story__photo{margin:0;box-shadow:0 18px 50px rgba(0,0,0,.45)}' +
+        '.home-story__photo{margin:0;opacity:.88;box-shadow:0 18px 50px rgba(0,0,0,.35)}' +
         '.home-story__photo img{display:block;width:100%;height:auto}' +
-        '.home-story__photo figcaption{padding:.5rem .75rem;background:rgba(22,21,15,.76)}' +
+        '.home-story__photo figcaption{padding:.5rem .75rem;background:rgba(22,21,15,.5)}' +
         '.home-after{position:relative;padding:clamp(2.5rem,7vh,5rem) clamp(1.25rem,5vw,4.5rem)}' +
         '.home-after .home__cards{max-width:80rem;margin:0 auto}' +
         ':where(.home__cards){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.75rem}' +
