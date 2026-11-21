@@ -303,7 +303,7 @@ window.CB_CONTENT = {
   "photography": {
     "kicker": "Photography",
     "title": "Photography",
-    "lede": "Moments, places, people.",
+    "lede": "Climbing, alpine and travel photography by Christian Black.",
     "working": "[Email](mailto:cblack9488@gmail.com) for licensing or assignments",
     "sets": [
       {
