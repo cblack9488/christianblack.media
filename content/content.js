@@ -307,16 +307,16 @@ window.CB_CONTENT = {
     "working": "[Email](mailto:cblack9488@gmail.com) for licensing or assignments",
     "sets": [
       {
-        "id": "",
-        "label": ""
+        "id": "climbing",
+        "label": "Climbing"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "moments",
+        "label": "Moments"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "places",
+        "label": "Places"
       },
       {
         "id": "",
@@ -332,6 +332,7 @@ window.CB_CONTENT = {
     "photos": [
       {
         "src": "images/photography/bmx-trick-mountain-store.jpg",
+        "set": "moments",
         "full": "images/photography/bmx-trick-mountain-store-full.jpg",
         "caption": "KC and four Matts",
         "meta": "Tuolumne Meadows, CA",
@@ -339,6 +340,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/climber-golden-granite.jpg",
+        "set": "climbing",
         "full": "images/photography/climber-golden-granite-full.jpg",
         "caption": "Matt Peña on his route Rolling Palms, 5.13d",
         "meta": "Tuolumne Meadows, CA",
@@ -346,6 +348,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/beach-runner-bw.jpg",
+        "set": "places",
         "full": "images/photography/beach-runner-bw-full.jpg",
         "caption": "",
         "meta": "Biarritz, France",
@@ -353,6 +356,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/granite-face-in-cloud.jpg",
+        "set": "places",
         "full": "images/photography/granite-face-in-cloud-full.jpg",
         "caption": "El Capitan",
         "meta": "Yosemite, CA",
@@ -360,6 +364,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/rainbow-desert-highway.jpg",
+        "set": "places",
         "full": "images/photography/rainbow-desert-highway-full.jpg",
         "caption": "Road home",
         "meta": "Basalt, NV",
@@ -367,6 +372,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/climber-overhead-reach.jpg",
+        "set": "climbing",
         "full": "images/photography/climber-overhead-reach-full.jpg",
         "caption": "Matt Peña on his route Rolling Palms, 5.13d",
         "meta": "Tuolumne Meadows, CA",
@@ -374,6 +380,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/metro-tunnel-bw.jpg",
+        "set": "moments",
         "full": "images/photography/metro-tunnel-bw-full.jpg",
         "caption": "Waiting",
         "meta": "Barcelona, Spain",
@@ -381,6 +388,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/tuolumne-climber-red.jpg",
+        "set": "climbing",
         "full": "images/photography/tuolumne-climber-red-full.jpg",
         "caption": "Carlin Reynolds on Yabo Yes",
         "meta": "Tuolumne Meadows, CA",
@@ -388,6 +396,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/bubbles-plaza-bw.jpg",
+        "set": "moments",
         "full": "images/photography/bubbles-plaza-bw-full.jpg",
         "caption": "Jumping for joy",
         "meta": "Barcelona, Spain",
@@ -395,6 +404,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/glacier-camp-alaska.jpg",
+        "set": "moments",
         "full": "images/photography/glacier-camp-alaska-full.jpg",
         "caption": "Kara's bubbles",
         "meta": "Pika Glacier, AK",
@@ -402,6 +412,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/furnace-night-work.jpg",
+        "set": "moments",
         "full": "images/photography/furnace-night-work-full.jpg",
         "caption": "Fire and brimstone",
         "meta": "Tuolumne Meadows, CA",
@@ -409,6 +420,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/climber-pink-steep.jpg",
+        "set": "climbing",
         "full": "images/photography/climber-pink-steep-full.jpg",
         "caption": "Matt Peña on his route Rolling Palms, 5.13d",
         "meta": "Tuolumne Meadows, CA",
@@ -416,6 +428,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/porter-mountain-town.jpg",
+        "set": "moments",
         "full": "images/photography/porter-mountain-town-full.jpg",
         "caption": "Basket carrier",
         "meta": "Badrinath, Uttarakhand, India",
@@ -423,6 +436,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/harness-and-spire.jpg",
+        "set": "climbing",
         "full": "images/photography/harness-and-spire-full.jpg",
         "caption": "Guillaumet Rodeo",
         "meta": "Patagonia, Argentina",
@@ -430,6 +444,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/tuolumne-climber-sunset.jpg",
+        "set": "climbing",
         "full": "images/photography/tuolumne-climber-sunset-full.jpg",
         "caption": "Jake Squier on The Seamster",
         "meta": "Tuolumne Meadows, CA",
@@ -437,6 +452,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/dancer-night-bw.jpg",
+        "set": "moments",
         "full": "images/photography/dancer-night-bw-full.jpg",
         "caption": "Groove",
         "meta": "Salt Lake City, UT",
@@ -444,6 +460,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/hikers-toward-peak.jpg",
+        "set": "places",
         "full": "images/photography/hikers-toward-peak-full.jpg",
         "caption": "",
         "meta": "Patagonia, Argentina",
@@ -452,6 +469,7 @@ window.CB_CONTENT = {
       {
         "motion": true,
         "src": "images/photography/glacier-camp-loop.jpg",
+        "set": "moments",
         "mp4": "images/photography/glacier-camp-loop.mp4",
         "webm": "images/photography/glacier-camp-loop.webm",
         "caption": "Pika spika",
@@ -460,6 +478,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/figure-rusted-platform.jpg",
+        "set": "moments",
         "full": "images/photography/figure-rusted-platform-full.jpg",
         "caption": "Content - Alfonso Ventimilla",
         "meta": "Lobitos, Peru",
@@ -467,6 +486,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/tuolumne-slab-climber.jpg",
+        "set": "climbing",
         "full": "images/photography/tuolumne-slab-climber-full.jpg",
         "caption": "Carlin Reynolds",
         "meta": "Tuolumne Meadows, CA",
@@ -474,6 +494,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/museum-dark-figure.jpg",
+        "set": "moments",
         "full": "images/photography/museum-dark-figure-full.jpg",
         "caption": "MACBA",
         "meta": "Barcelona, Spain",
@@ -481,6 +502,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/belayer-yellow-jacket.jpg",
+        "set": "climbing",
         "full": "images/photography/belayer-yellow-jacket-full.jpg",
         "caption": "Sauerkraut snackin' ",
         "meta": "Tioga Cliff, CA",
@@ -488,6 +510,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/alpine-ridge-sunburst.jpg",
+        "set": "climbing",
         "full": "images/photography/alpine-ridge-sunburst-full.jpg",
         "caption": "Alpamayo summit",
         "meta": "Cordillera Blanca, Peru",
@@ -495,6 +518,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/wall-jump-village.jpg",
+        "set": "moments",
         "full": "images/photography/wall-jump-village-full.jpg",
         "caption": "Alfonso Ventimilla",
         "meta": "Lobitos, Peru",
@@ -502,6 +526,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/alpine-granite-buttress.jpg",
+        "set": "climbing",
         "full": "images/photography/alpine-granite-buttress-full.jpg",
         "caption": "Surya Kund basecamp",
         "meta": "Badrinath, India",
@@ -509,6 +534,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/paraglider-dusk.jpg",
+        "set": "places",
         "full": "images/photography/paraglider-dusk-full.jpg",
         "caption": "Summer skies",
         "meta": "Esquel, Argentina",
@@ -517,6 +543,8 @@ window.CB_CONTENT = {
       {
         "motion": true,
         "src": "images/photography/hulk-milky-way.jpg",
+        "set": "places",
+        "lead": "places",
         "mp4": "images/photography/hulk-milky-way.mp4",
         "webm": "images/photography/hulk-milky-way.webm",
         "mp4Large": "images/photography/hulk-milky-way-2560.mp4",
@@ -527,6 +555,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/climber-high-reach.jpg",
+        "set": "climbing",
         "full": "images/photography/climber-high-reach-full.jpg",
         "size": "full",
         "caption": "Sarah Fenoglio on The Other, 14a",
@@ -535,6 +564,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/climber-overhead-crimp.jpg",
+        "set": "climbing",
         "full": "images/photography/climber-overhead-crimp-full.jpg",
         "caption": "Rachel Melville on Glory Crack, 13c",
         "meta": "Las Vegas, NV",
@@ -542,6 +572,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/climber-under-roof.jpg",
+        "set": "climbing",
         "full": "images/photography/climber-under-roof-full.jpg",
         "caption": "Sarah Fenoglio on The Other, 14a",
         "meta": "Las Vegas, NV",
@@ -549,6 +580,7 @@ window.CB_CONTENT = {
       },
       {
         "src": "images/photography/limestone-wall-evening.jpg",
+        "set": "climbing",
         "full": "images/photography/limestone-wall-evening-full.jpg",
         "caption": "The Roost",
         "meta": "Las Vegas, NV",
