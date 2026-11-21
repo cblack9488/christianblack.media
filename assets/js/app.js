@@ -1256,15 +1256,22 @@
   function renderHome(root) {
     var d = CB.content.home || {};
     var site = CB.content.site || {};
-    root.classList.add('page--article');
+    root.classList.add('page--bands');
     root.classList.add('page--home');
 
+    /* The same pinned backdrop as the Tick list: the page scrolls over it. */
     var h = d.header || {};
-    if (h.image) parallaxBg([{ src: h.image, focus: h.focus || 'center 45%', credit: h.credit }],
-      { dim: true, alt: site.name || 'Christian Black' });
+    if (h.image) {
+      var bg = el('div', { class: 'fixedbg', 'data-drop': 'home.header.image' });
+      var bgImg = el('img', { src: CB.resolveSrc(h.image), alt: CB.altFor(h, site.name || 'Christian Black') });
+      if (h.focus) bgImg.style.objectPosition = h.focus;
+      bg.appendChild(bgImg);
+      bg.appendChild(el('div', { class: 'fixedbg__scrim' }));
+      document.body.appendChild(bg);
+    }
 
-    var hero = el('header', { class: 'article__hero' });
-    var hin = el('div', { class: 'article__heroinner' });
+    var hero = el('header', { class: 'hero-fixed' });
+    var hin = el('div', { class: 'hero-fixed__inner' });
     /* No kicker here. On every other page it names the section; on the
        landing page the only thing it could say is his name, which the
        heading underneath already says. */
@@ -1272,44 +1279,57 @@
       'data-field': 'home.title',
       'data-hint': 'The page heading. Falls back to your name when empty.' }));
     hin.appendChild(CB.filled(d.positioning, function (v) {
-      return el('p', { class: 'home__positioning', text: v });
+      return el('p', { class: 'hero-fixed__sub', text: v });
     }, 'home.positioning', 'ONE line: what you are and what you offer. This is the sentence a brand reads first.'));
     var sup = CB.supportedEl(site.support);
     if (sup) hin.appendChild(sup);
+    if (h.credit) hero.appendChild(el('div', { class: 'hero-fixed__credit meta', text: h.credit }));
     hero.appendChild(hin);
     root.appendChild(hero);
 
-    var body = el('div', { class: 'home__body' });
+    var over = el('div', { class: 'scroll-over' });
 
-    /* The biography. Photographs from home.photos sit after the paragraph
-       named in their "after" field, so they can be moved without touching
-       the writing. The last paragraph carries the links to the rest of the
-       site. */
-    var introWrap = el('section', { class: 'home__intro cb-prose entry__prose' });
+    /* The biography, whole, on the left. Two photographs from home.photos
+       ride along on the right, over the backdrop, and scroll with the text. */
+    var story = el('section', { class: 'home-story' });
+    var grid = el('div', { class: 'home-story__grid' });
+
+    var text = el('div', { class: 'home-story__text' });
+    var introWrap = el('div', { class: 'home__intro cb-prose entry__prose' });
     introWrap.appendChild(CB.filled(d.intro, function (v) {
       var box = el('div');
-      var photos = d.photos || [];
-      String(v).split(/\n\s*\n/).forEach(function (t, i) {
-        if (!t.trim()) return;
-        box.appendChild(paraEl(t.trim()));
-        photos.forEach(function (ph) {
-          if (!ph || !ph.image || Number(ph.after) !== i + 1) return;
-          var fig = el('figure', { class: 'home__photo' });
-          fig.appendChild(el('img', { src: CB.resolveSrc(ph.image), alt: ph.alt || '', loading: 'lazy', decoding: 'async' }));
-          if (ph.credit) fig.appendChild(el('figcaption', { class: 'meta', text: ph.credit }));
-          box.appendChild(fig);
-        });
+      String(v).split(/\n\s*\n/).forEach(function (t) {
+        if (t.trim()) box.appendChild(paraEl(t.trim()));
       });
       return box;
     }, 'home.intro', 'The biography. A blank line starts a new paragraph; [words](page.html) makes a link.'));
-    body.appendChild(introWrap);
-    root.appendChild(body);
+    text.appendChild(introWrap);
+    grid.appendChild(text);
+
+    var photos = (d.photos || []).filter(function (ph) { return ph && ph.image; });
+    if (photos.length) {
+      var side = el('div', { class: 'home-story__side' });
+      photos.forEach(function (ph, pi) {
+        var fig = el('figure', { class: 'home-story__photo', 'data-drop': 'home.photos.' + pi + '.image' });
+        fig.appendChild(el('img', { src: CB.resolveSrc(ph.image), alt: ph.alt || '', loading: 'lazy', decoding: 'async' }));
+        if (ph.credit) fig.appendChild(el('figcaption', { class: 'meta', text: ph.credit }));
+        side.appendChild(fig);
+      });
+      grid.appendChild(side);
+    }
+    story.appendChild(grid);
+    over.appendChild(story);
 
     /* Three pieces of work, side by side: an essay, a film, a feature.
        The film plays where it stands; the two articles open their pages. */
     var cards = (d.cards || []).filter(function (c) { return c; });
     if (cards.length) {
-      var row = el('section', { class: 'home__paths home__cards' });
+      var after = el('section', { class: 'home-after' });
+      /* A solid ground for the row, in whatever colour the page itself is,
+         so the cards are not read over the photograph. */
+      var pageBg = window.getComputedStyle ? window.getComputedStyle(document.body).backgroundColor : '';
+      if (pageBg && !/rgba\(0, 0, 0, 0\)|transparent/.test(pageBg)) after.style.background = pageBg;
+      var row = el('div', { class: 'home__paths home__cards' });
       cards.forEach(function (c) {
         var film = c.kind === 'film';
         var href = film ? c.url : (c.entry ? CB.entryHref(c.entry) : (c.href || '#'));
@@ -1353,19 +1373,30 @@
         }
         row.appendChild(card);
       });
-      root.appendChild(row);
+      after.appendChild(row);
+      over.appendChild(after);
     }
+    root.appendChild(over);
 
-    /* Looks for the photographs and the row of three, used only where the
-       stylesheet has not already said how they should look. :where() gives
-       these zero weight, so anything written in site.css wins. */
+    /* Looks for the biography panel, the two photographs and the row of
+       three. The :where() rules are defaults that site.css can override. */
     if (!document.getElementById('cb-home-base')) {
       var st = document.createElement('style');
       st.id = 'cb-home-base';
       st.textContent =
-        '.home__photo{margin:2.6rem 0}' +
-        '.home__photo img{display:block;width:100%;height:auto}' +
-        '.home__photo figcaption{margin-top:.5rem}' +
+        '.home-story{position:relative;padding:clamp(3rem,9vh,7rem) clamp(1.25rem,5vw,4.5rem)}' +
+        '.home-story__grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);' +
+          'gap:clamp(1.75rem,5vw,5.5rem);max-width:80rem;margin:0 auto}' +
+        '.home-story__text{align-self:start;padding:clamp(1.5rem,3.5vw,3.25rem);' +
+          'background:rgba(22,21,15,.76);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}' +
+        '.home-story__text .home__intro{max-width:none;margin:0;padding:0}' +
+        '.home-story__side{display:flex;flex-direction:column;justify-content:space-between;' +
+          'gap:clamp(2rem,10vh,6rem)}' +
+        '.home-story__photo{margin:0;box-shadow:0 18px 50px rgba(0,0,0,.45)}' +
+        '.home-story__photo img{display:block;width:100%;height:auto}' +
+        '.home-story__photo figcaption{padding:.5rem .75rem;background:rgba(22,21,15,.76)}' +
+        '.home-after{position:relative;padding:clamp(2.5rem,7vh,5rem) clamp(1.25rem,5vw,4.5rem)}' +
+        '.home-after .home__cards{max-width:80rem;margin:0 auto}' +
         ':where(.home__cards){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.75rem}' +
         ':where(.home__card){display:block;color:inherit;text-decoration:none}' +
         '.home__card h2 a{color:inherit;text-decoration:none}' +
@@ -1381,7 +1412,10 @@
           'background:rgba(0,0,0,.28);transition:background .25s}' +
         '.home__card:hover .home__play{background:rgba(0,0,0,.5)}' +
         '.home__thumb.is-playing .home__play{display:none}' +
-        '@media (max-width:760px){:where(.home__cards){grid-template-columns:1fr}}';
+        '@media (max-width:900px){.home-story__grid{grid-template-columns:1fr}' +
+          '.home-story__side{flex-direction:row;gap:1rem}.home-story__photo{flex:1 1 0;min-width:0}}' +
+        '@media (max-width:760px){:where(.home__cards){grid-template-columns:1fr}' +
+          '.home-story__side{flex-direction:column}}';
       document.head.appendChild(st);
     }
   }
