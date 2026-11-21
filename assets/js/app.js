@@ -504,7 +504,9 @@
     head.appendChild(label(CB.numFor(CB.page), d.kicker));
     /* The page had no h1 at all while it was just a banner. */
     if (d.title) head.appendChild(el('h1', { class: 'gallery-head__title', text: d.title }));
-    if (d.lede) head.appendChild(el('p', { class: 'gallery-head__lede', text: d.lede }));
+    /* The lede stays in the content file, where the search-engine build
+       reads it for the page description, but is no longer printed here:
+       the set tabs below say the same thing. */
     /* A line for the readers who are here to commission or license rather
        than to look. */
     head.appendChild(CB.filled(d.working, function (v) {
