@@ -536,7 +536,7 @@
       var bar = el('nav', { class: 'sets', 'aria-label': 'Photograph sets' });
       if (setList.length) {
         bar.appendChild(el('a', { class: 'sets__tab' + (active ? '' : ' is-on'),
-          href: 'photography.html', text: 'All' }));
+          href: 'photography.html', 'data-set': '', text: 'All' }));
       }
       setList.forEach(function (x) {
         var n = (d.photos || []).filter(function (p) { return p && p.set === x.id; }).length;
@@ -545,6 +545,7 @@
           href: 'photography.html?set=' + encodeURIComponent(x.id),
           text: x.label + (editing ? ' (' + n + ')' : '')
         });
+        tab.setAttribute('data-set', x.id);
         tab.setAttribute('data-field', 'photography.sets[' + x.i + '].label');
         tab.setAttribute('data-hint', 'The name of this set. Clear it to remove the set.');
         bar.appendChild(tab);
@@ -560,7 +561,7 @@
       }
       root.appendChild(bar);
       if (active) {
-        photos = photos.filter(function (p) { return p && p.set === active; });
+        photos = CB.inSet(photos, active);
       }
     }
     var bn = d.banner || {};
@@ -575,6 +576,9 @@
       root.appendChild(banner);
       return;
     }
+    /* The grid is built by a function so a tab can build a fresh one for
+       its own photographs and swap it in without reloading the page. */
+    function buildGrid(photos) {
     var grid = el('div', { class: 'grid', 'data-sort': 'photography.photos', 'data-dropzone': 'photography.photos' });
 
     /* A moving frame sits in the grid but not in the lightbox, so the
@@ -607,6 +611,7 @@
         var msize = sizeOf(p, 0);
         var mc = motionCell(p, i);
         if (msize === 'medium') mc.classList.add('cell--mid');
+        mc.__p = p;
         mc.__ar = CB.aspectOf(p);
         mc.__solo = true;
         mc.__mid = msize === 'medium';
@@ -661,15 +666,129 @@
         cap.appendChild(el('span', { class: 'meta', text: p.meta || '' }));
         cell.appendChild(cap);
       }
+      cell.__p = p;
       cell.__ar = CB.aspectOf(p);
       cell.__solo = feature || size === 'medium';
       cell.__mid = size === 'medium';
       cells.push(cell);
       grid.appendChild(cell);
     });
-    root.appendChild(grid);
-    justify(grid, cells);
+    return { grid: grid, cells: cells };
+    }
+
+    var cur = buildGrid(photos);
+    root.appendChild(cur.grid);
+    justify(cur.grid, cur.cells);
     CB.redrawPhotography = function () { CB.render(); };
+
+    /* ---- Switching sets in place ----
+       Clicking a tab does not reload the page. Frames that are not in the
+       chosen set fade away, then a new grid is laid out and every frame
+       that was already on screen is pulled from where it was to where it
+       now sits, while frames that are new to the screen rise in. Studio
+       keeps the plain links, since editing works on the real page. */
+    if (typeof bar !== 'undefined' && bar && !editing) {
+      var busy = false, pending = null;
+      var calm = window.matchMedia &&
+                 window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var switchSet = function (id, push) {
+        if (busy) { pending = id; return; }
+        if (id === active) return;
+        var next = id ? CB.inSet(d.photos || [], id) : (d.photos || []);
+        if (!next.length) return;
+        active = id;
+
+        Array.prototype.forEach.call(bar.querySelectorAll('.sets__tab'), function (t) {
+          var on = (t.getAttribute('data-set') || '') === id;
+          t.classList.toggle('is-on', on);
+          if (on) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
+        });
+        if (push) history.pushState({ set: id }, '', id ? '?set=' + encodeURIComponent(id) : location.pathname);
+
+        /* If the tabs have scrolled out of view, bring them back so the
+           motion happens where it can be seen. */
+        var bt = bar.getBoundingClientRect().top;
+        if (bt < 0) window.scrollTo(0, window.scrollY + bt - 24);
+
+        var old = cur;
+        var oldRects = new Map();
+        old.cells.forEach(function (c) { if (c.__p) oldRects.set(c.__p, c.getBoundingClientRect()); });
+        var keep = new Set(next);
+        var leaving = old.cells.filter(function (c) { return !keep.has(c.__p); });
+
+        var done = function () {
+          busy = false;
+          if (pending !== null) { var q = pending; pending = null; switchSet(q, true); }
+        };
+
+        var swap = function () {
+          var nb = buildGrid(next);
+          root.replaceChild(nb.grid, old.grid);
+          justify(nb.grid, nb.cells);
+          cur = nb;
+          if (!calm) {
+            var n = 0;
+            nb.cells.forEach(function (c) {
+              var r0 = oldRects.get(c.__p), r1 = c.getBoundingClientRect();
+              if (r0 && r1.width) {
+                c.animate([
+                  { transformOrigin: '0 0', transform: 'translate(' + (r0.left - r1.left) + 'px,' +
+                    (r0.top - r1.top) + 'px) scale(' + (r0.width / r1.width) + ')' },
+                  { transformOrigin: '0 0', transform: 'none' }
+                ], { duration: 650, easing: 'cubic-bezier(.2,.7,.2,1)' });
+              } else {
+                c.animate([
+                  { opacity: 0, transform: 'translateY(18px)' },
+                  { opacity: 1, transform: 'none' }
+                ], { duration: 550, delay: 150 + Math.min(n++, 10) * 45,
+                     easing: 'ease-out', fill: 'backwards' });
+              }
+            });
+          }
+          setTimeout(done, calm ? 0 : 700);
+        };
+
+        busy = true;
+        if (calm || !leaving.length) { swap(); return; }
+        leaving.forEach(function (c) {
+          c.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'scale(.96)' }],
+                    { duration: 240, easing: 'ease-in', fill: 'forwards' });
+        });
+        setTimeout(swap, 240);
+      };
+
+      bar.addEventListener('click', function (e) {
+        var tab = e.target.closest ? e.target.closest('.sets__tab') : null;
+        if (!tab || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+        e.preventDefault();
+        switchSet(tab.getAttribute('data-set') || '', true);
+      });
+
+      /* The back and forward buttons follow the tabs. */
+      if (CB._photoPop) window.removeEventListener('popstate', CB._photoPop);
+      CB._photoPop = function () {
+        var w = (new URLSearchParams(location.search).get('set') || '').trim();
+        if (!setList.some(function (x) { return x.id === w; })) w = '';
+        switchSet(w, false);
+      };
+      window.addEventListener('popstate', CB._photoPop);
+    }
+
+    /* Looks for the tab bar, used only where the stylesheet has not already
+       said how it should look. :where() gives these zero weight, so
+       anything written in site.css wins. */
+    if (!document.getElementById('cb-sets-base')) {
+      var st = document.createElement('style');
+      st.id = 'cb-sets-base';
+      st.textContent =
+        ':where(.sets){display:flex;flex-wrap:wrap;gap:.4rem 2rem;margin:0 0 2rem}' +
+        ':where(.sets__tab){font-family:inherit;color:inherit;text-decoration:none;opacity:.55;' +
+        'padding:.35rem 0;border-bottom:1px solid transparent;transition:opacity .2s,border-color .2s}' +
+        ':where(.sets__tab:hover){opacity:.85}' +
+        ':where(.sets__tab.is-on){opacity:1;border-bottom-color:currentColor}';
+      document.head.appendChild(st);
+    }
   }
 
   /* How wide a frame is relative to its height. Taken from the generated
@@ -715,6 +834,14 @@
   CB.setSlug = function (label) {
     return String(label || '').toLowerCase().trim()
       .replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  };
+  /* The photographs of one set, in page order — except that any marked
+     "lead": "<that set>" come first. That lets a frame open one tab without
+     changing where it sits under All. */
+  CB.inSet = function (photos, id) {
+    var inside = photos.filter(function (p) { return p && p.set === id; });
+    var lead = inside.filter(function (p) { return p.lead === id; });
+    return lead.concat(inside.filter(function (p) { return p.lead !== id; }));
   };
   CB.setsOf = function (d) {
     return ((d || {}).sets || []).map(function (x, i) {
@@ -824,10 +951,13 @@
 
     build();
     var t;
-    window.addEventListener('resize', function () {
+    var onResize = function () {
+      /* a grid that has been swapped out stops listening */
+      if (!grid.isConnected) { window.removeEventListener('resize', onResize); return; }
       clearTimeout(t);
       t = setTimeout(build, 120);
-    }, { passive: true });
+    };
+    window.addEventListener('resize', onResize, { passive: true });
   }
 
   /* A silent loop. Two encodings of each are offered — h264 and VP9 — and the
