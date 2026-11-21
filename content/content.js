@@ -197,8 +197,8 @@ window.CB_CONTENT = {
     "intro": "Christian Black is a climber, alpinist and adventure athlete drawn to long, technical routes, wild places, and occasionally making things more complicated than they need to be. Based in the American West, his pursuits span everything from multipitch and big-wall free climbing to high-altitude technical alpinism and paragliding. In short, he is drawn to the intricacies of these pursuits, finding joy in the nuanced strategy required to have fun in not-so-fun situations.\n\nIn recent years he has completed a ground-up free ascent of El Capitan, established a difficult new alpine route on the 6,040m White Sapphire in the Indian Himalaya and explored technical alpinism and paragliding link-ups in Peru. While serious undertakings in nature, among friends he is best known for his famous crab poses on summits and his climbing catchphrase, “Have fun, be safe, look cool!”\n\nAs a former Yosemite Search and Rescue volunteer, Denali rescue volunteer, and Yosemite Climbing Ranger, Christian has an acute appreciation for the fine line between a worthwhile adventure and a bad decision. He believes that above all, success in the mountains comes from a continual practice of thoughtful decision-making, and failure is a necessary part of playing the long game. He enjoys sharing his depth of skill with the greater climbing community by hosting free rescue and skills clinics and by developing the “Climber Coffee” self-rescue clinic for the Yosemite Climbing Ranger program.\n\nBeyond athletic pursuits, photography, filmmaking and writing are ways Christian shares meaningful stories about his experiences. He approaches photography as a way to connect and give back to the people sharing the moment. Through filmmaking he looks for the stories that emerge from the broader experiences of an expedition, while his writing offers reflections of his own motivations, challenges and occasional imbalances that come with pursuing ambitious goals.\n\nThis site is a home for Christian’s athletic and creative pursuits. For athletic credentials and partnership opportunities, visit the [Tick List](ticklist.html) and [Media Kit](mediakit.html). To explore his photography, films, writing and published work, head to the [Journal](journal.html), [Photography](photography.html) and [Media](media.html) sections.",
     "header": {
       "image": "images/header.jpg",
-      "focus": "center 45%",
-      "credit": ""
+      "focus": "center 55%",
+      "credit": "Photo · Chase Hathaway"
     },
     "cta": {
       "blurb": "for inquiries, media requests, licensing or collaboration"
@@ -207,19 +207,11 @@ window.CB_CONTENT = {
       {
         "image": "images/portrait-cb.jpg",
         "alt": "Christian Black on a summit at night, arms raised in a crab pose",
-        "after": 2,
-        "credit": ""
-      },
-      {
-        "image": "images/about-outreach.jpg",
-        "alt": "Outreach and rescue work",
-        "after": 3,
         "credit": ""
       },
       {
         "image": "images/about-at-work.jpg",
         "alt": "Christian Black hanging on a rope on El Capitan with a camera, Yosemite behind him",
-        "after": 4,
         "credit": ""
       }
     ],
