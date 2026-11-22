@@ -856,39 +856,47 @@ window.CB_CONTENT = {
     "links": [
       {
         "id": "aaj",
-        "kind": "Writing",
+        "kind": "Published writing",
         "publication": "American Alpine Journal",
         "title": "Brilliant Blue",
         "year": "2024",
         "url": "https://publications.americanalpineclub.org/articles/13201216837",
-        "note": "First ascent of White Sapphire, Kishtwar Valley"
+        "note": "First ascent of White Sapphire, Kishtwar Valley",
+        "logo": "images/media/aaj-logo.png",
+        "thumb": "images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/01.jpg"
       },
       {
         "id": "xc265",
-        "kind": "Writing",
+        "kind": "Published writing",
         "publication": "Cross Country Magazine",
         "title": "Fight or Flight",
         "year": "Issue 265",
         "url": "https://xcmag.com/magazine-articles/adventure-and-inspiration/fight-or-flight/",
-        "note": "Para-alpinism in the Cordillera Blanca"
+        "note": "Para-alpinism in the Cordillera Blanca",
+        "logo": "images/media/xc-mag-logo.png",
+        "thumb": "images/journal/fight-or-flight/08.jpg"
       },
       {
         "id": "gearjunkie",
-        "kind": "Writing",
+        "kind": "Published writing",
         "publication": "GearJunkie",
         "title": "Gear reviews and testing",
         "year": "",
         "url": "https://gearjunkie.com/author/cblack",
-        "note": ""
+        "note": "",
+        "logo": "images/media/gearjunkie-logo.png",
+        "thumb": "images/photography/harness-and-spire.jpg"
       },
       {
         "id": "climbing",
-        "kind": "Writing",
+        "kind": "Published writing",
         "publication": "Climbing",
         "title": "Instructional articles",
         "year": "",
         "url": "https://www.climbing.com/byline/christian-black/",
-        "note": ""
+        "note": "",
+        "logo": "images/media/climbing-logo.png",
+        "thumb": "images/photography/climber-overhead-reach.jpg"
       },
       {
         "id": "cutting-edge",
@@ -902,7 +910,8 @@ window.CB_CONTENT = {
           "service": "spotify",
           "id": "41l2FZsr6P5TJMw7TJtEG1",
           "start": "1396"
-        }
+        },
+        "thumb": "images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/01.jpg"
       },
       {
         "id": "xc-podcast",
@@ -922,7 +931,8 @@ window.CB_CONTENT = {
             "label": "Watch the excerpt",
             "url": "https://www.youtube.com/shorts/UHOrrVIFSto"
           }
-        ]
+        ],
+        "thumb": "images/journal/fight-or-flight/01.jpg"
       },
       {
         "id": "all-grown-up",
