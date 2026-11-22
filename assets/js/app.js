@@ -1759,13 +1759,76 @@
     return w;
   }
 
+  /* Swap one collage for another, the way the Photography tabs do. Tiles
+     that are not in the new set fade away, a new grid is laid out, and every
+     tile already on screen is pulled from where it was to where it now sits
+     while the rest rise in. state = { cur: {grid, cells}, busy, pending };
+     build(list) returns a fresh {grid, cells}. */
+  function collageSwap(state, holder, anchor, next, build) {
+    if (state.busy) { state.pending = next; return; }
+    state.busy = true;
+    var calm = window.matchMedia &&
+               window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* If the tabs have scrolled out of view, bring them back so the motion
+       happens where it can be seen. */
+    if (anchor) {
+      var at = anchor.getBoundingClientRect().top;
+      if (at < 0) window.scrollTo(0, window.scrollY + at - 24);
+    }
+
+    var old = state.cur;
+    var oldRects = new Map();
+    old.cells.forEach(function (c) { if (c.__p) oldRects.set(c.__p, c.getBoundingClientRect()); });
+    var keep = new Set(next);
+    var leaving = old.cells.filter(function (c) { return !keep.has(c.__p); });
+
+    var done = function () {
+      state.busy = false;
+      if (state.pending) { var q = state.pending; state.pending = null; collageSwap(state, holder, anchor, q, build); }
+    };
+
+    var swap = function () {
+      var nb = build(next);
+      holder.replaceChild(nb.grid, old.grid);
+      justify(nb.grid, nb.cells);
+      state.cur = nb;
+      if (!calm) {
+        var n = 0;
+        nb.cells.forEach(function (c) {
+          var r0 = oldRects.get(c.__p), r1 = c.getBoundingClientRect();
+          if (r0 && r1.width) {
+            c.animate([
+              { transformOrigin: '0 0', transform: 'translate(' + (r0.left - r1.left) + 'px,' +
+                (r0.top - r1.top) + 'px) scale(' + (r0.width / r1.width) + ')' },
+              { transformOrigin: '0 0', transform: 'none' }
+            ], { duration: 650, easing: 'cubic-bezier(.2,.7,.2,1)' });
+          } else {
+            c.animate([
+              { opacity: 0, transform: 'translateY(18px)' },
+              { opacity: 1, transform: 'none' }
+            ], { duration: 550, delay: 150 + Math.min(n++, 10) * 45, easing: 'ease-out', fill: 'backwards' });
+          }
+        });
+      }
+      setTimeout(done, calm ? 0 : 700);
+    };
+
+    if (calm || !leaving.length) { swap(); return; }
+    leaving.forEach(function (c) {
+      c.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'scale(.96)' }],
+                { duration: 240, easing: 'ease-in', fill: 'forwards' });
+    });
+    setTimeout(swap, 240);
+  }
+
   function renderMedia(root) {
     var d = CB.content.media || {};
     root.appendChild(pageHead(d, CB.numFor(CB.page)));
 
+    /* The film, centred and held to a medium size. */
     if (d.film && d.film.url) {
       var fs = el('section', { class: 'section media-film' });
-      fs.appendChild(label(null, 'Film'));
       fs.appendChild(filmStage(d.film));
       root.appendChild(fs);
     }
@@ -1775,70 +1838,209 @@
     links.forEach(function (l) { if (l.kind && kinds.indexOf(l.kind) < 0) kinds.push(l.kind); });
     var active = 'All';
 
-    var filters = el('div', { class: 'filters' });
-    var list = el('div', { class: 'links', 'data-sort': 'media.links' });
+    /* One tile per link. A link with a picture (a film, an episode) shows
+       the picture with its title across the foot. A publication or a
+       platform shows its logo on a plain panel; if the logo file is not
+       there yet, its name is set in type instead. */
+    function tile(l, i) {
+      var kind = l.kind || '';
+      var thumb = l.thumb ? CB.resolveSrc(l.thumb)
+                : (kind === 'Film' && l.url ? CB.ytThumb(l.url) : '');
+      var social = kind === 'Social';
+      var ar = l.ar ? Number(l.ar) : (thumb ? (kind === 'Film' ? 16 / 9 : 1.5) : (social ? 1 : 1.4));
 
-    function draw() {
+      /* An episode with a player plays where it stands, so it is not a link
+         itself: the link to the episode appears once the player is open. */
+      var playable = !!(l.embed && l.embed.service === 'spotify' && l.embed.id);
+      var cell = el('figure', { class: 'cell cell--link', 'data-i': i });
+      var cls = 'cell__box mtile ' + (thumb ? 'mtile--photo' : 'mtile--panel') + (playable ? ' mtile--play' : '');
+      var box = el(playable ? 'div' : (l.url ? 'a' : 'div'), playable
+        ? { class: cls, role: 'button', tabindex: '0',
+            'aria-label': 'Play ' + [l.publication, l.title].filter(Boolean).join(' \u2014 ') }
+        : (l.url
+          ? { class: cls, href: l.url, target: '_blank', rel: 'noopener',
+              'aria-label': [l.publication, l.title].filter(Boolean).join(' \u2014 ') }
+          : { class: cls }));
+      box.style.aspectRatio = String(ar);
+
+      var cap = el('span', { class: 'mtile__cap' });
+      if (thumb) {
+        box.appendChild(el('img', { class: 'mtile__img', src: thumb, alt: '', loading: 'lazy', decoding: 'async' }));
+        /* The publication's mark, laid faintly over the picture it ran with.
+           It is turned to white so it reads on any photograph, whatever
+           colour the logo file is; if the file is missing, the name is set
+           in type in the same place. */
+        if (l.logo) {
+          box.appendChild(el('span', { class: 'mtile__scrim' }));
+          var wordMark = function () {
+            return el('span', { class: 'mtile__mark mtile__mark--word', text: l.publication || '' });
+          };
+          var mk = el('img', { class: 'mtile__mark', src: CB.resolveSrc(l.logo),
+            alt: l.publication || '', decoding: 'async' });
+          mk.addEventListener('error', function () { mk.replaceWith(wordMark()); });
+          box.appendChild(mk);
+        }
+        cap.appendChild(el('span', { class: 'meta mtile__pub',
+          text: [l.publication, l.year].filter(Boolean).join(' \u00b7 ') }));
+        cap.appendChild(el('span', { class: 'mtile__title', text: l.title || '' }));
+      } else {
+        var face = el('span', { class: 'mtile__face' });
+        var word = function () {
+          return el('span', { class: 'mtile__word', text: l.publication || l.title || '' });
+        };
+        if (social && SOCIAL_PATHS[String(l.publication || '').toLowerCase()]) {
+          var ic = el('span', { class: 'mtile__icon', 'aria-hidden': 'true' });
+          ic.innerHTML = '<svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" ' +
+            'stroke-width="1" stroke-linecap="round" stroke-linejoin="round">' +
+            SOCIAL_PATHS[String(l.publication).toLowerCase()] + '</svg>';
+          face.appendChild(ic);
+          face.appendChild(word());
+        } else if (l.logo) {
+          var lg = el('img', { class: 'mtile__logo', src: CB.resolveSrc(l.logo),
+            alt: l.publication || '', loading: 'lazy', decoding: 'async' });
+          lg.addEventListener('error', function () { lg.replaceWith(word()); });
+          face.appendChild(lg);
+        } else {
+          face.appendChild(word());
+        }
+        box.appendChild(face);
+        cap.appendChild(el('span', { class: 'mtile__title', text: l.title || '' }));
+        var sub = [l.note, l.year].filter(Boolean).join(' \u00b7 ');
+        if (sub) cap.appendChild(el('span', { class: 'meta mtile__pub', text: sub }));
+      }
+      box.appendChild(cap);
+      box.appendChild(el('span', { class: 'mtile__arrow', 'aria-hidden': 'true', text: playable ? '\u25b6' : '\u2197' }));
+
+      if (playable) {
+        var playing = false;
+        var startPlayer = function (e) {
+          if (e.target.closest && (e.target.closest('iframe') || e.target.closest('a'))) return;
+          if (playing) return;
+          playing = true;
+          box.classList.add('is-playing');
+          var links = el('span', { class: 'mtile__links' });
+          if (l.url) links.appendChild(el('a', { href: l.url, target: '_blank', rel: 'noopener',
+            text: 'Open the episode \u2197' }));
+          (l.extra || []).forEach(function (x) {
+            links.appendChild(el('a', { href: x.url, target: '_blank', rel: 'noopener', text: x.label + ' \u2197' }));
+          });
+          box.appendChild(links);
+          var pl = el('span', { class: 'mtile__player' });
+          pl.appendChild(embedEl(l.embed));
+          box.appendChild(pl);
+        };
+        box.addEventListener('click', startPlayer);
+        box.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startPlayer(e); }
+        });
+      }
+      cell.appendChild(box);
+      cell.__p = l;
+      cell.__ar = ar;
+      cell.__solo = false;
+      return cell;
+    }
+
+    function buildGrid(list) {
+      var grid = el('div', { class: 'grid media-grid', 'data-sort': 'media.links' });
+      var cells = list.map(function (l) { return tile(l, links.indexOf(l)); });
+      cells.forEach(function (c) { grid.appendChild(c); });
+      return { grid: grid, cells: cells };
+    }
+    function inKind(k) {
+      return k === 'All' ? links.slice() : links.filter(function (l) { return l.kind === k; });
+    }
+
+    var filters = el('div', { class: 'filters' });
+    var holder = el('div', { class: 'media-collage' });
+    var state = { cur: null, busy: false, pending: null };
+
+    function drawTabs() {
       filters.innerHTML = '';
       ['All'].concat(kinds).forEach(function (k) {
         var b = el('button', { type: 'button', text: k });
         b.setAttribute('aria-pressed', k === active ? 'true' : 'false');
-        b.addEventListener('click', function () { active = k; draw(); });
+        b.addEventListener('click', function () {
+          if (k === active) return;
+          active = k;
+          Array.prototype.forEach.call(filters.children, function (x) {
+            x.setAttribute('aria-pressed', x.textContent === k ? 'true' : 'false');
+          });
+          if (window.CB_STUDIO && window.CB_STUDIO.active) { draw(); return; }
+          collageSwap(state, holder, filters, inKind(k), buildGrid);
+        });
         filters.appendChild(b);
       });
+    }
 
-      list.innerHTML = '';
-      links.forEach(function (l, i) {
-        if (active !== 'All' && l.kind !== active) return;
-        var row = el('article', { class: 'mrow', 'data-i': i });
-
-        var head = el(l.url ? 'a' : 'div', l.url
-          ? { class: 'mrow__head', href: l.url, target: '_blank', rel: 'noopener' }
-          : { class: 'mrow__head' });
-        head.appendChild(el('span', { class: 'meta mrow__kind', text: l.kind || '' }));
-        var mid = el('span', { class: 'mrow__mid' });
-        mid.appendChild(el('span', { class: 'mrow__pub', text: l.publication || '' }));
-        mid.appendChild(el('span', { class: 'mrow__title', text: l.title || '' }));
-        if (l.note) mid.appendChild(el('span', { class: 'mrow__note', text: l.note }));
-        head.appendChild(mid);
-        head.appendChild(el('span', { class: 'meta mrow__yr', text: l.year || '' }));
-        head.appendChild(el('span', { class: 'mrow__arrow', text: '\u2197' }));
-        row.appendChild(head);
-
-        var em = embedEl(l.embed);
-        if (em) {
-          row.appendChild(em);
-          var full = el('div', { class: 'mrow__extras' });
-          full.appendChild(el('a', {
-            class: 'mrow__extra', href: l.url, target: '_blank', rel: 'noopener',
-            text: 'Listen to the full episode \u2197'
-          }));
-          (l.extra || []).forEach(function (x) {
-            full.appendChild(el('a', {
-              class: 'mrow__extra', href: x.url, target: '_blank', rel: 'noopener',
-              text: x.label + ' \u2197'
-            }));
-          });
-          row.appendChild(full);
-        } else if ((l.extra || []).length) {
-          var ex = el('div', { class: 'mrow__extras' });
-          l.extra.forEach(function (x) {
-            ex.appendChild(el('a', {
-              class: 'mrow__extra', href: x.url, target: '_blank', rel: 'noopener',
-              text: x.label + ' \u2197'
-            }));
-          });
-          row.appendChild(ex);
-        }
-        list.appendChild(row);
-      });
+    /* A full redraw, without the motion: the first time, and whenever
+       Studio changes the links. */
+    function draw() {
+      kinds = [];
+      links = (CB.content.media || {}).links || [];
+      links.forEach(function (l) { if (l.kind && kinds.indexOf(l.kind) < 0) kinds.push(l.kind); });
+      if (active !== 'All' && kinds.indexOf(active) < 0) active = 'All';
+      drawTabs();
+      holder.innerHTML = '';
+      state.cur = buildGrid(inKind(active));
+      holder.appendChild(state.cur.grid);
+      justify(state.cur.grid, state.cur.cells);
       if (window.CB_STUDIO && window.CB_STUDIO.active) window.CB_STUDIO.decorate();
     }
 
     root.appendChild(filters);
-    root.appendChild(list);
+    root.appendChild(holder);
     CB.redrawMedia = draw;
     draw();
+
+    /* Looks for the film's size and the tiles. */
+    if (!document.getElementById('cb-media-base')) {
+      var st = document.createElement('style');
+      st.id = 'cb-media-base';
+      st.textContent =
+        '.media-film .stage{max-width:50rem;margin-left:auto;margin-right:auto}' +
+        '.media-collage{margin-top:1.5rem}' +
+        '.mtile{position:relative;display:block;overflow:hidden;color:inherit;text-decoration:none}' +
+        '.mtile--photo{background:rgba(128,128,128,.18)}' +
+        '.mtile__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;' +
+          'transition:transform .7s cubic-bezier(.2,.7,.2,1)}' +
+        '.mtile:hover .mtile__img{transform:scale(1.04)}' +
+        '.mtile--photo .mtile__cap{position:absolute;left:0;right:0;bottom:0;display:flex;' +
+          'flex-direction:column;gap:.2rem;padding:2.6rem 1rem .9rem;color:#fff;' +
+          'background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0))}' +
+        '.mtile--panel{background:#E8E1CF;color:#1B1A14;display:flex;flex-direction:column;' +
+          'transition:background .3s}' +
+        '.mtile--panel:hover{background:#F0EADA}' +
+        '.mtile__face{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;' +
+          'gap:.9rem;padding:1.2rem 1.2rem .4rem;text-align:center}' +
+        '.mtile__logo{max-width:70%;max-height:56%;object-fit:contain}' +
+        '.mtile__word{font-size:clamp(.95rem,1.7vw,1.35rem);letter-spacing:.16em;text-transform:uppercase;line-height:1.25}' +
+        '.mtile--panel .mtile__cap{display:flex;flex-direction:column;gap:.15rem;padding:0 1rem .9rem;text-align:center}' +
+        '.mtile__title{font-size:1rem;line-height:1.3}' +
+        '.mtile--play{cursor:pointer}' +
+        '.mtile__scrim{position:absolute;inset:0;background:rgba(0,0,0,.34);transition:background .3s}' +
+        '.mtile:hover .mtile__scrim{background:rgba(0,0,0,.2)}' +
+        '.mtile__mark{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);' +
+          'max-width:58%;max-height:32%;object-fit:contain;filter:brightness(0) invert(1);' +
+          'opacity:.82;transition:opacity .3s;pointer-events:none}' +
+        '.mtile:hover .mtile__mark{opacity:1}' +
+        '.mtile__mark--word{filter:none;color:#fff;width:70%;max-height:none;text-align:center;' +
+          'font-size:clamp(1rem,2vw,1.5rem);letter-spacing:.18em;text-transform:uppercase;line-height:1.25}' +
+        '.mtile.is-playing .mtile__cap,.mtile.is-playing .mtile__arrow,.mtile.is-playing .mtile__mark{display:none}' +
+        '.mtile.is-playing .mtile__scrim{background:rgba(0,0,0,.55)}' +
+        '.mtile__player{position:absolute;left:0;right:0;bottom:0}' +
+        '.mtile__player .embed{margin:0}' +
+        '.mtile__player iframe{display:block;width:100%}' +
+        '.mtile__links{position:absolute;top:.8rem;left:.9rem;right:.9rem;display:flex;flex-wrap:wrap;' +
+          'gap:.35rem 1.1rem;font-size:.85rem}' +
+        '.mtile__links a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5);' +
+          'text-shadow:0 1px 8px rgba(0,0,0,.6)}' +
+        '.mtile__arrow{position:absolute;top:.7rem;right:.85rem;opacity:0;transition:opacity .25s;font-size:1.05rem}' +
+        '.mtile--photo .mtile__arrow{color:#fff}' +
+        '.mtile:hover .mtile__arrow,.mtile:focus-visible .mtile__arrow{opacity:1}' +
+        '@media (max-width:760px){.media-film .stage{max-width:none}}';
+      document.head.appendChild(st);
+    }
   }
 
   /* ---------- About + contact ---------- */
