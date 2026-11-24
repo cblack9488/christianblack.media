@@ -1888,14 +1888,32 @@
       var box = el('div', { class: 'cell__box mtile mtile--yt' });
       box.style.aspectRatio = '1.45';
       var frame = el('span', { class: 'mtile__yt' });
-      var ifr = el('iframe', {
-        src: 'https://www.youtube.com/embed/videoseries?list=UU' + String(l.uploads).replace(/^UC/, '') + '&rel=0&playsinline=1',
-        title: 'Latest videos from ' + (l.title || 'YouTube'),
-        loading: 'lazy', frameborder: '0',
-        allow: 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
-        referrerpolicy: 'strict-origin-when-cross-origin', allowfullscreen: 'allowfullscreen'
-      });
-      frame.appendChild(ifr);
+      if (l.featured) {
+        /* One chosen video: its picture with a play mark, which becomes the
+           player when clicked. */
+        var shot = CB.ytThumb(l.featured);
+        var playBtn = el('button', { type: 'button', class: 'mtile__ytplay',
+          'aria-label': 'Play the video from ' + (l.title || 'YouTube') });
+        if (shot) playBtn.appendChild(el('img', { src: shot, alt: '', loading: 'lazy', decoding: 'async' }));
+        var mark = el('span', { class: 'mtile__playmark', 'aria-hidden': 'true' });
+        mark.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M9 6.5 L18 12 L9 17.5 Z"/></svg>';
+        playBtn.appendChild(mark);
+        playBtn.addEventListener('click', function () {
+          frame.innerHTML = '';
+          frame.appendChild(CB.videoFrame(l.featured, 'Video from ' + (l.title || 'YouTube')));
+        });
+        frame.appendChild(playBtn);
+      } else {
+        /* The channel's uploads, live: the uploads playlist id is the
+           channel id with its UC swapped for UU. */
+        frame.appendChild(el('iframe', {
+          src: 'https://www.youtube.com/embed/videoseries?list=UU' + String(l.uploads).replace(/^UC/, '') + '&rel=0&playsinline=1',
+          title: 'Latest videos from ' + (l.title || 'YouTube'),
+          loading: 'lazy', frameborder: '0',
+          allow: 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+          referrerpolicy: 'strict-origin-when-cross-origin', allowfullscreen: 'allowfullscreen'
+        }));
+      }
       box.appendChild(frame);
       var foot = el('a', { class: 'mtile__yfoot', href: l.url, target: '_blank', rel: 'noopener',
         'aria-label': 'YouTube \u2014 ' + (l.title || '') });
@@ -1965,7 +1983,7 @@
 
     function tile(l, i) {
       var kind = l.kind || '';
-      if (kind === 'Social' && l.uploads) return youtubeTile(l, i);
+      if (kind === 'Social' && (l.featured || l.uploads)) return youtubeTile(l, i);
       if (kind === 'Social' && (l.preview || []).length) return mosaicTile(l, i);
       var thumb = l.thumb ? CB.resolveSrc(l.thumb)
                 : (kind === 'Film' && l.url ? CB.ytThumb(l.url) : '');
@@ -2158,6 +2176,16 @@
         '.mtile--yt{display:flex;flex-direction:column;background:#0F0E0A}' +
         '.mtile__yt{position:relative;display:block;flex:none;width:100%;aspect-ratio:16/9;background:#000}' +
         '.mtile__yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}' +
+        '.mtile__ytplay{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;border:0;' +
+          'background:#000;cursor:pointer;color:#fff}' +
+        '.mtile__ytplay img{display:block;width:100%;height:100%;object-fit:cover;' +
+          'transition:transform .7s cubic-bezier(.2,.7,.2,1)}' +
+        '.mtile__ytplay:hover img{transform:scale(1.04)}' +
+        '.mtile__playmark{position:absolute;left:50%;top:50%;width:3.4rem;height:3.4rem;' +
+          'margin:-1.7rem 0 0 -1.7rem;border:1px solid rgba(255,255,255,.85);border-radius:50%;' +
+          'display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3);' +
+          'transition:background .25s}' +
+        '.mtile__ytplay:hover .mtile__playmark{background:rgba(0,0,0,.5)}' +
         '.mtile__yfoot{flex:1;display:flex;align-items:center;gap:.6rem;padding:0 .9rem;min-height:2rem;' +
           'color:#fff;text-decoration:none;font-size:.9rem}' +
         '.mtile__yicon{display:block;width:1.35rem;height:1.35rem}' +
