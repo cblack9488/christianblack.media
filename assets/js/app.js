@@ -323,7 +323,7 @@
     fig.appendChild(box);
     if (item.caption || item.meta) {
       var cap = el('figcaption');
-      cap.appendChild(el('span', { class: 'cap', text: item.caption || '' }));
+      var capSpan = el('span', { class: 'cap' }); inlineInto(capSpan, item.caption || ''); cap.appendChild(capSpan);
       cap.appendChild(el('span', { class: 'meta', text: item.meta || '' }));
       fig.appendChild(cap);
     }
@@ -676,7 +676,7 @@
       cell.appendChild(box);
       if (p.caption || p.meta) {
         var cap = el('figcaption', { class: 'cell__cap' });
-        cap.appendChild(el('span', { text: p.caption || '' }));
+        var capSpan = el('span'); inlineInto(capSpan, p.caption || ''); cap.appendChild(capSpan);
         cap.appendChild(el('span', { class: 'meta', text: p.meta || '' }));
         cell.appendChild(cap);
       }
@@ -1056,7 +1056,7 @@
 
     if (p.caption || p.meta) {
       var cap = el('figcaption', { class: 'cell__cap' });
-      cap.appendChild(el('span', { text: p.caption || '' }));
+      var capSpan = el('span'); inlineInto(capSpan, p.caption || ''); cap.appendChild(capSpan);
       cap.appendChild(el('span', { class: 'meta', text: p.meta || '' }));
       cell.appendChild(cap);
     }
@@ -1132,7 +1132,7 @@
       full.src = big;
     }
     img.alt = p.alt || p.caption || '';
-    lb.querySelector('.cap').textContent = p.caption || '';
+    var lbCap = lb.querySelector('.cap'); lbCap.textContent = ''; inlineInto(lbCap, p.caption || '');
     lb.querySelector('figcaption .meta').textContent = p.meta || '';
     lb.querySelector('.count').textContent = (lb._i + 1) + ' / ' + lb._photos.length;
   }
