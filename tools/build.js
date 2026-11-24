@@ -98,9 +98,10 @@ const PAGES = [
     desc: C.photography.lede || 'Climbing, alpine and adventure photography by ' + NAME + '.',
     image: (C.photography.banner || {}).image },
   { file: 'media.html', id: 'media', title: C.media.title, kicker: 'Media',
-    desc: C.media.lede, image: C.media.film && C.media.film.poster },
-  { file: 'about.html', id: 'about', title: C.about.title, kicker: 'About',
-    desc: clamp(C.about.intro, 180), image: (C.about.header || {}).image }
+    desc: C.media.lede, image: C.media.film && C.media.film.poster }
+  /* about.html is no longer a page of its own: the biography moved to the
+     home page. It is written below as a small forwarding page, and is not
+     rendered, baked or listed in the sitemap. */
 ];
 
 const ENTRIES = (C.journal.entries || []).filter(e => e && e.id);
@@ -301,6 +302,28 @@ function cleanBody(html) {
 
 fs.mkdirSync(path.join(ROOT, 'words'), { recursive: true });
 
+/* The old About page. Its content now lives on the home page, so this is
+   only a forwarding page: old links, bookmarks and search results land on
+   home, and its canonical address tells search engines where the content
+   went. */
+fs.writeFileSync(path.join(ROOT, 'about.html'), `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#16150F">
+<title>${esc(NAME)}</title>
+<meta name="description" content="The biography now lives on the home page.">
+<link rel="canonical" href="${ORIGIN}/">
+<meta http-equiv="refresh" content="0; url=index.html">
+<script>location.replace("index.html");</script>
+</head>
+<body style="margin:0;padding:4rem;background:#16150F;color:#E8E1CF;font-family:Georgia,serif">
+<p>This page has moved to the <a href="index.html" style="color:inherit">home page</a>.</p>
+</body>
+</html>
+`);
+
 for (const p of ENTRY_PAGES) fs.writeFileSync(path.join(ROOT, p.file), entryHtml(p));
 
 /* Drop article pages for entries that no longer exist. */
@@ -489,7 +512,12 @@ function writePhotoSizes(extra) {
     }
     const thinOnPurpose = p.noindex || p.id === 'photography' || (baked.slots || []).length;
     if (baked.words < 40 && !thinOnPurpose) {
-      problems.push(p.file + ': only ' + baked.words + ' words rendered');
+      /* The media page is a wall of logos and pictures with a few words on
+         each, so it is short on purpose. It only fails if it is nearly
+         empty, which would mean the renderer broke. */
+      if (!(p.id === 'media' && baked.words >= 15)) {
+        problems.push(p.file + ': only ' + baked.words + ' words rendered');
+      }
     }
 
     const abs = path.join(ROOT, p.file);
