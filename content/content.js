@@ -911,7 +911,7 @@ window.CB_CONTENT = {
           "id": "41l2FZsr6P5TJMw7TJtEG1",
           "start": "1396"
         },
-        "thumb": "images/cutting_edge.jpeg",
+        "thumb": "images/media/cutting_edge.jpeg",
         "art": true,
         "ar": 1
       },
@@ -934,7 +934,7 @@ window.CB_CONTENT = {
             "url": "https://www.youtube.com/shorts/UHOrrVIFSto"
           }
         ],
-        "thumb": "images/pg_podcast.jpeg",
+        "thumb": "images/media/pg_podcast.jpeg",
         "art": true,
         "ar": 1.98
       },
@@ -945,7 +945,14 @@ window.CB_CONTENT = {
         "title": "@crustacean_black",
         "year": "",
         "url": "https://www.instagram.com/crustacean_black/",
-        "note": ""
+        "note": "",
+        "preview": [
+          "images/photography/climber-golden-granite.jpg",
+          "images/photography/glacier-camp-alaska.jpg",
+          "images/photography/paraglider-dusk.jpg",
+          "images/photography/tuolumne-climber-red.jpg"
+        ],
+        "feed": "https://feeds.behold.so/n1lle0YEtXpEgw1XFZ8A"
       },
       {
         "id": "youtube",
@@ -954,7 +961,8 @@ window.CB_CONTENT = {
         "title": "@christianblack1",
         "year": "",
         "url": "https://www.youtube.com/@christianblack1",
-        "note": ""
+        "note": "",
+        "uploads": "UCXoRN7S_urNFNCvbonoB_xA"
       }
     ]
   },
