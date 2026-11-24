@@ -285,9 +285,16 @@
       if (m.index > last) host.appendChild(document.createTextNode(text.slice(last, m.index)));
       /* Links to other pages of this site open in the same tab; anything
          else opens in a new one. */
-      if (m[1]) host.appendChild(el('a', /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(m[2])
-        ? { href: m[2], target: '_blank', rel: 'noopener', text: m[1] }
-        : { href: m[2], text: m[1] }));
+      if (m[1]) {
+        /* A link written with this site's own full address is turned back
+           into a plain page link, so it opens in the same tab and also
+           works when the site is previewed from a folder. */
+        var own = /^https?:\/\/(?:www\.)?christianblack\.media(?:\/+([^#?]*))?([#?].*)?$/i.exec(m[2]);
+        var href = own ? ((own[1] || 'index.html') + (own[2] || '')) : m[2];
+        host.appendChild(el('a', (!own && /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(href))
+          ? { href: href, target: '_blank', rel: 'noopener', text: m[1] }
+          : { href: href, text: m[1] }));
+      }
       else if (m[3]) host.appendChild(el('strong', { text: m[3] }));
       else host.appendChild(el('em', { text: m[4] }));
       last = m.index + m[0].length;
@@ -1288,6 +1295,22 @@
     root.appendChild(hero);
 
     var over = el('div', { class: 'scroll-over' });
+    /* The panel that carries the page up over the photograph is left clear,
+       whatever the stylesheet says, so the photograph shows through the
+       translucent blocks inside it as they scroll. */
+    over.style.setProperty('background', 'transparent', 'important');
+    over.style.setProperty('box-shadow', 'none', 'important');
+
+    /* With the panel clear, the name and tagline would sit behind the text
+       as it scrolls up, so they dissolve over the first stretch of scroll. */
+    var heroFade = function () {
+      if (!hero.isConnected) { window.removeEventListener('scroll', heroFade); return; }
+      var p = Math.min(1, Math.max(0, (window.scrollY || 0) / ((window.innerHeight || 1) * 0.5)));
+      if (p <= 0) hero.style.removeProperty('opacity');
+      else hero.style.setProperty('opacity', (1 - p).toFixed(3));
+      hero.style.setProperty('pointer-events', p >= 1 ? 'none' : '');
+    };
+    window.addEventListener('scroll', heroFade, { passive: true });
 
     /* The biography, whole, on the left. Two photographs from home.photos
        ride along on the right, over the backdrop, and scroll with the text. */
@@ -1325,10 +1348,6 @@
     var cards = (d.cards || []).filter(function (c) { return c; });
     if (cards.length) {
       var after = el('section', { class: 'home-after' });
-      /* A solid ground for the row, in whatever colour the page itself is,
-         so the cards are not read over the photograph. */
-      var pageBg = window.getComputedStyle ? window.getComputedStyle(document.body).backgroundColor : '';
-      if (pageBg && !/rgba\(0, 0, 0, 0\)|transparent/.test(pageBg)) after.style.background = pageBg;
       var row = el('div', { class: 'home__paths home__cards' });
       cards.forEach(function (c) {
         var film = c.kind === 'film';
@@ -1397,7 +1416,9 @@
         '.home-story__photo img{display:block;width:100%;height:auto}' +
         '.home-story__photo figcaption{padding:.5rem .75rem;background:rgba(22,21,15,.5)}' +
         '.home-after{position:relative;padding:clamp(2.5rem,7vh,5rem) clamp(1.25rem,5vw,4.5rem)}' +
-        '.home-after .home__cards{max-width:80rem;margin:0 auto}' +
+        '.home-after .home__cards{max-width:80rem;margin:0 auto;padding:clamp(1.1rem,2.4vw,2rem);' +
+          'background:rgba(22,21,15,.5);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);' +
+          'text-shadow:0 1px 12px rgba(0,0,0,.5)}' +
         ':where(.home__cards){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.75rem}' +
         ':where(.home__card){display:block;color:inherit;text-decoration:none}' +
         '.home__card h2 a{color:inherit;text-decoration:none}' +
