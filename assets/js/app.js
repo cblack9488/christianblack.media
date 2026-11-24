@@ -1880,8 +1880,93 @@
        the picture with its title across the foot. A publication or a
        platform shows its logo on a plain panel; if the logo file is not
        there yet, its name is set in type instead. */
+    /* YouTube: the channel's own uploads, live, so the newest video is always
+       what the tile shows. The player sits above a slim link to the channel.
+       The uploads playlist id is the channel id with its UC swapped for UU. */
+    function youtubeTile(l, i) {
+      var cell = el('figure', { class: 'cell cell--link', 'data-i': i });
+      var box = el('div', { class: 'cell__box mtile mtile--yt' });
+      box.style.aspectRatio = '1.45';
+      var frame = el('span', { class: 'mtile__yt' });
+      var ifr = el('iframe', {
+        src: 'https://www.youtube.com/embed/videoseries?list=UU' + String(l.uploads).replace(/^UC/, '') + '&rel=0&playsinline=1',
+        title: 'Latest videos from ' + (l.title || 'YouTube'),
+        loading: 'lazy', frameborder: '0',
+        allow: 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+        referrerpolicy: 'strict-origin-when-cross-origin', allowfullscreen: 'allowfullscreen'
+      });
+      frame.appendChild(ifr);
+      box.appendChild(frame);
+      var foot = el('a', { class: 'mtile__yfoot', href: l.url, target: '_blank', rel: 'noopener',
+        'aria-label': 'YouTube \u2014 ' + (l.title || '') });
+      var ic = el('span', { class: 'mtile__yicon', 'aria-hidden': 'true' });
+      ic.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" ' +
+        'stroke-linecap="round" stroke-linejoin="round">' + SOCIAL_PATHS.youtube + '</svg>';
+      foot.appendChild(ic);
+      foot.appendChild(el('span', { text: l.title || 'YouTube' }));
+      foot.appendChild(el('span', { class: 'mtile__yarrow', 'aria-hidden': 'true', text: '\u2197' }));
+      box.appendChild(foot);
+      cell.appendChild(box);
+      cell.__p = l; cell.__ar = 1.45; cell.__solo = false;
+      return cell;
+    }
+
+    /* Instagram: four posts in a small mosaic under the mark, each one
+       linking to its own post and the foot linking to the account. With a
+       "feed" address in the link (a Behold JSON feed, see content.js), the
+       four newest posts are fetched live and replace the stand-in pictures
+       listed in "preview", which show until the feed answers or if it never
+       does. */
+    function mosaicTile(l, i) {
+      var cell = el('figure', { class: 'cell cell--link', 'data-i': i });
+      var box = el('div', { class: 'cell__box mtile mtile--photo mtile--mosaic' });
+      box.style.aspectRatio = '1';
+      var mos = el('span', { class: 'mtile__mosaic' });
+      var label = [l.publication, l.title].filter(Boolean).join(' \u2014 ');
+      var fill = function (items) {
+        mos.innerHTML = '';
+        items.slice(0, 4).forEach(function (it) {
+          var post = el('a', { class: 'mtile__post', href: it.href, target: '_blank', rel: 'noopener',
+            'aria-label': label });
+          post.appendChild(el('img', { src: it.src, alt: '', loading: 'lazy', decoding: 'async' }));
+          mos.appendChild(post);
+        });
+      };
+      fill((l.preview || []).map(function (src) { return { src: CB.resolveSrc(src), href: l.url }; }));
+      box.appendChild(mos);
+      box.appendChild(el('span', { class: 'mtile__scrim' }));
+      var ic = el('span', { class: 'mtile__icon mtile__icon--over', 'aria-hidden': 'true' });
+      ic.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".9" ' +
+        'stroke-linecap="round" stroke-linejoin="round">' +
+        SOCIAL_PATHS[String(l.publication || 'instagram').toLowerCase()] + '</svg>';
+      box.appendChild(ic);
+      var cap = el('a', { class: 'mtile__cap', href: l.url, target: '_blank', rel: 'noopener', 'aria-label': label });
+      cap.appendChild(el('span', { class: 'mtile__title', text: l.title || '' }));
+      box.appendChild(cap);
+      cell.appendChild(box);
+      cell.__p = l; cell.__ar = 1; cell.__solo = false;
+
+      if (l.feed && window.fetch) {
+        fetch(l.feed)
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+          .then(function (j) {
+            var posts = ((j && j.posts) || []).map(function (po) {
+              var sz = po.sizes || {};
+              var src = (sz.medium && sz.medium.mediaUrl) || (sz.small && sz.small.mediaUrl) ||
+                po.thumbnailUrl || po.mediaUrl;
+              return src && po.permalink ? { src: src, href: po.permalink } : null;
+            }).filter(Boolean);
+            if (posts.length >= 4) fill(posts);
+          })
+          .catch(function () { /* the stand-in pictures stay */ });
+      }
+      return cell;
+    }
+
     function tile(l, i) {
       var kind = l.kind || '';
+      if (kind === 'Social' && l.uploads) return youtubeTile(l, i);
+      if (kind === 'Social' && (l.preview || []).length) return mosaicTile(l, i);
       var thumb = l.thumb ? CB.resolveSrc(l.thumb)
                 : (kind === 'Film' && l.url ? CB.ytThumb(l.url) : '');
       var social = kind === 'Social';
@@ -1906,7 +1991,10 @@
 
       var cap = el('span', { class: 'mtile__cap' });
       if (thumb) {
-        box.appendChild(el('img', { class: 'mtile__img', src: thumb, alt: '', loading: 'lazy', decoding: 'async' }));
+        var pic = el('img', { class: 'mtile__img', alt: '', loading: 'lazy', decoding: 'async' });
+        if (l.art) loadLogo(pic, l.thumb, function () { pic.style.display = 'none'; });
+        else pic.src = thumb;
+        box.appendChild(pic);
         /* The publication's mark, laid faintly over the picture it ran with.
            It is turned to white so it reads on any photograph, whatever
            colour the logo file is; if the file is missing, the name is set
@@ -2067,6 +2155,25 @@
         '.mtile--panel .mtile__cap{display:flex;flex-direction:column;gap:.15rem;padding:0 1rem .9rem;text-align:center}' +
         '.mtile__title{font-size:1rem;line-height:1.3}' +
         '.mtile--play{cursor:pointer}' +
+        '.mtile--yt{display:flex;flex-direction:column;background:#0F0E0A}' +
+        '.mtile__yt{position:relative;display:block;flex:none;width:100%;aspect-ratio:16/9;background:#000}' +
+        '.mtile__yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}' +
+        '.mtile__yfoot{flex:1;display:flex;align-items:center;gap:.6rem;padding:0 .9rem;min-height:2rem;' +
+          'color:#fff;text-decoration:none;font-size:.9rem}' +
+        '.mtile__yicon{display:block;width:1.35rem;height:1.35rem}' +
+        '.mtile__yicon svg{display:block;width:100%;height:100%}' +
+        '.mtile__yarrow{margin-left:auto;opacity:.6;transition:opacity .25s}' +
+        '.mtile__yfoot:hover .mtile__yarrow{opacity:1}' +
+        '.mtile__mosaic{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;' +
+          'grid-template-rows:1fr 1fr;gap:2px;background:#0F0E0A}' +
+        '.mtile__post{display:block;min-height:0;overflow:hidden}' +
+        '.mtile__post img{display:block;width:100%;height:100%;object-fit:cover;' +
+          'transition:transform .6s cubic-bezier(.2,.7,.2,1)}' +
+        '.mtile__post:hover img{transform:scale(1.06)}' +
+        '.mtile--mosaic .mtile__scrim,.mtile--mosaic .mtile__icon--over{pointer-events:none}' +
+        '.mtile--mosaic .mtile__cap{text-decoration:none}' +
+        '.mtile__icon--over{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);color:#fff;' +
+          'width:clamp(3.2rem,6vw,4.6rem);height:clamp(3.2rem,6vw,4.6rem);opacity:.92}' +
         '.mtile--art .mtile__cap{opacity:0;transition:opacity .3s}' +
         '.mtile--art:hover .mtile__cap,.mtile--art:focus-visible .mtile__cap{opacity:1}' +
         '.mtile__scrim{position:absolute;inset:0;background:rgba(0,0,0,.34);transition:background .3s}' +
