@@ -407,6 +407,14 @@ window.CB_CONTENT = {
         "alt": "A vast granite face half-hidden in cloud with a bird gliding across it"
       },
       {
+        "src": "images/photography/el-nino-valley-reach.jpg",
+        "set": "climbing",
+        "full": "images/photography/el-nino-valley-reach-full.jpg",
+        "caption": "Brette Harrington on the final 5.13a crux pitch of *El Niño*",
+        "meta": "Yosemite, CA",
+        "alt": "A climber in a yellow shirt reaches for a hold on steep granite high above the forested floor of Yosemite Valley, a partner visible on the wall behind."
+      },
+      {
         "src": "images/photography/rainbow-desert-highway.jpg",
         "set": "places",
         "full": "images/photography/rainbow-desert-highway-full.jpg",
@@ -428,7 +436,8 @@ window.CB_CONTENT = {
         "full": "images/photography/metro-tunnel-bw-full.jpg",
         "caption": "Waiting",
         "meta": "Barcelona, Spain",
-        "alt": "Black and white: a lone figure waiting on a bench in a long underground tunnel"
+        "alt": "Black and white: a lone figure waiting on a bench in a long underground tunnel",
+        "size": "row"
       },
       {
         "src": "images/photography/tuolumne-climber-red.jpg",
@@ -436,7 +445,8 @@ window.CB_CONTENT = {
         "full": "images/photography/tuolumne-climber-red-full.jpg",
         "caption": "Carlin Reynolds on Yabo Yes",
         "meta": "Tuolumne Meadows, CA",
-        "alt": "A climber in a red jacket on an orange granite wall. Carlin Reynolds climbing"
+        "alt": "A climber in a red jacket on an orange granite wall. Carlin Reynolds climbing",
+        "size": "full"
       },
       {
         "src": "images/photography/bubbles-plaza-bw.jpg",
@@ -479,6 +489,15 @@ window.CB_CONTENT = {
         "alt": "A porter carrying a loaded basket through the market street of a mountain town"
       },
       {
+        "src": "images/photography/el-nino-reach-golden-light.jpg",
+        "set": "climbing",
+        "full": "images/photography/el-nino-reach-golden-light-full.jpg",
+        "caption": "Brette Harrington on the final 5.13a crux pitch of *El Niño*",
+        "meta": "Yosemite, CA",
+        "alt": "A smiling climber in a maroon top and headband reaches for a hold on steep, sunlit granite, a partner on the wall behind and the valley far below.",
+        "size": "row"
+      },
+      {
         "src": "images/photography/harness-and-spire.jpg",
         "set": "climbing",
         "full": "images/photography/harness-and-spire-full.jpg",
@@ -492,7 +511,8 @@ window.CB_CONTENT = {
         "full": "images/photography/tuolumne-climber-sunset-full.jpg",
         "caption": "Jake Squier on The Seamster",
         "meta": "Tuolumne Meadows, CA",
-        "alt": "Jake squier climbing in Tuolumne meadows, california"
+        "alt": "Jake squier climbing in Tuolumne meadows, california",
+        "size": "full"
       },
       {
         "src": "images/photography/dancer-night-bw.jpg",
@@ -542,7 +562,16 @@ window.CB_CONTENT = {
         "full": "images/photography/museum-dark-figure-full.jpg",
         "caption": "MACBA",
         "meta": "Barcelona, Spain",
-        "alt": "Skateboarder doing a kickflip in front of the MACBA museum, barcelona spain"
+        "alt": "Skateboarder doing a kickflip in front of the MACBA museum, barcelona spain",
+        "size": "row"
+      },
+      {
+        "src": "images/photography/el-nino-chalked-hands-blue-sky.jpg",
+        "set": "climbing",
+        "full": "images/photography/el-nino-chalked-hands-blue-sky-full.jpg",
+        "caption": "Brette Harrington on the final 5.13a crux pitch of *El Niño*",
+        "meta": "Yosemite, CA",
+        "alt": "A climber in a yellow shirt with chalked hands moves across golden granite, a blue sky and a forested granite valley behind."
       },
       {
         "src": "images/photography/belayer-yellow-jacket.jpg",
@@ -558,7 +587,8 @@ window.CB_CONTENT = {
         "full": "images/photography/alpine-ridge-sunburst-full.jpg",
         "caption": "Alpamayo summit",
         "meta": "Cordillera Blanca, Peru",
-        "alt": "A climber on a corniced snow ridge with the sun bursting over the peaks behind. Alpamayo summit in the Cordillera Blanca"
+        "alt": "A climber on a corniced snow ridge with the sun bursting over the peaks behind. Alpamayo summit in the Cordillera Blanca",
+        "size": "full"
       },
       {
         "src": "images/photography/wall-jump-village.jpg",
@@ -583,6 +613,15 @@ window.CB_CONTENT = {
         "caption": "Summer skies",
         "meta": "Esquel, Argentina",
         "alt": "A paraglider silhouetted against an orange sky above dark ridgelines at dusk"
+      },
+      {
+        "src": "images/photography/el-nino-sun-flare-wall.jpg",
+        "set": "climbing",
+        "full": "images/photography/el-nino-sun-flare-wall-full.jpg",
+        "caption": "Brette Harrington on the final 5.13a crux pitch of *El Niño*",
+        "meta": "Yosemite, CA",
+        "alt": "A climber in a maroon top and headband works up textured granite as the sun bursts around the edge of the wall behind.",
+        "size": "row"
       },
       {
         "motion": true,
@@ -628,7 +667,8 @@ window.CB_CONTENT = {
         "full": "images/photography/limestone-wall-evening-full.jpg",
         "caption": "The Roost",
         "meta": "Las Vegas, NV",
-        "alt": "A lone climber high on a huge golden overhanging wall in evening light, pines on the slope below"
+        "alt": "A lone climber high on a huge golden overhanging wall in evening light, pines on the slope below",
+        "size": "full"
       }
     ]
   },
