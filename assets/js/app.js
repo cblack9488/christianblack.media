@@ -1759,6 +1759,28 @@
     return w;
   }
 
+  /* A logo file is looked for where the content says it is; if it is not
+     there, the same name is tried with the other usual extensions and in the
+     main images folder, so a file saved as .svg instead of .png, or dropped
+     in images/ instead of images/media/, is still found. Only when nothing
+     is found does onFail run. */
+  function loadLogo(img, path, onFail) {
+    var m = /^(.*\/)?([^\/]+?)(\.[a-z0-9]+)?$/i.exec(path || '');
+    if (!m) { onFail(); return; }
+    var dir = m[1] || '', stem = m[2], ext = (m[3] || '').toLowerCase();
+    var exts = [ext].concat(['.png', '.svg', '.webp', '.jpg', '.jpeg'])
+      .filter(function (x, i, arr) { return x && arr.indexOf(x) === i; });
+    var dirs = [dir]; if (dir !== 'images/') dirs.push('images/');
+    var tries = [];
+    dirs.forEach(function (dd) { exts.forEach(function (x) { tries.push(dd + stem + x); }); });
+    var n = 0;
+    img.addEventListener('error', function () {
+      n++;
+      if (n < tries.length) img.src = CB.resolveSrc(tries[n]); else onFail();
+    });
+    img.src = CB.resolveSrc(tries[0]);
+  }
+
   /* Swap one collage for another, the way the Photography tabs do. Tiles
      that are not in the new set fade away, a new grid is laid out, and every
      tile already on screen is pulled from where it was to where it now sits
@@ -1824,6 +1846,22 @@
 
   function renderMedia(root) {
     var d = CB.content.media || {};
+
+    /* The pinned photograph from the home page, with everything else
+       scrolling in front of it. It is drawn by this page itself, sitting
+       behind the page's content, so it does not depend on any other layout. */
+    var old = document.querySelector('.cb-backdrop');
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+    var bh = (CB.content.home || {}).header || {};
+    if (bh.image) {
+      root.classList.add('page--media-bg');
+      var bd = el('div', { class: 'cb-backdrop', 'aria-hidden': 'true' });
+      var bdi = el('img', { src: CB.resolveSrc(bh.image), alt: '' });
+      if (bh.focus) bdi.style.objectPosition = bh.focus;
+      bd.appendChild(bdi);
+      document.body.appendChild(bd);
+    }
+
     root.appendChild(pageHead(d, CB.numFor(CB.page)));
 
     /* The film, centred and held to a medium size. */
@@ -1875,9 +1913,8 @@
           var wordMark = function () {
             return el('span', { class: 'mtile__mark mtile__mark--word', text: l.publication || '' });
           };
-          var mk = el('img', { class: 'mtile__mark', src: CB.resolveSrc(l.logo),
-            alt: l.publication || '', decoding: 'async' });
-          mk.addEventListener('error', function () { mk.replaceWith(wordMark()); });
+          var mk = el('img', { class: 'mtile__mark', alt: l.publication || '', decoding: 'async' });
+          loadLogo(mk, l.logo, function () { mk.replaceWith(wordMark()); });
           box.appendChild(mk);
         }
         cap.appendChild(el('span', { class: 'meta mtile__pub',
@@ -1888,25 +1925,28 @@
         var word = function () {
           return el('span', { class: 'mtile__word', text: l.publication || l.title || '' });
         };
+        var logoOnly = false;
         if (social && SOCIAL_PATHS[String(l.publication || '').toLowerCase()]) {
+          /* Instagram and YouTube: the mark alone, nothing else. */
+          logoOnly = true;
           var ic = el('span', { class: 'mtile__icon', 'aria-hidden': 'true' });
-          ic.innerHTML = '<svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" ' +
-            'stroke-width="1" stroke-linecap="round" stroke-linejoin="round">' +
+          ic.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+            'stroke-width=".9" stroke-linecap="round" stroke-linejoin="round">' +
             SOCIAL_PATHS[String(l.publication).toLowerCase()] + '</svg>';
           face.appendChild(ic);
-          face.appendChild(word());
         } else if (l.logo) {
-          var lg = el('img', { class: 'mtile__logo', src: CB.resolveSrc(l.logo),
-            alt: l.publication || '', loading: 'lazy', decoding: 'async' });
-          lg.addEventListener('error', function () { lg.replaceWith(word()); });
+          var lg = el('img', { class: 'mtile__logo', alt: l.publication || '', decoding: 'async' });
+          loadLogo(lg, l.logo, function () { lg.replaceWith(word()); });
           face.appendChild(lg);
         } else {
           face.appendChild(word());
         }
         box.appendChild(face);
-        cap.appendChild(el('span', { class: 'mtile__title', text: l.title || '' }));
-        var sub = [l.note, l.year].filter(Boolean).join(' \u00b7 ');
-        if (sub) cap.appendChild(el('span', { class: 'meta mtile__pub', text: sub }));
+        if (!logoOnly) {
+          cap.appendChild(el('span', { class: 'mtile__title', text: l.title || '' }));
+          var sub = [l.note, l.year].filter(Boolean).join(' \u00b7 ');
+          if (sub) cap.appendChild(el('span', { class: 'meta mtile__pub', text: sub }));
+        }
       }
       box.appendChild(cap);
       box.appendChild(el('span', { class: 'mtile__arrow', 'aria-hidden': 'true', text: playable ? '\u25b6' : '\u2197' }));
@@ -1998,6 +2038,12 @@
       var st = document.createElement('style');
       st.id = 'cb-media-base';
       st.textContent =
+        '.cb-backdrop{position:fixed;inset:0;z-index:0;overflow:hidden;background:#16150F}' +
+        '.page--media-bg,.page--media-bg ~ .site-footer{position:relative;z-index:1}' +
+        '.cb-backdrop img{display:block;width:100%;height:100%;object-fit:cover}' +
+        '.cb-backdrop::after{content:"";position:absolute;inset:0;background:rgba(16,15,10,.5)}' +
+        '.mtile__icon{display:block;width:clamp(3rem,5.5vw,4.5rem);height:clamp(3rem,5.5vw,4.5rem)}' +
+        '.mtile__icon svg{display:block;width:100%;height:100%}' +
         '.media-film .stage{max-width:50rem;margin-left:auto;margin-right:auto}' +
         '.media-collage{margin-top:1.5rem}' +
         '.mtile{position:relative;display:block;overflow:hidden;color:inherit;text-decoration:none}' +
