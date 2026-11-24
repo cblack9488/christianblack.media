@@ -845,7 +845,7 @@ window.CB_CONTENT = {
   "media": {
     "kicker": "Media",
     "title": "Media",
-    "lede": "Published writing, films, interviews and podcast appearances.",
+    "lede": "Published writing, podcasts, film and social channels from Christian Black.",
     "film": {
       "title": "All Grown Up",
       "meta": "Dirtbag Fund",
