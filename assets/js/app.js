@@ -1891,7 +1891,10 @@
          itself: the link to the episode appears once the player is open. */
       var playable = !!(l.embed && l.embed.service === 'spotify' && l.embed.id);
       var cell = el('figure', { class: 'cell cell--link', 'data-i': i });
-      var cls = 'cell__box mtile ' + (thumb ? 'mtile--photo' : 'mtile--panel') + (playable ? ' mtile--play' : '');
+      /* "art": the picture is the show's own cover, with its name already on
+         it, so it is shown whole and the caption waits for a hover. */
+      var art = !!(thumb && l.art);
+      var cls = 'cell__box mtile ' + (thumb ? 'mtile--photo' : 'mtile--panel') + (playable ? ' mtile--play' : '') + (art ? ' mtile--art' : '');
       var box = el(playable ? 'div' : (l.url ? 'a' : 'div'), playable
         ? { class: cls, role: 'button', tabindex: '0',
             'aria-label': 'Play ' + [l.publication, l.title].filter(Boolean).join(' \u2014 ') }
@@ -1908,7 +1911,7 @@
            It is turned to white so it reads on any photograph, whatever
            colour the logo file is; if the file is missing, the name is set
            in type in the same place. */
-        if (l.logo) {
+        if (l.logo && !art) {
           box.appendChild(el('span', { class: 'mtile__scrim' }));
           var wordMark = function () {
             return el('span', { class: 'mtile__mark mtile__mark--word', text: l.publication || '' });
@@ -2064,10 +2067,12 @@
         '.mtile--panel .mtile__cap{display:flex;flex-direction:column;gap:.15rem;padding:0 1rem .9rem;text-align:center}' +
         '.mtile__title{font-size:1rem;line-height:1.3}' +
         '.mtile--play{cursor:pointer}' +
+        '.mtile--art .mtile__cap{opacity:0;transition:opacity .3s}' +
+        '.mtile--art:hover .mtile__cap,.mtile--art:focus-visible .mtile__cap{opacity:1}' +
         '.mtile__scrim{position:absolute;inset:0;background:rgba(0,0,0,.34);transition:background .3s}' +
         '.mtile:hover .mtile__scrim{background:rgba(0,0,0,.2)}' +
         '.mtile__mark{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);' +
-          'max-width:58%;max-height:32%;object-fit:contain;filter:brightness(0) invert(1);' +
+          'max-width:58%;max-height:32%;object-fit:contain;' +
           'opacity:.82;transition:opacity .3s;pointer-events:none}' +
         '.mtile:hover .mtile__mark{opacity:1}' +
         '.mtile__mark--word{filter:none;color:#fff;width:70%;max-height:none;text-align:center;' +
