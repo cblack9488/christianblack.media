@@ -248,8 +248,8 @@ window.CB_CONTENT = {
       "focus": "center 45%",
       "credit": ""
     },
-    "bio": "Christian Black is a climber, alpinist and adventure athlete based in the American West. His pursuits range from multipitch and big-wall free climbing to high-altitude technical alpinism and paragliding. He has completed a ground-up free ascent of Golden Gate (5.13a) on El Capitan, established a new alpine route on the 6,040m White Sapphire in the Indian Himalaya, and explored technical alpinism and paragliding link-ups in Peru.\n\nA former Yosemite Search and Rescue volunteer, Denali rescue volunteer and Yosemite Climbing Ranger, he hosts free rescue and skills clinics and developed the “Climber Coffee” self-rescue clinic for the Yosemite Climbing Ranger program.\n\nChristian also works as a photographer, filmmaker and writer. His work has appeared in the American Alpine Journal, Climbing, Cross Country Magazine, GearJunkie and Dirtbag Fund Films. Among friends he is known for his crab poses on summits and his climbing catchphrase, “Have fun, be safe, look cool!”",
-    "audience": "Christian reaches climbers, alpinists and paraglider pilots through three channels: film, long-form writing and photography.\n\nHis film All Grown Up, made with the Dirtbag Fund, has passed 25,000 views. His writing has run in the American Alpine Journal, Climbing, Cross Country Magazine and GearJunkie, and has been discussed on The Cutting Edge (American Alpine Club) and The Paragliding Podcast. On Instagram (@crustacean_black), his posts reached 201,000 views over the last 90 days.",
+    "bio": "Christian Black is a climber, alpinist and adventure athlete based in the American West. His pursuits range from multipitch and big-wall free climbing to high-altitude technical alpinism and paragliding. He has completed a ground-up free ascent of Golden Gate (5.13a) on El Capitan, established a new alpine route on the 6,040m White Sapphire in the Indian Himalaya, and explored technical alpinism and paragliding link-ups in Peru.\n\nA former Yosemite Search and Rescue volunteer, Denali rescue volunteer and Yosemite Climbing Ranger, he hosts free rescue and skills clinics and developed the “Climber Coffee” self-rescue clinic for the Yosemite Climbing Ranger program.\n\nChristian also works as a photographer, filmmaker and writer. His work has appeared in the American Alpine Journal, Climbing Magazine, Cross Country Magazine, GearJunkie and Dirtbag Fund Films. Among friends he is known for his crab poses on summits and his climbing catchphrase, “Have fun, be safe, look cool!”",
+    "audience": "Christian reaches climbers, alpinists and paraglider pilots through three channels: film, long-form writing and photography.\n\nHis film All Grown Up, made with the Dirtbag Fund, has passed 25,000 views. His writing has run in the American Alpine Journal, Climbing Magazine, Cross Country Magazine and GearJunkie, and has been discussed on The Cutting Edge (American Alpine Club) and The Paragliding Podcast. On Instagram (@crustacean_black), his posts reached 201,000 views over the last 90 days.",
     "reach": [
       {
         "value": "25k",
@@ -299,7 +299,7 @@ window.CB_CONTENT = {
         "detail": "Feature: “Fight or Flight”, para-alpinism in the Cordillera Blanca (issue 265); featured on The Paragliding Podcast, episode 5"
       },
       {
-        "name": "Climbing",
+        "name": "Climbing Magazine",
         "detail": "Instructional articles"
       },
       {
@@ -890,7 +890,7 @@ window.CB_CONTENT = {
       {
         "id": "climbing",
         "kind": "Published writing",
-        "publication": "Climbing",
+        "publication": "Climbing Magazine",
         "title": "Instructional articles",
         "year": "",
         "url": "https://www.climbing.com/byline/christian-black/",
@@ -911,7 +911,8 @@ window.CB_CONTENT = {
           "id": "41l2FZsr6P5TJMw7TJtEG1",
           "start": "1396"
         },
-        "thumb": "images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/01.jpg"
+        "thumb": "images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/01.jpg",
+        "logo": "images/cutting-edge-logo.png"
       },
       {
         "id": "xc-podcast",
@@ -932,16 +933,8 @@ window.CB_CONTENT = {
             "url": "https://www.youtube.com/shorts/UHOrrVIFSto"
           }
         ],
-        "thumb": "images/journal/fight-or-flight/01.jpg"
-      },
-      {
-        "id": "all-grown-up",
-        "kind": "Film",
-        "publication": "Dirtbag Fund",
-        "title": "All Grown Up",
-        "year": "",
-        "url": "https://www.youtube.com/watch?v=6xC_V8TsYxM",
-        "note": ""
+        "thumb": "images/journal/fight-or-flight/01.jpg",
+        "logo": "images/pg_podcast.png"
       },
       {
         "id": "instagram",
