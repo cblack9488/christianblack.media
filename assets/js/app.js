@@ -2026,7 +2026,9 @@
           loadLogo(mk, l.logo, function () { mk.replaceWith(wordMark()); });
           box.appendChild(mk);
         }
-        cap.appendChild(el('span', { class: 'meta mtile__pub',
+        /* A tile that already carries the publication's logo does not say
+           the name again. */
+        if (!(l.logo && !art)) cap.appendChild(el('span', { class: 'meta mtile__pub',
           text: [l.publication, l.year].filter(Boolean).join(' \u00b7 ') }));
         cap.appendChild(el('span', { class: 'mtile__title', text: l.title || '' }));
       } else {
@@ -2058,7 +2060,13 @@
         }
       }
       box.appendChild(cap);
-      box.appendChild(el('span', { class: 'mtile__arrow', 'aria-hidden': 'true', text: playable ? '\u25b6' : '\u2197' }));
+      if (playable) {
+        var badge = el('span', { class: 'mtile__badge', 'aria-hidden': 'true' });
+        badge.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 6.5 L18 12 L9 17.5 Z"/></svg>';
+        box.appendChild(badge);
+      } else {
+        box.appendChild(el('span', { class: 'mtile__arrow', 'aria-hidden': 'true', text: '\u2197' }));
+      }
 
       if (playable) {
         var playing = false;
@@ -2173,6 +2181,11 @@
         '.mtile--panel .mtile__cap{display:flex;flex-direction:column;gap:.15rem;padding:0 1rem .9rem;text-align:center}' +
         '.mtile__title{font-size:1rem;line-height:1.3}' +
         '.mtile--play{cursor:pointer}' +
+        '.mtile__badge{position:absolute;top:.75rem;right:.75rem;width:2.3rem;height:2.3rem;display:flex;' +
+          'align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.85);' +
+          'border-radius:50%;color:#fff;background:rgba(0,0,0,.38);transition:background .25s}' +
+        '.mtile--play:hover .mtile__badge{background:rgba(0,0,0,.6)}' +
+        '.mtile.is-playing .mtile__badge{display:none}' +
         '.mtile--yt{display:flex;flex-direction:column;background:#0F0E0A}' +
         '.mtile__yt{position:relative;display:block;flex:none;width:100%;aspect-ratio:16/9;background:#000}' +
         '.mtile__yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}' +
