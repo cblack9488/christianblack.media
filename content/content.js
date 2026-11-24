@@ -862,7 +862,7 @@ window.CB_CONTENT = {
         "year": "2024",
         "url": "https://publications.americanalpineclub.org/articles/13201216837",
         "note": "First ascent of White Sapphire, Kishtwar Valley",
-        "logo": "images/media/aaj-logo.png",
+        "logo": "images/media/aac-logo.png",
         "thumb": "images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/01.jpg"
       },
       {
@@ -911,8 +911,9 @@ window.CB_CONTENT = {
           "id": "41l2FZsr6P5TJMw7TJtEG1",
           "start": "1396"
         },
-        "thumb": "images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/01.jpg",
-        "logo": "images/cutting-edge-logo.png"
+        "thumb": "images/cutting_edge.jpeg",
+        "art": true,
+        "ar": 1
       },
       {
         "id": "xc-podcast",
@@ -933,8 +934,9 @@ window.CB_CONTENT = {
             "url": "https://www.youtube.com/shorts/UHOrrVIFSto"
           }
         ],
-        "thumb": "images/journal/fight-or-flight/01.jpg",
-        "logo": "images/pg_podcast.png"
+        "thumb": "images/pg_podcast.jpeg",
+        "art": true,
+        "ar": 1.98
       },
       {
         "id": "instagram",
