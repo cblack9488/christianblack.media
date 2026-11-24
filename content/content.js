@@ -952,7 +952,7 @@ window.CB_CONTENT = {
           "images/photography/paraglider-dusk.jpg",
           "images/photography/tuolumne-climber-red.jpg"
         ],
-        "feed": "https://feeds.behold.so/n1lle0YEtXpEgw1XFZ8A"
+        "feed": ""
       },
       {
         "id": "youtube",
@@ -962,7 +962,8 @@ window.CB_CONTENT = {
         "year": "",
         "url": "https://www.youtube.com/@christianblack1",
         "note": "",
-        "uploads": "UCXoRN7S_urNFNCvbonoB_xA"
+        "uploads": "UCXoRN7S_urNFNCvbonoB_xA",
+        "featured": "https://youtu.be/ZZuDTKIDptc"
       }
     ]
   },
