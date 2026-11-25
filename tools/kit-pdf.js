@@ -98,7 +98,7 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
 .hl .tile .v { font-size: 34px; line-height: 1.05; }
 .hl .tile .l { margin-top: 8px; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #D8D1BF; }
 .hl .tile .n { margin-top: 5px; font-size: 12px; color: #BCB4A2; }
-.hl .tile .cr { text-shadow: 0 1px 6px rgba(16,15,12,.9); position: absolute; right: 12px; top: 10px; font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase; color: rgba(236,230,212,.7); }
+.hl .tile .cr { text-shadow: 0 0 6px rgba(16,15,12,1), 0 1px 10px rgba(16,15,12,.9); font-weight: 500; position: absolute; right: 12px; top: 10px; font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase; color: rgba(236,230,212,.7); }
 
 /* list pages */
 .rows { margin-top: 14px; }
@@ -113,8 +113,8 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
 .stat .sl { margin-top: 8px; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #D8D1BF; }
 .stat .sn { margin-top: 4px; font-size: 12px; color: #BCB4A2; }
 
-.outreach .scrim { background: linear-gradient(90deg, rgba(16,15,12,.1) 0%, rgba(16,15,12,.35) 100%); }
-.outreach .panel { position: absolute; right: 56px; top: 56px; width: 540px; }
+.outreach .scrim { background: linear-gradient(270deg, rgba(16,15,12,.05) 0%, rgba(16,15,12,.3) 100%); }
+.outreach .panel { position: absolute; left: 56px; top: 56px; width: 500px; }
 .reach .scrim { background: rgba(16,15,12,.62); }
 .reach .panel { position: absolute; left: 56px; right: 56px; }
 .deliver .scrim { background: linear-gradient(90deg, rgba(16,15,12,.72) 0%, rgba(16,15,12,.25) 100%); }

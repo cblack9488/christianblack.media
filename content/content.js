@@ -273,7 +273,7 @@ window.CB_CONTENT = {
       },
       {
         "name": "Film",
-        "detail": "Shooting, producing and editing expedition storytelling, such as [All Grown Up](https://www.youtube.com/watch?v=6xC_V8TsYxM) (Dirtbag Fund Films), and co-directing and co-shooting CONTENT, a skateboarding and lifestyle film (coming soon)."
+        "detail": "Shooting, producing and editing expedition storytelling, such as [All Grown Up](https://www.youtube.com/watch?v=6xC_V8TsYxM) (Dirtbag Fund Films), and co-directing and co-shooting [CONTENT](https://drive.google.com/file/d/1SJcqGKnnGkuK8GuBYyIP7Iv_irTyRzy-/view), a skateboarding and lifestyle film (coming soon)."
       },
       {
         "name": "Writing",
@@ -323,7 +323,8 @@ window.CB_CONTENT = {
         "note": "AI3 M7+, 850m. [American Alpine Journal](https://publications.americanalpineclub.org/articles/13201216837), 2024",
         "pdfImage": {
           "image": "images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/09.jpg",
-          "focus": "center 50%"
+          "focus": "center 50%",
+          "credit": "Photo · Vitaliy Musiyenko"
         }
       },
       {
