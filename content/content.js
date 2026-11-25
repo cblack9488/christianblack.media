@@ -288,22 +288,6 @@ window.CB_CONTENT = {
       {
         "name": "Big Fils Chalk",
         "detail": "Supported athlete"
-      },
-      {
-        "name": "American Alpine Journal",
-        "detail": "“Brilliant Blue”, first ascent of White Sapphire, Kishtwar Valley (2024)"
-      },
-      {
-        "name": "Cross Country Magazine",
-        "detail": "Feature: “Fight or Flight”, para-alpinism in the Cordillera Blanca (issue 265); featured on The Paragliding Podcast, episode 5"
-      },
-      {
-        "name": "Climbing Magazine",
-        "detail": "Instructional articles"
-      },
-      {
-        "name": "GearJunkie",
-        "detail": "Gear reviews and testing"
       }
     ],
     "downloads": [
@@ -367,6 +351,24 @@ window.CB_CONTENT = {
       {
         "name": "Film screenings",
         "detail": "Hosted locally"
+      }
+    ],
+    "publications": [
+      {
+        "name": "American Alpine Journal",
+        "detail": "“Brilliant Blue”, first ascent of White Sapphire, Kishtwar Valley (2024)"
+      },
+      {
+        "name": "Cross Country Magazine",
+        "detail": "Feature: “Fight or Flight”, para-alpinism in the Cordillera Blanca (issue 265); featured on The Paragliding Podcast, episode 5"
+      },
+      {
+        "name": "Climbing Magazine",
+        "detail": "Instructional articles"
+      },
+      {
+        "name": "GearJunkie",
+        "detail": "Gear reviews and testing"
       }
     ]
   },

@@ -1513,6 +1513,18 @@
       label: 'Platform or publication, and the period it covers'
     }), anyReach(d.reach));
 
+    var pubs = el('div', { class: 'kit__list' });
+    (d.publications || []).forEach(function (x, i) {
+      x = x || {};
+      var row = el('div', { class: 'kit__row' });
+      row.appendChild(CB.filled(x.name, function (v) { return el('div', { class: 'kit__name', text: v }); },
+        'mediakit.publications[' + i + '].name', 'A publication you have appeared in'));
+      row.appendChild(CB.filled(x.detail, function (v) { return el('div', { class: 'kit__detail', text: v }); },
+        'mediakit.publications[' + i + '].detail', 'What you published there'));
+      pubs.appendChild(row);
+    });
+    block('Publications', pubs, anyWritten(d.publications, 'name'));
+
     var svc = el('div', { class: 'kit__list' });
     (d.services || []).forEach(function (x, i) {
       x = x || {};
@@ -1535,7 +1547,7 @@
         'mediakit.partners[' + i + '].detail', 'What you actually delivered for them'));
       par.appendChild(row);
     });
-    block('Partners and publications', par, anyWritten(d.partners, 'name'));
+    block('Partners', par, anyWritten(d.partners, 'name'));
 
     var dl = el('div', { class: 'kit__list' });
     (d.downloads || []).forEach(function (x, i) {
