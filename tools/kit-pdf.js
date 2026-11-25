@@ -199,7 +199,7 @@ function buildHtml(C) {
   /* 1 — cover */
   const supLogo = (C.site.support && C.site.support.logo) ? '<img src="/' + esc(C.site.support.logo) + '" alt="">' : '';
   const extras = (K.supportExtra || []).map(x => x.logo
-    ? '<img class="wide" src="/' + esc(x.logo) + '" alt="' + esc(x.name) + '">'
+    ? (x.url ? '<a href="' + esc(x.url) + '" style="border:0">' : '') + '<img class="wide" src="/' + esc(x.logo) + '" alt="' + esc(x.name) + '">' + (x.url ? '</a>' : '')
     : '<span class="nm">' + (x.url ? '<a href="' + esc(x.url) + '">' + esc(x.name) + '</a>' : esc(x.name)) + '</span>').join('');
   pages.push('<section class="pg cover">' + bgBlock(P.cover) +
     '<div class="in"><div class="stack"><div class="lab">' + esc(K.kicker || 'Media kit') + '</div>' +

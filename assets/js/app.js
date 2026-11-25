@@ -196,9 +196,13 @@
         alt: (sup.partners || [])[0] || 'Sponsor'
       }));
       (sup.extra || []).forEach(function (x) {
-        if (x && x.logo) row.appendChild(el('img', {
-          class: 'supported__logo supported__logo--wide', src: CB.resolveSrc(x.logo), alt: x.name || ''
-        }));
+        if (x && x.logo) {
+          var xi = el('img', { class: 'supported__logo supported__logo--wide', src: CB.resolveSrc(x.logo), alt: x.name || '' });
+          if (x.url) {
+            var xa = el('a', { href: x.url, target: '_blank', rel: 'noopener', 'aria-label': x.name || '', style: 'border:0' });
+            xa.appendChild(xi); row.appendChild(xa);
+          } else row.appendChild(xi);
+        }
       });
       sb.appendChild(row);
     }

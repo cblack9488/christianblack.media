@@ -34,7 +34,8 @@ window.CB_CONTENT = {
       "extra": [
         {
           "name": "Big Fils Chalk",
-          "logo": "images/bigfils-logo.png"
+          "logo": "images/bigfils-logo.png",
+          "url": "https://bigfilschalk.com"
         }
       ]
     }
@@ -307,7 +308,7 @@ window.CB_CONTENT = {
         "detail": "Supported athlete, since 2025"
       },
       {
-        "name": "Big Fils Chalk",
+        "name": "[Big Fils Chalk](https://bigfilschalk.com)",
         "detail": "Supported athlete, since 2026"
       }
     ],
@@ -427,7 +428,8 @@ window.CB_CONTENT = {
     "supportExtra": [
       {
         "name": "Big Fils Chalk",
-        "logo": "images/bigfils-logo.png"
+        "logo": "images/bigfils-logo.png",
+        "url": "https://bigfilschalk.com"
       }
     ],
     "servicesNote": "Rates and availability on request. [Get in touch](mailto:cblack9488@gmail.com).",
