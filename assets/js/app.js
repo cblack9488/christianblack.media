@@ -189,10 +189,18 @@
        logo with a caption stuck underneath it. */
     sb.appendChild(el('div', { class: 'supported__label', text: sup.label || 'Supported by' }));
     if (sup.logo) {
-      sb.appendChild(el('img', {
+      /* Sponsor marks sit side by side in one row. */
+      var row = el('div', { class: 'supported__row' });
+      row.appendChild(el('img', {
         class: 'supported__logo', src: CB.resolveSrc(sup.logo),
-        alt: (sup.partners || []).join(', ') || 'Sponsor'
+        alt: (sup.partners || [])[0] || 'Sponsor'
       }));
+      (sup.extra || []).forEach(function (x) {
+        if (x && x.logo) row.appendChild(el('img', {
+          class: 'supported__logo supported__logo--wide', src: CB.resolveSrc(x.logo), alt: x.name || ''
+        }));
+      });
+      sb.appendChild(row);
     }
     return sb;
   };
@@ -1483,8 +1491,8 @@
       }
       (d.supportExtra || []).forEach(function (x) {
         if (!x) return;
-        if (x.logo) ksup.appendChild(el('img', { class: 'supported__logo', src: CB.resolveSrc(x.logo), alt: x.name || '' }));
-        else if (x.name) {
+        if (x.logo) return;
+        if (x.name) {
           var nm = el('div', { class: 'supported__name' });
           if (x.url) nm.appendChild(el('a', { href: x.url, target: '_blank', rel: 'noopener', text: x.name }));
           else nm.textContent = x.name;

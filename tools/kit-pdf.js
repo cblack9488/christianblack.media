@@ -71,6 +71,7 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
 .cover .reachme { margin-top: 20px; display: flex; gap: 26px; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
 .cover .sup { position: absolute; left: 56px; bottom: 52px; display: flex; align-items: center; gap: 22px; }
 .cover .sup img { height: 62px; width: auto; }
+.cover .sup img.wide { height: 40px; }
 .cover .sup .nm { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #D8D1BF; }
 .cover .stack { position: absolute; left: 56px; bottom: 140px; }
 
@@ -198,7 +199,7 @@ function buildHtml(C) {
   /* 1 — cover */
   const supLogo = (C.site.support && C.site.support.logo) ? '<img src="/' + esc(C.site.support.logo) + '" alt="">' : '';
   const extras = (K.supportExtra || []).map(x => x.logo
-    ? '<img src="/' + esc(x.logo) + '" alt="' + esc(x.name) + '">'
+    ? '<img class="wide" src="/' + esc(x.logo) + '" alt="' + esc(x.name) + '">'
     : '<span class="nm">' + (x.url ? '<a href="' + esc(x.url) + '">' + esc(x.name) + '</a>' : esc(x.name)) + '</span>').join('');
   pages.push('<section class="pg cover">' + bgBlock(P.cover) +
     '<div class="in"><div class="stack"><div class="lab">' + esc(K.kicker || 'Media kit') + '</div>' +

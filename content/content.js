@@ -30,6 +30,12 @@ window.CB_CONTENT = {
       "logo": "images/hmg-logo.png",
       "partners": [
         "Hyperlite Mountain Gear"
+      ],
+      "extra": [
+        {
+          "name": "Big Fils Chalk",
+          "logo": "images/bigfils-logo.png"
+        }
       ]
     }
   },
@@ -421,7 +427,7 @@ window.CB_CONTENT = {
     "supportExtra": [
       {
         "name": "Big Fils Chalk",
-        "logo": ""
+        "logo": "images/bigfils-logo.png"
       }
     ],
     "servicesNote": "Rates and availability on request. [Get in touch](mailto:cblack9488@gmail.com).",
