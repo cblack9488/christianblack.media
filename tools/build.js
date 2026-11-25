@@ -418,6 +418,21 @@ function writePhotoSizes(extra) {
   const reachFile = path.join(ROOT, 'assets/js/reach.js');
   if (!fs.existsSync(reachFile)) fs.writeFileSync(reachFile, '/* PLACEHOLDER — this local copy is not the real one.\n   The figures are fetched during the build on GitHub and exist only in\n   the deployed site. This file is gitignored and never updates locally,\n   so do not read numbers from it. The real one is at:\n     https://christianblack.media/assets/js/reach.js  */\nwindow.CB_REACH = {};\n');
   console.log('  photo sizes: ' + Object.keys(writePhotoSizes()).length + ' files');
+  /* Press files, written from content.js on every build so they can never
+     drift from what the media kit says. Published only in the deployment. */
+  {
+    const k = C.mediakit || {};
+    const dir = path.join(ROOT, 'press');
+    fs.mkdirSync(dir, { recursive: true });
+    const plain = s => String(s || '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/\*\*?([^*]+)\*\*?/g, '$1').trim();
+    const contact = SITE.email ? '\n\nContact: ' + SITE.email + '\n' + (SITE.domain || '') + '\n' : '\n';
+    if (String(k.shortBio || '').trim()) {
+      fs.writeFileSync(path.join(dir, 'christian-black-short-bio.txt'), plain(k.shortBio) + contact);
+    }
+    if (String(k.bio || '').trim()) {
+      fs.writeFileSync(path.join(dir, 'christian-black-bio.txt'), plain(k.bio) + contact);
+    }
+  }
   await new Promise(r => server.listen(PORT, r));
   const browser = await chromium.launch();
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 950 } });
@@ -529,6 +544,31 @@ function writePhotoSizes(extra) {
       '<!-- prerender:end -->');
     fs.writeFileSync(abs, html);
     process.stdout.write('  ' + p.file.padEnd(52) + baked.words + ' words\n');
+  }
+
+  /* The media kit as a single-page PDF, rendered from the live page so it
+     always matches. If anything here fails the deploy carries on without it:
+     the PDF is a convenience, not a reason to stop the site going out. */
+  try {
+    const kp = await ctx.newPage();
+    await kp.setViewportSize({ width: 1200, height: 900 });
+    await kp.goto('http://localhost:' + PORT + '/mediakit.html', { waitUntil: 'load' });
+    await kp.waitForSelector('.page--kit .home__block', { timeout: 15000 });
+    await kp.addStyleTag({ content: '.rail, .site-footer, .fixedbg, .scroll-hint { display: none !important; } ' +
+      'html, body { background: #16150f !important; } .page--kit { margin: 0 !important; } ' +
+      '.article__hero { min-height: 0 !important; height: auto !important; } ' +
+      '.article__heroinner { padding-top: 64px !important; padding-bottom: 24px !important; } ' +
+      '.overlay--contact { min-height: 0 !important; height: 360px !important; } ' +
+      '.page--kit .home__body > .home__block:last-child { display: none !important; }' });
+    await kp.waitForTimeout(800);
+    const h = await kp.evaluate(() => Math.ceil(document.documentElement.scrollHeight));
+    fs.mkdirSync(path.join(ROOT, 'press'), { recursive: true });
+    await kp.pdf({ path: path.join(ROOT, 'press/christian-black-media-kit.pdf'),
+      width: '1200px', height: (h + 2) + 'px', printBackground: true, pageRanges: '1' });
+    await kp.close();
+    console.log('  press/christian-black-media-kit.pdf');
+  } catch (e) {
+    console.log('  (media kit PDF skipped: ' + e.message + ')');
   }
 
   await browser.close();

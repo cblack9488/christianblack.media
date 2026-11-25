@@ -168,7 +168,7 @@
     var right = el('span', { class: 'site-footer__right' });
     /* The media kit is not in the rail, so the footer is where a brand finds
        it from whichever page they happened to land on. */
-    if (CB.kitReady()) {
+    if (CB.kitReady() && CB.page !== 'mediakit') {
       right.appendChild(el('a', { class: 'site-footer__kit', href: CB.hrefFor('mediakit'), text: 'Media kit' }));
     }
     right.appendChild(el('a', site.email
@@ -291,7 +291,7 @@
            works when the site is previewed from a folder. */
         var own = /^https?:\/\/(?:www\.)?christianblack\.media(?:\/+([^#?]*))?([#?].*)?$/i.exec(m[2]);
         var href = own ? ((own[1] || 'index.html') + (own[2] || '')) : m[2];
-        host.appendChild(el('a', (!own && /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(href))
+        host.appendChild(el('a', (!own && !/^mailto:/i.test(href) && /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(href))
           ? { href: href, target: '_blank', rel: 'noopener', text: m[1] }
           : { href: href, text: m[1] }));
       }
@@ -1468,7 +1468,16 @@
       return el('p', { class: 'home__positioning', text: v });
     }, 'mediakit.lede', 'One line: what you are. Can be the same as the landing page.'));
     var ksup = CB.supportedEl(site.support);
-    if (ksup) hin.appendChild(ksup);
+    if (ksup) {
+      /* Partners added after the main logo: a mark when they have one,
+         their name as text until then. */
+      (d.supportExtra || []).forEach(function (x) {
+        if (!x) return;
+        if (x.logo) ksup.appendChild(el('img', { class: 'supported__logo', src: CB.resolveSrc(x.logo), alt: x.name || '' }));
+        else if (x.name) ksup.appendChild(el('div', { class: 'supported__name', text: x.name }));
+      });
+      hin.appendChild(ksup);
+    }
     hero.appendChild(hin);
     root.appendChild(hero);
 
@@ -1519,7 +1528,7 @@
       var row = el('div', { class: 'kit__row' });
       row.appendChild(CB.filled(x.name, function (v) { return el('div', { class: 'kit__name', text: v }); },
         'mediakit.publications[' + i + '].name', 'A publication you have appeared in'));
-      row.appendChild(CB.filled(x.detail, function (v) { return el('div', { class: 'kit__detail', text: v }); },
+      row.appendChild(CB.filled(x.detail, function (v) { return inlineInto(el('div', { class: 'kit__detail' }), v); },
         'mediakit.publications[' + i + '].detail', 'What you published there'));
       pubs.appendChild(row);
     });
@@ -1535,6 +1544,9 @@
         'mediakit.services[' + i + '].detail', 'What that includes, and how you work'));
       svc.appendChild(row);
     });
+    if (String(d.servicesNote || '').trim()) {
+      svc.appendChild(paraEl(d.servicesNote, 'kit__note'));
+    }
     block('Deliverables', svc, anyWritten(d.services, 'name'));
 
     var par = el('div', { class: 'kit__list' });
@@ -1556,7 +1568,7 @@
       row.appendChild(CB.filled(x.label, function (v) { return el('div', { class: 'kit__name', text: v }); },
         'mediakit.downloads[' + i + '].label', 'e.g. High-resolution portrait, logo, full bio'));
       row.appendChild(x.url
-        ? el('a', { class: 'kit__detail', href: CB.resolveSrc(x.url), text: 'Download ↗' })
+        ? el('a', { class: 'kit__detail', href: CB.resolveSrc(x.url), text: /\.html?$/.test(x.url) ? 'View ↗' : 'Download ↗' })
         : CB.slot('mediakit.downloads[' + i + '].url', 'A link or file path for that asset'));
       dl.appendChild(row);
     });
@@ -1570,9 +1582,13 @@
     cta.appendChild(el('div', { class: 'overlay__scrim overlay__scrim--heavy' }));
     var kp = el('div', { class: 'overlay__panel overlay__panel--centre' });
     kp.appendChild(label(null, 'Contact'));
-    kp.appendChild(el('p', { class: 'contact__blurb', text: site.contactNote || '' }));
-    if (site.email) kp.appendChild(el('a', { class: 'contact__btn', href: 'mailto:' + site.email,
-      text: site.contactButton || 'Send an email', 'aria-label': 'Email Christian Black' }));
+    var kblurb = String(site.contactNote || '');
+    kp.appendChild(el('p', { class: 'contact__blurb', text: kblurb.charAt(0).toUpperCase() + kblurb.slice(1) }));
+    if (site.email) {
+      kp.appendChild(el('a', { class: 'contact__btn', href: 'mailto:' + site.email,
+        text: site.contactButton || 'Send an email', 'aria-label': 'Email Christian Black' }));
+      kp.appendChild(el('a', { class: 'contact__email', href: 'mailto:' + site.email, text: site.email }));
+    }
     cta.appendChild(kp);
     root.appendChild(cta);
   }

@@ -248,22 +248,22 @@ window.CB_CONTENT = {
       "focus": "center 45%",
       "credit": ""
     },
-    "bio": "Christian Black is a climber, alpinist and adventure athlete drawn to long, technical routes, wild places, and a good story. Based in the American West, his pursuits span everything from multipitch and big-wall free climbing to high-altitude technical alpinism and paragliding. More than anything, he enjoys the process of navigating a complicated objective with a broad toolbelt of skills.\n\nIn recent years he has completed a ground-up free ascent of El Capitan, established a difficult new alpine route on the 6,040m White Sapphire in the Indian Himalaya and explored technical alpinism and paragliding link-ups in Peru. While serious undertakings in nature, among friends he is best known for his famous crab poses on summits and his climbing catchphrase, “Have fun, be safe, look cool!”\n\nAs a former Yosemite Search and Rescue volunteer, Denali rescue volunteer, and Yosemite Climbing Ranger, Christian’s relationship to risk has evolved over the years, a topic he writes about openly in his essays. He believes that above all, success in the mountains comes from a continual practice of thoughtful decision-making, and failure is a necessary part of playing the long game. He enjoys sharing his depth of skill with the greater climbing community by hosting free rescue and skills clinics and by developing the “Climber Coffee” self-rescue clinic for the Yosemite Climbing Ranger program.\n\nBeyond athletic pursuits, photography, filmmaking and writing are ways Christian shares meaningful stories about his experiences. He approaches photography as a way to connect and give back to the people sharing the moment with him. Through filmmaking he seeks to pull a story from the broader experience of an expedition, while his writing offers reflections of his own motivations, challenges and imbalances associated with pursuing ambitious goals.",
+    "bio": "Christian Black is a climber, alpinist and adventure athlete drawn to long, technical routes, wild places, and a good story. Based in the American West, his pursuits span everything from multipitch and big-wall free climbing to high-altitude technical alpinism and paragliding. More than anything, he enjoys the process of navigating a complicated objective with a broad toolbelt of skills.\n\nIn recent years he has completed a ground-up free ascent of El Capitan, established a difficult new alpine route on the 6,040m White Sapphire in the Indian Himalaya and explored technical alpinism and paragliding link-ups in Peru. While serious undertakings in nature, among friends he is best known for his famous crab poses on summits and his climbing catchphrase, “Have fun, be safe, look cool!”\n\nAs a former Yosemite Search and Rescue volunteer, Denali rescue volunteer, and Yosemite Climbing Ranger, Christian’s relationship to risk has evolved over the years, a topic he writes about openly in his essays. He believes that above all, success in the mountains comes from a continual practice of thoughtful decision-making, and failure is a necessary part of playing the long game. He enjoys sharing his depth of skill with the greater climbing community by hosting free rescue and skills clinics and by developing the “self-rescue” and “multipitch efficiency” clinics for the Yosemite Climbing Ranger program.\n\nBeyond athletic pursuits, photography, filmmaking and writing are ways Christian shares meaningful stories about his experiences. He approaches photography as a way to connect and give back to the people sharing the moment with him. Through filmmaking he seeks to pull a story from the broader experience of an expedition, while his writing offers reflections of his own motivations, challenges and imbalances associated with pursuing ambitious goals.",
     "reach": [
       {
-        "value": "25k",
-        "label": "Film views",
-        "note": "All Grown Up — Dirtbag Fund film"
-      },
-      {
-        "value": "Published work",
-        "label": "Published in",
-        "note": "AAJ - Climbing Mag - XC Mag - Gear Junkie"
+        "value": "3k",
+        "label": "Instagram followers",
+        "note": "@crustacean_black"
       },
       {
         "value": "250k",
         "label": "Instagram views",
-        "note": "Last 90 days — 3k followers"
+        "note": "Last 90 days"
+      },
+      {
+        "value": "25k",
+        "label": "Film views",
+        "note": "All Grown Up — Dirtbag Fund film"
       }
     ],
     "services": [
@@ -283,14 +283,26 @@ window.CB_CONTENT = {
     "partners": [
       {
         "name": "Hyperlite Mountain Gear",
-        "detail": "Supported athlete"
+        "detail": "Supported athlete, since 2025"
       },
       {
         "name": "Big Fils Chalk",
-        "detail": "Supported athlete"
+        "detail": "Supported athlete, since 2026"
       }
     ],
     "downloads": [
+      {
+        "label": "Media kit (PDF)",
+        "url": "press/christian-black-media-kit.pdf"
+      },
+      {
+        "label": "Short bio (text)",
+        "url": "press/christian-black-short-bio.txt"
+      },
+      {
+        "label": "Full bio (text)",
+        "url": "press/christian-black-bio.txt"
+      },
       {
         "label": "Portrait — summit crab pose",
         "url": "images/portrait-cb.jpg"
@@ -330,15 +342,15 @@ window.CB_CONTENT = {
     "outreach": [
       {
         "name": "Yosemite Search and Rescue",
-        "detail": "Volunteer, 2 seasons"
+        "detail": "Volunteer, 2 seasons (2019–2020)"
       },
       {
         "name": "Denali Rescue",
-        "detail": "Volunteer, 1 season"
+        "detail": "Volunteer, 1 season (2022)"
       },
       {
         "name": "Yosemite Climbing Ranger",
-        "detail": "1 season"
+        "detail": "1 season (2021)"
       },
       {
         "name": "Self-rescue and multipitch efficiency clinics",
@@ -364,13 +376,21 @@ window.CB_CONTENT = {
       },
       {
         "name": "Climbing Magazine",
-        "detail": "Instructional articles"
+        "detail": "Instructional articles, including [“Realistic Self-Rescue”](https://www.climbing.com/skills/realistic-self-rescue-three-must-have-multi-pitch-skills-using-things-you-actually-carry/)"
       },
       {
         "name": "GearJunkie",
-        "detail": "Gear reviews and testing"
+        "detail": "[Gear reviews and testing](https://gearjunkie.com/author/cblack)"
       }
-    ]
+    ],
+    "shortBio": "Christian Black is a climber and multi-sport adventure athlete sharing his experiences through writing, photography, and film. Accomplishments in recent years range from a technical, high-altitude first ascent in the Indian Himalaya to a ground-up free ascent of El Capitan and adventure paragliding and alpinism link-ups in the Cordillera Blanca.",
+    "supportExtra": [
+      {
+        "name": "Big Fils Chalk",
+        "logo": ""
+      }
+    ],
+    "servicesNote": "Rates and availability on request. [Get in touch](mailto:cblack9488@gmail.com)."
   },
   "photography": {
     "kicker": "Photography",
