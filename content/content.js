@@ -284,15 +284,33 @@ window.CB_CONTENT = {
     "services": [
       {
         "name": "Photography",
-        "detail": "Climbing, alpine and travel [photography](https://christianblack.media/photography.html). Published clients include The North Face, Hyperlite Mountain Gear, Climbing Magazine and Cross Country Magazine. Available for licensing and assignments."
+        "detail": "Climbing, alpine and travel [photography](https://christianblack.media/photography.html). Published clients include The North Face, Hyperlite Mountain Gear, Climbing Magazine and Cross Country Magazine. Available for licensing and assignments.",
+        "pdfThumb": {
+          "image": "images/photography/climber-high-reach-full.jpg",
+          "focus": "center 40%",
+          "url": "https://christianblack.media/photography.html",
+          "caption": "Sarah Fenoglio on The Other, 14a"
+        }
       },
       {
         "name": "Film",
-        "detail": "Shooting, producing and editing expedition storytelling, such as [All Grown Up](https://www.youtube.com/watch?v=6xC_V8TsYxM) (Dirtbag Fund Films), and co-directing and co-shooting [CONTENT](https://drive.google.com/file/d/1SJcqGKnnGkuK8GuBYyIP7Iv_irTyRzy-/view), a skateboarding and lifestyle film (coming spring 2027)."
+        "detail": "Shooting, producing and editing expedition storytelling, such as [All Grown Up](https://www.youtube.com/watch?v=6xC_V8TsYxM) (Dirtbag Fund Films), and co-directing and co-shooting [CONTENT](https://drive.google.com/file/d/1SJcqGKnnGkuK8GuBYyIP7Iv_irTyRzy-/view), a skateboarding and lifestyle film (coming spring 2027).",
+        "pdfThumb": {
+          "image": "images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/13.jpg",
+          "focus": "center 50%",
+          "url": "https://www.youtube.com/watch?v=6xC_V8TsYxM",
+          "caption": "All Grown Up"
+        }
       },
       {
         "name": "Writing",
-        "detail": "[Essays, features and trip reports](https://christianblack.media/journal.html), plus [instructional articles](https://www.climbing.com/byline/christian-black/) and [gear reviews and testing](https://gearjunkie.com/author/cblack)."
+        "detail": "[Essays, features and trip reports](https://christianblack.media/journal.html), plus [instructional articles](https://www.climbing.com/byline/christian-black/) and [gear reviews and testing](https://gearjunkie.com/author/cblack).",
+        "pdfThumb": {
+          "image": "images/journal/fight-or-flight/01.jpg",
+          "focus": "center 45%",
+          "url": "https://christianblack.media/words/fight-or-flight.html",
+          "caption": "Fight or Flight"
+        }
       }
     ],
     "partners": [
@@ -456,9 +474,109 @@ window.CB_CONTENT = {
       "contact": {
         "image": "images/about-summit.jpg",
         "focus": "center 40%"
+      },
+      "audience": {
+        "image": "images/up-high.jpg",
+        "focus": "center 45%",
+        "credit": "Photo · Christian Black"
       }
     },
-    "offer": "Alpinist and storyteller: first ascents, big-wall free climbing, and the rescue skills to do them well."
+    "offer": "Alpinist and storyteller: first ascents, big-wall free climbing, and the rescue skills to do them well.",
+    "insights": {
+      "source": "Instagram Insights",
+      "handle": "@crustacean_black",
+      "period": "Aug 26 – Nov 23, 2026",
+      "headline": [
+        {
+          "value": "41k",
+          "label": "Accounts reached",
+          "note": "Unique accounts, last 90 days"
+        },
+        {
+          "value": "249k",
+          "label": "Views",
+          "note": "Up 92% on the previous 90 days"
+        },
+        {
+          "value": "55%",
+          "label": "Views from non-followers",
+          "note": "Non-follower views up 273%"
+        },
+        {
+          "value": "3,010",
+          "label": "Followers",
+          "note": "Up 5.5% over the period"
+        }
+      ],
+      "age": [
+        [
+          "18–24",
+          4.3
+        ],
+        [
+          "25–34",
+          53.3
+        ],
+        [
+          "35–44",
+          30.6
+        ],
+        [
+          "45–54",
+          7.2
+        ],
+        [
+          "55+",
+          4.5
+        ]
+      ],
+      "gender": [
+        [
+          "Men",
+          69.8
+        ],
+        [
+          "Women",
+          30.2
+        ]
+      ],
+      "countries": [
+        [
+          "United States",
+          74.2
+        ],
+        [
+          "Canada",
+          4.4
+        ],
+        [
+          "India",
+          1.9
+        ],
+        [
+          "Argentina",
+          1.8
+        ],
+        [
+          "Mexico",
+          1.4
+        ]
+      ],
+      "formats": [
+        [
+          "Posts",
+          108
+        ],
+        [
+          "Stories",
+          94
+        ],
+        [
+          "Reels",
+          46
+        ]
+      ]
+    }
   },
   "photography": {
     "kicker": "Photography",

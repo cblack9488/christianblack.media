@@ -119,7 +119,27 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
 .reach .scrim { background: rgba(16,15,12,.62); }
 .reach .panel { position: absolute; left: 56px; right: 56px; }
 .deliver .scrim { background: linear-gradient(90deg, rgba(16,15,12,.72) 0%, rgba(16,15,12,.25) 100%); }
-.deliver .panel { position: absolute; left: 56px; top: 56px; width: 520px; }
+.deliver .panel { position: absolute; left: 56px; top: 44px; width: 640px; padding: 24px 30px; }
+.deliver .row { padding: 8px 0; }
+.row.svc { grid-template-columns: 96px 150px 1fr; align-items: center; }
+.row.svc .d { font-size: 12.4px; line-height: 1.42; }
+.thumb { position: relative; display: block; width: 150px; height: 92px; overflow: hidden; border-radius: 3px; }
+.thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.thumb span { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 8px 5px; font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase;
+  color: #F0EADB; background: linear-gradient(0deg, rgba(16,15,12,.85), rgba(16,15,12,0)); }
+.deliver .sec + .sec { margin-top: 18px; }
+.deliver .note { margin-top: 10px; }
+.audience .scrim { background: rgba(16,15,12,.55); }
+.audience .panel { position: absolute; left: 56px; right: 56px; top: 56px; }
+.stats.four { grid-template-columns: repeat(4, 1fr); margin-bottom: 30px; }
+.stat .sv { font-size: 46px; }
+.cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 34px; }
+.lab.sm { margin-bottom: 12px; font-size: 9.5px; }
+.bar { margin-bottom: 11px; }
+.bl { display: flex; justify-content: space-between; font-size: 12.5px; color: #E2DBC8; margin-bottom: 4px; }
+.bl b { font-weight: 400; color: #F0EADB; }
+.bt { height: 5px; background: rgba(216,209,191,.16); border-radius: 3px; overflow: hidden; }
+.bt i { display: block; height: 100%; background: #BCA38F; border-radius: 3px; }
 .note { margin-top: 14px; font-size: 13px; color: #CFC8B5; }
 
 /* contact */
@@ -146,6 +166,23 @@ function rowsHtml(list, nameKey, detailKey) {
   ).join('') + '</div>';
 }
 
+function serviceRows(list) {
+  return '<div class="rows">' + (list || []).filter(x => x && String(x.name || '').trim()).map(x => {
+    const t = x.pdfThumb;
+    const thumb = t && t.image
+      ? '<a class="thumb" href="' + esc(t.url || '#') + '" style="border:0"><img src="/' + esc(t.image) + '" style="object-position:' + esc(t.focus || 'center') + '" alt="">' +
+        (t.caption ? '<span>' + esc(t.caption) + '</span>' : '') + '</a>'
+      : '<span></span>';
+    return '<div class="row svc"><div class="k">' + inl(x.name) + '</div>' + thumb + '<div class="d">' + inl(x.detail || '') + '</div></div>';
+  }).join('') + '</div>';
+}
+
+function bars(list, unit) {
+  const max = Math.max.apply(null, list.map(r => r[1]));
+  return list.map(r => '<div class="bar"><div class="bl"><span>' + esc(r[0]) + '</span><b>' + esc(unit === 'k' ? r[1] + 'K' : r[1] + '%') + '</b></div>' +
+    '<div class="bt"><i style="width:' + Math.max(2, Math.round(r[1] / (unit === 'k' ? max : 100) * 100)) + '%"></i></div></div>').join('');
+}
+
 function buildHtml(C) {
   const SITE = C.site || {};
   const K = C.mediakit || {};
@@ -153,7 +190,7 @@ function buildHtml(C) {
   const domain = SITE.domain || 'christianblack.media';
   const siteUrl = 'https://' + domain + '/';
   const pages = [];
-  const total = 7;
+  const total = 8;
   const foot = n => '<div class="pageno">' + esc(K.title || SITE.name || 'Christian Black') + ' &nbsp;·&nbsp; Media kit &nbsp;·&nbsp; ' +
     '<a href="' + siteUrl + '">' + esc(domain) + '</a> &nbsp;·&nbsp; ' + n + ' / ' + total + '</div>';
 
@@ -208,12 +245,28 @@ function buildHtml(C) {
     '<div class="panel" style="top:324px"><div class="lab">Publications</div>' + rowsHtml(K.publications, 'name', 'detail') + '</div>' +
     credit(P.reach) + foot(5) + '</section>');
 
-  /* 6 — deliverables + partners */
+  /* 6 — audience (Instagram insights) */
+  const I = K.insights;
+  if (I) {
+    const hs = (I.headline || []).map(h => '<div class="stat"><div class="sv disp">' + esc(h.value) + '</div><div class="sl">' + esc(h.label) + '</div>' +
+      (h.note ? '<div class="sn">' + esc(h.note) + '</div>' : '') + '</div>').join('');
+    pages.push('<section class="pg audience">' + bgBlock(P.audience) +
+      '<div class="panel"><div class="lab">Audience · ' + esc(I.source || 'Instagram') + ' ' + esc(I.handle || '') + ' · ' + esc(I.period || '') + '</div>' +
+      '<div class="stats four">' + hs + '</div>' +
+      '<div class="cols">' +
+      '<div><div class="lab sm">Age</div>' + bars(I.age || []) + '</div>' +
+      '<div><div class="lab sm">Top countries</div>' + bars(I.countries || []) + '</div>' +
+      '<div><div class="lab sm">Gender</div>' + bars(I.gender || []) +
+      '<div class="lab sm" style="margin-top:20px">Views by format</div>' + bars(I.formats || [], 'k') + '</div>' +
+      '</div></div>' + credit(P.audience) + foot(6) + '</section>');
+  }
+
+  /* 7 — deliverables + partners */
   pages.push('<section class="pg deliver">' + bgBlock(P.deliver) +
-    '<div class="panel"><div class="sec"><div class="lab">Deliverables</div>' + rowsHtml(K.services, 'name', 'detail') +
+    '<div class="panel"><div class="sec"><div class="lab">Deliverables</div>' + serviceRows(K.services) +
     (K.servicesNote ? '<p class="note">' + inl(K.servicesNote) + '</p>' : '') + '</div>' +
     '<div class="sec"><div class="lab">Partners</div>' + rowsHtml(K.partners, 'name', 'detail') + '</div></div>' +
-    credit(P.deliver) + foot(6) + '</section>');
+    credit(P.deliver) + foot(7) + '</section>');
 
   /* 7 — contact */
   const social = (SITE.social || []).filter(s => s && s.url).map(s =>
@@ -223,7 +276,7 @@ function buildHtml(C) {
     '<p class="blurb">' + esc((SITE.contactNote || 'For inquiries, media requests, licensing or collaboration').replace(/^./, c => c.toUpperCase())) + '</p>' +
     (SITE.email ? '<a class="mail" href="mailto:' + esc(SITE.email) + '">' + esc(SITE.email) + '</a>' : '') +
     '<div class="meta"><a href="' + siteUrl + '">' + esc(domain) + '</a>' + (social ? '<br>' + social : '') +
-    '<br>Rates and availability on request</div></div>' + credit(P.contact) + foot(7) + '</section>');
+    '<br>Rates and availability on request</div></div>' + credit(P.contact) + foot(8) + '</section>');
 
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>' + esc((K.title || 'Christian Black') + ' — Media kit') + '</title>' +
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">' +
