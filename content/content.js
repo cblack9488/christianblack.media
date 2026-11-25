@@ -273,7 +273,7 @@ window.CB_CONTENT = {
       },
       {
         "name": "Film",
-        "detail": "Shooting, producing and editing expedition storytelling, such as All Grown Up (Dirtbag Fund Films), and co-directing and co-shooting CONTENT, a skateboarding and lifestyle film (coming soon)."
+        "detail": "Shooting, producing and editing expedition storytelling, such as [All Grown Up](https://www.youtube.com/watch?v=6xC_V8TsYxM) (Dirtbag Fund Films), and co-directing and co-shooting CONTENT, a skateboarding and lifestyle film (coming soon)."
       },
       {
         "name": "Writing",

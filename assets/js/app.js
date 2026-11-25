@@ -1540,7 +1540,7 @@
       var row = el('div', { class: 'kit__row' });
       row.appendChild(CB.filled(x.name, function (v) { return el('div', { class: 'kit__name', text: v }); },
         'mediakit.services[' + i + '].name', 'What you offer — e.g. expedition photography, film, writing'));
-      row.appendChild(CB.filled(x.detail, function (v) { return el('div', { class: 'kit__detail', text: v }); },
+      row.appendChild(CB.filled(x.detail, function (v) { return inlineInto(el('div', { class: 'kit__detail' }), v); },
         'mediakit.services[' + i + '].detail', 'What that includes, and how you work'));
       svc.appendChild(row);
     });
