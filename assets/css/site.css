@@ -1436,3 +1436,11 @@ a.kit__detail { border: 0; color: var(--accent-hover); }
   font-size: var(--text-caption);
 }
 .contact__email:hover { color: var(--accent-hover); }
+
+.kit__site {
+  display: block; width: fit-content; margin: var(--space-3) 0 var(--space-6); border: 0; color: var(--text-secondary);
+  font-family: var(--font-label); font-size: var(--text-label); letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+.kit__site:hover { color: var(--accent-hover); }
+.supported__name a { border: 0; color: inherit; }

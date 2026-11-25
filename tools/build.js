@@ -560,6 +560,15 @@ function writePhotoSizes(extra) {
       '.article__heroinner { padding-top: 64px !important; padding-bottom: 24px !important; } ' +
       '.overlay--contact { min-height: 0 !important; height: 360px !important; } ' +
       '.page--kit .home__body > .home__block:last-child { display: none !important; }' });
+    /* Links that point at this page's own origin while building must point
+       at the real site in the PDF, where there is no local server. */
+    await kp.evaluate(domain => {
+      document.querySelectorAll('a[href]').forEach(a => {
+        if (a.href.indexOf(location.origin) === 0) {
+          a.setAttribute('href', 'https://' + domain + a.href.slice(location.origin.length));
+        }
+      });
+    }, SITE.domain || 'christianblack.media');
     await kp.waitForTimeout(800);
     const h = await kp.evaluate(() => Math.ceil(document.documentElement.scrollHeight));
     fs.mkdirSync(path.join(ROOT, 'press'), { recursive: true });

@@ -1250,10 +1250,10 @@
         return node;
       }, pathBase + '[' + i + '].value', hints.value));
       cell.appendChild(CB.filled(s.label, function (v) {
-        return el('div', { class: 'stat__label meta', text: v });
+        return inlineInto(el('div', { class: 'stat__label meta' }), v);
       }, pathBase + '[' + i + '].label', hints.label));
       cell.appendChild(CB.filled(s.note, function (v) {
-        return el('div', { class: 'stat__note', text: v });
+        return inlineInto(el('div', { class: 'stat__note' }), v);
       }, pathBase + '[' + i + '].note', 'Optional note underneath \u2014 e.g. the period it covers'));
       wrap.appendChild(cell);
     });
@@ -1467,14 +1467,28 @@
     hin.appendChild(CB.filled(d.lede, function (v) {
       return el('p', { class: 'home__positioning', text: v });
     }, 'mediakit.lede', 'One line: what you are. Can be the same as the landing page.'));
+    if (site.domain) {
+      hin.appendChild(el('a', { class: 'kit__site', href: 'https://' + site.domain + '/', text: site.domain }));
+    }
     var ksup = CB.supportedEl(site.support);
     if (ksup) {
       /* Partners added after the main logo: a mark when they have one,
          their name as text until then. */
+      var mainLogo = ksup.querySelector('img');
+      if (mainLogo && d.supportUrl) {
+        var wrapA = el('a', { href: d.supportUrl, target: '_blank', rel: 'noopener', 'aria-label': 'Hyperlite Mountain Gear' });
+        mainLogo.parentNode.insertBefore(wrapA, mainLogo);
+        wrapA.appendChild(mainLogo);
+      }
       (d.supportExtra || []).forEach(function (x) {
         if (!x) return;
         if (x.logo) ksup.appendChild(el('img', { class: 'supported__logo', src: CB.resolveSrc(x.logo), alt: x.name || '' }));
-        else if (x.name) ksup.appendChild(el('div', { class: 'supported__name', text: x.name }));
+        else if (x.name) {
+          var nm = el('div', { class: 'supported__name' });
+          if (x.url) nm.appendChild(el('a', { href: x.url, target: '_blank', rel: 'noopener', text: x.name }));
+          else nm.textContent = x.name;
+          ksup.appendChild(nm);
+        }
       });
       hin.appendChild(ksup);
     }
@@ -1509,9 +1523,9 @@
     (d.outreach || []).forEach(function (x, i) {
       x = x || {};
       var row = el('div', { class: 'kit__row' });
-      row.appendChild(CB.filled(x.name, function (v) { return el('div', { class: 'kit__name', text: v }); },
+      row.appendChild(CB.filled(x.name, function (v) { return inlineInto(el('div', { class: 'kit__name' }), v); },
         'mediakit.outreach[' + i + '].name', 'Role or program'));
-      row.appendChild(CB.filled(x.detail, function (v) { return el('div', { class: 'kit__detail', text: v }); },
+      row.appendChild(CB.filled(x.detail, function (v) { return inlineInto(el('div', { class: 'kit__detail' }), v); },
         'mediakit.outreach[' + i + '].detail', 'Seasons, what you did'));
       out.appendChild(row);
     });
@@ -1526,7 +1540,7 @@
     (d.publications || []).forEach(function (x, i) {
       x = x || {};
       var row = el('div', { class: 'kit__row' });
-      row.appendChild(CB.filled(x.name, function (v) { return el('div', { class: 'kit__name', text: v }); },
+      row.appendChild(CB.filled(x.name, function (v) { return inlineInto(el('div', { class: 'kit__name' }), v); },
         'mediakit.publications[' + i + '].name', 'A publication you have appeared in'));
       row.appendChild(CB.filled(x.detail, function (v) { return inlineInto(el('div', { class: 'kit__detail' }), v); },
         'mediakit.publications[' + i + '].detail', 'What you published there'));
@@ -1538,7 +1552,7 @@
     (d.services || []).forEach(function (x, i) {
       x = x || {};
       var row = el('div', { class: 'kit__row' });
-      row.appendChild(CB.filled(x.name, function (v) { return el('div', { class: 'kit__name', text: v }); },
+      row.appendChild(CB.filled(x.name, function (v) { return inlineInto(el('div', { class: 'kit__name' }), v); },
         'mediakit.services[' + i + '].name', 'What you offer — e.g. expedition photography, film, writing'));
       row.appendChild(CB.filled(x.detail, function (v) { return inlineInto(el('div', { class: 'kit__detail' }), v); },
         'mediakit.services[' + i + '].detail', 'What that includes, and how you work'));
@@ -1553,9 +1567,9 @@
     (d.partners || []).forEach(function (x, i) {
       x = x || {};
       var row = el('div', { class: 'kit__row' });
-      row.appendChild(CB.filled(x.name, function (v) { return el('div', { class: 'kit__name', text: v }); },
+      row.appendChild(CB.filled(x.name, function (v) { return inlineInto(el('div', { class: 'kit__name' }), v); },
         'mediakit.partners[' + i + '].name', 'A brand you have worked with'));
-      row.appendChild(CB.filled(x.detail, function (v) { return el('div', { class: 'kit__detail', text: v }); },
+      row.appendChild(CB.filled(x.detail, function (v) { return inlineInto(el('div', { class: 'kit__detail' }), v); },
         'mediakit.partners[' + i + '].detail', 'What you actually delivered for them'));
       par.appendChild(row);
     });
@@ -1565,7 +1579,7 @@
     (d.downloads || []).forEach(function (x, i) {
       x = x || {};
       var row = el('div', { class: 'kit__row' });
-      row.appendChild(CB.filled(x.label, function (v) { return el('div', { class: 'kit__name', text: v }); },
+      row.appendChild(CB.filled(x.label, function (v) { return inlineInto(el('div', { class: 'kit__name' }), v); },
         'mediakit.downloads[' + i + '].label', 'e.g. High-resolution portrait, logo, full bio'));
       row.appendChild(x.url
         ? el('a', { class: 'kit__detail', href: CB.resolveSrc(x.url), text: /\.html?$/.test(x.url) ? 'View ↗' : 'Download ↗' })
@@ -1588,6 +1602,7 @@
       kp.appendChild(el('a', { class: 'contact__btn', href: 'mailto:' + site.email,
         text: site.contactButton || 'Send an email', 'aria-label': 'Email Christian Black' }));
       kp.appendChild(el('a', { class: 'contact__email', href: 'mailto:' + site.email, text: site.email }));
+      if (site.domain) kp.appendChild(el('a', { class: 'contact__email', href: 'https://' + site.domain + '/', text: site.domain }));
     }
     cta.appendChild(kp);
     root.appendChild(cta);

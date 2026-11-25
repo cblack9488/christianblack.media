@@ -248,12 +248,12 @@ window.CB_CONTENT = {
       "focus": "center 45%",
       "credit": ""
     },
-    "bio": "Christian Black is a climber, alpinist and adventure athlete drawn to long, technical routes, wild places, and a good story. Based in the American West, his pursuits span everything from multipitch and big-wall free climbing to high-altitude technical alpinism and paragliding. More than anything, he enjoys the process of navigating a complicated objective with a broad toolbelt of skills.\n\nIn recent years he has completed a ground-up free ascent of El Capitan, established a difficult new alpine route on the 6,040m White Sapphire in the Indian Himalaya and explored technical alpinism and paragliding link-ups in Peru. While serious undertakings in nature, among friends he is best known for his famous crab poses on summits and his climbing catchphrase, “Have fun, be safe, look cool!”\n\nAs a former Yosemite Search and Rescue volunteer, Denali rescue volunteer, and Yosemite Climbing Ranger, Christian’s relationship to risk has evolved over the years, a topic he writes about openly in his essays. He believes that above all, success in the mountains comes from a continual practice of thoughtful decision-making, and failure is a necessary part of playing the long game. He enjoys sharing his depth of skill with the greater climbing community by hosting free rescue and skills clinics and by developing the “self-rescue” and “multipitch efficiency” clinics for the Yosemite Climbing Ranger program.\n\nBeyond athletic pursuits, photography, filmmaking and writing are ways Christian shares meaningful stories about his experiences. He approaches photography as a way to connect and give back to the people sharing the moment with him. Through filmmaking he seeks to pull a story from the broader experience of an expedition, while his writing offers reflections of his own motivations, challenges and imbalances associated with pursuing ambitious goals.",
+    "bio": "Christian Black is a climber, alpinist and adventure athlete drawn to long, technical routes, wild places, and a good story. Based in the American West, his pursuits span everything from multipitch and big-wall free climbing to high-altitude technical alpinism and paragliding. More than anything, he enjoys the process of navigating a complicated objective with a broad toolbelt of skills.\n\nIn recent years he has completed a [ground-up free ascent of El Capitan](https://christianblack.media/words/the-golden-handcuffs.html), established a difficult new alpine route on the [6,040m White Sapphire](https://christianblack.media/words/brilliant-blue-first-all-american-expedition-to-india-s-kish.html) in the Indian Himalaya and explored technical alpinism and [paragliding link-ups in Peru](https://christianblack.media/words/fight-or-flight.html). While serious undertakings in nature, among friends he is best known for his famous crab poses on summits and his climbing catchphrase, “Have fun, be safe, look cool!”\n\nAs a former [Yosemite Search and Rescue](https://www.nps.gov/yose/getinvolved/sar_jobs.htm) volunteer, [Denali rescue](https://www.nps.gov/dena/planyourvisit/mountaineeringvips.htm) volunteer, and Yosemite Climbing Ranger, Christian’s relationship to risk has evolved over the years, a topic he writes about openly in his [essays](https://christianblack.media/journal.html). He believes that above all, success in the mountains comes from a continual practice of thoughtful decision-making, and failure is a necessary part of playing the long game. He enjoys sharing his depth of skill with the greater climbing community by hosting free rescue and skills clinics and by developing the “self-rescue” and “multipitch efficiency” clinics for the Yosemite Climbing Ranger program.\n\nBeyond athletic pursuits, photography, filmmaking and writing are ways Christian shares meaningful stories about his experiences. He approaches photography as a way to connect and give back to the people sharing the moment with him. Through filmmaking he seeks to pull a story from the broader experience of an expedition, while his writing offers reflections of his own motivations, challenges and imbalances associated with pursuing ambitious goals.",
     "reach": [
       {
         "value": "3k",
         "label": "Instagram followers",
-        "note": "@crustacean_black"
+        "note": "[@crustacean_black](https://www.instagram.com/crustacean_black/)"
       },
       {
         "value": "250k",
@@ -263,13 +263,13 @@ window.CB_CONTENT = {
       {
         "value": "25k",
         "label": "Film views",
-        "note": "All Grown Up — Dirtbag Fund film"
+        "note": "[All Grown Up](https://www.youtube.com/watch?v=6xC_V8TsYxM) — Dirtbag Fund film"
       }
     ],
     "services": [
       {
         "name": "Photography",
-        "detail": "Climbing, alpine and travel photography. Published clients include The North Face, Hyperlite Mountain Gear, Climbing Magazine and Cross Country Magazine. Available for licensing and assignments."
+        "detail": "Climbing, alpine and travel [photography](https://christianblack.media/photography.html). Published clients include [The North Face](https://www.thenorthface.com/), [Hyperlite Mountain Gear](https://www.hyperlitemountaingear.com/), [Climbing Magazine](https://www.climbing.com/) and [Cross Country Magazine](https://xcmag.com/). Available for licensing and assignments."
       },
       {
         "name": "Film",
@@ -277,12 +277,12 @@ window.CB_CONTENT = {
       },
       {
         "name": "Writing",
-        "detail": "Essays, features and trip reports, plus instructional articles and gear reviews and testing."
+        "detail": "[Essays, features and trip reports](https://christianblack.media/journal.html), plus [instructional articles](https://www.climbing.com/byline/christian-black/) and [gear reviews and testing](https://gearjunkie.com/author/cblack)."
       }
     ],
     "partners": [
       {
-        "name": "Hyperlite Mountain Gear",
+        "name": "[Hyperlite Mountain Gear](https://www.hyperlitemountaingear.com/)",
         "detail": "Supported athlete, since 2025"
       },
       {
@@ -319,33 +319,33 @@ window.CB_CONTENT = {
     "highlights": [
       {
         "value": "First ascent",
-        "label": "White Sapphire, 6,040m — Kishtwar, India",
-        "note": "AI3 M7+, 850m. American Alpine Journal, 2024"
+        "label": "[White Sapphire, 6,040m — Kishtwar, India](https://christianblack.media/words/brilliant-blue-first-all-american-expedition-to-india-s-kish.html)",
+        "note": "AI3 M7+, 850m. [American Alpine Journal](https://publications.americanalpineclub.org/articles/13201216837), 2024"
       },
       {
         "value": "Big-wall free climbing",
-        "label": "Golden Gate, 5.13a, El Capitan — ground-up free ascent",
+        "label": "[Golden Gate, 5.13a, El Capitan — ground-up free ascent](https://christianblack.media/words/the-golden-handcuffs.html)",
         "note": "36 pitches, Yosemite"
       },
       {
         "value": "Para-alpinism",
-        "label": "Climb and fly in the Cordillera Blanca, Peru",
-        "note": "Cross Country Magazine, issue 265"
+        "label": "[Climb and fly in the Cordillera Blanca, Peru](https://christianblack.media/words/fight-or-flight.html)",
+        "note": "[Cross Country Magazine](https://xcmag.com/magazine-articles/adventure-and-inspiration/fight-or-flight/), issue 265"
       },
       {
         "value": "Sport and bouldering",
-        "label": "5.13d sport, V10 boulder",
+        "label": "[5.13d sport, V10 boulder](https://christianblack.media/ticklist.html)",
         "note": "Dante’s Inferno (extension), El Salto, MX; Gato Negro (sit), El Chaltén, Argentina"
       }
     ],
     "highlightsLabel": "Climbing highlights",
     "outreach": [
       {
-        "name": "Yosemite Search and Rescue",
+        "name": "[Yosemite Search and Rescue](https://www.nps.gov/yose/getinvolved/sar_jobs.htm)",
         "detail": "Volunteer, 2 seasons (2019–2020)"
       },
       {
-        "name": "Denali Rescue",
+        "name": "[Denali Rescue](https://www.nps.gov/dena/planyourvisit/mountaineeringvips.htm)",
         "detail": "Volunteer, 1 season (2022)"
       },
       {
@@ -367,19 +367,19 @@ window.CB_CONTENT = {
     ],
     "publications": [
       {
-        "name": "American Alpine Journal",
-        "detail": "“Brilliant Blue”, first ascent of White Sapphire, Kishtwar Valley (2024)"
+        "name": "[American Alpine Journal](https://publications.americanalpineclub.org/)",
+        "detail": "[“Brilliant Blue”](https://publications.americanalpineclub.org/articles/13201216837), first ascent of White Sapphire, Kishtwar Valley (2024)"
       },
       {
-        "name": "Cross Country Magazine",
-        "detail": "Feature: “Fight or Flight”, para-alpinism in the Cordillera Blanca (issue 265); featured on The Paragliding Podcast, episode 5"
+        "name": "[Cross Country Magazine](https://xcmag.com/)",
+        "detail": "Feature: [“Fight or Flight”](https://xcmag.com/magazine-articles/adventure-and-inspiration/fight-or-flight/), para-alpinism in the Cordillera Blanca (issue 265); featured on [The Paragliding Podcast, episode 5](https://xcmag.com/podcasts/the-paragliding-podcast-episode-5/)"
       },
       {
-        "name": "Climbing Magazine",
+        "name": "[Climbing Magazine](https://www.climbing.com/)",
         "detail": "Instructional articles, including [“Realistic Self-Rescue”](https://www.climbing.com/skills/realistic-self-rescue-three-must-have-multi-pitch-skills-using-things-you-actually-carry/)"
       },
       {
-        "name": "GearJunkie",
+        "name": "[GearJunkie](https://gearjunkie.com/)",
         "detail": "[Gear reviews and testing](https://gearjunkie.com/author/cblack)"
       }
     ],
@@ -390,7 +390,8 @@ window.CB_CONTENT = {
         "logo": ""
       }
     ],
-    "servicesNote": "Rates and availability on request. [Get in touch](mailto:cblack9488@gmail.com)."
+    "servicesNote": "Rates and availability on request. [Get in touch](mailto:cblack9488@gmail.com).",
+    "supportUrl": "https://www.hyperlitemountaingear.com/"
   },
   "photography": {
     "kicker": "Photography",
