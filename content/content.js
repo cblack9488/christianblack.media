@@ -320,22 +320,40 @@ window.CB_CONTENT = {
       {
         "value": "First ascent",
         "label": "[White Sapphire, 6,040m — Kishtwar, India](https://christianblack.media/words/brilliant-blue-first-all-american-expedition-to-india-s-kish.html)",
-        "note": "AI3 M7+, 850m. [American Alpine Journal](https://publications.americanalpineclub.org/articles/13201216837), 2024"
+        "note": "AI3 M7+, 850m. [American Alpine Journal](https://publications.americanalpineclub.org/articles/13201216837), 2024",
+        "pdfImage": {
+          "image": "images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/09.jpg",
+          "focus": "center 50%"
+        }
       },
       {
         "value": "Big-wall free climbing",
         "label": "[Golden Gate, 5.13a, El Capitan — ground-up free ascent](https://christianblack.media/words/the-golden-handcuffs.html)",
-        "note": "36 pitches, Yosemite"
+        "note": "36 pitches, Yosemite",
+        "pdfImage": {
+          "image": "images/on-the-walls.jpg",
+          "focus": "center 42%",
+          "credit": "Photo · Scott Bennet"
+        }
       },
       {
         "value": "Para-alpinism",
         "label": "[Climb and fly in the Cordillera Blanca, Peru](https://christianblack.media/words/fight-or-flight.html)",
-        "note": "[Cross Country Magazine](https://xcmag.com/magazine-articles/adventure-and-inspiration/fight-or-flight/), issue 265"
+        "note": "[Cross Country Magazine](https://xcmag.com/magazine-articles/adventure-and-inspiration/fight-or-flight/), issue 265",
+        "pdfImage": {
+          "image": "images/journal/fight-or-flight/08.jpg",
+          "focus": "center 40%"
+        }
       },
       {
         "value": "Sport and bouldering",
         "label": "[5.13d sport, V10 boulder](https://christianblack.media/ticklist.html)",
-        "note": "Dante’s Inferno (extension), El Salto, MX; Gato Negro (sit), El Chaltén, Argentina"
+        "note": "Dante’s Inferno (extension), El Salto, MX; Gato Negro (sit), El Chaltén, Argentina",
+        "pdfImage": {
+          "image": "images/down-low.jpg",
+          "focus": "center 38%",
+          "credit": "Photo · Dan Teitelbaum"
+        }
       }
     ],
     "highlightsLabel": "Climbing highlights",
@@ -391,7 +409,39 @@ window.CB_CONTENT = {
       }
     ],
     "servicesNote": "Rates and availability on request. [Get in touch](mailto:cblack9488@gmail.com).",
-    "supportUrl": "https://www.hyperlitemountaingear.com/"
+    "supportUrl": "https://www.hyperlitemountaingear.com/",
+    "pdf": {
+      "cover": {
+        "image": "images/header.jpg",
+        "focus": "center 55%",
+        "credit": "Photo · Chase Hathaway"
+      },
+      "bio": {
+        "image": "images/about-backdrop.jpg",
+        "focus": "center 45%"
+      },
+      "crab": {
+        "image": "images/portrait-cb.jpg",
+        "focus": "center 40%"
+      },
+      "outreach": {
+        "image": "images/about-outreach.jpg",
+        "focus": "center 50%"
+      },
+      "reach": {
+        "image": "images/far-away.jpg",
+        "focus": "center 45%",
+        "credit": "Photo · Hayden Wyatt"
+      },
+      "deliver": {
+        "image": "images/about-at-work.jpg",
+        "focus": "0% 50%"
+      },
+      "contact": {
+        "image": "images/about-summit.jpg",
+        "focus": "center 40%"
+      }
+    }
   },
   "photography": {
     "kicker": "Photography",

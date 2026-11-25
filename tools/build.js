@@ -546,35 +546,11 @@ function writePhotoSizes(extra) {
     process.stdout.write('  ' + p.file.padEnd(52) + baked.words + ' words\n');
   }
 
-  /* The media kit as a single-page PDF, rendered from the live page so it
-     always matches. If anything here fails the deploy carries on without it:
-     the PDF is a convenience, not a reason to stop the site going out. */
+  /* The media kit as a landscape, multi-page PDF built from content.js
+     (see tools/kit-pdf.js). If anything here fails the deploy carries on
+     without it: the PDF is a convenience, not a reason to stop the site. */
   try {
-    const kp = await ctx.newPage();
-    await kp.setViewportSize({ width: 1200, height: 900 });
-    await kp.goto('http://localhost:' + PORT + '/mediakit.html', { waitUntil: 'load' });
-    await kp.waitForSelector('.page--kit .home__block', { timeout: 15000 });
-    await kp.addStyleTag({ content: '.rail, .site-footer, .fixedbg, .scroll-hint { display: none !important; } ' +
-      'html, body { background: #16150f !important; } .page--kit { margin: 0 !important; } ' +
-      '.article__hero { min-height: 0 !important; height: auto !important; } ' +
-      '.article__heroinner { padding-top: 64px !important; padding-bottom: 24px !important; } ' +
-      '.overlay--contact { min-height: 0 !important; height: 360px !important; } ' +
-      '.page--kit .home__body > .home__block:last-child { display: none !important; }' });
-    /* Links that point at this page's own origin while building must point
-       at the real site in the PDF, where there is no local server. */
-    await kp.evaluate(domain => {
-      document.querySelectorAll('a[href]').forEach(a => {
-        if (a.href.indexOf(location.origin) === 0) {
-          a.setAttribute('href', 'https://' + domain + a.href.slice(location.origin.length));
-        }
-      });
-    }, SITE.domain || 'christianblack.media');
-    await kp.waitForTimeout(800);
-    const h = await kp.evaluate(() => Math.ceil(document.documentElement.scrollHeight));
-    fs.mkdirSync(path.join(ROOT, 'press'), { recursive: true });
-    await kp.pdf({ path: path.join(ROOT, 'press/christian-black-media-kit.pdf'),
-      width: '1200px', height: (h + 2) + 'px', printBackground: true, pageRanges: '1' });
-    await kp.close();
+    await require('./kit-pdf.js')({ ctx, PORT, ROOT, C });
     console.log('  press/christian-black-media-kit.pdf');
   } catch (e) {
     console.log('  (media kit PDF skipped: ' + e.message + ')');
