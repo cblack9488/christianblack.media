@@ -85,7 +85,7 @@ const PAGES = [
       (C.journal.header.images || [])[0].src },
   { file: 'mediakit.html', id: 'mediakit', title: C.mediakit.title || 'Media kit',
     kicker: 'Media kit', seoTitle: NAME + ' \u2014 Media kit',
-    seoDescription: C.mediakit.lede || SITE.seoDescription,
+    seoDescription: SITE.seoDescription,
     desc: C.mediakit.lede || SITE.seoDescription,
     image: (C.mediakit.header || {}).image,
     /* Scaffolding until it has been written. While it is empty the page is

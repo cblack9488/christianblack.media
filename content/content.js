@@ -24,7 +24,7 @@ window.CB_CONTENT = {
     "contactNote": "for inquiries, media requests, licensing or collaboration",
     "cloudflareToken": "bcfa56db21444097b56f303096f57bfb",
     "seoTitle": "Christian Black — Climber, alpinist, storyteller",
-    "seoDescription": "Climber and multi-sport adventure athlete sharing his experiences through writing, photography and film, from the Indian Himalaya to El Capitan and the Cordillera Blanca.",
+    "seoDescription": "Climber and multi-sport adventure athlete sharing his experiences through writing, photography and film",
     "support": {
       "label": "Supported by",
       "logo": "images/hmg-logo.png",
