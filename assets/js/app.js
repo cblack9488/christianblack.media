@@ -1482,17 +1482,6 @@
       body.appendChild(s);
     }
 
-    block('Reach', statRow(d.reach, 'stats--reach', 'mediakit.reach', {
-      value: 'The figure',
-      label: 'Platform or publication, and the period it covers'
-    }), anyReach(d.reach));
-
-    block('Audience', CB.filled(d.audience, function (v) {
-      var box = el('div', { class: 'cb-prose entry__prose' });
-      String(v).split(/\n\s*\n/).forEach(function (t) { if (t.trim()) box.appendChild(paraEl(t.trim())); });
-      return box;
-    }, 'mediakit.audience', 'Who follows you — where they are, what they climb, why a brand should want them'), !!String(d.audience || '').trim());
-
     block('Biography', CB.filled(d.bio, function (v) {
       var box = el('div', { class: 'cb-prose entry__prose' });
       String(v).split(/\n\s*\n/).forEach(function (t) { if (t.trim()) box.appendChild(paraEl(t.trim())); });
@@ -1507,6 +1496,23 @@
     hl.appendChild(el('a', { class: 'home__more', href: CB.hrefFor('athlete'), text: 'Full climbing r\u00e9sum\u00e9 \u2197' }));
     block(d.highlightsLabel || 'Climbing highlights', hl, anyWritten(d.highlights, 'value'));
 
+    var out = el('div', { class: 'kit__list' });
+    (d.outreach || []).forEach(function (x, i) {
+      x = x || {};
+      var row = el('div', { class: 'kit__row' });
+      row.appendChild(CB.filled(x.name, function (v) { return el('div', { class: 'kit__name', text: v }); },
+        'mediakit.outreach[' + i + '].name', 'Role or program'));
+      row.appendChild(CB.filled(x.detail, function (v) { return el('div', { class: 'kit__detail', text: v }); },
+        'mediakit.outreach[' + i + '].detail', 'Seasons, what you did'));
+      out.appendChild(row);
+    });
+    block('Outreach and community', out, anyWritten(d.outreach, 'name'));
+
+    block('Social reach', statRow(d.reach, 'stats--reach', 'mediakit.reach', {
+      value: 'The figure',
+      label: 'Platform or publication, and the period it covers'
+    }), anyReach(d.reach));
+
     var svc = el('div', { class: 'kit__list' });
     (d.services || []).forEach(function (x, i) {
       x = x || {};
@@ -1517,7 +1523,7 @@
         'mediakit.services[' + i + '].detail', 'What that includes, and how you work'));
       svc.appendChild(row);
     });
-    block('What I make', svc, anyWritten(d.services, 'name'));
+    block('Deliverables', svc, anyWritten(d.services, 'name'));
 
     var par = el('div', { class: 'kit__list' });
     (d.partners || []).forEach(function (x, i) {
@@ -1529,7 +1535,7 @@
         'mediakit.partners[' + i + '].detail', 'What you actually delivered for them'));
       par.appendChild(row);
     });
-    block('Partners', par, anyWritten(d.partners, 'name'));
+    block('Partners and publications', par, anyWritten(d.partners, 'name'));
 
     var dl = el('div', { class: 'kit__list' });
     (d.downloads || []).forEach(function (x, i) {
