@@ -119,7 +119,8 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
 .reach .scrim { background: rgba(16,15,12,.62); }
 .reach .panel { position: absolute; left: 56px; right: 56px; }
 .deliver .scrim { background: linear-gradient(90deg, rgba(16,15,12,.72) 0%, rgba(16,15,12,.25) 100%); }
-.deliver .panel { position: absolute; left: 56px; top: 44px; width: 640px; padding: 24px 30px; }
+.deliver .col { position: absolute; left: 56px; top: 44px; width: 600px; display: flex; flex-direction: column; gap: 16px; }
+.deliver .panel { padding: 24px 30px; }
 .deliver .row { padding: 8px 0; }
 .row.svc { grid-template-columns: 96px 150px 1fr; align-items: center; }
 .row.svc .d { font-size: 12.4px; line-height: 1.42; }
@@ -144,8 +145,8 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
 
 /* contact */
 .contact .scrim { background: rgba(16,15,12,.45); }
-.contact .panel { position: absolute; left: 50%; bottom: 60px; transform: translateX(-50%); width: 560px; text-align: center; padding: 44px 40px; }
-.contact h2 { font-size: 46px; line-height: 1.05; margin: 12px 0 14px; }
+.contact .panel { position: absolute; left: 50%; bottom: 60px; transform: translateX(-50%); width: 640px; text-align: center; padding: 44px 40px; }
+.contact h2 { font-size: 44px; line-height: 1.08; margin: 14px 0 6px; }
 .contact .blurb { color: #D8D1BF; font-size: 15px; }
 .contact .mail { display: inline-block; margin: 22px 0 6px; font-size: 24px; font-family: "Instrument Serif", Georgia, serif; }
 .contact .meta { margin-top: 14px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #BCB4A2; line-height: 2; }
@@ -263,17 +264,16 @@ function buildHtml(C) {
 
   /* 7 — deliverables + partners */
   pages.push('<section class="pg deliver">' + bgBlock(P.deliver) +
-    '<div class="panel"><div class="sec"><div class="lab">Deliverables</div>' + serviceRows(K.services) +
+    '<div class="col"><div class="panel"><div class="lab">Deliverables</div>' + rowsHtml(K.services, 'name', 'detail') +
     (K.servicesNote ? '<p class="note">' + inl(K.servicesNote) + '</p>' : '') + '</div>' +
-    '<div class="sec"><div class="lab">Partners</div>' + rowsHtml(K.partners, 'name', 'detail') + '</div></div>' +
+    '<div class="panel"><div class="lab">Partners</div>' + rowsHtml(K.partners, 'name', 'detail') + '</div></div>' +
     credit(P.deliver) + foot(7) + '</section>');
 
   /* 7 — contact */
   const social = (SITE.social || []).filter(s => s && s.url).map(s =>
     '<a href="' + esc(s.url) + '">' + esc(s.handle || s.label || s.url.replace(/^https?:\/\/(www\.)?/, '')) + '</a>').join('');
   pages.push('<section class="pg contact">' + bgBlock(P.contact) +
-    '<div class="panel"><div class="lab">Contact</div><h2 class="disp">Let’s make something</h2>' +
-    '<p class="blurb">' + esc((SITE.contactNote || 'For inquiries, media requests, licensing or collaboration').replace(/^./, c => c.toUpperCase())) + '</p>' +
+    '<div class="panel"><div class="lab">Let’s work together!</div><h2 class="disp">Have fun, be safe, look cool, more crab!</h2>' +
     (SITE.email ? '<a class="mail" href="mailto:' + esc(SITE.email) + '">' + esc(SITE.email) + '</a>' : '') +
     '<div class="meta"><a href="' + siteUrl + '">' + esc(domain) + '</a>' + (social ? '<br>' + social : '') +
     '<br>Rates and availability on request</div></div>' + credit(P.contact) + foot(8) + '</section>');

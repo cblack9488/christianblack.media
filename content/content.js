@@ -284,33 +284,15 @@ window.CB_CONTENT = {
     "services": [
       {
         "name": "Photography",
-        "detail": "Climbing, alpine and travel [photography](https://christianblack.media/photography.html). Published clients include The North Face, Hyperlite Mountain Gear, Climbing Magazine and Cross Country Magazine. Available for licensing and assignments.",
-        "pdfThumb": {
-          "image": "images/photography/climber-high-reach-full.jpg",
-          "focus": "center 40%",
-          "url": "https://christianblack.media/photography.html",
-          "caption": "Sarah Fenoglio on The Other, 14a"
-        }
+        "detail": "Climbing, alpine and travel [photography](https://christianblack.media/photography.html). Published clients include The North Face, Hyperlite Mountain Gear, Climbing Magazine and Cross Country Magazine. Available for licensing and assignments."
       },
       {
         "name": "Film",
-        "detail": "Shooting, producing and editing expedition storytelling, such as [All Grown Up](https://www.youtube.com/watch?v=6xC_V8TsYxM) (Dirtbag Fund Films), and co-directing and co-shooting [CONTENT](https://drive.google.com/file/d/1SJcqGKnnGkuK8GuBYyIP7Iv_irTyRzy-/view), a skateboarding and lifestyle film (coming spring 2027).",
-        "pdfThumb": {
-          "image": "images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/13.jpg",
-          "focus": "center 50%",
-          "url": "https://www.youtube.com/watch?v=6xC_V8TsYxM",
-          "caption": "All Grown Up"
-        }
+        "detail": "Shooting, producing and editing expedition storytelling, such as [All Grown Up](https://www.youtube.com/watch?v=6xC_V8TsYxM) (Dirtbag Fund Films), and co-directing and co-shooting [CONTENT](https://drive.google.com/file/d/1SJcqGKnnGkuK8GuBYyIP7Iv_irTyRzy-/view), a skateboarding and lifestyle film (coming spring 2027)."
       },
       {
         "name": "Writing",
-        "detail": "[Essays, features and trip reports](https://christianblack.media/journal.html), plus [instructional articles](https://www.climbing.com/byline/christian-black/) and [gear reviews and testing](https://gearjunkie.com/author/cblack).",
-        "pdfThumb": {
-          "image": "images/journal/fight-or-flight/01.jpg",
-          "focus": "center 45%",
-          "url": "https://christianblack.media/words/fight-or-flight.html",
-          "caption": "Fight or Flight"
-        }
+        "detail": "[Essays, features and trip reports](https://christianblack.media/journal.html), plus [instructional articles](https://www.climbing.com/byline/christian-black/) and [gear reviews and testing](https://gearjunkie.com/author/cblack)."
       }
     ],
     "partners": [
@@ -481,7 +463,7 @@ window.CB_CONTENT = {
         "credit": "Photo · Christian Black"
       }
     },
-    "offer": "Alpinist and storyteller: first ascents, big-wall free climbing, and the rescue skills to do them well.",
+    "offer": "",
     "insights": {
       "source": "Instagram Insights",
       "handle": "@crustacean_black",
