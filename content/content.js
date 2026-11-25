@@ -420,7 +420,7 @@ window.CB_CONTENT = {
     "publications": [
       {
         "name": "[American Alpine Journal](https://publications.americanalpineclub.org/)",
-        "detail": "[“Brilliant Blue”](https://publications.americanalpineclub.org/articles/13201216837), first ascent of White Sapphire, Kishtwar Valley (2024)"
+        "detail": "[“Brilliant Blue”](https://publications.americanalpineclub.org/articles/13201216837), first ascent of White Sapphire, Kishtwar Valley (2023)"
       },
       {
         "name": "[Cross Country Magazine](https://xcmag.com/)",
