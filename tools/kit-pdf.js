@@ -67,11 +67,12 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
   linear-gradient(0deg, rgba(16,15,12,.7) 0%, rgba(16,15,12,0) 40%); }
 .cover h1 { font-size: 92px; line-height: 1; margin: 14px 0 22px; }
 .cover .lede { font-size: 20px; max-width: 420px; color: #D8D1BF; line-height: 1.4; }
-.cover .site { display: inline-block; margin-top: 18px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
+.cover .offer { margin-top: 14px; max-width: 470px; font-size: 15px; line-height: 1.45; font-style: italic; color: #E2DBC8; }
+.cover .reachme { margin-top: 20px; display: flex; gap: 26px; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
 .cover .sup { position: absolute; left: 56px; bottom: 52px; display: flex; align-items: center; gap: 22px; }
 .cover .sup img { height: 62px; width: auto; }
 .cover .sup .nm { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #D8D1BF; }
-.cover .stack { position: absolute; left: 56px; bottom: 150px; }
+.cover .stack { position: absolute; left: 56px; bottom: 140px; }
 
 /* biography */
 .bio .scrim { background: rgba(16,15,12,.35); }
@@ -165,7 +166,9 @@ function buildHtml(C) {
     '<div class="in"><div class="stack"><div class="lab">' + esc(K.kicker || 'Media kit') + '</div>' +
     '<h1 class="disp">' + esc(K.title || SITE.name || 'Christian Black') + '</h1>' +
     '<p class="lede">' + esc(K.lede || '') + '</p>' +
-    '<a class="site" href="' + siteUrl + '">' + esc(domain) + '</a></div>' +
+    (K.offer ? '<p class="offer">' + inl(K.offer) + '</p>' : '') +
+    '<div class="reachme">' + (SITE.email ? '<a href="mailto:' + esc(SITE.email) + '">' + esc(SITE.email) + '</a>' : '') +
+    '<a href="' + siteUrl + '">' + esc(domain) + '</a></div></div>' +
     '<div class="sup"><span class="lab">Supported by</span>' +
     (supLogo ? '<a href="' + esc(K.supportUrl || siteUrl) + '" style="border:0">' + supLogo + '</a>' : '') + extras + '</div></div>' +
     credit(P.cover) + '</section>');

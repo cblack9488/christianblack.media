@@ -287,6 +287,10 @@ body { padding-right: var(--rail-width); }
   letter-spacing: 0.04em; color: var(--clay-300);
   white-space: nowrap;
 }
+.tick__year {
+  font-family: var(--font-label); font-size: var(--text-small);
+  letter-spacing: 0.08em; color: var(--stone-300); white-space: nowrap;
+}
 .tick__detail { display: block; margin-top: var(--space-1); color: var(--stone-200); font-size: var(--text-small); }
 .tick__note { display: block; margin-top: var(--space-1); color: var(--stone-300); font-size: var(--text-caption); }
 .tick__read {

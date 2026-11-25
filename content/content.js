@@ -54,28 +54,32 @@ window.CB_CONTENT = {
             "grade": "5,000ft, Northwest Ridge",
             "detail": "Fitz Roy, Patagonia, Argentina",
             "note": "Summit",
-            "url": "words/patagonia-pt-1-success.html"
+            "url": "words/patagonia-pt-1-success.html",
+            "year": 2020
           },
           {
             "name": "“Brilliant Blue”",
             "grade": "AI3 M7+, 850m",
             "detail": "White Sapphire (6040m), Kishtwar Valley, India",
             "note": "First ascent",
-            "url": "words/brilliant-blue-first-all-american-expedition-to-india-s-kish.html"
+            "url": "words/brilliant-blue-first-all-american-expedition-to-india-s-kish.html",
+            "year": 2023
           },
           {
             "name": "Para-alpinism in the Cordillera Blanca",
             "grade": "",
             "detail": "",
             "note": "",
-            "url": "words/fight-or-flight.html"
+            "url": "words/fight-or-flight.html",
+            "year": 2025
           },
           {
             "name": "Failure or success? A trip to the Garhwal Himalaya",
             "grade": "",
             "detail": "",
             "note": "",
-            "url": "words/garhwal-himalaya.html"
+            "url": "words/garhwal-himalaya.html",
+            "year": 2026
           }
         ]
       },
@@ -93,19 +97,22 @@ window.CB_CONTENT = {
             "grade": "5.13a, 36 pitches",
             "detail": "El Capitan, Yosemite CA",
             "note": "Ground up free ascent",
-            "url": "words/the-golden-handcuffs.html"
+            "url": "words/the-golden-handcuffs.html",
+            "year": 2024
           },
           {
             "name": "“Desert Solitaire”",
             "grade": "5.13b, 11 pitches",
             "detail": "Red Rock NV",
-            "note": "In-a-day free ascent"
+            "note": "In-a-day free ascent",
+            "year": 2025
           },
           {
             "name": "“Westie Face”",
             "grade": "5.13a, 8 pitches",
             "detail": "Leaning Tower, Yosemite CA",
-            "note": "Ground up free ascent"
+            "note": "Ground up free ascent",
+            "year": 2025
           }
         ]
       },
@@ -122,25 +129,29 @@ window.CB_CONTENT = {
             "name": "“Dante’s Inferno” (extension)",
             "grade": "5.13d",
             "detail": "El Salto, MX",
-            "note": ""
+            "note": "",
+            "year": 2022
           },
           {
             "name": "“America’s Most Wanted”",
             "grade": "5.13c",
             "detail": "Mt. Charleston, NV",
-            "note": ""
+            "note": "",
+            "year": 2026
           },
           {
             "name": "“The Force”",
             "grade": "V9",
             "detail": "Yosemite, California",
-            "note": "One session"
+            "note": "One session",
+            "year": 2025
           },
           {
             "name": "“Gato Negro” (sit)",
             "grade": "V10",
             "detail": "El Chaltén, Argentina",
-            "note": "Two sessions"
+            "note": "Two sessions",
+            "year": 2026
           }
         ]
       },
@@ -158,28 +169,32 @@ window.CB_CONTENT = {
             "grade": "",
             "detail": "Kishtwar Valley",
             "note": "",
-            "url": "words/brilliant-blue-first-all-american-expedition-to-india-s-kish.html"
+            "url": "words/brilliant-blue-first-all-american-expedition-to-india-s-kish.html",
+            "year": 2023
           },
           {
             "name": "Cordillera Blanca",
             "grade": "",
             "detail": "Peru — climb and fly",
             "note": "",
-            "url": "words/fight-or-flight.html"
+            "url": "words/fight-or-flight.html",
+            "year": 2025
           },
           {
             "name": "Patagonia",
             "grade": "",
             "detail": "El Chaltén, Argentina",
             "note": "",
-            "url": "words/patagonia-pt-1-success.html"
+            "url": "words/patagonia-pt-1-success.html",
+            "year": 2020
           },
           {
             "name": "Northwest Territories",
             "grade": "",
             "detail": "Cirque of the Unclimbables",
             "note": "",
-            "url": "words/cirque-of-the-unclimbables-2023-climb-and-packraft.html"
+            "url": "words/cirque-of-the-unclimbables-2023-climb-and-packraft.html",
+            "year": 2023
           }
         ]
       }
@@ -273,7 +288,7 @@ window.CB_CONTENT = {
       },
       {
         "name": "Film",
-        "detail": "Shooting, producing and editing expedition storytelling, such as [All Grown Up](https://www.youtube.com/watch?v=6xC_V8TsYxM) (Dirtbag Fund Films), and co-directing and co-shooting [CONTENT](https://drive.google.com/file/d/1SJcqGKnnGkuK8GuBYyIP7Iv_irTyRzy-/view), a skateboarding and lifestyle film (coming soon)."
+        "detail": "Shooting, producing and editing expedition storytelling, such as [All Grown Up](https://www.youtube.com/watch?v=6xC_V8TsYxM) (Dirtbag Fund Films), and co-directing and co-shooting [CONTENT](https://drive.google.com/file/d/1SJcqGKnnGkuK8GuBYyIP7Iv_irTyRzy-/view), a skateboarding and lifestyle film (coming spring 2027)."
       },
       {
         "name": "Writing",
@@ -319,7 +334,7 @@ window.CB_CONTENT = {
     "highlights": [
       {
         "value": "First ascent",
-        "label": "[White Sapphire, 6,040m — Kishtwar, India](https://christianblack.media/words/brilliant-blue-first-all-american-expedition-to-india-s-kish.html)",
+        "label": "[White Sapphire, 6,040m — Kishtwar, India](https://christianblack.media/words/brilliant-blue-first-all-american-expedition-to-india-s-kish.html) · 2023",
         "note": "AI3 M7+, 850m. [American Alpine Journal](https://publications.americanalpineclub.org/articles/13201216837), 2024",
         "pdfImage": {
           "image": "images/journal/brilliant-blue-first-all-american-expedition-to-india-s-kish/09.jpg",
@@ -329,7 +344,7 @@ window.CB_CONTENT = {
       },
       {
         "value": "Big-wall free climbing",
-        "label": "[Golden Gate, 5.13a, El Capitan — ground-up free ascent](https://christianblack.media/words/the-golden-handcuffs.html)",
+        "label": "[Golden Gate, 5.13a, El Capitan — ground-up free ascent](https://christianblack.media/words/the-golden-handcuffs.html) · 2024",
         "note": "36 pitches, Yosemite",
         "pdfImage": {
           "image": "images/on-the-walls.jpg",
@@ -339,7 +354,7 @@ window.CB_CONTENT = {
       },
       {
         "value": "Para-alpinism",
-        "label": "[Climb and fly in the Cordillera Blanca, Peru](https://christianblack.media/words/fight-or-flight.html)",
+        "label": "[Climb and fly in the Cordillera Blanca, Peru](https://christianblack.media/words/fight-or-flight.html) · 2025",
         "note": "[Cross Country Magazine](https://xcmag.com/magazine-articles/adventure-and-inspiration/fight-or-flight/), issue 265",
         "pdfImage": {
           "image": "images/journal/fight-or-flight/08.jpg",
@@ -349,7 +364,7 @@ window.CB_CONTENT = {
       {
         "value": "Sport and bouldering",
         "label": "[5.13d sport, V10 boulder](https://christianblack.media/ticklist.html)",
-        "note": "Dante’s Inferno (extension), El Salto, MX; Gato Negro (sit), El Chaltén, Argentina",
+        "note": "Dante’s Inferno (extension), El Salto, MX (2022); Gato Negro (sit), El Chaltén, Argentina (2026)",
         "pdfImage": {
           "image": "images/down-low.jpg",
           "focus": "center 38%",
@@ -442,7 +457,8 @@ window.CB_CONTENT = {
         "image": "images/about-summit.jpg",
         "focus": "center 40%"
       }
-    }
+    },
+    "offer": "Alpinist and storyteller: first ascents, big-wall free climbing, and the rescue skills to do them well."
   },
   "photography": {
     "kicker": "Photography",

@@ -391,6 +391,7 @@
     var head = el('div', { class: 'tick__head' });
     head.appendChild(el('span', { class: 'tick__name', text: it.name || '' }));
     if (it.grade) head.appendChild(el('span', { class: 'tick__grade', text: it.grade }));
+    if (it.year) head.appendChild(el('span', { class: 'tick__year', text: String(it.year) }));
     li.appendChild(head);
     if (it.detail) li.appendChild(el('span', { class: 'tick__detail', text: it.detail }));
     if (it.note) li.appendChild(el('em', { class: 'tick__note', text: it.note }));
