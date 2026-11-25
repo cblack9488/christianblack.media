@@ -269,7 +269,7 @@ window.CB_CONTENT = {
     "services": [
       {
         "name": "Photography",
-        "detail": "Climbing, alpine and travel [photography](https://christianblack.media/photography.html). Published clients include [The North Face](https://www.thenorthface.com/), [Hyperlite Mountain Gear](https://www.hyperlitemountaingear.com/), [Climbing Magazine](https://www.climbing.com/) and [Cross Country Magazine](https://xcmag.com/). Available for licensing and assignments."
+        "detail": "Climbing, alpine and travel [photography](https://christianblack.media/photography.html). Published clients include The North Face, Hyperlite Mountain Gear, Climbing Magazine and Cross Country Magazine. Available for licensing and assignments."
       },
       {
         "name": "Film",
