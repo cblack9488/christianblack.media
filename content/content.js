@@ -248,8 +248,7 @@ window.CB_CONTENT = {
       "focus": "center 45%",
       "credit": ""
     },
-    "bio": "Christian Black is a climber, alpinist and adventure athlete based in the American West. His pursuits range from multipitch and big-wall free climbing to high-altitude technical alpinism and paragliding. He has completed a ground-up free ascent of Golden Gate (5.13a) on El Capitan, established a new alpine route on the 6,040m White Sapphire in the Indian Himalaya, and explored technical alpinism and paragliding link-ups in Peru.\n\nA former Yosemite Search and Rescue volunteer, Denali rescue volunteer and Yosemite Climbing Ranger, he hosts free rescue and skills clinics and developed the “Climber Coffee” self-rescue clinic for the Yosemite Climbing Ranger program.\n\nChristian also works as a photographer, filmmaker and writer. His work has appeared in the American Alpine Journal, Climbing Magazine, Cross Country Magazine, GearJunkie and Dirtbag Fund Films. Among friends he is known for his crab poses on summits and his climbing catchphrase, “Have fun, be safe, look cool!”",
-    "audience": "Christian reaches climbers, alpinists and paraglider pilots through three channels: film, long-form writing and photography.\n\nHis film All Grown Up, made with the Dirtbag Fund, has passed 25,000 views. His writing has run in the American Alpine Journal, Climbing Magazine, Cross Country Magazine and GearJunkie, and has been discussed on The Cutting Edge (American Alpine Club) and The Paragliding Podcast. On Instagram (@crustacean_black), his posts reached 201,000 views over the last 90 days.",
+    "bio": "Christian Black is a climber, alpinist and adventure athlete drawn to long, technical routes, wild places, and a good story. Based in the American West, his pursuits span everything from multipitch and big-wall free climbing to high-altitude technical alpinism and paragliding. More than anything, he enjoys the process of navigating a complicated objective with a broad toolbelt of skills.\n\nIn recent years he has completed a ground-up free ascent of El Capitan, established a difficult new alpine route on the 6,040m White Sapphire in the Indian Himalaya and explored technical alpinism and paragliding link-ups in Peru. While serious undertakings in nature, among friends he is best known for his famous crab poses on summits and his climbing catchphrase, “Have fun, be safe, look cool!”\n\nAs a former Yosemite Search and Rescue volunteer, Denali rescue volunteer, and Yosemite Climbing Ranger, Christian’s relationship to risk has evolved over the years, a topic he writes about openly in his essays. He believes that above all, success in the mountains comes from a continual practice of thoughtful decision-making, and failure is a necessary part of playing the long game. He enjoys sharing his depth of skill with the greater climbing community by hosting free rescue and skills clinics and by developing the “Climber Coffee” self-rescue clinic for the Yosemite Climbing Ranger program.\n\nBeyond athletic pursuits, photography, filmmaking and writing are ways Christian shares meaningful stories about his experiences. He approaches photography as a way to connect and give back to the people sharing the moment with him. Through filmmaking he seeks to pull a story from the broader experience of an expedition, while his writing offers reflections of his own motivations, challenges and imbalances associated with pursuing ambitious goals.",
     "reach": [
       {
         "value": "25k",
@@ -262,7 +261,7 @@ window.CB_CONTENT = {
         "note": "AAJ - Climbing Mag - XC Mag - Gear Junkie"
       },
       {
-        "value": "201k",
+        "value": "250k",
         "label": "Instagram views",
         "note": "Last 90 days — 3k followers"
       }
@@ -270,11 +269,11 @@ window.CB_CONTENT = {
     "services": [
       {
         "name": "Photography",
-        "detail": "Climbing, alpine and travel photography, from big walls to expeditions. Available for licensing and assignments."
+        "detail": "Climbing, alpine and travel photography. Published clients include The North Face, Hyperlite Mountain Gear, Climbing Magazine and Cross Country Magazine. Available for licensing and assignments."
       },
       {
         "name": "Film",
-        "detail": "Expedition storytelling that looks for the stories that emerge from the broader experience, as in All Grown Up (Dirtbag Fund)."
+        "detail": "Shooting, producing and editing expedition storytelling, such as All Grown Up (Dirtbag Fund Films), and co-directing and co-shooting CONTENT, a skateboarding and lifestyle film (coming soon)."
       },
       {
         "name": "Writing",
@@ -287,8 +286,8 @@ window.CB_CONTENT = {
         "detail": "Supported athlete"
       },
       {
-        "name": "Dirtbag Fund",
-        "detail": "Film: All Grown Up (25k views)"
+        "name": "Big Fils Chalk",
+        "detail": "Supported athlete"
       },
       {
         "name": "American Alpine Journal",
@@ -305,10 +304,6 @@ window.CB_CONTENT = {
       {
         "name": "GearJunkie",
         "detail": "Gear reviews and testing"
-      },
-      {
-        "name": "American Alpine Club",
-        "detail": "Featured on The Cutting Edge podcast: “Brilliant Blue on White Sapphire”"
       }
     ],
     "downloads": [
@@ -317,7 +312,7 @@ window.CB_CONTENT = {
         "url": "images/portrait-cb.jpg"
       },
       {
-        "label": "Portrait — at work on El Capitan",
+        "label": "Portrait — photography on El Capitan",
         "url": "images/about-at-work.jpg"
       },
       {
@@ -340,9 +335,40 @@ window.CB_CONTENT = {
         "value": "Para-alpinism",
         "label": "Climb and fly in the Cordillera Blanca, Peru",
         "note": "Cross Country Magazine, issue 265"
+      },
+      {
+        "value": "Sport and bouldering",
+        "label": "5.13d sport, V10 boulder",
+        "note": "Dante’s Inferno (extension), El Salto, MX; Gato Negro (sit), El Chaltén, Argentina"
       }
     ],
-    "highlightsLabel": "Climbing highlights"
+    "highlightsLabel": "Climbing highlights",
+    "outreach": [
+      {
+        "name": "Yosemite Search and Rescue",
+        "detail": "Volunteer, 2 seasons"
+      },
+      {
+        "name": "Denali Rescue",
+        "detail": "Volunteer, 1 season"
+      },
+      {
+        "name": "Yosemite Climbing Ranger",
+        "detail": "1 season"
+      },
+      {
+        "name": "Self-rescue and multipitch efficiency clinics",
+        "detail": "Developed and taught for the Yosemite Climbing Ranger Program"
+      },
+      {
+        "name": "Free self-rescue clinics",
+        "detail": "Hosted at local climbing gyms"
+      },
+      {
+        "name": "Film screenings",
+        "detail": "Hosted locally"
+      }
+    ]
   },
   "photography": {
     "kicker": "Photography",
