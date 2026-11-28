@@ -166,12 +166,14 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
 .ci.star .in { clip-path: polygon(50% 0%,61.2% 34.5%,97.6% 34.5%,68.2% 55.9%,79.4% 90.5%,50% 69.1%,20.6% 90.5%,31.8% 55.9%,2.4% 34.5%,38.8% 34.5%); inset: 3.5%; }
 .ci.crabby .in { clip-path: url(#crab); inset: 3%; }
 .tape { position: absolute; top: -9px; width: 62px; height: 20px; background: rgba(217,178,95,.78); }
-.contact .scrim { background: rgba(16,15,12,.55); }
-.contact .panel { position: absolute; left: 50%; top: 262px; transform: translateX(-50%); width: 580px; text-align: center; padding: 24px 30px 22px; background: rgba(16,15,12,.76); }
-.contact h2 { font-size: 38px; line-height: 1.08; margin: 10px 0 2px; }
+.contact .scrim { background: rgba(16,15,12,.10); }
+.contact .panel { position: absolute; left: 50%; top: 14px; transform: translateX(-50%); width: 800px; text-align: center; padding: 14px 26px 12px; background: rgba(16,15,12,.80); }
+.contact h2 { font-size: 34px; line-height: 1.05; margin: 6px 0 0; white-space: nowrap; }
+.contact .reach2 { margin-top: 8px; display: flex; justify-content: center; align-items: baseline; gap: 26px; }
+.contact .rates { margin-top: 4px; }
 .contact .blurb { color: #D8D1BF; font-size: 15px; }
-.contact .mail { display: inline-block; margin: 14px 0 2px; font-size: 21px; font-family: "Instrument Serif", Georgia, serif; }
-.contact .meta { margin-top: 8px; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #BCB4A2; line-height: 1.9; }
+.contact .mail { display: inline-block; margin: 0; font-size: 20px; font-family: "Instrument Serif", Georgia, serif; }
+.contact .meta { margin-top: 0; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #BCB4A2; line-height: 1.9; }
 .contact .meta a { margin: 0 6px; }
 `;
 
@@ -360,9 +362,9 @@ function buildHtml(C) {
     '<a href="' + esc(s.url) + '">' + esc(s.handle || s.label || s.url.replace(/^https?:\/\/(www\.)?/, '')) + '</a>').join('');
   pages.push('<section class="pg contact">' + collageBlock(P.collage) + (P.collage && P.collage.items ? "" : bgBlock(P.contact)) +
     '<div class="panel"><div class="lab">Let’s work together!</div><h2 class="disp">Have fun, be safe, look cool, more crab!</h2>' +
-    (SITE.email ? '<a class="mail" href="mailto:' + esc(SITE.email) + '">' + esc(SITE.email) + '</a>' : '') +
-    '<div class="meta"><a href="' + siteUrl + '">' + esc(domain) + '</a>' + (social ? social : '') +
-    '<br>Rates and availability on request</div></div>' + credit(P.contact) + foot(9) + '</section>');
+    '<div class="reach2">' + (SITE.email ? '<a class="mail" href="mailto:' + esc(SITE.email) + '">' + esc(SITE.email) + '</a>' : '') +
+    '<span class="meta"><a href="' + siteUrl + '">' + esc(domain) + '</a>' + (social ? social : '') + '</span></div>' +
+    '<div class="meta rates">Rates and availability on request</div></div>' + credit(P.contact) + foot(9) + '</section>');
 
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>' + esc((K.title || 'Christian Black') + ' — Media kit') + '</title>' +
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">' +
