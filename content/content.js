@@ -463,77 +463,219 @@ window.CB_CONTENT = {
         "focus": "center 45%"
       },
       "collage": {
-        "images": [
+        "bg": {
+          "image": "images/crab-and-silly/15.jpg",
+          "focus": "center 40%"
+        },
+        "doodles": [
           {
-            "image": "images/crab-and-silly/07.jpg",
-            "ar": 1.3333
+            "k": "star",
+            "x": 205,
+            "y": 205,
+            "s": 46,
+            "c": "#E7C27D",
+            "fill": true,
+            "r": 12
           },
           {
-            "image": "images/crab-and-silly/08.jpg",
-            "ar": 0.75
+            "k": "squig",
+            "x": 436,
+            "y": 222,
+            "s": 60,
+            "c": "#C98B6B",
+            "r": -6
           },
           {
-            "image": "images/crab-and-silly/11.jpg",
-            "ar": 1.3369
+            "k": "heart",
+            "x": 812,
+            "y": 205,
+            "s": 40,
+            "c": "#D9A5A0",
+            "fill": true,
+            "r": 10
           },
           {
-            "image": "images/crab-and-silly/12.jpg",
-            "ar": 1.3333
+            "k": "spiral",
+            "x": 404,
+            "y": 510,
+            "s": 54,
+            "c": "#A9B58F"
           },
           {
-            "image": "images/crab-and-silly/06.jpg",
-            "ar": 0.75
+            "k": "star",
+            "x": 660,
+            "y": 520,
+            "s": 36,
+            "c": "#F0EADB",
+            "r": -14
           },
           {
-            "image": "images/crab-and-silly/15.jpg",
-            "ar": 1.3333
+            "k": "star",
+            "x": 10,
+            "y": 490,
+            "s": 38,
+            "c": "#E7C27D",
+            "r": 8
           },
+          {
+            "k": "squig",
+            "x": 1000,
+            "y": 520,
+            "s": 56,
+            "c": "#E7C27D",
+            "r": 80
+          }
+        ],
+        "items": [
           {
             "image": "images/crab-and-silly/13.jpg",
-            "ar": 1.3333
-          },
-          {
-            "image": "images/crab-and-silly/05.jpg",
-            "ar": 1.3333
-          },
-          {
-            "image": "images/crab-and-silly/14.jpg",
-            "ar": 1.3333
+            "x": -14,
+            "y": -14,
+            "w": 290,
+            "h": 290,
+            "rot": -8,
+            "shape": "star",
+            "focus": "45% 40%"
           },
           {
             "image": "images/crab-and-silly/02.jpg",
-            "ar": 1.3333
-          },
-          {
-            "image": "images/crab-and-silly/04.jpg",
-            "ar": 1.7762
-          },
-          {
-            "image": "images/crab-and-silly/16.jpg",
-            "ar": 0.749
-          },
-          {
-            "image": "images/crab-and-silly/01.jpg",
-            "ar": 1.3333
+            "x": 240,
+            "y": 18,
+            "w": 240,
+            "h": 196,
+            "rot": 3,
+            "shape": "polaroid",
+            "tape": "left"
           },
           {
             "image": "images/crab-and-silly/03.jpg",
-            "ar": 1.3333
+            "x": 488,
+            "y": 4,
+            "w": 200,
+            "h": 200,
+            "rot": 0,
+            "shape": "circle",
+            "focus": "22% 35%"
           },
           {
-            "image": "images/crab-and-silly/10.jpg",
-            "ar": 1.3333
+            "image": "images/crab-and-silly/14.jpg",
+            "x": 684,
+            "y": 22,
+            "w": 210,
+            "h": 172,
+            "rot": -4,
+            "shape": "sticker"
+          },
+          {
+            "image": "images/crab-and-silly/12.jpg",
+            "x": 868,
+            "y": 10,
+            "w": 186,
+            "h": 200,
+            "rot": 6,
+            "shape": "polaroid",
+            "tape": "right",
+            "focus": "80% 50%"
+          },
+          {
+            "image": "images/crab-and-silly/08.jpg",
+            "x": 14,
+            "y": 228,
+            "w": 160,
+            "h": 225,
+            "rot": -6,
+            "shape": "polaroid",
+            "tape": "right",
+            "focus": "center 15%"
+          },
+          {
+            "image": "images/crab-and-silly/11.jpg",
+            "x": 70,
+            "y": 418,
+            "w": 175,
+            "h": 150,
+            "rot": 5,
+            "shape": "sticker"
+          },
+          {
+            "image": "images/crab-and-silly/16.jpg",
+            "x": 886,
+            "y": 226,
+            "w": 160,
+            "h": 225,
+            "rot": 5,
+            "shape": "polaroid",
+            "tape": "left",
+            "focus": "center 35%"
+          },
+          {
+            "image": "images/crab-and-silly/05.jpg",
+            "x": 812,
+            "y": 420,
+            "w": 190,
+            "h": 150,
+            "rot": -5,
+            "shape": "sticker"
+          },
+          {
+            "image": "images/crab-and-silly/01.jpg",
+            "x": 214,
+            "y": 598,
+            "w": 200,
+            "h": 170,
+            "rot": -3,
+            "shape": "polaroid",
+            "tape": "left"
           },
           {
             "image": "images/crab-and-silly/09.jpg",
-            "ar": 1.3333
+            "x": 424,
+            "y": 538,
+            "w": 350,
+            "h": 278,
+            "rot": 0,
+            "shape": "crab",
+            "focus": "60% 50%"
+          },
+          {
+            "image": "images/crab-and-silly/04.jpg",
+            "x": 772,
+            "y": 604,
+            "w": 200,
+            "h": 160,
+            "rot": 4,
+            "shape": "sticker"
+          },
+          {
+            "image": "images/crab-and-silly/07.jpg",
+            "x": 24,
+            "y": 604,
+            "w": 210,
+            "h": 180,
+            "rot": -5,
+            "shape": "polaroid",
+            "tape": "right"
+          },
+          {
+            "image": "images/crab-and-silly/06.jpg",
+            "x": 930,
+            "y": 560,
+            "w": 116,
+            "h": 210,
+            "rot": 6,
+            "shape": "polaroid",
+            "focus": "center 35%"
+          },
+          {
+            "image": "images/crab-and-silly/10.jpg",
+            "x": 650,
+            "y": 164,
+            "w": 178,
+            "h": 150,
+            "rot": 5,
+            "shape": "polaroid",
+            "tape": "right"
           }
-        ],
-        "rows": [
-          4,
-          4,
-          4,
-          4
         ]
       }
     },

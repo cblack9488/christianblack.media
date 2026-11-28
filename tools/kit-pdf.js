@@ -151,11 +151,23 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
 .note { margin-top: 14px; font-size: 13px; color: #CFC8B5; }
 
 /* contact */
-.collage { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 4px; background: #16150f; }
-.crow { display: flex; gap: 4px; min-height: 0; }
-.crow img { min-width: 0; height: 100%; object-fit: cover; display: block; }
-.contact .scrim { background: rgba(16,15,12,.28); }
-.contact .panel { position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); width: 580px; text-align: center; padding: 24px 30px 22px; background: rgba(16,15,12,.76); }
+.dd { position: absolute; overflow: visible; }
+.ci { position: absolute; background: #F0EADB; z-index: 3; }
+.contact .panel { z-index: 2; }
+.ci img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ci.polaroid { padding: 8px 8px 30px; box-shadow: 0 5px 14px rgba(0,0,0,.5); }
+.ci.circle { border-radius: 50%; padding: 7px; box-shadow: 0 5px 14px rgba(0,0,0,.5); }
+.ci.circle img { border-radius: 50%; }
+.ci.sticker { border-radius: 16px; padding: 7px; box-shadow: 0 5px 14px rgba(0,0,0,.5); }
+.ci.sticker img { border-radius: 10px; }
+.ci.star { background: #F0EADB; clip-path: polygon(50% 0%,61.2% 34.5%,97.6% 34.5%,68.2% 55.9%,79.4% 90.5%,50% 69.1%,20.6% 90.5%,31.8% 55.9%,2.4% 34.5%,38.8% 34.5%); }
+.ci.crabby { background: #F0EADB; clip-path: url(#crab); }
+.ci .in { position: absolute; inset: 2.6%; clip-path: inherit; }
+.ci.star .in { clip-path: polygon(50% 0%,61.2% 34.5%,97.6% 34.5%,68.2% 55.9%,79.4% 90.5%,50% 69.1%,20.6% 90.5%,31.8% 55.9%,2.4% 34.5%,38.8% 34.5%); inset: 3.5%; }
+.ci.crabby .in { clip-path: url(#crab); inset: 3%; }
+.tape { position: absolute; top: -9px; width: 62px; height: 20px; background: rgba(217,178,95,.78); }
+.contact .scrim { background: rgba(16,15,12,.55); }
+.contact .panel { position: absolute; left: 50%; top: 262px; transform: translateX(-50%); width: 580px; text-align: center; padding: 24px 30px 22px; background: rgba(16,15,12,.76); }
 .contact h2 { font-size: 38px; line-height: 1.08; margin: 10px 0 2px; }
 .contact .blurb { color: #D8D1BF; font-size: 15px; }
 .contact .mail { display: inline-block; margin: 14px 0 2px; font-size: 21px; font-family: "Instrument Serif", Georgia, serif; }
@@ -163,24 +175,57 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
 .contact .meta a { margin: 0 6px; }
 `;
 
-/* A justified photo mosaic filling the page: each row's photographs share a
-   height and split the width in proportion to their shapes, so nothing is
-   squashed and almost nothing is cropped. */
+/* The closing page's scrapbook: one dimmed photograph across the whole page,
+   with the rest pasted on top as polaroids, circles, stickers, a star and a
+   crab. Positions are page pixels (1056 x 816) and live in content.js
+   (mediakit.pdf.collage), so a photograph can be moved or re-shaped there. */
+const STAR = 'polygon(50% 0%,61.2% 34.5%,97.6% 34.5%,68.2% 55.9%,79.4% 90.5%,50% 69.1%,20.6% 90.5%,31.8% 55.9%,2.4% 34.5%,38.8% 34.5%)';
+
+/* A crab silhouette, drawn as shapes in 0..1 box units: round body, eyes on
+   stalks, two arms ending in open claws, three legs a side. */
+function crabClipSvg() {
+  const claw = (cx, cy, r, mouth) => {            // a circle with a wedge bitten out
+    const pts = []; const a0 = mouth - 0.62, a1 = mouth + 0.62;
+    pts.push([cx, cy]);
+    for (let a = a1; a <= a0 + Math.PI * 2; a += 0.12) pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a) * 1.15]);
+    return '<polygon points="' + pts.map(q => q[0].toFixed(3) + ',' + q[1].toFixed(3)).join(' ') + '"/>';
+  };
+  const bar = (x1, y1, x2, y2, t) => {            // a straight limb of thickness t
+    const dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy), nx = -dy / L * t / 2, ny = dx / L * t / 2;
+    return '<polygon points="' + [[x1 + nx, y1 + ny], [x2 + nx, y2 + ny], [x2 - nx, y2 - ny], [x1 - nx, y1 - ny]].map(q => q[0].toFixed(3) + ',' + q[1].toFixed(3)).join(' ') + '"/>';
+  };
+  let g = '<ellipse cx=".5" cy=".6" rx=".31" ry=".27"/>';
+  g += '<circle cx=".41" cy=".27" r=".06"/><circle cx=".59" cy=".27" r=".06"/>' + bar(.41, .27, .43, .45, .045) + bar(.59, .27, .57, .45, .045);
+  g += bar(.24, .5, .12, .3, .075) + bar(.76, .5, .88, .3, .075);
+  g += claw(.11, .2, .105, -2.1) + claw(.89, .2, .105, -1.04);
+  [[.22, .66, .04, .66], [.2, .74, .05, .8], [.25, .82, .12, .95]].forEach(l => { g += bar(l[0], l[1], l[2], l[3], .045); g += bar(1 - l[0], l[1], 1 - l[2], l[3], .045); });
+  return '<svg width="0" height="0" style="position:absolute"><defs><clipPath id="crab" clipPathUnits="objectBoundingBox">' + g + '</clipPath></defs></svg>';
+}
+
+function doodle(d) {
+  const col = d.c || '#E7C27D';
+  const star = '<polygon points="50,6 61,38 95,38 67,58 78,92 50,71 22,92 33,58 5,38 39,38" fill="' + (d.fill ? col : 'none') + '" stroke="' + col + '" stroke-width="6" stroke-linejoin="round"/>';
+  const squig = '<path d="M5,30 Q20,5 35,30 T65,30 T95,30" fill="none" stroke="' + col + '" stroke-width="6" stroke-linecap="round"/>';
+  const heart = '<path d="M50,88 C10,58 8,24 30,18 C42,15 50,24 50,30 C50,24 58,15 70,18 C92,24 90,58 50,88Z" fill="' + (d.fill ? col : 'none') + '" stroke="' + col + '" stroke-width="6" stroke-linejoin="round"/>';
+  const spiral = '<path d="M50,50 m0,-4 a4,4 0 1,1 -4,4 a10,10 0 1,1 10,10 a18,18 0 1,1 -18,-18 a26,26 0 1,1 26,26" fill="none" stroke="' + col + '" stroke-width="5" stroke-linecap="round"/>';
+  const body = { star, squig, heart, spiral }[d.k] || star;
+  return '<svg class="dd" viewBox="0 0 100 100" style="left:' + d.x + 'px;top:' + d.y + 'px;width:' + d.s + 'px;height:' + d.s + 'px;transform:rotate(' + (d.r || 0) + 'deg)">' + body + '</svg>';
+}
+
 function collageBlock(cfg) {
-  if (!cfg || !cfg.images || !cfg.images.length) return '';
-  let i = 0;
-  const rows = (cfg.rows || [cfg.images.length]).map(n => {
-    const row = cfg.images.slice(i, i + n); i += n;
-    const S = row.reduce((a, x) => a + x.ar, 0);
-    const h = (PAGE_W - 4 * (n - 1)) / S;
-    return { row, h };
-  });
-  const total = rows.reduce((a, r) => a + r.h, 0) + 4 * (rows.length - 1);
-  const k = PAGE_H / total;   // stretch the rows a hair so the mosaic fills the page exactly
-  return '<div class="collage">' + rows.map(r =>
-    '<div class="crow" style="height:' + (r.h * k).toFixed(2) + 'px">' + r.row.map(x =>
-      '<img src="/' + esc(x.image) + '" style="flex:' + x.ar + ' 1 0" alt="">').join('') + '</div>').join('') +
-    '</div><div class="scrim"></div>';
+  if (!cfg || !cfg.items || !cfg.items.length) return '';
+  const bg = cfg.bg && cfg.bg.image
+    ? '<img class="bg" src="/' + esc(cfg.bg.image) + '" style="object-position:' + esc(cfg.bg.focus || 'center') + '" alt="">' : '';
+  const pos = x => 'left:' + x.x + 'px;top:' + x.y + 'px;width:' + x.w + 'px;height:' + x.h + 'px;transform:rotate(' + (x.rot || 0) + 'deg);';
+  const img = x => '<img src="/' + esc(x.image) + '" style="object-position:' + esc(x.focus || 'center') + '" alt="">';
+  const tape = x => x.tape ? '<i class="tape" style="' + (x.tape === 'left' ? 'left:12px;transform:rotate(-14deg)' : 'right:12px;transform:rotate(12deg)') + '"></i>' : '';
+  const items = cfg.items.map(x => {
+    const sh = x.shape || 'polaroid';
+    if (sh === 'star') return '<div class="ci star" style="' + pos(x) + '"><div class="in">' + img(x) + '</div></div>';
+    if (sh === 'crab') return '<div class="ci crabby" style="' + pos(x) + '"><div class="in">' + img(x) + '</div></div>';
+    return '<div class="ci ' + sh + '" style="' + pos(x) + '">' + img(x) + tape(x) + '</div>';
+  }).join('');
+  return crabClipSvg() + bg + '<div class="scrim"></div>' + (cfg.doodles || []).map(doodle).join('') + items;
 }
 
 function bgBlock(cfg, scrimless) {
@@ -313,7 +358,7 @@ function buildHtml(C) {
   /* 7 — contact */
   const social = (SITE.social || []).filter(s => s && s.url).map(s =>
     '<a href="' + esc(s.url) + '">' + esc(s.handle || s.label || s.url.replace(/^https?:\/\/(www\.)?/, '')) + '</a>').join('');
-  pages.push('<section class="pg contact">' + collageBlock(P.collage) + (P.collage && P.collage.images ? '' : bgBlock(P.contact)) +
+  pages.push('<section class="pg contact">' + collageBlock(P.collage) + (P.collage && P.collage.items ? "" : bgBlock(P.contact)) +
     '<div class="panel"><div class="lab">Let’s work together!</div><h2 class="disp">Have fun, be safe, look cool, more crab!</h2>' +
     (SITE.email ? '<a class="mail" href="mailto:' + esc(SITE.email) + '">' + esc(SITE.email) + '</a>' : '') +
     '<div class="meta"><a href="' + siteUrl + '">' + esc(domain) + '</a>' + (social ? social : '') +
