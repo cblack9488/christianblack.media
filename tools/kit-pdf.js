@@ -131,6 +131,12 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
   color: #F0EADB; background: linear-gradient(0deg, rgba(16,15,12,.85), rgba(16,15,12,0)); }
 .deliver .sec + .sec { margin-top: 18px; }
 .deliver .note { margin-top: 10px; }
+.next .scrim { background: linear-gradient(90deg, rgba(16,15,12,.78) 0%, rgba(16,15,12,.35) 100%); }
+.next .panel { position: absolute; left: 56px; right: 56px; top: 150px; padding: 34px 38px; }
+.ncols { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; margin-top: 20px; }
+.nrow { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(216,209,191,.2); }
+.nw { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #BCA38F; padding-top: 4px; }
+.nt { font-family: "Instrument Serif", Georgia, serif; font-size: 24px; line-height: 1.22; color: #F0EADB; }
 .audience .scrim { background: rgba(16,15,12,.55); }
 .audience .panel { position: absolute; left: 56px; right: 56px; top: 56px; }
 .stats.four { grid-template-columns: repeat(4, 1fr); margin-bottom: 30px; }
@@ -192,7 +198,7 @@ function buildHtml(C) {
   const domain = SITE.domain || 'christianblack.media';
   const siteUrl = 'https://' + domain + '/';
   const pages = [];
-  const total = 8;
+  const total = 9;
   const foot = n => '<div class="pageno">' + esc(K.title || SITE.name || 'Christian Black') + ' &nbsp;·&nbsp; Media kit &nbsp;·&nbsp; ' +
     '<a href="' + siteUrl + '">' + esc(domain) + '</a> &nbsp;·&nbsp; ' + n + ' / ' + total + '</div>';
 
@@ -270,6 +276,17 @@ function buildHtml(C) {
     '<div class="panel"><div class="lab">Partners</div>' + rowsHtml(K.partners, 'name', 'detail') + '</div></div>' +
     credit(P.deliver) + foot(7) + '</section>');
 
+  /* 8 — recent news and future projects */
+  const newsList = list => (list || []).filter(x => x && String(x.text || '').trim()).map(x =>
+    '<div class="nrow"><div class="nw">' + esc(x.when || '') + '</div><div class="nt">' + inl(x.text) + '</div></div>').join('');
+  if ((K.news || []).length || (K.upcoming || []).length) {
+    pages.push('<section class="pg next">' + bgBlock(P.next) +
+      '<div class="panel"><div class="lab">' + esc(K.nextLabel || 'Recent news and future projects') + '</div>' +
+      '<div class="ncols"><div><div class="lab sm">Recent news</div>' + newsList(K.news) + '</div>' +
+      '<div><div class="lab sm">Upcoming projects</div>' + newsList(K.upcoming) + '</div></div></div>' +
+      credit(P.next) + foot(8) + '</section>');
+  }
+
   /* 7 — contact */
   const social = (SITE.social || []).filter(s => s && s.url).map(s =>
     '<a href="' + esc(s.url) + '">' + esc(s.handle || s.label || s.url.replace(/^https?:\/\/(www\.)?/, '')) + '</a>').join('');
@@ -277,7 +294,7 @@ function buildHtml(C) {
     '<div class="panel"><div class="lab">Let’s work together!</div><h2 class="disp">Have fun, be safe, look cool, more crab!</h2>' +
     (SITE.email ? '<a class="mail" href="mailto:' + esc(SITE.email) + '">' + esc(SITE.email) + '</a>' : '') +
     '<div class="meta"><a href="' + siteUrl + '">' + esc(domain) + '</a>' + (social ? '<br>' + social : '') +
-    '<br>Rates and availability on request</div></div>' + credit(P.contact) + foot(8) + '</section>');
+    '<br>Rates and availability on request</div></div>' + credit(P.contact) + foot(9) + '</section>');
 
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>' + esc((K.title || 'Christian Black') + ' — Media kit') + '</title>' +
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">' +

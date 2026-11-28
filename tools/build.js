@@ -418,21 +418,6 @@ function writePhotoSizes(extra) {
   const reachFile = path.join(ROOT, 'assets/js/reach.js');
   if (!fs.existsSync(reachFile)) fs.writeFileSync(reachFile, '/* PLACEHOLDER — this local copy is not the real one.\n   The figures are fetched during the build on GitHub and exist only in\n   the deployed site. This file is gitignored and never updates locally,\n   so do not read numbers from it. The real one is at:\n     https://christianblack.media/assets/js/reach.js  */\nwindow.CB_REACH = {};\n');
   console.log('  photo sizes: ' + Object.keys(writePhotoSizes()).length + ' files');
-  /* Press files, written from content.js on every build so they can never
-     drift from what the media kit says. Published only in the deployment. */
-  {
-    const k = C.mediakit || {};
-    const dir = path.join(ROOT, 'press');
-    fs.mkdirSync(dir, { recursive: true });
-    const plain = s => String(s || '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/\*\*?([^*]+)\*\*?/g, '$1').trim();
-    const contact = SITE.email ? '\n\nContact: ' + SITE.email + '\n' + (SITE.domain || '') + '\n' : '\n';
-    if (String(k.shortBio || '').trim()) {
-      fs.writeFileSync(path.join(dir, 'christian-black-short-bio.txt'), plain(k.shortBio) + contact);
-    }
-    if (String(k.bio || '').trim()) {
-      fs.writeFileSync(path.join(dir, 'christian-black-bio.txt'), plain(k.bio) + contact);
-    }
-  }
   await new Promise(r => server.listen(PORT, r));
   const browser = await chromium.launch();
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 950 } });
@@ -554,6 +539,12 @@ function writePhotoSizes(extra) {
     console.log('  press/christian-black-media-kit.pdf');
   } catch (e) {
     console.log('  (media kit PDF skipped: ' + e.message + ')');
+  }
+  try {
+    await require('./resume-pdf.js')({ ctx, PORT, ROOT, C });
+    console.log('  press/christian-black-climbing-resume.pdf');
+  } catch (e) {
+    console.log('  (climbing résumé PDF skipped: ' + e.message + ')');
   }
 
   await browser.close();

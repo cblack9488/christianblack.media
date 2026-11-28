@@ -318,12 +318,8 @@ window.CB_CONTENT = {
         "url": "press/christian-black-media-kit.pdf"
       },
       {
-        "label": "Short bio (text)",
-        "url": "press/christian-black-short-bio.txt"
-      },
-      {
-        "label": "Full bio (text)",
-        "url": "press/christian-black-bio.txt"
+        "label": "Climbing résumé (PDF)",
+        "url": "press/christian-black-climbing-resume.pdf"
       },
       {
         "label": "Portrait — summit crab pose",
@@ -332,10 +328,6 @@ window.CB_CONTENT = {
       {
         "label": "Portrait — photography on El Capitan",
         "url": "images/about-at-work.jpg"
-      },
-      {
-        "label": "Climbing résumé (Tick list)",
-        "url": "ticklist.html"
       }
     ],
     "highlights": [
@@ -469,6 +461,10 @@ window.CB_CONTENT = {
         "image": "images/up-high.jpg",
         "focus": "center 45%",
         "credit": "Photo · Christian Black"
+      },
+      "next": {
+        "image": "images/whats-next.jpg",
+        "focus": "center 45%"
       }
     },
     "offer": "",
@@ -566,7 +562,28 @@ window.CB_CONTENT = {
           46
         ]
       ]
-    }
+    },
+    "nextLabel": "Recent news and future projects",
+    "news": [
+      {
+        "when": "Nov 2026",
+        "text": "10-day ground-up free climbing attempt on *El Niño*, 5.13c/d, on El Capitan"
+      },
+      {
+        "when": "May 2026",
+        "text": "Expedition to Chaukhamba 3 in the Garhwal Himalaya, India"
+      }
+    ],
+    "upcoming": [
+      {
+        "when": "Fall 2027",
+        "text": "*El Niño* ground-up second attempt"
+      },
+      {
+        "when": "",
+        "text": "*Dreefee*, 5.13d, 12 pitches, Red Rocks, NV"
+      }
+    ]
   },
   "photography": {
     "kicker": "Photography",
