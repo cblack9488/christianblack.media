@@ -594,9 +594,12 @@ window.CB_CONTENT = {
       "laSportiva": {
         "title": "Why La Sportiva?",
         "file": "christian-black-media-kit-la-sportiva.pdf",
-        "text": "As an athlete for La Sportiva, I am interested in representing the brand through my broad range of athletic and creative skills. La Sportiva has been my footwear of choice for over a decade of my climbing and has offered gear support on major trips, including two trips to the Indian Himalaya. I would love to partner with a company that has shown they believe in me and use the athlete platform to give back. More than anything I hope to feel supported in pushing my own limits, mentoring the next generation of climbers and creating captivating stories to tell along the way. I hope we can do it together!"
+        "text": "As an athlete for La Sportiva, I am interested in representing the brand through my broad range of athletic and creative skills. La Sportiva has been my footwear of choice for over a decade of my climbing and has offered gear support on major trips, including two trips to the Indian Himalaya. I would love to partner with a company that has shown they believe in me and use the athlete platform to give back. More than anything I hope to feel supported in pushing my own limits, mentoring the next generation of climbers and creating captivating stories to tell along the way. I hope we can do it together!",
+        "logo": "images/lasportiva-logo.png",
+        "coverCutout": "images/lasportiva-cover.jpg"
       }
-    }
+    },
+    "outreachCutout": "images/outreach-screening.jpg"
   },
   "photography": {
     "kicker": "Photography",

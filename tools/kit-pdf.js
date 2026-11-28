@@ -134,9 +134,13 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
 .next .scrim { background: linear-gradient(90deg, rgba(16,15,12,.78) 0%, rgba(16,15,12,.35) 100%); }
 .next .panel { position: absolute; left: 56px; right: 56px; top: 150px; padding: 34px 38px; }
 .next.pitch .panel { top: 48px; padding: 26px 34px; }
-.next .panel.why { top: auto; bottom: 56px; padding: 22px 34px 14px; }
-.why .lab { margin-bottom: 10px; }
-.why p { font-size: 14px; line-height: 1.5; color: #E8E1CF; margin-bottom: 8px; }
+.next .panel.why { top: auto; bottom: 48px; padding: 26px 36px 20px; display: grid; grid-template-columns: 1fr 200px; column-gap: 36px; align-items: center; }
+.why .lab { margin-bottom: 12px; font-size: 13px; }
+.why p { font-size: 20px; line-height: 1.45; color: #F0EADB; margin-bottom: 0; }
+.why .logo { background: #fff; border-radius: 10px; padding: 14px; text-align: center; }
+.why .logo img { width: 100%; height: auto; display: block; }
+.cut { position: absolute; background: #F0EADB; padding: 9px 9px 34px; box-shadow: 0 8px 22px rgba(0,0,0,.55); z-index: 3; }
+.cut img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .ncols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; margin-top: 16px; }
 .nrow { padding: 12px 0; border-top: 1px solid rgba(216,209,191,.2); }
 .nw { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #BCA38F; margin-bottom: 4px; min-height: 13px; }
@@ -290,6 +294,7 @@ function buildHtml(C, pitch) {
     '<a href="' + siteUrl + '">' + esc(domain) + '</a></div></div>' +
     '<div class="sup"><span class="lab">Supported by</span>' +
     (supLogo ? '<a href="' + esc(K.supportUrl || siteUrl) + '" style="border:0">' + supLogo + '</a>' : '') + extras + '</div></div>' +
+    (pitch && pitch.coverCutout ? '<div class="cut" style="right:60px;top:40px;width:400px;height:320px;transform:rotate(3deg)"><img src="/' + esc(pitch.coverCutout) + '" alt=""></div>' : '') +
     credit(P.cover) + '</section>');
 
   /* 2 — biography + crab pose + short bio */
@@ -316,6 +321,7 @@ function buildHtml(C, pitch) {
   /* 4 — outreach and community */
   pages.push('<section class="pg outreach">' + bgBlock(P.outreach) +
     '<div class="panel"><div class="lab">Outreach and community</div>' + rowsHtml(K.outreach, 'name', 'detail') + '</div>' +
+    (K.outreachCutout ? '<div class="cut" style="right:70px;bottom:78px;width:430px;height:330px;transform:rotate(-3deg)"><img src="/' + esc(K.outreachCutout) + '" alt=""></div>' : '') +
     credit(P.outreach) + foot(4) + '</section>');
 
   /* 5 — social reach + publications */
@@ -359,7 +365,8 @@ function buildHtml(C, pitch) {
       '<div class="ncols"><div><div class="lab sm">Recent news</div>' + newsList(K.news) + '</div>' +
       '<div><div class="lab sm">Upcoming projects</div>' + newsList(K.upcoming) + '</div>' +
       ((K.creative || []).length ? '<div><div class="lab sm">Creative projects</div>' + newsList(K.creative) + '</div>' : '') + '</div></div>' +
-      (pitch ? '<div class="panel why"><div class="lab">' + esc(pitch.title) + '</div>' + paras(pitch.text) + '</div>' : '') +
+      (pitch ? '<div class="panel why"><div><div class="lab">' + esc(pitch.title) + '</div>' + paras(pitch.text) + '</div>' +
+        (pitch.logo ? '<div class="logo"><img src="/' + esc(pitch.logo) + '" alt="La Sportiva"></div>' : '') + '</div>' : '') +
       credit(P.next) + foot(8) + '</section>');
   }
 
