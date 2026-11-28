@@ -318,10 +318,6 @@ window.CB_CONTENT = {
         "url": "press/christian-black-media-kit.pdf"
       },
       {
-        "label": "Climbing résumé (PDF)",
-        "url": "press/christian-black-climbing-resume.pdf"
-      },
-      {
         "label": "Portrait — summit crab pose",
         "url": "images/portrait-cb.jpg"
       },

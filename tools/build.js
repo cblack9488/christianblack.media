@@ -540,12 +540,8 @@ function writePhotoSizes(extra) {
   } catch (e) {
     console.log('  (media kit PDF skipped: ' + e.message + ')');
   }
-  try {
-    await require('./resume-pdf.js')({ ctx, PORT, ROOT, C });
-    console.log('  press/christian-black-climbing-resume.pdf');
-  } catch (e) {
-    console.log('  (climbing résumé PDF skipped: ' + e.message + ')');
-  }
+  /* Climbing résumé PDF (tools/resume-pdf.js) is built but switched off for now.
+     To publish it: restore its call here and add its download to mediakit.downloads. */
 
   await browser.close();
   server.close();
