@@ -461,6 +461,80 @@ window.CB_CONTENT = {
       "next": {
         "image": "images/whats-next.jpg",
         "focus": "center 45%"
+      },
+      "collage": {
+        "images": [
+          {
+            "image": "images/crab-and-silly/07.jpg",
+            "ar": 1.3333
+          },
+          {
+            "image": "images/crab-and-silly/08.jpg",
+            "ar": 0.75
+          },
+          {
+            "image": "images/crab-and-silly/11.jpg",
+            "ar": 1.3369
+          },
+          {
+            "image": "images/crab-and-silly/12.jpg",
+            "ar": 1.3333
+          },
+          {
+            "image": "images/crab-and-silly/06.jpg",
+            "ar": 0.75
+          },
+          {
+            "image": "images/crab-and-silly/15.jpg",
+            "ar": 1.3333
+          },
+          {
+            "image": "images/crab-and-silly/13.jpg",
+            "ar": 1.3333
+          },
+          {
+            "image": "images/crab-and-silly/05.jpg",
+            "ar": 1.3333
+          },
+          {
+            "image": "images/crab-and-silly/14.jpg",
+            "ar": 1.3333
+          },
+          {
+            "image": "images/crab-and-silly/02.jpg",
+            "ar": 1.3333
+          },
+          {
+            "image": "images/crab-and-silly/04.jpg",
+            "ar": 1.7762
+          },
+          {
+            "image": "images/crab-and-silly/16.jpg",
+            "ar": 0.749
+          },
+          {
+            "image": "images/crab-and-silly/01.jpg",
+            "ar": 1.3333
+          },
+          {
+            "image": "images/crab-and-silly/03.jpg",
+            "ar": 1.3333
+          },
+          {
+            "image": "images/crab-and-silly/10.jpg",
+            "ar": 1.3333
+          },
+          {
+            "image": "images/crab-and-silly/09.jpg",
+            "ar": 1.3333
+          }
+        ],
+        "rows": [
+          4,
+          4,
+          4,
+          4
+        ]
       }
     },
     "offer": "",

@@ -151,14 +151,37 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
 .note { margin-top: 14px; font-size: 13px; color: #CFC8B5; }
 
 /* contact */
-.contact .scrim { background: rgba(16,15,12,.45); }
-.contact .panel { position: absolute; left: 50%; bottom: 60px; transform: translateX(-50%); width: 640px; text-align: center; padding: 44px 40px; }
-.contact h2 { font-size: 44px; line-height: 1.08; margin: 14px 0 6px; }
+.collage { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 4px; background: #16150f; }
+.crow { display: flex; gap: 4px; min-height: 0; }
+.crow img { min-width: 0; height: 100%; object-fit: cover; display: block; }
+.contact .scrim { background: rgba(16,15,12,.28); }
+.contact .panel { position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); width: 580px; text-align: center; padding: 24px 30px 22px; background: rgba(16,15,12,.76); }
+.contact h2 { font-size: 38px; line-height: 1.08; margin: 10px 0 2px; }
 .contact .blurb { color: #D8D1BF; font-size: 15px; }
-.contact .mail { display: inline-block; margin: 22px 0 6px; font-size: 24px; font-family: "Instrument Serif", Georgia, serif; }
-.contact .meta { margin-top: 14px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #BCB4A2; line-height: 2; }
+.contact .mail { display: inline-block; margin: 14px 0 2px; font-size: 21px; font-family: "Instrument Serif", Georgia, serif; }
+.contact .meta { margin-top: 8px; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #BCB4A2; line-height: 1.9; }
 .contact .meta a { margin: 0 6px; }
 `;
+
+/* A justified photo mosaic filling the page: each row's photographs share a
+   height and split the width in proportion to their shapes, so nothing is
+   squashed and almost nothing is cropped. */
+function collageBlock(cfg) {
+  if (!cfg || !cfg.images || !cfg.images.length) return '';
+  let i = 0;
+  const rows = (cfg.rows || [cfg.images.length]).map(n => {
+    const row = cfg.images.slice(i, i + n); i += n;
+    const S = row.reduce((a, x) => a + x.ar, 0);
+    const h = (PAGE_W - 4 * (n - 1)) / S;
+    return { row, h };
+  });
+  const total = rows.reduce((a, r) => a + r.h, 0) + 4 * (rows.length - 1);
+  const k = PAGE_H / total;   // stretch the rows a hair so the mosaic fills the page exactly
+  return '<div class="collage">' + rows.map(r =>
+    '<div class="crow" style="height:' + (r.h * k).toFixed(2) + 'px">' + r.row.map(x =>
+      '<img src="/' + esc(x.image) + '" style="flex:' + x.ar + ' 1 0" alt="">').join('') + '</div>').join('') +
+    '</div><div class="scrim"></div>';
+}
 
 function bgBlock(cfg, scrimless) {
   if (!cfg || !cfg.image) return '';
@@ -290,10 +313,10 @@ function buildHtml(C) {
   /* 7 — contact */
   const social = (SITE.social || []).filter(s => s && s.url).map(s =>
     '<a href="' + esc(s.url) + '">' + esc(s.handle || s.label || s.url.replace(/^https?:\/\/(www\.)?/, '')) + '</a>').join('');
-  pages.push('<section class="pg contact">' + bgBlock(P.contact) +
+  pages.push('<section class="pg contact">' + collageBlock(P.collage) + (P.collage && P.collage.images ? '' : bgBlock(P.contact)) +
     '<div class="panel"><div class="lab">Let’s work together!</div><h2 class="disp">Have fun, be safe, look cool, more crab!</h2>' +
     (SITE.email ? '<a class="mail" href="mailto:' + esc(SITE.email) + '">' + esc(SITE.email) + '</a>' : '') +
-    '<div class="meta"><a href="' + siteUrl + '">' + esc(domain) + '</a>' + (social ? '<br>' + social : '') +
+    '<div class="meta"><a href="' + siteUrl + '">' + esc(domain) + '</a>' + (social ? social : '') +
     '<br>Rates and availability on request</div></div>' + credit(P.contact) + foot(9) + '</section>');
 
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>' + esc((K.title || 'Christian Black') + ' — Media kit') + '</title>' +
