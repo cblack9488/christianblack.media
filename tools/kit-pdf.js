@@ -133,10 +133,14 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
 .deliver .note { margin-top: 10px; }
 .next .scrim { background: linear-gradient(90deg, rgba(16,15,12,.78) 0%, rgba(16,15,12,.35) 100%); }
 .next .panel { position: absolute; left: 56px; right: 56px; top: 150px; padding: 34px 38px; }
-.ncols { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; margin-top: 20px; }
-.nrow { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(216,209,191,.2); }
-.nw { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #BCA38F; padding-top: 4px; }
-.nt { font-family: "Instrument Serif", Georgia, serif; font-size: 24px; line-height: 1.22; color: #F0EADB; }
+.next.pitch .panel { top: 48px; padding: 26px 34px; }
+.next .panel.why { top: auto; bottom: 56px; padding: 22px 34px 14px; }
+.why .lab { margin-bottom: 10px; }
+.why p { font-size: 14px; line-height: 1.5; color: #E8E1CF; margin-bottom: 8px; }
+.ncols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; margin-top: 16px; }
+.nrow { padding: 12px 0; border-top: 1px solid rgba(216,209,191,.2); }
+.nw { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #BCA38F; margin-bottom: 4px; min-height: 13px; }
+.nt { font-family: "Instrument Serif", Georgia, serif; font-size: 21px; line-height: 1.22; color: #F0EADB; }
 .audience .scrim { background: rgba(16,15,12,.55); }
 .audience .panel { position: absolute; left: 56px; right: 56px; top: 56px; }
 .stats.four { grid-template-columns: repeat(4, 1fr); margin-bottom: 30px; }
@@ -261,7 +265,7 @@ function bars(list, unit) {
     '<div class="bt"><i style="width:' + Math.max(2, Math.round(r[1] / (unit === 'k' ? max : 100) * 100)) + '%"></i></div></div>').join('');
 }
 
-function buildHtml(C) {
+function buildHtml(C, pitch) {
   const SITE = C.site || {};
   const K = C.mediakit || {};
   const P = K.pdf || {};
@@ -350,10 +354,12 @@ function buildHtml(C) {
   const newsList = list => (list || []).filter(x => x && String(x.text || '').trim()).map(x =>
     '<div class="nrow"><div class="nw">' + esc(x.when || '') + '</div><div class="nt">' + inl(x.text) + '</div></div>').join('');
   if ((K.news || []).length || (K.upcoming || []).length) {
-    pages.push('<section class="pg next">' + bgBlock(P.next) +
+    pages.push('<section class="pg next' + (pitch ? ' pitch' : '') + '">' + bgBlock(P.next) +
       '<div class="panel"><div class="lab">' + esc(K.nextLabel || 'Recent news and future projects') + '</div>' +
       '<div class="ncols"><div><div class="lab sm">Recent news</div>' + newsList(K.news) + '</div>' +
-      '<div><div class="lab sm">Upcoming projects</div>' + newsList(K.upcoming) + '</div></div></div>' +
+      '<div><div class="lab sm">Upcoming projects</div>' + newsList(K.upcoming) + '</div>' +
+      ((K.creative || []).length ? '<div><div class="lab sm">Creative projects</div>' + newsList(K.creative) + '</div>' : '') + '</div></div>' +
+      (pitch ? '<div class="panel why"><div class="lab">' + esc(pitch.title) + '</div>' + paras(pitch.text) + '</div>' : '') +
       credit(P.next) + foot(8) + '</section>');
   }
 
@@ -373,20 +379,30 @@ function buildHtml(C) {
 
 module.exports = async function buildKitPdf(opts) {
   const { ctx, PORT, ROOT, C } = opts;
-  const html = buildHtml(C);
-  const page = await ctx.newPage();
-  await page.setViewportSize({ width: PAGE_W, height: PAGE_H });
-  const url = 'http://localhost:' + PORT + '/__media-kit-pdf.html';
-  await page.route(url, route => route.fulfill({ status: 200, contentType: 'text/html; charset=utf-8', body: html }));
-  await page.goto(url, { waitUntil: 'load' });
-  /* Wait for the photographs, then give web fonts a short, bounded chance. */
-  await page.evaluate(() => Promise.all(Array.from(document.images).map(i => i.complete ? 0 :
-    new Promise(r => { i.onload = i.onerror = r; }))));
-  await page.evaluate(() => Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 4000))]));
-  fs.mkdirSync(path.join(ROOT, 'press'), { recursive: true });
-  const out = path.join(ROOT, 'press/christian-black-media-kit.pdf');
-  await page.pdf({ path: out, width: '11in', height: '8.5in', printBackground: true, preferCSSPageSize: true });
-  await page.close();
-  return out;
+  const outs = [];
+  /* The general kit, plus one extra copy per entry in mediakit.pitches (a
+     tailored version with its own "Why …?" box). */
+  const jobs = [{ html: buildHtml(C), file: 'christian-black-media-kit.pdf' }];
+  Object.keys((C.mediakit || {}).pitches || {}).forEach(k => {
+    const pt = C.mediakit.pitches[k];
+    if (pt && pt.text && pt.file) jobs.push({ html: buildHtml(C, pt), file: pt.file });
+  });
+  for (const job of jobs) {
+    const page = await ctx.newPage();
+    await page.setViewportSize({ width: PAGE_W, height: PAGE_H });
+    const url = 'http://localhost:' + PORT + '/__media-kit-pdf.html';
+    await page.route(url, route => route.fulfill({ status: 200, contentType: 'text/html; charset=utf-8', body: job.html }));
+    await page.goto(url, { waitUntil: 'load' });
+    /* Wait for the photographs, then give web fonts a short, bounded chance. */
+    await page.evaluate(() => Promise.all(Array.from(document.images).map(i => i.complete ? 0 :
+      new Promise(r => { i.onload = i.onerror = r; }))));
+    await page.evaluate(() => Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 4000))]));
+    fs.mkdirSync(path.join(ROOT, 'press'), { recursive: true });
+    const out = path.join(ROOT, 'press/' + job.file);
+    await page.pdf({ path: out, width: '11in', height: '8.5in', printBackground: true, preferCSSPageSize: true });
+    await page.close();
+    outs.push(out);
+  }
+  return outs;
 };
 module.exports.buildHtml = buildHtml;

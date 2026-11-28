@@ -576,10 +576,27 @@ window.CB_CONTENT = {
         "text": "*El Niño* ground-up second attempt"
       },
       {
-        "when": "",
+        "when": "Spring 2027",
         "text": "*Dreefee*, 5.13d, 12 pitches, Red Rocks, NV"
       }
-    ]
+    ],
+    "creative": [
+      {
+        "when": "Spring 2027",
+        "text": "[CONTENT](https://drive.google.com/file/d/1SJcqGKnnGkuK8GuBYyIP7Iv_irTyRzy-/view), skateboarding and lifestyle film"
+      },
+      {
+        "when": "",
+        "text": "*Know Thyself*, short film on the philosophy of risk in the mountains"
+      }
+    ],
+    "pitches": {
+      "laSportiva": {
+        "title": "Why La Sportiva?",
+        "file": "christian-black-media-kit-la-sportiva.pdf",
+        "text": "As an athlete for La Sportiva, I am interested in representing the brand through my broad range of athletic and creative skills. La Sportiva has been my footwear of choice for over a decade of my climbing and has offered gear support on major trips, including two trips to the Indian Himalaya. I would love to partner with a company that has shown they believe in me and use the athlete platform to give back. More than anything I hope to feel supported in pushing my own limits, mentoring the next generation of climbers and creating captivating stories to tell along the way. I hope we can do it together!"
+      }
+    }
   },
   "photography": {
     "kicker": "Photography",
