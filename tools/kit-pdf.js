@@ -77,11 +77,11 @@ a { color: #ECE6D4; text-decoration: none; border-bottom: 1px solid rgba(236,230
 
 /* biography */
 .bio .scrim { background: rgba(16,15,12,.35); }
-.bio .panel { position: absolute; left: 56px; top: 56px; width: 590px; height: 704px; padding: 38px 42px; }
-.bio .panel p { margin-bottom: 13px; font-size: 13.4px; line-height: 1.55; color: #E2DBC8; }
-.bio .panel .lab { margin-bottom: 20px; }
-.bio .side { position: absolute; left: 676px; top: 56px; width: 324px; }
-.bio .crab { width: 324px; height: 324px; object-fit: cover; object-position: center 40%; border-radius: 4px;
+.bio .panel { position: absolute; left: 56px; top: 56px; width: 616px; height: 704px; padding: 32px 38px; }
+.bio .panel p { margin-bottom: 10px; font-size: 12.5px; line-height: 1.48; color: #E2DBC8; }
+.bio .panel .lab { margin-bottom: 14px; }
+.bio .side { position: absolute; left: 702px; top: 56px; width: 298px; }
+.bio .crab { width: 298px; height: 298px; object-fit: cover; object-position: center 40%; border-radius: 4px;
   border: 1px solid rgba(216,209,191,.2); display: block; }
 .bio .panel.short { position: static; width: auto; height: auto; margin-top: 18px; padding: 24px 26px; }
 .bio .short p { font-size: 12.6px; line-height: 1.5; color: #E2DBC8; }
